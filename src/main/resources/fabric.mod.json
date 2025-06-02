@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "class_skills",
+  "version": "${version}",
+  "name": "Class Skills",
+  "description": "Passive skill tree to specialise your RPG Series class.",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/class_skills/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "net.class_skills.data_gen.ClassSkillsModDataGenerator"
+    ],
+    "client": [
+      "net.class_skills.client.ClassSkillsModClient"
+    ],
+    "main": [
+      "net.class_skills.ClassSkillsMod"
+    ]
+  },
+  "mixins": [
+    "class_skills.mixins.json"
+  ],
+  "depends": {
+    "minecraft": ">=${minecraft_compat_version}",
+    "fabricloader": ">=${fabric_loader_version}",
+    "spell_engine": ">=${spell_engine_version}"
+  }
+}
