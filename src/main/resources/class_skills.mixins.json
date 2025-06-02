@@ -4,7 +4,6 @@
   "package": "net.class_skills.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "PlayerEntityMixin"
   ],
   "client": [
   ],

@@ -12,6 +12,7 @@ import net.puffish.skillsmod.api.reward.RewardUpdateContext;
 import net.puffish.skillsmod.api.util.Problem;
 import net.puffish.skillsmod.api.util.Result;
 import net.spell_engine.api.spell.container.SpellContainer;
+import net.spell_engine.internals.container.SpellContainerSource;
 
 import java.util.List;
 
@@ -50,10 +51,10 @@ public class SpellContainerReward implements Reward {
     public void update(RewardUpdateContext context) {
         int count = context.getCount();
         var player = context.getPlayer();
-        var containers = ((SkillNodeOwner)player).getSkillNodeSpellContainers();
-        containers.remove(id);
+        var containers = ((SpellContainerSource.Owner)player).serverSideSpellContainers();
+        containers.remove(id.toString());
         if (count > 0 && count <= this.containers.size()) {
-            containers.put(id, this.containers.get(count - 1));
+            containers.put(id.toString(), this.containers.get(count - 1));
         }
         SkillNodeSource.markDirtyForPlayer(player);
     }

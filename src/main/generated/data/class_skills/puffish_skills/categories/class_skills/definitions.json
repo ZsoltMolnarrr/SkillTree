@@ -1,0 +1,49 @@
+{
+  "fire_boost": {
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/fire_scorch.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:fire",
+          "operation": "addition",
+          "value": 1.0
+        }
+      }
+    ],
+    "title": "Fire Boost"
+  },
+  "fireball": {
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/fireball.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": "Fireball"
+  }
+}

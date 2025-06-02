@@ -12,7 +12,7 @@ group = project.maven_group
 fabricApi {
     configureDataGeneration() {
         client = true
-        modId = "arsenal"
+        modId = "class_skills"
     }
 }
 
