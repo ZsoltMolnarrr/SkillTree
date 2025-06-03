@@ -56,7 +56,7 @@ public class SpellContainerReward implements Reward {
         if (count > 0 && count <= this.containers.size()) {
             containers.put(id.toString(), this.containers.get(count - 1));
         }
-        SkillNodeSource.markDirtyForPlayer(player);
+        SpellContainerSource.syncServerSideContainers(player);
     }
 
     @Override
