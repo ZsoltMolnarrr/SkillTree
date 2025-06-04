@@ -6,5 +6,6 @@
 			"item": "iron_sword"
 		}
 	},
-	"background": "textures/gui/advancements/backgrounds/stone.png"
+	"background": "textures/gui/advancements/backgrounds/stone.png",
+	"exclusive_root": true
 }

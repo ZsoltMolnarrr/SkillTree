@@ -1,20 +1,254 @@
 {
-	"gitg99bh3w0dnkcx": {
-		"definition": "fireball",
-		"x": 55.42562584220407,
-		"y": -96,
-		"root": false
+	"qr4fdarqqqm5ifoa": {
+		"definition": "arcane_root",
+		"x": -64,
+		"y": -73.9008344562721,
+		"root": true
 	},
-	"ddri3a2f9jrdjmb1": {
-		"definition": "fire_boost",
-		"x": 73.9008344562721,
+	"m1pc5vz73nx4b28c": {
+		"definition": "fire_root",
+		"x": 0,
+		"y": -73.9008344562721,
+		"root": true
+	},
+	"akyr8k2dv9xsy70c": {
+		"definition": "frost_root",
+		"x": 64,
+		"y": -73.9008344562721,
+		"root": true
+	},
+	"418rsvnd17egwkse": {
+		"definition": "archer_root",
+		"x": -64,
 		"y": 0,
 		"root": true
 	},
-	"qirngwph2v4kwog4": {
-		"definition": "fire_boost",
-		"x": 36.95041722813605,
-		"y": -64,
+	"tdimeso8ajcwiygp": {
+		"definition": "paladin_root",
+		"x": 64,
+		"y": 0,
 		"root": true
+	},
+	"ov6ag9tjdhsmldil": {
+		"definition": "priest_root",
+		"x": 64,
+		"y": 73.9008344562721,
+		"root": true
+	},
+	"63gwys64onqg00ry": {
+		"definition": "rogue_root",
+		"x": 0,
+		"y": 73.9008344562721,
+		"root": true
+	},
+	"e5ljj7jx6pmdjatf": {
+		"definition": "warrior_root",
+		"x": -64,
+		"y": 73.9008344562721,
+		"root": true
+	},
+	"15tuf0f9hm7wm5i7": {
+		"definition": "arcane_spec_a_modifier_1",
+		"x": -32,
+		"y": -129.32646029847615,
+		"root": false
+	},
+	"jf9g15hlqy81pt15": {
+		"definition": "arcane_spec_a_modifier_2",
+		"x": -32,
+		"y": -240.17771198288432,
+		"root": false
+	},
+	"5finy8ushehch66n": {
+		"definition": "fire_boost",
+		"x": 0,
+		"y": -184.75208614068023,
+		"root": false
+	},
+	"9mfi5ayyjcxax9xy": {
+		"definition": "fire_boost",
+		"x": 0,
+		"y": -295.6033378250884,
+		"root": false
+	},
+	"tb9tuxdpet1m27kh": {
+		"definition": "fire_boost",
+		"x": 0,
+		"y": -406.4545895094965,
+		"root": false
+	},
+	"zy0iv358bpnyc0vn": {
+		"definition": "arcane_spec_a_modifier_3",
+		"x": -32,
+		"y": -351.0289636672925,
+		"root": false
+	},
+	"q8xryjwbp1h451j9": {
+		"definition": "arcane_spec_a_modifier_4",
+		"x": -32,
+		"y": -461.8802153517006,
+		"root": false
+	},
+	"2ied8j8jkna9q3sb": {
+		"definition": "arcane_spec_a_passive_1",
+		"x": -64,
+		"y": -184.75208614068023,
+		"root": false
+	},
+	"x3ouzc8temz30cin": {
+		"definition": "arcane_spec_a_passive_2",
+		"x": -64,
+		"y": -295.6033378250884,
+		"root": false
+	},
+	"oo7bvawwd1d5db3z": {
+		"definition": "arcane_spec_a_passive_3",
+		"x": -64,
+		"y": -406.4545895094965,
+		"root": false
+	},
+	"cxgrzujb8ok7goqh": {
+		"definition": "arcane_spec_b_modifier_1",
+		"x": 32,
+		"y": -129.32646029847615,
+		"root": false
+	},
+	"kkuzqse43xq7bcwf": {
+		"definition": "arcane_spec_b_modifier_2",
+		"x": 32,
+		"y": -240.17771198288426,
+		"root": false
+	},
+	"tf2hdvel3dd3ctut": {
+		"definition": "arcane_spec_b_modifier_3",
+		"x": 32,
+		"y": -351.02896366729243,
+		"root": false
+	},
+	"54ttqmoe4vdh8krj": {
+		"definition": "arcane_spec_b_modifier_4",
+		"x": 32,
+		"y": -461.8802153517006,
+		"root": false
+	},
+	"daxqbt8e0sp1ttmk": {
+		"definition": "arcane_spec_b_passive_1",
+		"x": 64,
+		"y": -184.75208614068023,
+		"root": false
+	},
+	"wk3c3v606bix2jlw": {
+		"definition": "arcane_spec_b_passive_2",
+		"x": 64,
+		"y": -295.6033378250884,
+		"root": false
+	},
+	"ael7lany9swsjhgy": {
+		"definition": "arcane_spec_b_passive_3",
+		"x": 64,
+		"y": -406.4545895094965,
+		"root": false
+	},
+	"kx17pr14rtc5gpne": {
+		"definition": "arcane_spec_a_modifier_1",
+		"x": -128,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"7pmcf7sg1h98rfkj": {
+		"definition": "arcane_spec_b_modifier_1",
+		"x": -96,
+		"y": -129.32646029847615,
+		"root": false
+	},
+	"d2r1bwbjlejfsyx8": {
+		"definition": "arcane_boost",
+		"x": -160,
+		"y": -129.32646029847615,
+		"root": false
+	},
+	"q8ffmb3ab8ncodol": {
+		"definition": "arcane_spec_a_modifier_2",
+		"x": -224,
+		"y": -129.32646029847615,
+		"root": false
+	},
+	"nbiclomesme3v1xf": {
+		"definition": "arcane_spec_b_modifier_2",
+		"x": -192,
+		"y": -184.75208614068023,
+		"root": false
+	},
+	"qidfapujo6nvkhu3": {
+		"definition": "arcane_boost",
+		"x": -256,
+		"y": -184.75208614068023,
+		"root": false
+	},
+	"35gc1quu85767ksc": {
+		"definition": "arcane_boost",
+		"x": -352,
+		"y": -240.1777119828843,
+		"root": false
+	},
+	"68foxw7lmj0rs0kp": {
+		"definition": "arcane_spec_a_modifier_3",
+		"x": -320,
+		"y": -184.75208614068023,
+		"root": false
+	},
+	"p6k6oj0rwy5waw7k": {
+		"definition": "arcane_spec_b_modifier_3",
+		"x": -288,
+		"y": -240.17771198288432,
+		"root": false
+	},
+	"c2dh654316pt1nlq": {
+		"definition": "arcane_spec_a_modifier_4",
+		"x": -416,
+		"y": -240.17771198288432,
+		"root": false
+	},
+	"url6bcwcdip1kia3": {
+		"definition": "arcane_spec_b_modifier_4",
+		"x": -384,
+		"y": -295.6033378250884,
+		"root": false
+	},
+	"x0rbz99jwtdp3l7e": {
+		"definition": "arcane_spec_b_passive_1",
+		"x": -128,
+		"y": -184.75208614068023,
+		"root": false
+	},
+	"pzwf17ukf1m73ag5": {
+		"definition": "arcane_spec_b_passive_2",
+		"x": -224,
+		"y": -240.1777119828843,
+		"root": false
+	},
+	"hfuuo18bl6n65dfh": {
+		"definition": "arcane_spec_b_passive_3",
+		"x": -320,
+		"y": -295.6033378250884,
+		"root": false
+	},
+	"4mz3dsmef5hjefi8": {
+		"definition": "arcane_spec_a_passive_1",
+		"x": -192,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"ukbeqrzvwus1htcz": {
+		"definition": "arcane_spec_a_passive_2",
+		"x": -288,
+		"y": -129.32646029847618,
+		"root": false
+	},
+	"fcoj22kades1hhy7": {
+		"definition": "arcane_spec_a_passive_3",
+		"x": -384,
+		"y": -184.75208614068023,
+		"root": false
 	}
 }

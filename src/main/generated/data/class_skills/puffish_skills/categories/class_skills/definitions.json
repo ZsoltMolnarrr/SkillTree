@@ -1,12 +1,570 @@
 {
+  "arcane_boost": {
+    "description": {
+      "translate": "skill.class_skills.arcane_boost.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "wizards:wand_arcane"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:arcane",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_boost.title"
+    }
+  },
+  "arcane_root": {
+    "description": {
+      "translate": "skill.class_skills.arcane_root.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "wizards:arcane_spell_book"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:arcane",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_root.title"
+    }
+  },
+  "arcane_spec_a_modifier_1": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_a_modifier_1.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_blast.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_a_modifier_1.title"
+    }
+  },
+  "arcane_spec_a_modifier_2": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_a_modifier_2.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_missile.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_a_modifier_2.title"
+    }
+  },
+  "arcane_spec_a_modifier_3": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_a_modifier_3.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_beam.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_a_modifier_3.title"
+    }
+  },
+  "arcane_spec_a_modifier_4": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_a_modifier_4.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_blink.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_a_modifier_4.title"
+    }
+  },
+  "arcane_spec_a_passive_1": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_a_passive_1.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_spec_a_passive_1.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_a_passive_1.title"
+    }
+  },
+  "arcane_spec_a_passive_2": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_a_passive_2.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_spec_a_passive_2.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_a_passive_2.title"
+    }
+  },
+  "arcane_spec_a_passive_3": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_a_passive_3.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_spec_a_passive_3.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_a_passive_3.title"
+    }
+  },
+  "arcane_spec_b_modifier_1": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_b_modifier_1.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_blast.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_b_modifier_1.title"
+    }
+  },
+  "arcane_spec_b_modifier_2": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_b_modifier_2.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_missile.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_b_modifier_2.title"
+    }
+  },
+  "arcane_spec_b_modifier_3": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_b_modifier_3.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_beam.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_b_modifier_3.title"
+    }
+  },
+  "arcane_spec_b_modifier_4": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_b_modifier_4.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_blink.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_b_modifier_4.title"
+    }
+  },
+  "arcane_spec_b_passive_1": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_b_passive_1.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_spec_b_passive_1.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_b_passive_1.title"
+    }
+  },
+  "arcane_spec_b_passive_2": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_b_passive_2.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_spec_b_passive_2.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_b_passive_2.title"
+    }
+  },
+  "arcane_spec_b_passive_3": {
+    "description": {
+      "translate": "skill.class_skills.arcane_spec_b_passive_3.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_spec_b_passive_3.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "class_skills:spell",
+        "data": {
+          "containers": [
+            {
+              "content": "MAGIC",
+              "is_proxy": false,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "wizards:fireball"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.arcane_spec_b_passive_3.title"
+    }
+  },
+  "archer_boost": {
+    "description": {
+      "translate": "skill.class_skills.archer_boost.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "archers:archer_spell_book"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "ranged_weapon:damage",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.archer_boost.title"
+    }
+  },
+  "archer_root": {
+    "description": {
+      "translate": "skill.class_skills.archer_root.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "archers:archer_spell_book"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "ranged_weapon:damage",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.archer_root.title"
+    }
+  },
   "fire_boost": {
     "description": {
       "translate": "skill.class_skills.fire_boost.description"
     },
     "icon": {
-      "type": "texture",
+      "type": "item",
       "data": {
-        "texture": "wizards:textures/spell/fire_scorch.png"
+        "item": "wizards:wand_fire"
       }
     },
     "rewards": [
@@ -28,9 +586,9 @@
       "translate": "skill.class_skills.fire_root.description"
     },
     "icon": {
-      "type": "texture",
+      "type": "item",
       "data": {
-        "texture": "wizards:textures/spell/fire_scorch.png"
+        "item": "wizards:fire_spell_book"
       }
     },
     "rewards": [
@@ -78,6 +636,246 @@
     ],
     "title": {
       "translate": "skill.class_skills.fireball.title"
+    }
+  },
+  "frost_boost": {
+    "description": {
+      "translate": "skill.class_skills.frost_boost.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "wizards:wand_frost"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:frost",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.frost_boost.title"
+    }
+  },
+  "frost_root": {
+    "description": {
+      "translate": "skill.class_skills.frost_root.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "wizards:frost_spell_book"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:frost",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.frost_root.title"
+    }
+  },
+  "paladin_boost": {
+    "description": {
+      "translate": "skill.class_skills.paladin_boost.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "paladins:iron_mace"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:healing",
+          "operation": "addition",
+          "value": 0.2
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.paladin_boost.title"
+    }
+  },
+  "paladin_root": {
+    "description": {
+      "translate": "skill.class_skills.paladin_root.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "paladins:paladin_spell_book"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:healing",
+          "operation": "addition",
+          "value": 0.2
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.paladin_root.title"
+    }
+  },
+  "priest_boost": {
+    "description": {
+      "translate": "skill.class_skills.priest_boost.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "paladins:holy_wand"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:healing",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.priest_boost.title"
+    }
+  },
+  "priest_root": {
+    "description": {
+      "translate": "skill.class_skills.priest_root.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "paladins:priest_spell_book"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:healing",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.priest_root.title"
+    }
+  },
+  "rogue_boost": {
+    "description": {
+      "translate": "skill.class_skills.rogue_boost.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "rogues:iron_sickle"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_speed",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.rogue_boost.title"
+    }
+  },
+  "rogue_root": {
+    "description": {
+      "translate": "skill.class_skills.rogue_root.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "rogues:rogue_spell_book"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_speed",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.rogue_root.title"
+    }
+  },
+  "warrior_boost": {
+    "description": {
+      "translate": "skill.class_skills.warrior_boost.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "rogues:iron_double_axe"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.warrior_boost.title"
+    }
+  },
+  "warrior_root": {
+    "description": {
+      "translate": "skill.class_skills.warrior_root.description"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "rogues:warrior_spell_book"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.warrior_root.title"
     }
   }
 }
