@@ -11,7 +11,7 @@
         "type": "puffish_skills:attribute",
         "data": {
           "attribute": "spell_power:fire",
-          "operation": "addition",
+          "operation": "multiply_base",
           "value": 1.0
         }
       }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "class_skills:item/orb_of_oblivion"
+  }
+}

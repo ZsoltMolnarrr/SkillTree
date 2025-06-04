@@ -30,7 +30,7 @@ public class SkillDefinitions {
             Entry.attribute("fire_boost", "Fire Boost", "wizards:textures/spell/fire_scorch.png",
                     new EntityAttributeModifier(SpellSchools.FIRE.id,
                             1,
-                            EntityAttributeModifier.Operation.ADD_VALUE)
+                            EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE)
             )
     );
 

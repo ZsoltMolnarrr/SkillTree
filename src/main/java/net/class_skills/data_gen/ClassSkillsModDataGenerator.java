@@ -1,10 +1,21 @@
 package net.class_skills.data_gen;
 
+import net.class_skills.items.SkillItems;
 import net.class_skills.node.SpellContainerReward;
 import net.class_skills.skills.SkillDefinitions;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.data.client.BlockStateModelGenerator;
+import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.Models;
+import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.puffish.skillsmod.reward.builtin.AttributeReward;
 
@@ -17,7 +28,61 @@ public class ClassSkillsModDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+        pack.addProvider(LangGenerator::new);
+        pack.addProvider(ModelProvider::new);
+        pack.addProvider(RecipeProvider::new);
         pack.addProvider(SkillDefinitionGen::new);
+    }
+
+    public static class LangGenerator extends FabricLanguageProvider {
+        protected LangGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+            super(dataOutput, registryLookup);
+        }
+
+        @Override
+        public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
+            for (var item: SkillItems.ENTRIES) {
+                translationBuilder.add(item.item(), item.title());
+                for (var lore : item.loreTranslation()) {
+                    translationBuilder.add(lore.translationKey(), lore.line().text());
+                }
+            }
+        }
+    }
+
+    public static class ModelProvider extends FabricModelProvider {
+        public ModelProvider(FabricDataOutput output) {
+            super(output);
+        }
+
+        @Override
+        public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        }
+
+        @Override
+        public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+            SkillItems.ENTRIES.forEach(entry -> {
+                itemModelGenerator.register(entry.item(), Models.GENERATED);
+            });
+        }
+    }
+
+    public static class RecipeProvider extends FabricRecipeProvider {
+        public RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+            super(output, registriesFuture);
+        }
+
+        @Override
+        public void generate(RecipeExporter recipeExporter) {
+            ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, SkillItems.ORB_OF_OBLIVION.item())
+                    .pattern(" X ")
+                    .pattern("XCX")
+                    .pattern(" X ")
+                    .input('X', Items.EXPERIENCE_BOTTLE)
+                    .input('C', Items.DIAMOND)
+                    .criterion(FabricRecipeProvider.hasItem(Items.EXPERIENCE_BOTTLE), FabricRecipeProvider.conditionsFromItem(Items.EXPERIENCE_BOTTLE))
+                    .offerTo(recipeExporter);
+        }
     }
 
     public static class SkillDefinitionGen extends SkillDefinitionGenerator {
