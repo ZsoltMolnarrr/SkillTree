@@ -46,6 +46,14 @@ public class ClassSkillsModDataGenerator implements DataGeneratorEntrypoint {
                 for (var lore : item.loreTranslation()) {
                     translationBuilder.add(lore.translationKey(), lore.line().text());
                 }
+                for (var skill: SkillDefinitions.ENTRIES) {
+                    if (skill.title() != null && !skill.title().isEmpty()) {
+                        translationBuilder.add(skill.titleTranslationKey(), skill.title());
+                    }
+                    if (skill.description() != null && !skill.description().isEmpty()) {
+                        translationBuilder.add(skill.descriptionTranslationKey(), skill.description());
+                    }
+                }
             }
         }
     }
@@ -94,16 +102,30 @@ public class ClassSkillsModDataGenerator implements DataGeneratorEntrypoint {
         public void generate(Builder builder) {
             LinkedHashMap<String, Format> skillDefinitions = new LinkedHashMap<>();
             for (var skill : SkillDefinitions.ENTRIES) {
-                var icon = Icon.texture(skill.texture());
+                Translatable title = null;
+                if (skill.title() != null && !skill.title().isEmpty()) {
+                    title = new Translatable(skill.titleTranslationKey());
+                }
+                Translatable description = null;
+                if (skill.description() != null && !skill.description().isEmpty()) {
+                    description = new Translatable(skill.descriptionTranslationKey());
+                }
+
+                Icon icon = null;
+                switch (skill.icon().type()) {
+                    case TEXTURE -> icon = Icon.texture(skill.icon().value());
+                    case ITEM -> icon = Icon.item(skill.icon().value());
+                    case EFFECT -> icon = Icon.effect(skill.icon().value());
+                }
                 ArrayList<Reward> rewards = new ArrayList<>();
                 if (skill.attributeReward() != null) {
                     var attribute = skill.attributeReward();
-                    rewards.add(new Reward(AttributeReward.ID.toString(), RewardAttribute.from(attribute)));
+                    rewards.add(new Reward(AttributeReward.ID.toString(), RewardAttribute.from(attribute.attribute(),  attribute.modifier())));
                 }
                 if(skill.spellReward() != null) {
                     rewards.add(new Reward(SpellContainerReward.ID.toString(), new SpellContainerReward.DataStructure(skill.spellReward())));
                 }
-                var format = new Format(skill.title(), icon, rewards);
+                var format = new Format(title, description, icon, rewards);
                 skillDefinitions.put(skill.id(), format);
             }
             builder.entries.add(new Entry(SkillDefinitions.CATEGORY_ID, skillDefinitions));

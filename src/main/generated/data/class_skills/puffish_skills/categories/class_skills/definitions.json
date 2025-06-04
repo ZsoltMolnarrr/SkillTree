@@ -1,5 +1,8 @@
 {
   "fire_boost": {
+    "description": {
+      "translate": "skill.class_skills.fire_boost.description"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -12,13 +15,42 @@
         "data": {
           "attribute": "spell_power:fire",
           "operation": "multiply_base",
-          "value": 1.0
+          "value": 0.01
         }
       }
     ],
-    "title": "Fire Boost"
+    "title": {
+      "translate": "skill.class_skills.fire_boost.title"
+    }
+  },
+  "fire_root": {
+    "description": {
+      "translate": "skill.class_skills.fire_root.description"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/fire_scorch.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:fire",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.class_skills.fire_root.title"
+    }
   },
   "fireball": {
+    "description": {
+      "translate": "skill.class_skills.fireball.description"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -44,6 +76,8 @@
         }
       }
     ],
-    "title": "Fireball"
+    "title": {
+      "translate": "skill.class_skills.fireball.title"
+    }
   }
 }

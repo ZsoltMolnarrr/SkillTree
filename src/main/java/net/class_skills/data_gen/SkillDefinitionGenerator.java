@@ -6,8 +6,10 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.data.DataOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.DataWriter;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 import java.nio.file.Path;
@@ -26,11 +28,12 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
     }
 
     public record Format(
-            String title,
+            Translatable title,
+            Translatable description,
             Icon icon,
             List<Reward> rewards
     ) {}
-
+    public record Translatable(String translate) { }
     public record Icon(
             String type,
             Object data
@@ -41,13 +44,13 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
         public static Icon item(String item) {
             return new Icon("item", new IconItem(item));
         }
+        public static Icon effect(String effect) {
+            return new Icon("effect", new IconEffect(effect));
+        }
     }
-    public record IconTexture(
-            String texture
-    ) {}
-    public record IconItem(
-            String item
-    ) {}
+    public record IconTexture(String texture) {}
+    public record IconItem(String item) {}
+    public record IconEffect(String effect) {}
 
     public record Reward(
             String type,
@@ -59,7 +62,7 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
             double value,
             String operation
     ) {
-        public static RewardAttribute from(EntityAttributeModifier modifier) {
+        public static RewardAttribute from(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier) {
             String operation;
             switch (modifier.operation()) {
                 case ADD_VALUE -> operation = "addition";
@@ -67,7 +70,8 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
                 case ADD_MULTIPLIED_TOTAL -> operation = "multiply_total";
                 default -> throw new IllegalArgumentException("Unknown operation: " + modifier.operation());
             }
-            return new RewardAttribute(modifier.id().toString(), modifier.value(), operation);
+            var attributeId = attribute.getKey().get().getValue().toString();
+            return new RewardAttribute(attributeId, modifier.value(), operation);
         }
     }
 

@@ -1,4 +1,10 @@
 {
   "item.class_skills.orb_of_oblivion": "Orb of Oblivion",
-  "item.class_skills.orb_of_oblivion.lore.0": "Reset all skill points spend on the Class Skill Tree."
+  "item.class_skills.orb_of_oblivion.lore.0": "Reset all skill points spend on the Class Skill Tree.",
+  "skill.class_skills.fire_boost.description": "+1% attribute.name.spell_power.fire",
+  "skill.class_skills.fire_boost.title": "Fire Boost",
+  "skill.class_skills.fire_root.description": "+1% attribute.name.spell_power.fire",
+  "skill.class_skills.fire_root.title": "Path of Fire",
+  "skill.class_skills.fireball.description": "Unlock Fireball",
+  "skill.class_skills.fireball.title": "Fireball"
 }
