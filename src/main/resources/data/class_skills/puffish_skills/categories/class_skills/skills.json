@@ -2,19 +2,19 @@
 	"qr4fdarqqqm5ifoa": {
 		"definition": "arcane_root",
 		"x": -64,
-		"y": -73.9008344562721,
+		"y": -110.85125168440817,
 		"root": true
 	},
 	"m1pc5vz73nx4b28c": {
 		"definition": "fire_root",
 		"x": 0,
-		"y": -73.9008344562721,
+		"y": -110.85125168440813,
 		"root": true
 	},
 	"akyr8k2dv9xsy70c": {
 		"definition": "frost_root",
 		"x": 64,
-		"y": -73.9008344562721,
+		"y": -110.85125168440814,
 		"root": true
 	},
 	"418rsvnd17egwkse": {
@@ -26,229 +26,841 @@
 	"tdimeso8ajcwiygp": {
 		"definition": "paladin_root",
 		"x": 64,
-		"y": 0,
+		"y": 110.85125168440814,
 		"root": true
 	},
 	"ov6ag9tjdhsmldil": {
 		"definition": "priest_root",
 		"x": 64,
-		"y": 73.9008344562721,
+		"y": 0,
 		"root": true
 	},
 	"63gwys64onqg00ry": {
 		"definition": "rogue_root",
-		"x": 0,
-		"y": 73.9008344562721,
+		"x": -64,
+		"y": 110.85125168440814,
 		"root": true
 	},
 	"e5ljj7jx6pmdjatf": {
 		"definition": "warrior_root",
-		"x": -64,
-		"y": 73.9008344562721,
+		"x": 0,
+		"y": 110.85125168440814,
 		"root": true
 	},
 	"15tuf0f9hm7wm5i7": {
-		"definition": "arcane_spec_a_modifier_1",
+		"definition": "fire_spec_a_modifier_1",
 		"x": -32,
-		"y": -129.32646029847615,
+		"y": -166.27687752661222,
 		"root": false
 	},
 	"jf9g15hlqy81pt15": {
-		"definition": "arcane_spec_a_modifier_2",
+		"definition": "fire_spec_a_modifier_2",
 		"x": -32,
-		"y": -240.17771198288432,
+		"y": -277.12812921102034,
 		"root": false
 	},
 	"5finy8ushehch66n": {
 		"definition": "fire_boost",
 		"x": 0,
-		"y": -184.75208614068023,
+		"y": -221.70250336881628,
 		"root": false
 	},
 	"9mfi5ayyjcxax9xy": {
 		"definition": "fire_boost",
 		"x": 0,
-		"y": -295.6033378250884,
+		"y": -332.55375505322445,
 		"root": false
 	},
 	"tb9tuxdpet1m27kh": {
 		"definition": "fire_boost",
 		"x": 0,
-		"y": -406.4545895094965,
+		"y": -443.40500673763256,
 		"root": false
 	},
 	"zy0iv358bpnyc0vn": {
-		"definition": "arcane_spec_a_modifier_3",
+		"definition": "fire_spec_a_modifier_3",
 		"x": -32,
-		"y": -351.0289636672925,
+		"y": -387.97938089542856,
 		"root": false
 	},
 	"q8xryjwbp1h451j9": {
-		"definition": "arcane_spec_a_modifier_4",
+		"definition": "fire_spec_a_modifier_4",
 		"x": -32,
-		"y": -461.8802153517006,
+		"y": -498.8306325798367,
 		"root": false
 	},
 	"2ied8j8jkna9q3sb": {
-		"definition": "arcane_spec_a_passive_1",
+		"definition": "fire_spec_a_passive_1",
 		"x": -64,
-		"y": -184.75208614068023,
+		"y": -221.70250336881628,
 		"root": false
 	},
 	"x3ouzc8temz30cin": {
-		"definition": "arcane_spec_a_passive_2",
+		"definition": "fire_spec_a_passive_2",
 		"x": -64,
-		"y": -295.6033378250884,
+		"y": -332.55375505322445,
 		"root": false
 	},
 	"oo7bvawwd1d5db3z": {
-		"definition": "arcane_spec_a_passive_3",
+		"definition": "fire_spec_a_passive_3",
 		"x": -64,
-		"y": -406.4545895094965,
+		"y": -443.40500673763256,
 		"root": false
 	},
 	"cxgrzujb8ok7goqh": {
-		"definition": "arcane_spec_b_modifier_1",
+		"definition": "fire_spec_b_modifier_1",
 		"x": 32,
-		"y": -129.32646029847615,
+		"y": -166.27687752661222,
 		"root": false
 	},
 	"kkuzqse43xq7bcwf": {
-		"definition": "arcane_spec_b_modifier_2",
+		"definition": "fire_spec_b_modifier_2",
 		"x": 32,
-		"y": -240.17771198288426,
+		"y": -277.12812921102034,
 		"root": false
 	},
 	"tf2hdvel3dd3ctut": {
-		"definition": "arcane_spec_b_modifier_3",
+		"definition": "fire_spec_b_modifier_3",
 		"x": 32,
-		"y": -351.02896366729243,
+		"y": -387.97938089542845,
 		"root": false
 	},
 	"54ttqmoe4vdh8krj": {
-		"definition": "arcane_spec_b_modifier_4",
+		"definition": "fire_spec_b_modifier_4",
 		"x": 32,
-		"y": -461.8802153517006,
+		"y": -498.8306325798367,
 		"root": false
 	},
 	"daxqbt8e0sp1ttmk": {
-		"definition": "arcane_spec_b_passive_1",
+		"definition": "fire_spec_b_passive_1",
 		"x": 64,
-		"y": -184.75208614068023,
+		"y": -221.70250336881628,
 		"root": false
 	},
 	"wk3c3v606bix2jlw": {
-		"definition": "arcane_spec_b_passive_2",
+		"definition": "fire_spec_b_passive_2",
 		"x": 64,
-		"y": -295.6033378250884,
+		"y": -332.55375505322445,
 		"root": false
 	},
 	"ael7lany9swsjhgy": {
-		"definition": "arcane_spec_b_passive_3",
+		"definition": "fire_spec_b_passive_3",
 		"x": 64,
-		"y": -406.4545895094965,
+		"y": -443.40500673763256,
 		"root": false
 	},
 	"kx17pr14rtc5gpne": {
 		"definition": "arcane_spec_a_modifier_1",
 		"x": -128,
-		"y": -73.9008344562721,
+		"y": -110.85125168440814,
 		"root": false
 	},
 	"7pmcf7sg1h98rfkj": {
 		"definition": "arcane_spec_b_modifier_1",
 		"x": -96,
-		"y": -129.32646029847615,
+		"y": -166.27687752661222,
 		"root": false
 	},
 	"d2r1bwbjlejfsyx8": {
 		"definition": "arcane_boost",
 		"x": -160,
-		"y": -129.32646029847615,
+		"y": -166.27687752661217,
 		"root": false
 	},
 	"q8ffmb3ab8ncodol": {
 		"definition": "arcane_spec_a_modifier_2",
 		"x": -224,
-		"y": -129.32646029847615,
+		"y": -166.27687752661217,
 		"root": false
 	},
 	"nbiclomesme3v1xf": {
 		"definition": "arcane_spec_b_modifier_2",
 		"x": -192,
-		"y": -184.75208614068023,
+		"y": -221.70250336881628,
 		"root": false
 	},
 	"qidfapujo6nvkhu3": {
 		"definition": "arcane_boost",
 		"x": -256,
-		"y": -184.75208614068023,
+		"y": -221.70250336881628,
 		"root": false
 	},
 	"35gc1quu85767ksc": {
 		"definition": "arcane_boost",
 		"x": -352,
-		"y": -240.1777119828843,
+		"y": -277.1281292110203,
 		"root": false
 	},
 	"68foxw7lmj0rs0kp": {
 		"definition": "arcane_spec_a_modifier_3",
 		"x": -320,
-		"y": -184.75208614068023,
+		"y": -221.70250336881628,
 		"root": false
 	},
 	"p6k6oj0rwy5waw7k": {
 		"definition": "arcane_spec_b_modifier_3",
 		"x": -288,
-		"y": -240.17771198288432,
+		"y": -277.1281292110203,
 		"root": false
 	},
 	"c2dh654316pt1nlq": {
 		"definition": "arcane_spec_a_modifier_4",
 		"x": -416,
-		"y": -240.17771198288432,
+		"y": -277.1281292110203,
 		"root": false
 	},
 	"url6bcwcdip1kia3": {
 		"definition": "arcane_spec_b_modifier_4",
 		"x": -384,
-		"y": -295.6033378250884,
+		"y": -332.5537550532244,
 		"root": false
 	},
 	"x0rbz99jwtdp3l7e": {
 		"definition": "arcane_spec_b_passive_1",
 		"x": -128,
-		"y": -184.75208614068023,
+		"y": -221.70250336881628,
 		"root": false
 	},
 	"pzwf17ukf1m73ag5": {
 		"definition": "arcane_spec_b_passive_2",
 		"x": -224,
-		"y": -240.1777119828843,
+		"y": -277.1281292110203,
 		"root": false
 	},
 	"hfuuo18bl6n65dfh": {
 		"definition": "arcane_spec_b_passive_3",
 		"x": -320,
-		"y": -295.6033378250884,
+		"y": -332.5537550532244,
 		"root": false
 	},
 	"4mz3dsmef5hjefi8": {
 		"definition": "arcane_spec_a_passive_1",
 		"x": -192,
-		"y": -73.9008344562721,
+		"y": -110.85125168440814,
 		"root": false
 	},
 	"ukbeqrzvwus1htcz": {
 		"definition": "arcane_spec_a_passive_2",
 		"x": -288,
-		"y": -129.32646029847618,
+		"y": -166.27687752661222,
 		"root": false
 	},
 	"fcoj22kades1hhy7": {
 		"definition": "arcane_spec_a_passive_3",
 		"x": -384,
-		"y": -184.75208614068023,
+		"y": -221.70250336881628,
+		"root": false
+	},
+	"dfz8ulaolipew40g": {
+		"definition": "archer_spec_a_modifier_1",
+		"x": -128,
+		"y": 36.95041722813605,
+		"root": false
+	},
+	"8dk6cinrlca8xafa": {
+		"definition": "archer_spec_b_modifier_1",
+		"x": -128,
+		"y": -36.95041722813605,
+		"root": false
+	},
+	"sv8oqekmdxt8cl2o": {
+		"definition": "archer_spec_a_passive_1",
+		"x": -192,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"dpwphre1ii38z9ss": {
+		"definition": "archer_spec_b_passive_1",
+		"x": -192,
+		"y": 73.9008344562721,
+		"root": false
+	},
+	"3uptt2jhtdh025ei": {
+		"definition": "archer_boost",
+		"x": -192,
+		"y": 0,
+		"root": false
+	},
+	"vyiswwrrkmdcnwwh": {
+		"definition": "archer_spec_a_modifier_2",
+		"x": -256,
+		"y": -36.95041722813605,
+		"root": false
+	},
+	"iie5pnp7emq5o9o1": {
+		"definition": "archer_spec_a_modifier_3",
+		"x": -384,
+		"y": -36.95041722813602,
+		"root": false
+	},
+	"pq4p3smmazybm828": {
+		"definition": "archer_spec_a_modifier_4",
+		"x": -512,
+		"y": -36.950417228136075,
+		"root": false
+	},
+	"yf69accpikzlejod": {
+		"definition": "archer_spec_a_passive_2",
+		"x": -320,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"8h0qifjh8f5agi1k": {
+		"definition": "archer_spec_a_passive_3",
+		"x": -448,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"fdokq01n0tk6nmwl": {
+		"definition": "archer_spec_b_modifier_2",
+		"x": -256,
+		"y": 36.95041722813605,
+		"root": false
+	},
+	"f7pflyqm67nqcatf": {
+		"definition": "archer_spec_b_modifier_3",
+		"x": -384,
+		"y": 36.950417228136075,
+		"root": false
+	},
+	"1fdmwy1fwjge3sqy": {
+		"definition": "archer_spec_b_modifier_4",
+		"x": -512,
+		"y": 36.95041722813602,
+		"root": false
+	},
+	"xsibupou0kia7u24": {
+		"definition": "archer_spec_b_passive_2",
+		"x": -320,
+		"y": 73.9008344562721,
+		"root": false
+	},
+	"1nmfn2021oke8wu8": {
+		"definition": "archer_spec_b_passive_3",
+		"x": -448,
+		"y": 73.9008344562721,
+		"root": false
+	},
+	"wh4hfqtt872975do": {
+		"definition": "archer_boost",
+		"x": -320,
+		"y": 0,
+		"root": false
+	},
+	"vhqmdzssmcftja37": {
+		"definition": "archer_boost",
+		"x": -448,
+		"y": 0,
+		"root": false
+	},
+	"am4d3jkuwsxf30eh": {
+		"definition": "frost_spec_a_modifier_1",
+		"x": 96,
+		"y": -166.2768775266122,
+		"root": false
+	},
+	"npusgtxros2kh5bc": {
+		"definition": "frost_boost",
+		"x": 160,
+		"y": -166.2768775266122,
+		"root": false
+	},
+	"7aj1z6m3kbq1cio3": {
+		"definition": "frost_spec_a_modifier_2",
+		"x": 192,
+		"y": -221.70250336881625,
+		"root": false
+	},
+	"25ow7hxb9ugrmn6t": {
+		"definition": "frost_boost",
+		"x": 256,
+		"y": -221.70250336881625,
+		"root": false
+	},
+	"si05g9ldspulfx75": {
+		"definition": "frost_boost",
+		"x": 352,
+		"y": -277.1281292110202,
+		"root": false
+	},
+	"91pfadzf9rn3z0ol": {
+		"definition": "frost_spec_a_modifier_3",
+		"x": 288,
+		"y": -277.12812921102034,
+		"root": false
+	},
+	"88pz83mi03f2gogl": {
+		"definition": "frost_spec_a_modifier_4",
+		"x": 384,
+		"y": -332.55375505322445,
+		"root": false
+	},
+	"xzp1g4hpr9a1dk4k": {
+		"definition": "frost_spec_a_passive_1",
+		"x": 128,
+		"y": -221.7025033688163,
+		"root": false
+	},
+	"8wpxdpnjm81in830": {
+		"definition": "frost_spec_b_modifier_1",
+		"x": 128,
+		"y": -110.85125168440814,
+		"root": false
+	},
+	"tyt9qsmt47in8zg3": {
+		"definition": "frost_spec_b_modifier_2",
+		"x": 224,
+		"y": -166.2768775266122,
+		"root": false
+	},
+	"2n6klyswpmz67yry": {
+		"definition": "frost_spec_b_modifier_3",
+		"x": 320,
+		"y": -221.70250336881625,
+		"root": false
+	},
+	"1w0u1k2il0ck77mz": {
+		"definition": "frost_spec_b_modifier_4",
+		"x": 416,
+		"y": -277.12812921102034,
+		"root": false
+	},
+	"751j5v5cujdu1d7o": {
+		"definition": "frost_spec_b_passive_1",
+		"x": 192,
+		"y": -110.85125168440811,
+		"root": false
+	},
+	"2sbyohss0ym2xg8l": {
+		"definition": "frost_spec_a_passive_3",
+		"x": 320,
+		"y": -332.55375505322434,
+		"root": false
+	},
+	"nutmzqvgo4lajcb0": {
+		"definition": "frost_spec_a_passive_2",
+		"x": 224,
+		"y": -277.12812921102034,
+		"root": false
+	},
+	"dprqnknv3uwofo55": {
+		"definition": "frost_spec_b_passive_2",
+		"x": 288,
+		"y": -166.2768775266122,
+		"root": false
+	},
+	"wb3tz3kk85ou88l6": {
+		"definition": "frost_spec_b_passive_3",
+		"x": 384,
+		"y": -221.7025033688163,
+		"root": false
+	},
+	"x9it8aavrrwsojhg": {
+		"definition": "paladin_boost",
+		"x": 160,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"uornste0y3mpodex": {
+		"definition": "paladin_boost",
+		"x": 256,
+		"y": 221.7025033688163,
+		"root": false
+	},
+	"j3m3zpdi0ryjmgxt": {
+		"definition": "paladin_boost",
+		"x": 352,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"c3nibhh2jjwhn7xe": {
+		"definition": "paladin_spec_a_modifier_1",
+		"x": 128,
+		"y": 110.85125168440814,
+		"root": false
+	},
+	"1z27p07p7a3nvkrv": {
+		"definition": "paladin_spec_a_modifier_2",
+		"x": 224,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"ker4ssz0dfk2l06w": {
+		"definition": "paladin_spec_a_modifier_3",
+		"x": 320,
+		"y": 221.70250336881628,
+		"root": false
+	},
+	"h0eyttxs4kfpqy6c": {
+		"definition": "paladin_spec_a_modifier_4",
+		"x": 416,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"fw4wbj92ebrow8f1": {
+		"definition": "paladin_spec_a_passive_1",
+		"x": 192,
+		"y": 110.85125168440814,
+		"root": false
+	},
+	"o1hjwedn7ygrt37e": {
+		"definition": "paladin_spec_a_passive_2",
+		"x": 288,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"l2fd82xj20g6thh9": {
+		"definition": "paladin_spec_a_passive_3",
+		"x": 384,
+		"y": 221.7025033688163,
+		"root": false
+	},
+	"zahe8l9q3kpie3do": {
+		"definition": "paladin_spec_b_modifier_1",
+		"x": 96,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"hfyglgxgpa0hrtd8": {
+		"definition": "paladin_spec_b_modifier_2",
+		"x": 192,
+		"y": 221.70250336881628,
+		"root": false
+	},
+	"sgg7t6g6jmi00wq1": {
+		"definition": "paladin_spec_b_modifier_3",
+		"x": 288,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"864ddcqh44qedq2j": {
+		"definition": "paladin_spec_b_modifier_4",
+		"x": 384,
+		"y": 332.55375505322445,
+		"root": false
+	},
+	"llo4ejjziqmgcios": {
+		"definition": "paladin_spec_b_passive_1",
+		"x": 128,
+		"y": 221.7025033688163,
+		"root": false
+	},
+	"19retxukpiocfea2": {
+		"definition": "paladin_spec_b_passive_2",
+		"x": 224,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"zc9xk0tkjuk0kd39": {
+		"definition": "paladin_spec_b_passive_3",
+		"x": 320,
+		"y": 332.55375505322445,
+		"root": false
+	},
+	"83jp9jrlaz4vph8e": {
+		"definition": "priest_spec_a_modifier_1",
+		"x": 128,
+		"y": -36.95041722813605,
+		"root": false
+	},
+	"uomzi3hqxkvxdl01": {
+		"definition": "priest_boost",
+		"x": 192,
+		"y": 0,
+		"root": false
+	},
+	"7ne0058blktoc3qs": {
+		"definition": "priest_boost",
+		"x": 320,
+		"y": 0,
+		"root": false
+	},
+	"pto1rwqjasw98v21": {
+		"definition": "priest_boost",
+		"x": 448,
+		"y": 0,
+		"root": false
+	},
+	"9nqkj7a7d5hc9b4p": {
+		"definition": "priest_spec_a_modifier_2",
+		"x": 256,
+		"y": -36.95041722813605,
+		"root": false
+	},
+	"cti8naxm0u1rgoc5": {
+		"definition": "priest_spec_a_modifier_3",
+		"x": 384,
+		"y": -36.95041722813602,
+		"root": false
+	},
+	"ra1as6xwgl0i8glw": {
+		"definition": "priest_spec_a_modifier_4",
+		"x": 512,
+		"y": -36.950417228136075,
+		"root": false
+	},
+	"3atj3io6b3fdr75i": {
+		"definition": "priest_spec_a_passive_1",
+		"x": 192,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"x2iblrhrxswo5u84": {
+		"definition": "priest_spec_a_passive_2",
+		"x": 320,
+		"y": -73.90083445627207,
+		"root": false
+	},
+	"jj4edxd8mc717snx": {
+		"definition": "priest_spec_a_passive_3",
+		"x": 448,
+		"y": -73.90083445627215,
+		"root": false
+	},
+	"z0liydxd1pexnk2l": {
+		"definition": "priest_spec_b_modifier_1",
+		"x": 128,
+		"y": 36.95041722813605,
+		"root": false
+	},
+	"zoqhif4egxrk0xqd": {
+		"definition": "priest_spec_b_modifier_2",
+		"x": 256,
+		"y": 36.95041722813605,
+		"root": false
+	},
+	"mpdb0g2axpa69zzl": {
+		"definition": "priest_spec_b_modifier_3",
+		"x": 384,
+		"y": 36.95041722813605,
+		"root": false
+	},
+	"qvdgzu6wm3the9hu": {
+		"definition": "priest_spec_b_modifier_4",
+		"x": 512,
+		"y": 36.950417228136075,
+		"root": false
+	},
+	"6xuu35d8dcqgelbh": {
+		"definition": "priest_spec_b_passive_1",
+		"x": 192,
+		"y": 73.9008344562721,
+		"root": false
+	},
+	"7zvk576cejewz88u": {
+		"definition": "priest_spec_b_passive_2",
+		"x": 320,
+		"y": 73.9008344562721,
+		"root": false
+	},
+	"0gj1bcpk55756ahe": {
+		"definition": "priest_spec_b_passive_3",
+		"x": 448,
+		"y": 73.90083445627207,
+		"root": false
+	},
+	"jo7zae6quimtvale": {
+		"definition": "warrior_boost",
+		"x": 0,
+		"y": 221.70250336881628,
+		"root": false
+	},
+	"xj4cmdbhh1lnqc1u": {
+		"definition": "warrior_boost",
+		"x": 0,
+		"y": 332.55375505322445,
+		"root": false
+	},
+	"qif6t08ryvhrab8g": {
+		"definition": "warrior_boost",
+		"x": 0,
+		"y": 443.40500673763256,
+		"root": false
+	},
+	"y9sjt41c3fgryem4": {
+		"definition": "warrior_spec_a_modifier_1",
+		"x": 32,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"0ahpirvac4whfl6b": {
+		"definition": "warrior_spec_a_modifier_2",
+		"x": 32,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"3lufw6czda0h6j63": {
+		"definition": "warrior_spec_a_modifier_3",
+		"x": 32,
+		"y": 387.9793808954285,
+		"root": false
+	},
+	"q40hga02drjv3ka8": {
+		"definition": "warrior_spec_a_modifier_4",
+		"x": 32,
+		"y": 498.8306325798367,
+		"root": false
+	},
+	"fcdh1w77xh6xcy21": {
+		"definition": "warrior_spec_a_passive_1",
+		"x": 64,
+		"y": 221.70250336881628,
+		"root": false
+	},
+	"70rphbz0695lk1zt": {
+		"definition": "warrior_spec_a_passive_2",
+		"x": 64,
+		"y": 332.55375505322445,
+		"root": false
+	},
+	"yrwsf561hppw20ev": {
+		"definition": "warrior_spec_a_passive_3",
+		"x": 64,
+		"y": 443.40500673763256,
+		"root": false
+	},
+	"2hela5re0r2k2f2v": {
+		"definition": "warrior_spec_b_modifier_1",
+		"x": -32,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"83amnua84wb3dwlc": {
+		"definition": "warrior_spec_b_modifier_2",
+		"x": -32,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"vob4bszuc2dk5arg": {
+		"definition": "warrior_spec_b_modifier_3",
+		"x": -32,
+		"y": 387.97938089542845,
+		"root": false
+	},
+	"snmw7wqyyoidi4k5": {
+		"definition": "warrior_spec_b_modifier_4",
+		"x": -32,
+		"y": 498.83063257983656,
+		"root": false
+	},
+	"id3u8fw6xdsvwazn": {
+		"definition": "warrior_spec_b_passive_1",
+		"x": -64,
+		"y": 221.70250336881625,
+		"root": false
+	},
+	"1int91be6gixqqnq": {
+		"definition": "warrior_spec_b_passive_2",
+		"x": -64,
+		"y": 332.55375505322445,
+		"root": false
+	},
+	"97f8tpocca2p6mwf": {
+		"definition": "warrior_spec_b_passive_3",
+		"x": -64,
+		"y": 443.40500673763256,
+		"root": false
+	},
+	"0dc6bn5w4uy2ystm": {
+		"definition": "rogue_spec_a_modifier_1",
+		"x": -128,
+		"y": 110.85125168440814,
+		"root": false
+	},
+	"wcsjeg2196zvoyj7": {
+		"definition": "rogue_spec_a_modifier_2",
+		"x": -224,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"iaztym6bad9vpl6j": {
+		"definition": "rogue_boost",
+		"x": -160,
+		"y": 166.27687752661217,
+		"root": false
+	},
+	"i9xnsmwyiepawnjt": {
+		"definition": "rogue_boost",
+		"x": -256,
+		"y": 221.70250336881628,
+		"root": false
+	},
+	"s70w1793c786tgsr": {
+		"definition": "rogue_boost",
+		"x": -352,
+		"y": 277.1281292110204,
+		"root": false
+	},
+	"rl4jpp3irsrbaswh": {
+		"definition": "rogue_spec_a_modifier_3",
+		"x": -320,
+		"y": 221.70250336881625,
+		"root": false
+	},
+	"kn5k0ptfo8zadcqj": {
+		"definition": "rogue_spec_a_modifier_4",
+		"x": -416,
+		"y": 277.1281292110203,
+		"root": false
+	},
+	"rmltz0n7oef4h4wl": {
+		"definition": "rogue_spec_a_passive_1",
+		"x": -192,
+		"y": 110.85125168440814,
+		"root": false
+	},
+	"l4jeass9apeapcno": {
+		"definition": "rogue_spec_a_passive_2",
+		"x": -288,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"9h24ldeo70mvvbbp": {
+		"definition": "rogue_spec_a_passive_3",
+		"x": -384,
+		"y": 221.70250336881628,
+		"root": false
+	},
+	"rxuvati77gizbs8b": {
+		"definition": "rogue_spec_b_modifier_1",
+		"x": -96,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"67eahla83d8pvybx": {
+		"definition": "rogue_spec_b_modifier_2",
+		"x": -192,
+		"y": 221.7025033688163,
+		"root": false
+	},
+	"fzs64ss55cz4yt4p": {
+		"definition": "rogue_spec_b_modifier_3",
+		"x": -288,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"k4rbiamjkymxtb7f": {
+		"definition": "rogue_spec_b_modifier_4",
+		"x": -384,
+		"y": 332.5537550532244,
+		"root": false
+	},
+	"hhcimahonqdm527m": {
+		"definition": "rogue_spec_b_passive_1",
+		"x": -128,
+		"y": 221.70250336881628,
+		"root": false
+	},
+	"miwybq6zyt6e5yab": {
+		"definition": "rogue_spec_b_passive_2",
+		"x": -224,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"dyg5jr9us7c9lely": {
+		"definition": "rogue_spec_b_passive_3",
+		"x": -320,
+		"y": 332.55375505322434,
 		"root": false
 	}
 }
