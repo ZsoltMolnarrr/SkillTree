@@ -45,6 +45,8 @@ public class SpellContainerReward implements Reward {
     }
 
     private Identifier id;
+    /// Using list of containers instead a single container with a list of spells
+    /// to avoid Spell Sourcing logic having to sort multiple spells.
     private List<SpellContainer> containers = List.of();
 
     @Override
@@ -53,8 +55,9 @@ public class SpellContainerReward implements Reward {
         var player = context.getPlayer();
         var containers = ((SpellContainerSource.Owner)player).serverSideSpellContainers();
         containers.remove(id.toString());
-        if (count > 0 && count <= this.containers.size()) {
-            containers.put(id.toString(), this.containers.get(count - 1));
+        if (count > 0) {
+            var index = Math.min(count - 1, this.containers.size() - 1);
+            containers.put(id.toString(), this.containers.get(index));
         }
         SpellContainerSource.syncServerSideContainers(player);
     }

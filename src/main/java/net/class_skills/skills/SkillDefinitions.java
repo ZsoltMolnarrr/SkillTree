@@ -106,19 +106,23 @@ public class SkillDefinitions {
                     ARCANE_ROOT.attributeReward())
     );
     public static final Entry ARCANE_SPEC_A_MODIFIER_1 = add(
-            Entry.spell("arcane_spec_a_modifier_1",
-                    "Arcane Blast modifier",
+            Entry.spell(Spells.arcane_spec_a_modifier_1.key(),
+                    Spells.arcane_spec_a_modifier_1.title(),
                     "Placeholder",
                     Icon.spell(Identifier.of("wizards", "arcane_blast")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.arcane_spec_a_modifier_1.id())
+                    )
             )
     );
     public static final Entry ARCANE_SPEC_B_MODIFIER_1 = add(
-            Entry.spell("arcane_spec_b_modifier_1",
-                    "Arcane Blast modifier",
+            Entry.spell(Spells.arcane_spec_b_modifier_1.key(),
+                    Spells.arcane_spec_b_modifier_1.title(),
                     "Placeholder",
                     Icon.spell(Identifier.of("wizards", "arcane_blast")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.arcane_spec_b_modifier_1.id())
+                    )
             )
     );
     public static final Entry ARCANE_SPEC_A_MODIFIER_2 = add(

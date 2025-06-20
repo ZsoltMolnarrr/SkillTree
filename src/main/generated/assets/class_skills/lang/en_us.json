@@ -6,7 +6,7 @@
   "skill.class_skills.arcane_root.description": "+1% attribute.name.spell_power.arcane",
   "skill.class_skills.arcane_root.title": "Path of Arcane",
   "skill.class_skills.arcane_spec_a_modifier_1.description": "Placeholder",
-  "skill.class_skills.arcane_spec_a_modifier_1.title": "Arcane Blast modifier",
+  "skill.class_skills.arcane_spec_a_modifier_1.title": "Conjured Arcane Charge",
   "skill.class_skills.arcane_spec_a_modifier_2.description": "Placeholder",
   "skill.class_skills.arcane_spec_a_modifier_2.title": "Arcane Missiles modifier",
   "skill.class_skills.arcane_spec_a_modifier_3.description": "Placeholder",
@@ -20,7 +20,7 @@
   "skill.class_skills.arcane_spec_a_passive_3.description": "Placeholder",
   "skill.class_skills.arcane_spec_a_passive_3.title": "Arcane Spec A Passive 3",
   "skill.class_skills.arcane_spec_b_modifier_1.description": "Placeholder",
-  "skill.class_skills.arcane_spec_b_modifier_1.title": "Arcane Blast modifier",
+  "skill.class_skills.arcane_spec_b_modifier_1.title": "Arcane Endurance",
   "skill.class_skills.arcane_spec_b_modifier_2.description": "Placeholder",
   "skill.class_skills.arcane_spec_b_modifier_2.title": "Arcane Missiles modifier",
   "skill.class_skills.arcane_spec_b_modifier_3.description": "Placeholder",
@@ -258,5 +258,13 @@
   "skill.class_skills.warrior_spec_b_passive_2.description": "Placeholder",
   "skill.class_skills.warrior_spec_b_passive_2.title": "Warrior Spec B Passive 2",
   "skill.class_skills.warrior_spec_b_passive_3.description": "Placeholder",
-  "skill.class_skills.warrior_spec_b_passive_3.title": "Warrior Spec B Passive 3"
+  "skill.class_skills.warrior_spec_b_passive_3.title": "Warrior Spec B Passive 3",
+  "spell.class_skills.arcane_spec_a_modifier_1.description": "Increases the maximum number of Arcane Charges by {effect_amplifier_cap_add}.",
+  "spell.class_skills.arcane_spec_a_modifier_1.name": "Conjured Arcane Charge",
+  "spell.class_skills.arcane_spec_b_modifier_1.description": "Increases the duration of Arcane Charges by {effect_duration_add} sec.",
+  "spell.class_skills.arcane_spec_b_modifier_1.name": "Arcane Endurance",
+  "spell.class_skills.fire_spec_a_modifier_1.description": "Increases the maximum number of Fire Charges by {effect_amplifier_cap_add}.",
+  "spell.class_skills.fire_spec_a_modifier_1.name": "Charged Fire ",
+  "spell.class_skills.fire_spec_b_modifier_1.description": "Increases the knockback of Pyroblast by {knockback_multiply_base}.",
+  "spell.class_skills.fire_spec_b_modifier_1.name": "Blazing Punch"
 }

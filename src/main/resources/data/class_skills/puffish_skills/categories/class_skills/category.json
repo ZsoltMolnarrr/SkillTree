@@ -1,15 +1,20 @@
 {
 	"title": "Class Skills",
 	"icon": {
-		"type": "item",
+		"type": "texture",
 		"data": {
-			"item": "wizards:wizard_robe_head"
+			"texture": "wizards:textures/spell/fire_blast.png"
 		}
 	},
 	"unlocked_by_default": true,
 	"spent_points_limit": 11,
 	"exclusive_root": true,
-	"background": "textures/gui/advancements/backgrounds/stone.png",
+	"background": {
+		"texture": "class_skills:textures/gui/background_4.png",
+		"width": 768,
+		"height": 300,
+		"position": "fill_height"
+	},
 	"colors": {
 		"connections": {
 			"locked": {

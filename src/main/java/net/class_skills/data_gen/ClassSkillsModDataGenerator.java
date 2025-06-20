@@ -3,6 +3,7 @@ package net.class_skills.data_gen;
 import net.class_skills.items.SkillItems;
 import net.class_skills.node.SpellContainerReward;
 import net.class_skills.skills.SkillDefinitions;
+import net.class_skills.skills.Spells;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -18,6 +19,9 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.puffish.skillsmod.reward.builtin.AttributeReward;
+import net.spell_engine.api.datagen.SpellGenerator;
+import net.spell_engine.api.spell.Spell;
+import net.spell_engine.client.gui.SpellTooltip;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -31,6 +35,7 @@ public class ClassSkillsModDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(LangGenerator::new);
         pack.addProvider(ModelProvider::new);
         pack.addProvider(RecipeProvider::new);
+        pack.addProvider(SpellsGen::new);
         pack.addProvider(SkillDefinitionGen::new);
     }
 
@@ -46,14 +51,18 @@ public class ClassSkillsModDataGenerator implements DataGeneratorEntrypoint {
                 for (var lore : item.loreTranslation()) {
                     translationBuilder.add(lore.translationKey(), lore.line().text());
                 }
-                for (var skill: SkillDefinitions.ENTRIES) {
-                    if (skill.title() != null && !skill.title().isEmpty()) {
-                        translationBuilder.add(skill.titleTranslationKey(), skill.title());
-                    }
-                    if (skill.description() != null && !skill.description().isEmpty()) {
-                        translationBuilder.add(skill.descriptionTranslationKey(), skill.description());
-                    }
+            }
+            for (var skill: SkillDefinitions.ENTRIES) {
+                if (skill.title() != null && !skill.title().isEmpty()) {
+                    translationBuilder.add(skill.titleTranslationKey(), skill.title());
                 }
+                if (skill.description() != null && !skill.description().isEmpty()) {
+                    translationBuilder.add(skill.descriptionTranslationKey(), skill.description());
+                }
+            }
+            for (var entry: Spells.all) {
+                translationBuilder.add(SpellTooltip.spellTranslationKey(entry.id()), entry.title());
+                translationBuilder.add(SpellTooltip.spellDescriptionTranslationKey(entry.id()), entry.description());
             }
         }
     }
@@ -129,6 +138,19 @@ public class ClassSkillsModDataGenerator implements DataGeneratorEntrypoint {
                 skillDefinitions.put(skill.id(), format);
             }
             builder.entries.add(new Entry(SkillDefinitions.CATEGORY_ID, skillDefinitions));
+        }
+    }
+
+    public static class SpellsGen extends SpellGenerator {
+        public SpellsGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+            super(dataOutput, registryLookup);
+        }
+
+        @Override
+        public void generateSpells(Builder builder) {
+            for (var entry : Spells.all) {
+                builder.add(entry.id(), entry.spell());
+            }
         }
     }
 }
