@@ -6,7 +6,25 @@
   "modifiers": [
     {
       "spell_pattern": "wizards:fire_blast",
-      "effect_amplifier_cap_add": 1
+      "replacing_area_impact": {
+        "radius": 3.75,
+        "area": {
+          "distance_dropoff": "SQUARED"
+        },
+        "particles": [
+          {
+            "particle_id": "spell_engine:fire_explosion",
+            "origin": "CENTER",
+            "shape": "SPHERE",
+            "count": 1.0,
+            "max_speed": 0.0,
+            "scale": 1.3
+          }
+        ],
+        "sound": {
+          "id": "wizards:fireball_impact"
+        }
+      }
     }
   ]
 }

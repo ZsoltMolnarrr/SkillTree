@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "wizards:fire_blast",
-      "knockback_multiply_base": 1.5
+      "knockback_multiply_base": 0.5
     }
   ]
 }

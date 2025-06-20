@@ -136,5 +136,4 @@ public abstract class SkillsScreenMixin extends Screen{
             matrices.pop();
         }
     }
-
 }

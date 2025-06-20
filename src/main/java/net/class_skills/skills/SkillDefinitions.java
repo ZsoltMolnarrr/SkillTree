@@ -11,6 +11,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.puffish.skillsmod.common.IconType;
+import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.container.SpellContainer;
 import net.spell_engine.api.spell.container.SpellContainerHelper;
 import net.spell_engine.mixin.client.ItemStackTooltipAccessor;
@@ -108,7 +109,7 @@ public class SkillDefinitions {
     public static final Entry ARCANE_SPEC_A_MODIFIER_1 = add(
             Entry.spell(Spells.arcane_spec_a_modifier_1.key(),
                     Spells.arcane_spec_a_modifier_1.title(),
-                    "Placeholder",
+                    null,
                     Icon.spell(Identifier.of("wizards", "arcane_blast")),
                     List.of(
                         SpellContainerHelper.createForModifier(Spells.arcane_spec_a_modifier_1.id())
@@ -118,7 +119,7 @@ public class SkillDefinitions {
     public static final Entry ARCANE_SPEC_B_MODIFIER_1 = add(
             Entry.spell(Spells.arcane_spec_b_modifier_1.key(),
                     Spells.arcane_spec_b_modifier_1.title(),
-                    "Placeholder",
+                    null,
                     Icon.spell(Identifier.of("wizards", "arcane_blast")),
                     List.of(
                         SpellContainerHelper.createForModifier(Spells.arcane_spec_b_modifier_1.id())
@@ -243,18 +244,22 @@ public class SkillDefinitions {
     );
     public static final Entry FIRE_SPEC_A_MODIFIER_1 = add(
             Entry.spell("fire_spec_a_modifier_1",
-                    "Fire Blast modifier",
-                    "Placeholder",
+                    Spells.fire_spec_a_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("wizards", "fire_blast")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.fire_spec_a_modifier_1.id())
+                    )
             )
     );
     public static final Entry FIRE_SPEC_B_MODIFIER_1 = add(
             Entry.spell("fire_spec_b_modifier_1",
-                    "Fire Blast modifier",
-                    "Placeholder",
+                    Spells.fire_spec_b_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("wizards", "fire_blast")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.fire_spec_b_modifier_1.id())
+                    )
             )
     );
     public static final Entry FIRE_SPEC_A_MODIFIER_2 = add(
@@ -367,25 +372,29 @@ public class SkillDefinitions {
     );
     public static final Entry FROST_BOOST = add(
             Entry.attribute("frost_boost",
-                    "Frost Empowerment",
+                    "Frost Attunement",
                     null,
                     Icon.item("wizards:wand_frost"),
                     FROST_ROOT.attributeReward())
     );
     public static final Entry FROST_SPEC_A_MODIFIER_1 = add(
             Entry.spell("frost_spec_a_modifier_1",
-                    "Frost Bolt modifier",
-                    "Placeholder",
+                    Spells.frost_spec_a_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("wizards", "frostbolt")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.frost_spec_a_modifier_1.id())
+                    )
             )
     );
     public static final Entry FROST_SPEC_B_MODIFIER_1 = add(
             Entry.spell("frost_spec_b_modifier_1",
-                    "Frost Bolt modifier",
-                    "Placeholder",
+                    Spells.frost_spec_b_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("wizards", "frostbolt")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.frost_spec_b_modifier_1.id())
+                    )
             )
     );
     public static final Entry FROST_SPEC_A_MODIFIER_2 = add(
