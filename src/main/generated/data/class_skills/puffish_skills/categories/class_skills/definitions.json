@@ -3111,9 +3111,6 @@
     }
   },
   "rogue_spec_a_modifier_1": {
-    "description": {
-      "translate": "skill.class_skills.rogue_spec_a_modifier_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3126,13 +3123,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:rogue_spec_a_modifier_1"
               ]
             }
           ]
@@ -3342,9 +3339,6 @@
     }
   },
   "rogue_spec_b_modifier_1": {
-    "description": {
-      "translate": "skill.class_skills.rogue_spec_b_modifier_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3357,13 +3351,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:rogue_spec_b_modifier_1"
               ]
             }
           ]

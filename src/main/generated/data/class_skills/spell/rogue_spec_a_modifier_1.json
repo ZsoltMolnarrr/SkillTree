@@ -1,0 +1,13 @@
+{
+  "school": "spell_power:physical_melee",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "rogues:slice_and_dice",
+      "mutate_impacts": "APPEND",
+      "power_modifier": {}
+    }
+  ]
+}

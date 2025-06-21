@@ -911,18 +911,22 @@ public class SkillDefinitions {
     );
     public static final Entry ROGUE_SPEC_A_MODIFIER_1 = add(
             Entry.spell("rogue_spec_a_modifier_1",
-                    "Slice and Dice modifier",
-                    "Placeholder",
+                    Spells.rogue_spec_a_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("rogues", "slice_and_dice")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.rogue_spec_a_modifier_1.id())
+                    )
             )
     );
     public static final Entry ROGUE_SPEC_B_MODIFIER_1 = add(
             Entry.spell("rogue_spec_b_modifier_1",
-                    "Slice and Dice modifier",
-                    "Placeholder",
+                    Spells.rogue_spec_b_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("rogues", "slice_and_dice")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.rogue_spec_b_modifier_1.id())
+                    )
             )
     );
     public static final Entry ROGUE_SPEC_A_MODIFIER_2 = add(

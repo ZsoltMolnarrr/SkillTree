@@ -3,10 +3,12 @@ package net.class_skills.skills;
 import net.class_skills.ClassSkillsMod;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
+import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_power.api.SpellSchools;
 import org.jetbrains.annotations.Nullable;
@@ -180,10 +182,13 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
     }
 
-    private static final Identifier HOLY_IMPACT_DECELERATE = SpellEngineParticles.getMagicParticleVariant(
-            SpellEngineParticles.HOLY,
-            SpellEngineParticles.MagicParticleFamily.Shape.IMPACT,
-            SpellEngineParticles.MagicParticleFamily.Motion.DECELERATE
+    private static final Identifier HOLY_DECELERATE = SpellEngineParticles.MagicParticles.get(
+            SpellEngineParticles.MagicParticles.Shape.HOLY,
+            SpellEngineParticles.MagicParticles.Motion.DECELERATE
+    ).id();
+    private static final Identifier HEAL_DECELERATE = SpellEngineParticles.MagicParticles.get(
+            SpellEngineParticles.MagicParticles.Shape.HEAL,
+            SpellEngineParticles.MagicParticles.Motion.DECELERATE
     ).id();
 
     public static final Entry priest_spec_b_modifier_1 = add(priest_spec_b_modifier_1());
@@ -203,19 +208,21 @@ public class Spells {
         modifier.replacing_area_impact.area = new Spell.Target.Area();
         modifier.replacing_area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
 
-        var particleBatch = new ParticleBatch();
-        particleBatch.particle_id = HOLY_IMPACT_DECELERATE.toString();
-        particleBatch.shape = ParticleBatch.Shape.SPHERE;
-        particleBatch.origin = ParticleBatch.Origin.CENTER;
-        particleBatch.count = 40;
-        particleBatch.min_speed = 0.5F;
-        particleBatch.max_speed = 0.5F;
+        var particleBatch = new ParticleBatch(
+                HOLY_DECELERATE.toString(),
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                40, 0.5F, 0.5F
+        ).color(Color.HOLY.toRGBA());
+
         modifier.replacing_area_impact.particles = new ParticleBatch[]{ particleBatch };
 
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
     }
+
+
+    public static final Color MIGHT_COLOR = Color.from(0xccffff);
 
     public static final Entry paladin_spec_a_modifier_1 = add(paladin_spec_a_modifier_1());
     private static Entry paladin_spec_a_modifier_1() {
@@ -238,6 +245,16 @@ public class Spells {
         modifier.spell_pattern = "paladins:flash_heal";
 
         var impact = SpellBuilder.impactEffectSet(SkillEffects.DIVINE_STRENGTH.id.toString(), 8, 0);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        20, 0.05F, 0.1F)
+                        .color(MIGHT_COLOR.toRGBA()),
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), MIGHT_COLOR)
+        };
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
 
@@ -259,11 +276,58 @@ public class Spells {
         modifier.spell_pattern = "paladins:flash_heal";
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         var impact = SpellBuilder.impactEffectCleanse();
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                    HEAL_DECELERATE.toString(),
+                    ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                    20, 0.25F, 0.3F
+                ).color(Color.HOLY.toRGBA())
+        };
         impact.action.status_effect.amplifier = cleanseCount;
         modifier.impacts = List.of(impact);
 
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry rogue_spec_a_modifier_1 = add(rogue_spec_a_modifier_1());
+    private static Entry rogue_spec_a_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_1");
+        var title = "Blade Dancer";
+        var description = "Slice and Dice stacks increases Move Speed by {bonus} for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var bonus = 0.2F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:slice_and_dice";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+
+        // ???
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+    }
+
+    public static final Entry rogue_spec_b_modifier_1 = add(rogue_spec_b_modifier_1());
+    private static Entry rogue_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_b_modifier_1");
+        var title = "Blade Fury";
+        var description = "Increases the maximum number of Slice and Dice stacks by {effect_amplifier_cap_add}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:slice_and_dice";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.effect_amplifier_cap_add = 2;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
     }
 }
