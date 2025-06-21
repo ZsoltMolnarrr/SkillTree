@@ -3,6 +3,7 @@ package net.class_skills.data_gen;
 import net.class_skills.items.SkillItems;
 import net.class_skills.node.SpellContainerReward;
 import net.class_skills.skills.SkillDefinitions;
+import net.class_skills.skills.SkillEffects;
 import net.class_skills.skills.Spells;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -20,7 +21,6 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.puffish.skillsmod.reward.builtin.AttributeReward;
 import net.spell_engine.api.datagen.SpellGenerator;
-import net.spell_engine.api.spell.Spell;
 import net.spell_engine.client.gui.SpellTooltip;
 
 import java.util.ArrayList;
@@ -64,6 +64,10 @@ public class ClassSkillsModDataGenerator implements DataGeneratorEntrypoint {
                 translationBuilder.add(SpellTooltip.spellTranslationKey(entry.id()), entry.title());
                 translationBuilder.add(SpellTooltip.spellDescriptionTranslationKey(entry.id()), entry.description());
             }
+            SkillEffects.entries.forEach(entry -> {
+                translationBuilder.add(entry.effect.getTranslationKey(), entry.title);
+                translationBuilder.add(entry.effect.getTranslationKey() + ".description", entry.description);
+            });
         }
     }
 

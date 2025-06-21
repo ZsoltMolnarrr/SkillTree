@@ -160,4 +160,110 @@ public class Spells {
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
     }
+
+    public static final Entry priest_spec_a_modifier_1 = add(priest_spec_a_modifier_1());
+    private static Entry priest_spec_a_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_a_modifier_1");
+        var title = "Healing Focus";
+        var description = "Holy Shock heals for {power_multiplier} more.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var bonus = 0.2F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:holy_shock";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = bonus;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
+    private static final Identifier HOLY_IMPACT_DECELERATE = SpellEngineParticles.getMagicParticleVariant(
+            SpellEngineParticles.HOLY,
+            SpellEngineParticles.MagicParticleFamily.Shape.IMPACT,
+            SpellEngineParticles.MagicParticleFamily.Motion.DECELERATE
+    ).id();
+
+    public static final Entry priest_spec_b_modifier_1 = add(priest_spec_b_modifier_1());
+    private static Entry priest_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_b_modifier_1");
+        var title = "Shock Blast";
+        var description = "Damaging with Holy Shock causes small explosion, hitting enemies within {impact_range} blocks radius.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+        var radius = 2.5F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:holy_shock";
+        modifier.replacing_area_impact = new Spell.AreaImpact();
+        modifier.replacing_area_impact.triggering_action_type = Spell.Impact.Action.Type.DAMAGE;
+        modifier.replacing_area_impact.radius = radius;
+        modifier.replacing_area_impact.area = new Spell.Target.Area();
+        modifier.replacing_area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+
+        var particleBatch = new ParticleBatch();
+        particleBatch.particle_id = HOLY_IMPACT_DECELERATE.toString();
+        particleBatch.shape = ParticleBatch.Shape.SPHERE;
+        particleBatch.origin = ParticleBatch.Origin.CENTER;
+        particleBatch.count = 40;
+        particleBatch.min_speed = 0.5F;
+        particleBatch.max_speed = 0.5F;
+        modifier.replacing_area_impact.particles = new ParticleBatch[]{ particleBatch };
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
+    public static final Entry paladin_spec_a_modifier_1 = add(paladin_spec_a_modifier_1());
+    private static Entry paladin_spec_a_modifier_1() {
+        var effect = SkillEffects.DIVINE_STRENGTH;
+
+        var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_1");
+        var title = "Divine Strength";
+        var description = "Flash Heal increases Attack Damage by {bonus} for {effect_duration} sec.";
+
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description().replace("{bonus}", SpellTooltip.percent(0.1F));
+        };
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:flash_heal";
+
+        var impact = SpellBuilder.impactEffectSet(SkillEffects.DIVINE_STRENGTH.id.toString(), 8, 0);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_b_modifier_1 = add(paladin_spec_b_modifier_1());
+    private static Entry paladin_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_b_modifier_1");
+        var title = "Cleanse";
+        var cleanseCount = 1;
+        var description = "Flash Heal attempts to cure the target, by reducing the strength of a harmful effect.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:flash_heal";
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        var impact = SpellBuilder.impactEffectCleanse();
+        impact.action.status_effect.amplifier = cleanseCount;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
+    }
 }

@@ -513,18 +513,22 @@ public class SkillDefinitions {
     );
     public static final Entry PRIEST_SPEC_A_MODIFIER_1 = add(
             Entry.spell("priest_spec_a_modifier_1",
-                    "Holy Shock modifier",
-                    "Placeholder",
+                    Spells.priest_spec_a_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("paladins", "holy_shock")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.priest_spec_a_modifier_1.id())
+                    )
             )
     );
     public static final Entry PRIEST_SPEC_B_MODIFIER_1 = add(
             Entry.spell("priest_spec_b_modifier_1",
-                    "Holy Shock modifier",
-                    "Placeholder",
+                    Spells.priest_spec_b_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("paladins", "holy_shock")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.priest_spec_b_modifier_1.id())
+                    )
             )
     );
     public static final Entry PRIEST_SPEC_A_MODIFIER_2 = add(
@@ -643,18 +647,22 @@ public class SkillDefinitions {
     );
     public static final Entry PALADIN_SPEC_A_MODIFIER_1 = add(
             Entry.spell("paladin_spec_a_modifier_1",
-                    "Flash Heal modifier",
-                    "Placeholder",
+                    Spells.paladin_spec_a_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("paladins", "flash_heal")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.paladin_spec_a_modifier_1.id())
+                    )
             )
     );
     public static final Entry PALADIN_SPEC_B_MODIFIER_1 = add(
             Entry.spell("paladin_spec_b_modifier_1",
-                    "Flash Heal modifier",
-                    "Placeholder",
+                    Spells.paladin_spec_b_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("paladins", "flash_heal")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.paladin_spec_b_modifier_1.id())
+                    )
             )
     );
     public static final Entry PALADIN_SPEC_A_MODIFIER_2 = add(
