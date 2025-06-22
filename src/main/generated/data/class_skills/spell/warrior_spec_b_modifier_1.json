@@ -5,8 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rogues:slice_and_dice",
-      "effect_amplifier_cap_add": 2
+      "spell_pattern": "rogues:throw",
+      "knockback_multiply_base": 0.5
     }
   ]
 }

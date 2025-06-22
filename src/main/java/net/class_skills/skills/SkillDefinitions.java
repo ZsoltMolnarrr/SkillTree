@@ -781,18 +781,22 @@ public class SkillDefinitions {
     );
     public static final Entry ARCHER_SPEC_A_MODIFIER_1 = add(
             Entry.spell("archer_spec_a_modifier_1",
-                    "Power Shot modifier",
-                    "Placeholder",
+                    Spells.archer_spec_a_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("archers", "power_shot")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.archer_spec_a_modifier_1.id())
+                    )
             )
     );
     public static final Entry ARCHER_SPEC_B_MODIFIER_1 = add(
             Entry.spell("archer_spec_b_modifier_1",
-                    "Power Shot modifier",
-                    "Placeholder",
+                    Spells.archer_spec_b_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("archers", "power_shot")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.archer_spec_b_modifier_1.id())
+                    )
             )
     );
     public static final Entry ARCHER_SPEC_A_MODIFIER_2 = add(
@@ -1045,18 +1049,22 @@ public class SkillDefinitions {
     );
     public static final Entry WARRIOR_SPEC_A_MODIFIER_1 = add(
             Entry.spell("warrior_spec_a_modifier_1",
-                    "Shattering Throw modifier",
-                    "Placeholder",
+                    Spells.warrior_spec_a_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("rogues", "throw")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.warrior_spec_a_modifier_1.id())
+                    )
             )
     );
     public static final Entry WARRIOR_SPEC_B_MODIFIER_1 = add(
             Entry.spell("warrior_spec_b_modifier_1",
-                    "Shattering Throw modifier",
-                    "Placeholder",
+                    Spells.warrior_spec_b_modifier_1.title(),
+                    null,
                     Icon.spell(Identifier.of("rogues", "throw")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.warrior_spec_b_modifier_1.id())
+                    )
             )
     );
     public static final Entry WARRIOR_SPEC_A_MODIFIER_2 = add(

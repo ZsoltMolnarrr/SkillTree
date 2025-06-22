@@ -7,7 +7,20 @@
     {
       "spell_pattern": "rogues:slice_and_dice",
       "mutate_impacts": "APPEND",
-      "power_modifier": {}
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "class_skills:fleet_footed",
+              "duration": 5.0,
+              "amplifier": 1,
+              "amplifier_cap": 4,
+              "apply_mode": "ADD"
+            }
+          }
+        }
+      ]
     }
   ]
 }

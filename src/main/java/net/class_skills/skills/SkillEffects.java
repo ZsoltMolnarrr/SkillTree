@@ -34,6 +34,20 @@ public class SkillEffects {
                     )
             )
     ));
+    public static Effects.Entry FLEET_FOOTED = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fleet_footed"),
+            "Fleet Footed",
+            "Increased movement speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x00ff00),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {

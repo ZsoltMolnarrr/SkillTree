@@ -186,6 +186,10 @@ public class Spells {
             SpellEngineParticles.MagicParticles.Shape.HOLY,
             SpellEngineParticles.MagicParticles.Motion.DECELERATE
     ).id();
+    private static final Identifier SPARK_DECELERATE = SpellEngineParticles.MagicParticles.get(
+            SpellEngineParticles.MagicParticles.Shape.SPARK,
+            SpellEngineParticles.MagicParticles.Motion.DECELERATE
+    ).id();
     private static final Identifier HEAL_DECELERATE = SpellEngineParticles.MagicParticles.get(
             SpellEngineParticles.MagicParticles.Shape.HEAL,
             SpellEngineParticles.MagicParticles.Motion.DECELERATE
@@ -235,7 +239,7 @@ public class Spells {
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
             var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", SpellTooltip.percent(0.1F));
+            return args.description().replace("{bonus}", bonus);
         };
 
         var spell = SpellBuilder.createSpellModifier();
@@ -294,24 +298,27 @@ public class Spells {
     public static final Entry rogue_spec_a_modifier_1 = add(rogue_spec_a_modifier_1());
     private static Entry rogue_spec_a_modifier_1() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_1");
-        var title = "Blade Dancer";
-        var description = "Slice and Dice stacks increases Move Speed by {bonus} for {effect_duration} sec.";
+        var title = "Fleet Footed";
+        var effect = SkillEffects.FLEET_FOOTED;
+        var description = "Slice and Dice attacks increases Move Speed by {bonus}, stacking up to {effect_amplifier_cap}, lasting {effect_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description().replace("{bonus}", bonus);
+        };
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
-        var bonus = 0.2F;
-
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "rogues:slice_and_dice";
-        modifier.power_modifier = new Spell.Impact.Modifier();
 
+        var impact = SpellBuilder.impactEffectAdd(effect.id.toString(), 5, 1, 4);
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-
-        // ???
+        modifier.impacts = List.of(impact);
 
         spell.modifiers = List.of(modifier);
 
-        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
 
     public static final Entry rogue_spec_b_modifier_1 = add(rogue_spec_b_modifier_1());
@@ -324,10 +331,104 @@ public class Spells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "rogues:slice_and_dice";
-        modifier.power_modifier = new Spell.Impact.Modifier();
         modifier.effect_amplifier_cap_add = 2;
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+    }
+
+    public static final Entry warrior_spec_a_modifier_1 = add(warrior_spec_a_modifier_1());
+    private static Entry warrior_spec_a_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_a_modifier_1");
+        var title = "Bouncing Throw";
+        var description = "Shattering Throw ricochets to {ricochet} additional target.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:throw";
+        modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
+        modifier.projectile_perks.ricochet = 1;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry warrior_spec_b_modifier_1 = add(warrior_spec_b_modifier_1());
+    private static Entry warrior_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_b_modifier_1");
+        var title = "Punching Throw";
+        var description = "Shattering Throw deals {knockback_multiply_base} more knockback.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var bonus = 0.5F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:throw";
+        modifier.knockback_multiply_base = bonus;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry archer_spec_a_modifier_1 = add(archer_spec_a_modifier_1());
+    private static Entry archer_spec_a_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_a_modifier_1");
+        var title = "Improved Hunter's Mark";
+        var description = "Power Shot applies {stash_amplifier_add} additional Hunter's Mark stack.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers:power_shot";
+        modifier.stash_amplifier_add = 1;
+        modifier.effect_amplifier_cap_add = 1;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_b_modifier_1 = add(archer_spec_b_modifier_1());
+    private static Entry archer_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_b_modifier_1");
+        var title = "Charged Shot";
+        var description = "Power Shot deals {damage} damage around the target hit.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var radius = 3F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers:power_shot";
+
+        var impact = SpellBuilder.impactDamage(0.5F, 0);
+
+        var area_impact = new Spell.AreaImpact();
+        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.skip_center_target = true;
+        area_impact.radius = radius;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SPARK_DECELERATE.toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        20, 0.35F, 0.35F
+                ).color(Color.RED.toRGBA()),
+                new ParticleBatch(
+                        "firework",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        20, 0.15F, 0.15F
+                )
+        };
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+        modifier.replacing_area_impact = area_impact;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
     }
 }

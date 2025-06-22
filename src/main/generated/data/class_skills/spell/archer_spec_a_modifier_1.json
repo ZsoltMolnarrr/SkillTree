@@ -1,0 +1,13 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "archers:power_shot",
+      "effect_amplifier_cap_add": 1,
+      "stash_amplifier_add": 1
+    }
+  ]
+}
