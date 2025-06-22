@@ -128,18 +128,22 @@ public class SkillDefinitions {
     );
     public static final Entry ARCANE_SPEC_A_MODIFIER_2 = add(
             Entry.spell("arcane_spec_a_modifier_2",
-                    "Arcane Missiles modifier",
-                    "Placeholder",
+                    Spells.arcane_spec_a_modifier_2.title(),
+                    null,
                     Icon.spell(Identifier.of("wizards", "arcane_missile")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.arcane_spec_a_modifier_2.id())
+                    )
             )
     );
     public static final Entry ARCANE_SPEC_B_MODIFIER_2 = add(
             Entry.spell("arcane_spec_b_modifier_2",
-                    "Arcane Missiles modifier",
-                    "Placeholder",
+                    Spells.arcane_spec_b_modifier_2.title(),
+                    null,
                     Icon.spell(Identifier.of("wizards", "arcane_missile")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForModifier(Spells.arcane_spec_b_modifier_2.id())
+                    )
             )
     );
 
@@ -178,18 +182,22 @@ public class SkillDefinitions {
 
     public static final Entry ARCANE_SPEC_A_PASSIVE_1 = add(
             Entry.spell("arcane_spec_a_passive_1",
-                    "Arcane Spec A Passive 1",
-                    "Placeholder",
+                    Spells.arcane_spec_a_passive_1.title(),
+                    null,
                     Icon.spell(Identifier.of("wizards", "arcane_spec_a_passive_1")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForSpellHost(Spells.arcane_spec_a_passive_1.id())
+                    )
             )
     );
     public static final Entry ARCANE_SPEC_B_PASSIVE_1 = add(
             Entry.spell("arcane_spec_b_passive_1",
-                    "Arcane Spec B Passive 1",
-                    "Placeholder",
+                    Spells.arcane_spec_b_passive_1.title(),
+                    null,
                     Icon.spell(Identifier.of("wizards", "arcane_spec_b_passive_1")),
-                    dummyContainer()
+                    List.of(
+                        SpellContainerHelper.createForSpellHost(Spells.arcane_spec_b_passive_1.id())
+                    )
             )
     );
     public static final Entry ARCANE_SPEC_A_PASSIVE_2 = add(

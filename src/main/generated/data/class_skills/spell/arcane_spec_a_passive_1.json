@@ -1,0 +1,67 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.2,
+        "spell": {
+          "school": "arcane",
+          "type": "ACTIVE"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.4,
+          "knockback": 0.2
+        }
+      }
+    }
+  ],
+  "area_impact": {
+    "skip_center_target": true,
+    "radius": 2.5,
+    "area": {
+      "distance_dropoff": "SQUARED"
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:magic_arcane_decelerate",
+        "origin": "CENTER",
+        "shape": "SPHERE",
+        "count": 30.0,
+        "min_speed": 0.5,
+        "max_speed": 0.5,
+        "color_rgba": 4284940287
+      },
+      {
+        "particle_id": "firework",
+        "origin": "CENTER",
+        "shape": "SPHERE",
+        "count": 20.0,
+        "min_speed": 0.25,
+        "max_speed": 0.25,
+        "color_rgba": 4284940287
+      }
+    ]
+  },
+  "cost": {
+    "cooldown": {
+      "duration": 1.0
+    }
+  }
+}

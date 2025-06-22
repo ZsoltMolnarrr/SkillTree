@@ -78,9 +78,6 @@
     }
   },
   "arcane_spec_a_modifier_2": {
-    "description": {
-      "translate": "skill.class_skills.arcane_spec_a_modifier_2.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -93,13 +90,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:arcane_spec_a_modifier_2"
               ]
             }
           ]
@@ -177,9 +174,6 @@
     }
   },
   "arcane_spec_a_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.arcane_spec_a_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -198,7 +192,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:arcane_spec_a_passive_1"
               ]
             }
           ]
@@ -306,9 +300,6 @@
     }
   },
   "arcane_spec_b_modifier_2": {
-    "description": {
-      "translate": "skill.class_skills.arcane_spec_b_modifier_2.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -321,13 +312,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:arcane_spec_b_modifier_2"
               ]
             }
           ]
@@ -405,9 +396,6 @@
     }
   },
   "arcane_spec_b_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.arcane_spec_b_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -426,7 +414,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:arcane_spec_b_passive_1"
               ]
             }
           ]
