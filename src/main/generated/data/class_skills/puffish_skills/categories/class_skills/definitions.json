@@ -1173,13 +1173,10 @@
     }
   },
   "fire_spec_a_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.fire_spec_a_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/fire_spec_a_passive_1.png"
+        "texture": "class_skills:textures/spell/fire_spec_a_passive_1.png"
       }
     },
     "rewards": [
@@ -1194,7 +1191,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:fire_spec_a_passive_1"
               ]
             }
           ]
@@ -1401,13 +1398,10 @@
     }
   },
   "fire_spec_b_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.fire_spec_b_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/fire_spec_b_passive_1.png"
+        "texture": "class_skills:textures/spell/fire_spec_b_passive_1.png"
       }
     },
     "rewards": [
@@ -1422,7 +1416,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:fire_spec_b_passive_1"
               ]
             }
           ]
@@ -1710,13 +1704,10 @@
     }
   },
   "frost_spec_a_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.frost_spec_a_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/frost_spec_a_passive_1.png"
+        "texture": "class_skills:textures/spell/frost_spec_a_passive_1.png"
       }
     },
     "rewards": [
@@ -1731,7 +1722,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:frost_spec_a_passive_1"
               ]
             }
           ]
@@ -1938,13 +1929,10 @@
     }
   },
   "frost_spec_b_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.frost_spec_b_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/frost_spec_b_passive_1.png"
+        "texture": "class_skills:textures/spell/frost_spec_b_passive_1.png"
       }
     },
     "rewards": [
@@ -1959,7 +1947,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:frost_spec_b_passive_1"
               ]
             }
           ]
@@ -2718,13 +2706,10 @@
     }
   },
   "priest_spec_a_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.priest_spec_a_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "paladins:textures/spell/priest_spec_a_passive_1.png"
+        "texture": "class_skills:textures/spell/priest_spec_a_passive_1.png"
       }
     },
     "rewards": [
@@ -2739,7 +2724,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:priest_spec_a_passive_1"
               ]
             }
           ]
@@ -2946,13 +2931,10 @@
     }
   },
   "priest_spec_b_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.priest_spec_b_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "paladins:textures/spell/priest_spec_b_passive_1.png"
+        "texture": "class_skills:textures/spell/priest_spec_b_passive_1.png"
       }
     },
     "rewards": [
@@ -2967,7 +2949,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:priest_spec_b_passive_1"
               ]
             }
           ]

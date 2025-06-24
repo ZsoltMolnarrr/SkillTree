@@ -321,18 +321,22 @@ public class SkillDefinitions {
 
     public static final Entry FIRE_SPEC_A_PASSIVE_1 = add(
             Entry.spell("fire_spec_a_passive_1",
-                    "Fire Spec A Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "fire_spec_a_passive_1")),
-                    dummyContainer()
+                    Spells.fire_spec_a_passive_1.title(),
+                    null,
+                    Icon.spell(Spells.fire_spec_a_passive_1.id()),
+                    List.of(
+                        SpellContainerHelper.createForSpellHost(Spells.fire_spec_a_passive_1.id())
+                    )
             )
     );
     public static final Entry FIRE_SPEC_B_PASSIVE_1 = add(
             Entry.spell("fire_spec_b_passive_1",
-                    "Fire Spec B Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "fire_spec_b_passive_1")),
-                    dummyContainer()
+                    Spells.fire_spec_b_passive_1.title(),
+                    null,
+                    Icon.spell(Spells.fire_spec_b_passive_1.id()),
+                    List.of(
+                        SpellContainerHelper.createForSpellHost(Spells.fire_spec_b_passive_1.id())
+                    )
             )
     );
     public static final Entry FIRE_SPEC_A_PASSIVE_2 = add(
@@ -455,18 +459,22 @@ public class SkillDefinitions {
     );
     public static final Entry FROST_SPEC_A_PASSIVE_1 = add(
             Entry.spell("frost_spec_a_passive_1",
-                    "Frost Spec A Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_spec_a_passive_1")),
-                    dummyContainer()
+                    Spells.frost_spec_a_passive_1.title(),
+                    null,
+                    Icon.spell(Spells.frost_spec_a_passive_1.id()),
+                    List.of(
+                        SpellContainerHelper.createForSpellHost(Spells.frost_spec_a_passive_1.id())
+                    )
             )
     );
     public static final Entry FROST_SPEC_B_PASSIVE_1 = add(
             Entry.spell("frost_spec_b_passive_1",
-                    "Frost Spec B Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_spec_b_passive_1")),
-                    dummyContainer()
+                    Spells.frost_spec_b_passive_1.title(),
+                    null,
+                    Icon.spell(Spells.frost_spec_b_passive_1.id()),
+                    List.of(
+                        SpellContainerHelper.createForSpellHost(Spells.frost_spec_b_passive_1.id())
+                    )
             )
     );
     public static final Entry FROST_SPEC_A_PASSIVE_2 = add(
@@ -589,18 +597,22 @@ public class SkillDefinitions {
     );
     public static final Entry PRIEST_SPEC_A_PASSIVE_1 = add(
             Entry.spell("priest_spec_a_passive_1",
-                    "Priest Spec A Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "priest_spec_a_passive_1")),
-                    dummyContainer()
+                    Spells.priest_spec_a_passive_1.title(),
+                    null,
+                    Icon.spell(Spells.priest_spec_a_passive_1.id()),
+                    List.of(
+                        SpellContainerHelper.createForSpellHost(Spells.priest_spec_a_passive_1.id())
+                    )
             )
     );
     public static final Entry PRIEST_SPEC_B_PASSIVE_1 = add(
             Entry.spell("priest_spec_b_passive_1",
-                    "Priest Spec B Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "priest_spec_b_passive_1")),
-                    dummyContainer()
+                    Spells.priest_spec_b_passive_1.title(),
+                    null,
+                    Icon.spell(Spells.priest_spec_b_passive_1.id()),
+                    List.of(
+                        SpellContainerHelper.createForSpellHost(Spells.priest_spec_b_passive_1.id())
+                    )
             )
     );
     public static final Entry PRIEST_SPEC_A_PASSIVE_2 = add(

@@ -8,7 +8,7 @@
       {
         "target_override": "CASTER",
         "type": "SPELL_IMPACT_SPECIFIC",
-        "chance": 0.5,
+        "chance": 0.1,
         "spell": {
           "school": "arcane",
           "type": "ACTIVE"

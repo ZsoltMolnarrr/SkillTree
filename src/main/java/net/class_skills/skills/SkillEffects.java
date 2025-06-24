@@ -9,6 +9,11 @@ import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
 import net.spell_engine.api.effect.*;
+import net.spell_engine.api.entity.SpellEngineAttributes;
+import net.spell_power.api.SpellPower;
+import net.spell_power.api.SpellPowerMechanics;
+import net.spell_power.api.SpellSchools;
+import net.spell_power.api.statuseffects.SpellVulnerabilityStatusEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +28,7 @@ public class SkillEffects {
     public static Effects.Entry DIVINE_STRENGTH = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "divine_strength"),
             "Divine Strength",
             "Increased attack damage.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff9900),
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc99),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -37,7 +42,7 @@ public class SkillEffects {
     public static Effects.Entry FLEET_FOOTED = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fleet_footed"),
             "Fleet Footed",
             "Increased movement speed.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x00ff00),
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x33ccff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -51,7 +56,7 @@ public class SkillEffects {
     public static Effects.Entry ARCANE_SLOWNESS = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_slowness"),
             "Arcane Slowness",
             "Decreased movement speed.",
-            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x0000ff),
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xff99ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -62,12 +67,60 @@ public class SkillEffects {
                     )
             )
     ));
+    public static final float FIRE_VULNERABILITY_MULTIPLIER = 0.05F;
+    public static Effects.Entry FIRE_VULNERABILITY = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fire_vulnerability"),
+            "Fire Vulnerability",
+            "Increased damage taken from fire.",
+            new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, 0xff6600)
+                    .setVulnerability(SpellSchools.FIRE, new SpellPower.Vulnerability(FIRE_VULNERABILITY_MULTIPLIER, 0F, 0F)),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+    public static final float FROST_VULNERABILITY_MULTIPLIER = 0.1F;
+    public static Effects.Entry FROST_VULNERABILITY = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_vulnerability"),
+            "Winter's Chill",
+            "Increased damage taken from frost critical strikes.",
+            new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, 0x99ccff)
+                    .setVulnerability(SpellSchools.FROST, new SpellPower.Vulnerability(0, 0F, FROST_VULNERABILITY_MULTIPLIER)),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+
+    public static Effects.Entry HEALING_FOCUS = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "healing_focus"),
+            "Healing Focus",
+            "Increased healing received.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ff99),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.HEALING_TAKEN.id,
+                                    0.05F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry INCANTER_CADENCE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "incanter_cadence"),
+            "Incanters' Cadence",
+            "Increased spell haste.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id,
+                                    0.05F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);
         }
-
         Effects.register(entries, config.effects);
     }
 }

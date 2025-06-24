@@ -59,7 +59,7 @@ public class SpellContainerReward implements Reward {
             var index = Math.min(count - 1, this.containers.size() - 1);
             containers.put(id.toString(), this.containers.get(index));
         }
-        SpellContainerSource.syncServerSideContainers(player);
+        SpellContainerSource.setDirtyServerSide(player);
     }
 
     @Override
