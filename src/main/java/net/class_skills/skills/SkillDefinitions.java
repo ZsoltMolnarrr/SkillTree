@@ -50,10 +50,6 @@ public class SkillDefinitions {
             return attribute(id, title, description, icon, EntityAttributeReward.of(attribute, value, operation));
         }
         public static Entry attribute(String id, String title, String description, Icon icon, EntityAttributeReward attributeReward) {
-            if (description == null) {
-                var lines = attributeModifierText(attributeReward);
-                description = TextUtil.convert(lines);
-            }
             return new Entry(id, title, description, icon, null, attributeReward);
         }
         public String titleTranslationKey() {
@@ -73,20 +69,32 @@ public class SkillDefinitions {
     public static final float ROOT_MULTIPLIER = 0.01f;
     public static final float BOOST_MULTIPLIER = 0.01f;
 
-    private static List<Text> attributeModifierText(EntityAttributeReward reward) {
-        List<Text> lines = new ArrayList<>();
-        var tooltipUtil = (ItemStackTooltipAccessor) (Object) ItemStack.EMPTY;
-        tooltipUtil.spellEngine_appendAttributeModifierTooltip(
-                lines::add,
-                null,
-                reward.attribute(),
-                reward.modifier()
-        );
-        return lines;
-    }
+//    private static List<Text> attributeModifierText(EntityAttributeReward reward) {
+//        List<Text> lines = new ArrayList<>();
+//        return lines;
+//    }
 
     private static List<SpellContainer> dummyContainer() {
         return List.of(SpellContainerHelper.createForSpellHost(Identifier.of("wizards:fireball")));
+    }
+
+    private static Entry modifierSpell(Spells.Entry entry) {
+        var modifiedSpellId = Identifier.of(entry.spell().modifiers.getFirst().spell_pattern);
+        return Entry.spell(entry.id().getPath(),
+                entry.title(),
+                null,
+                Icon.spell(modifiedSpellId),
+                List.of(SpellContainerHelper.createForModifier(entry.id()))
+        );
+    }
+
+    private static Entry passiveSpell(Spells.Entry entry) {
+        return Entry.spell(entry.id().getPath(),
+                entry.title(),
+                null,
+                Icon.spell(entry.id()),
+                List.of(SpellContainerHelper.createForSpellHost(entry.id()))
+        );
     }
 
     public static final Entry ARCANE_ROOT = add(
@@ -106,46 +114,10 @@ public class SkillDefinitions {
                     Icon.item("wizards:wand_arcane"),
                     ARCANE_ROOT.attributeReward())
     );
-    public static final Entry ARCANE_SPEC_A_MODIFIER_1 = add(
-            Entry.spell(Spells.arcane_spec_a_modifier_1.key(),
-                    Spells.arcane_spec_a_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "arcane_blast")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.arcane_spec_a_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry ARCANE_SPEC_B_MODIFIER_1 = add(
-            Entry.spell(Spells.arcane_spec_b_modifier_1.key(),
-                    Spells.arcane_spec_b_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "arcane_blast")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.arcane_spec_b_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry ARCANE_SPEC_A_MODIFIER_2 = add(
-            Entry.spell("arcane_spec_a_modifier_2",
-                    Spells.arcane_spec_a_modifier_2.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "arcane_missile")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.arcane_spec_a_modifier_2.id())
-                    )
-            )
-    );
-    public static final Entry ARCANE_SPEC_B_MODIFIER_2 = add(
-            Entry.spell("arcane_spec_b_modifier_2",
-                    Spells.arcane_spec_b_modifier_2.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "arcane_missile")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.arcane_spec_b_modifier_2.id())
-                    )
-            )
-    );
+    public static final Entry ARCANE_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.arcane_spec_a_modifier_1));
+    public static final Entry ARCANE_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.arcane_spec_b_modifier_1));
+    public static final Entry ARCANE_SPEC_A_MODIFIER_2 = add(modifierSpell(Spells.arcane_spec_a_modifier_2));
+    public static final Entry ARCANE_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.arcane_spec_b_modifier_2));
 
     public static final Entry ARCANE_SPEC_A_MODIFIER_3 = add(
             Entry.spell("arcane_spec_a_modifier_3",
@@ -180,26 +152,9 @@ public class SkillDefinitions {
             )
     );
 
-    public static final Entry ARCANE_SPEC_A_PASSIVE_1 = add(
-            Entry.spell("arcane_spec_a_passive_1",
-                    Spells.arcane_spec_a_passive_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "arcane_spec_a_passive_1")),
-                    List.of(
-                        SpellContainerHelper.createForSpellHost(Spells.arcane_spec_a_passive_1.id())
-                    )
-            )
-    );
-    public static final Entry ARCANE_SPEC_B_PASSIVE_1 = add(
-            Entry.spell("arcane_spec_b_passive_1",
-                    Spells.arcane_spec_b_passive_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "arcane_spec_b_passive_1")),
-                    List.of(
-                        SpellContainerHelper.createForSpellHost(Spells.arcane_spec_b_passive_1.id())
-                    )
-            )
-    );
+    public static final Entry ARCANE_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.arcane_spec_a_passive_1));
+    public static final Entry ARCANE_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.arcane_spec_b_passive_1));
+
     public static final Entry ARCANE_SPEC_A_PASSIVE_2 = add(
             Entry.spell("arcane_spec_a_passive_2",
                     "Arcane Spec A Passive 2",
@@ -250,26 +205,8 @@ public class SkillDefinitions {
                     Icon.item("wizards:wand_fire"),
                     FIRE_ROOT.attributeReward())
     );
-    public static final Entry FIRE_SPEC_A_MODIFIER_1 = add(
-            Entry.spell("fire_spec_a_modifier_1",
-                    Spells.fire_spec_a_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "fire_blast")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.fire_spec_a_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry FIRE_SPEC_B_MODIFIER_1 = add(
-            Entry.spell("fire_spec_b_modifier_1",
-                    Spells.fire_spec_b_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "fire_blast")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.fire_spec_b_modifier_1.id())
-                    )
-            )
-    );
+    public static final Entry FIRE_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.fire_spec_a_modifier_1));
+    public static final Entry FIRE_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.fire_spec_b_modifier_1));
     public static final Entry FIRE_SPEC_A_MODIFIER_2 = add(
             Entry.spell("fire_spec_a_modifier_2",
                     "Fire Breath modifier",
@@ -319,26 +256,9 @@ public class SkillDefinitions {
             )
     );
 
-    public static final Entry FIRE_SPEC_A_PASSIVE_1 = add(
-            Entry.spell("fire_spec_a_passive_1",
-                    Spells.fire_spec_a_passive_1.title(),
-                    null,
-                    Icon.spell(Spells.fire_spec_a_passive_1.id()),
-                    List.of(
-                        SpellContainerHelper.createForSpellHost(Spells.fire_spec_a_passive_1.id())
-                    )
-            )
-    );
-    public static final Entry FIRE_SPEC_B_PASSIVE_1 = add(
-            Entry.spell("fire_spec_b_passive_1",
-                    Spells.fire_spec_b_passive_1.title(),
-                    null,
-                    Icon.spell(Spells.fire_spec_b_passive_1.id()),
-                    List.of(
-                        SpellContainerHelper.createForSpellHost(Spells.fire_spec_b_passive_1.id())
-                    )
-            )
-    );
+    public static final Entry FIRE_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.fire_spec_a_passive_1));
+    public static final Entry FIRE_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.fire_spec_b_passive_1));
+
     public static final Entry FIRE_SPEC_A_PASSIVE_2 = add(
             Entry.spell("fire_spec_a_passive_2",
                     "Fire Spec A Passive 2",
@@ -389,26 +309,9 @@ public class SkillDefinitions {
                     Icon.item("wizards:wand_frost"),
                     FROST_ROOT.attributeReward())
     );
-    public static final Entry FROST_SPEC_A_MODIFIER_1 = add(
-            Entry.spell("frost_spec_a_modifier_1",
-                    Spells.frost_spec_a_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "frostbolt")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.frost_spec_a_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry FROST_SPEC_B_MODIFIER_1 = add(
-            Entry.spell("frost_spec_b_modifier_1",
-                    Spells.frost_spec_b_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("wizards", "frostbolt")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.frost_spec_b_modifier_1.id())
-                    )
-            )
-    );
+    public static final Entry FROST_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.frost_spec_a_modifier_1));
+    public static final Entry FROST_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.frost_spec_b_modifier_1));
+
     public static final Entry FROST_SPEC_A_MODIFIER_2 = add(
             Entry.spell("frost_spec_a_modifier_2",
                     "Frost Nova modifier",
@@ -457,26 +360,9 @@ public class SkillDefinitions {
                     dummyContainer()
             )
     );
-    public static final Entry FROST_SPEC_A_PASSIVE_1 = add(
-            Entry.spell("frost_spec_a_passive_1",
-                    Spells.frost_spec_a_passive_1.title(),
-                    null,
-                    Icon.spell(Spells.frost_spec_a_passive_1.id()),
-                    List.of(
-                        SpellContainerHelper.createForSpellHost(Spells.frost_spec_a_passive_1.id())
-                    )
-            )
-    );
-    public static final Entry FROST_SPEC_B_PASSIVE_1 = add(
-            Entry.spell("frost_spec_b_passive_1",
-                    Spells.frost_spec_b_passive_1.title(),
-                    null,
-                    Icon.spell(Spells.frost_spec_b_passive_1.id()),
-                    List.of(
-                        SpellContainerHelper.createForSpellHost(Spells.frost_spec_b_passive_1.id())
-                    )
-            )
-    );
+    public static final Entry FROST_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.frost_spec_a_passive_1));
+    public static final Entry FROST_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.frost_spec_b_passive_1));
+
     public static final Entry FROST_SPEC_A_PASSIVE_2 = add(
             Entry.spell("frost_spec_a_passive_2",
                     "Frost Spec A Passive 2",
@@ -527,26 +413,9 @@ public class SkillDefinitions {
                     Icon.item("paladins:holy_wand"),
                     PRIEST_ROOT.attributeReward())
     );
-    public static final Entry PRIEST_SPEC_A_MODIFIER_1 = add(
-            Entry.spell("priest_spec_a_modifier_1",
-                    Spells.priest_spec_a_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("paladins", "holy_shock")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.priest_spec_a_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry PRIEST_SPEC_B_MODIFIER_1 = add(
-            Entry.spell("priest_spec_b_modifier_1",
-                    Spells.priest_spec_b_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("paladins", "holy_shock")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.priest_spec_b_modifier_1.id())
-                    )
-            )
-    );
+    public static final Entry PRIEST_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.priest_spec_a_modifier_1));
+    public static final Entry PRIEST_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.priest_spec_b_modifier_1));
+
     public static final Entry PRIEST_SPEC_A_MODIFIER_2 = add(
             Entry.spell("priest_spec_a_modifier_2",
                     "Holy Light modifier",
@@ -595,26 +464,10 @@ public class SkillDefinitions {
                     dummyContainer()
             )
     );
-    public static final Entry PRIEST_SPEC_A_PASSIVE_1 = add(
-            Entry.spell("priest_spec_a_passive_1",
-                    Spells.priest_spec_a_passive_1.title(),
-                    null,
-                    Icon.spell(Spells.priest_spec_a_passive_1.id()),
-                    List.of(
-                        SpellContainerHelper.createForSpellHost(Spells.priest_spec_a_passive_1.id())
-                    )
-            )
-    );
-    public static final Entry PRIEST_SPEC_B_PASSIVE_1 = add(
-            Entry.spell("priest_spec_b_passive_1",
-                    Spells.priest_spec_b_passive_1.title(),
-                    null,
-                    Icon.spell(Spells.priest_spec_b_passive_1.id()),
-                    List.of(
-                        SpellContainerHelper.createForSpellHost(Spells.priest_spec_b_passive_1.id())
-                    )
-            )
-    );
+
+    public static final Entry PRIEST_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.priest_spec_a_passive_1));
+    public static final Entry PRIEST_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.priest_spec_b_passive_1));
+
     public static final Entry PRIEST_SPEC_A_PASSIVE_2 = add(
             Entry.spell("priest_spec_a_passive_2",
                     "Priest Spec A Passive 2",
@@ -665,26 +518,9 @@ public class SkillDefinitions {
                     Icon.item("paladins:iron_mace"),
                     PALADIN_ROOT.attributeReward())
     );
-    public static final Entry PALADIN_SPEC_A_MODIFIER_1 = add(
-            Entry.spell("paladin_spec_a_modifier_1",
-                    Spells.paladin_spec_a_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("paladins", "flash_heal")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.paladin_spec_a_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry PALADIN_SPEC_B_MODIFIER_1 = add(
-            Entry.spell("paladin_spec_b_modifier_1",
-                    Spells.paladin_spec_b_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("paladins", "flash_heal")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.paladin_spec_b_modifier_1.id())
-                    )
-            )
-    );
+    public static final Entry PALADIN_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.paladin_spec_a_modifier_1));
+    public static final Entry PALADIN_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.paladin_spec_b_modifier_1));
+
     public static final Entry PALADIN_SPEC_A_MODIFIER_2 = add(
             Entry.spell("paladin_spec_a_modifier_2",
                     "Divine Protection modifier",
@@ -733,22 +569,10 @@ public class SkillDefinitions {
                     dummyContainer()
             )
     );
-    public static final Entry PALADIN_SPEC_A_PASSIVE_1 = add(
-            Entry.spell("paladin_spec_a_passive_1",
-                    "Paladin Spec A Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "paladin_spec_a_passive_1")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry PALADIN_SPEC_B_PASSIVE_1 = add(
-            Entry.spell("paladin_spec_b_passive_1",
-                    "Paladin Spec B Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "paladin_spec_b_passive_1")),
-                    dummyContainer()
-            )
-    );
+
+    public static final Entry PALADIN_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.paladin_spec_a_passive_1));
+    public static final Entry PALADIN_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.paladin_spec_b_passive_1));
+
     public static final Entry PALADIN_SPEC_A_PASSIVE_2 = add(
             Entry.spell("paladin_spec_a_passive_2",
                     "Paladin Spec A Passive 2",

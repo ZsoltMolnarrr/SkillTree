@@ -116,6 +116,20 @@ public class SkillEffects {
                     )
             )
     ));
+    public static Effects.Entry REDOUBT = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "redoubt"),
+            "Redoubt",
+            "Increased block chance.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xcccccc),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {

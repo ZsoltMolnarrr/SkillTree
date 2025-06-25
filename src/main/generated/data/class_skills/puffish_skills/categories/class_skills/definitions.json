@@ -1,8 +1,5 @@
 {
   "arcane_boost": {
-    "description": {
-      "translate": "skill.class_skills.arcane_boost.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -24,9 +21,6 @@
     }
   },
   "arcane_root": {
-    "description": {
-      "translate": "skill.class_skills.arcane_root.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -177,7 +171,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/arcane_spec_a_passive_1.png"
+        "texture": "class_skills:textures/spell/arcane_spec_a_passive_1.png"
       }
     },
     "rewards": [
@@ -399,7 +393,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/arcane_spec_b_passive_1.png"
+        "texture": "class_skills:textures/spell/arcane_spec_b_passive_1.png"
       }
     },
     "rewards": [
@@ -492,9 +486,6 @@
     }
   },
   "archer_boost": {
-    "description": {
-      "translate": "skill.class_skills.archer_boost.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -516,9 +507,6 @@
     }
   },
   "archer_root": {
-    "description": {
-      "translate": "skill.class_skills.archer_root.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -996,9 +984,6 @@
     }
   },
   "fire_boost": {
-    "description": {
-      "translate": "skill.class_skills.fire_boost.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -1020,9 +1005,6 @@
     }
   },
   "fire_root": {
-    "description": {
-      "translate": "skill.class_skills.fire_root.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -1527,9 +1509,6 @@
     }
   },
   "frost_boost": {
-    "description": {
-      "translate": "skill.class_skills.frost_boost.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -1551,9 +1530,6 @@
     }
   },
   "frost_root": {
-    "description": {
-      "translate": "skill.class_skills.frost_root.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -2025,9 +2001,6 @@
     }
   },
   "paladin_boost": {
-    "description": {
-      "translate": "skill.class_skills.paladin_boost.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -2049,9 +2022,6 @@
     }
   },
   "paladin_root": {
-    "description": {
-      "translate": "skill.class_skills.paladin_root.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -2202,13 +2172,10 @@
     }
   },
   "paladin_spec_a_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.paladin_spec_a_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "paladins:textures/spell/paladin_spec_a_passive_1.png"
+        "texture": "class_skills:textures/spell/paladin_spec_a_passive_1.png"
       }
     },
     "rewards": [
@@ -2223,7 +2190,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:paladin_spec_a_passive_1"
               ]
             }
           ]
@@ -2430,13 +2397,10 @@
     }
   },
   "paladin_spec_b_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.paladin_spec_b_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "paladins:textures/spell/paladin_spec_b_passive_1.png"
+        "texture": "class_skills:textures/spell/paladin_spec_b_passive_1.png"
       }
     },
     "rewards": [
@@ -2451,7 +2415,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:paladin_spec_b_passive_1"
               ]
             }
           ]
@@ -2529,9 +2493,6 @@
     }
   },
   "priest_boost": {
-    "description": {
-      "translate": "skill.class_skills.priest_boost.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -2553,9 +2514,6 @@
     }
   },
   "priest_root": {
-    "description": {
-      "translate": "skill.class_skills.priest_root.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -3027,9 +2985,6 @@
     }
   },
   "rogue_boost": {
-    "description": {
-      "translate": "skill.class_skills.rogue_boost.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -3051,9 +3006,6 @@
     }
   },
   "rogue_root": {
-    "description": {
-      "translate": "skill.class_skills.rogue_root.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -3531,9 +3483,6 @@
     }
   },
   "warrior_boost": {
-    "description": {
-      "translate": "skill.class_skills.warrior_boost.description"
-    },
     "icon": {
       "type": "item",
       "data": {
@@ -3555,9 +3504,6 @@
     }
   },
   "warrior_root": {
-    "description": {
-      "translate": "skill.class_skills.warrior_root.description"
-    },
     "icon": {
       "type": "item",
       "data": {
