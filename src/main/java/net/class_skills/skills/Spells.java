@@ -5,6 +5,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
+import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.ParticleBatch;
@@ -159,9 +160,9 @@ public class Spells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.impactDamage(0.4F, 0.2F);
+        impact.action.allow_on_center_target = false;
         spell.impacts = List.of(impact);
         var area_impact = new Spell.AreaImpact();
-        area_impact.skip_center_target = true;
         area_impact.radius = 2.5F;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
@@ -332,7 +333,7 @@ public class Spells {
     public static final Entry fire_spec_b_passive_1 = add(fire_spec_b_passive_1());
     private static Entry fire_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "fire_spec_b_passive_1");
-        var title = "Blazing Impact";
+        var title = "Hot Impact";
         var description = "Fire spell impacts have {trigger_chance}, to stun the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.FIRE;
@@ -809,10 +810,10 @@ public class Spells {
         modifier.spell_pattern = "archers:power_shot";
 
         var impact = SpellBuilder.impactDamage(0.5F, 0);
+        impact.action.allow_on_center_target = false;
 
         var area_impact = new Spell.AreaImpact();
         area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
-        area_impact.skip_center_target = true;
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
@@ -834,6 +835,77 @@ public class Spells {
         modifier.replacing_area_impact = area_impact;
 
         spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
+    }
+
+    private static SpellEntityPredicates.Entry HAS_HUNTERS_MARK = SpellEntityPredicates.hasEffectOptimized(Identifier.of("archers", "hunters_mark"));
+    public static final Entry archer_spec_a_passive_1 = add(archer_spec_a_passive_1());
+    private static Entry archer_spec_a_passive_1() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_a_passive_1");
+        var title = "Rhythm";
+        var description = "Hitting Marked target increasing ranged attack speed by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var effect = SkillEffects.RHYTHM;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.triggerArrowHit();
+        var condition = new Spell.TargetCondition();
+        condition.entity_predicate_id = HAS_HUNTERS_MARK.id().toString();
+        trigger.target_conditions = List.of(condition);
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.impactEffectAdd(SkillEffects.RHYTHM.id.toString(), 6, 1, 4);
+        impact.action.apply_to_caster = true;
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.4F)
+                        .color(Color.NATURE.toRGBA())
+        };
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_b_passive_1 = add(archer_spec_b_passive_1());
+    private static Entry archer_spec_b_passive_1() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_1");
+        var title = "Concussive Shot";
+        var description = "Arrows have {trigger_chance}, to stun the target for {effect_duration} sec.";
+        var effect = SpellEngineEffects.STUN;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.triggerArrowHit();
+        trigger.chance = 0.05F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.impactEffectSet(effect.id.toString(), 2F, 0);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        "crit",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.25F, 0.3F)
+                        .color(Color.RED.toRGBA())
+        };
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.configureCooldown(spell, 10F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
     }

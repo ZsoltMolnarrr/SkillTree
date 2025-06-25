@@ -1,0 +1,47 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ARROW_IMPACT",
+        "target_conditions": [
+          {
+            "entity_predicate_id": "has_effect_optimized:archers.hunters_mark"
+          }
+        ]
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "apply_to_caster": true,
+        "status_effect": {
+          "effect_id": "class_skills:rhythm",
+          "duration": 6.0,
+          "amplifier": 1,
+          "amplifier_cap": 4,
+          "apply_mode": "ADD"
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_spark_decelerate",
+          "origin": "FEET",
+          "shape": "WIDE_PIPE",
+          "count": 15.0,
+          "min_speed": 0.1,
+          "max_speed": 0.4,
+          "color_rgba": 1728014079
+        }
+      ]
+    }
+  ]
+}

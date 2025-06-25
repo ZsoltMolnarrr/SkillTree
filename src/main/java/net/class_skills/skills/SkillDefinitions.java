@@ -691,22 +691,9 @@ public class SkillDefinitions {
                     dummyContainer()
             )
     );
-    public static final Entry ARCHER_SPEC_A_PASSIVE_1 = add(
-            Entry.spell("archer_spec_a_passive_1",
-                    "Archer Spec A Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("archers", "archer_spec_a_passive_1")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry ARCHER_SPEC_B_PASSIVE_1 = add(
-            Entry.spell("archer_spec_b_passive_1",
-                    "Archer Spec B Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("archers", "archer_spec_b_passive_1")),
-                    dummyContainer()
-            )
-    );
+    public static final Entry ARCHER_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.archer_spec_a_passive_1));
+    public static final Entry ARCHER_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.archer_spec_b_passive_1));
+
     public static final Entry ARCHER_SPEC_A_PASSIVE_2 = add(
             Entry.spell("archer_spec_a_passive_2",
                     "Archer Spec A Passive 2",

@@ -1,6 +1,7 @@
 package net.class_skills.skills;
 
 import net.class_skills.ClassSkillsMod;
+import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -125,6 +126,21 @@ public class SkillEffects {
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_ARMOR.getIdAsString(),
                                     0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry RHYTHM = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "rhythm"),
+            "Rhythm",
+            "Increased ranged attack speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xccff99),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.HASTE.id,
+                                    0.05F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )

@@ -25,6 +25,7 @@
     {
       "action": {
         "type": "DAMAGE",
+        "allow_on_center_target": false,
         "damage": {
           "spell_power_coefficient": 0.4,
           "knockback": 0.2
@@ -33,7 +34,6 @@
     }
   ],
   "area_impact": {
-    "skip_center_target": true,
     "radius": 2.5,
     "area": {
       "distance_dropoff": "SQUARED"
