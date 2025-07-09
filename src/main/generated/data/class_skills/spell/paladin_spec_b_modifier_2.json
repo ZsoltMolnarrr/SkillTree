@@ -1,0 +1,13 @@
+{
+  "school": "spell_power:healing",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "paladins:divine_protection",
+      "effect_amplifier_add": 1,
+      "effect_amplifier_cap_add": 1
+    }
+  ]
+}

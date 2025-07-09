@@ -389,23 +389,9 @@ public class SkillDefinitions {
     );
     public static final Entry PRIEST_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.priest_spec_a_modifier_1));
     public static final Entry PRIEST_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.priest_spec_b_modifier_1));
+    public static final Entry PRIEST_SPEC_A_MODIFIER_2 = add(modifierSpell(Spells.priest_spec_a_modifier_2));
+    public static final Entry PRIEST_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.priest_spec_b_modifier_2));
 
-    public static final Entry PRIEST_SPEC_A_MODIFIER_2 = add(
-            Entry.spell("priest_spec_a_modifier_2",
-                    "Holy Light modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "holy_beam")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry PRIEST_SPEC_B_MODIFIER_2 = add(
-            Entry.spell("priest_spec_b_modifier_2",
-                    "Holy Light modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "holy_beam")),
-                    dummyContainer()
-            )
-    );
     public static final Entry PRIEST_SPEC_A_MODIFIER_3 = add(
             Entry.spell("priest_spec_a_modifier_3",
                     "Circle of Healing modifier",
@@ -494,23 +480,9 @@ public class SkillDefinitions {
     );
     public static final Entry PALADIN_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.paladin_spec_a_modifier_1));
     public static final Entry PALADIN_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.paladin_spec_b_modifier_1));
+    public static final Entry PALADIN_SPEC_A_MODIFIER_2 = add(modifierSpell(Spells.paladin_spec_a_modifier_2));
+    public static final Entry PALADIN_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.paladin_spec_b_modifier_2));
 
-    public static final Entry PALADIN_SPEC_A_MODIFIER_2 = add(
-            Entry.spell("paladin_spec_a_modifier_2",
-                    "Divine Protection modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "divine_protection")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry PALADIN_SPEC_B_MODIFIER_2 = add(
-            Entry.spell("paladin_spec_b_modifier_2",
-                    "Divine Protection modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "divine_protection")),
-                    dummyContainer()
-            )
-    );
     public static final Entry PALADIN_SPEC_A_MODIFIER_3 = add(
             Entry.spell("paladin_spec_a_modifier_3",
                     "Judgement modifier",

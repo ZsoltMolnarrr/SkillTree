@@ -1,0 +1,45 @@
+{
+  "school": "spell_power:healing",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "paladins:holy_beam",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "FIRE",
+            "fire": {}
+          },
+          "particles": [
+            {
+              "particle_id": "spell_engine:flame_medium_a",
+              "origin": "FEET",
+              "shape": "WIDE_PIPE",
+              "count": 1.0,
+              "min_speed": 0.1,
+              "max_speed": 0.2
+            },
+            {
+              "particle_id": "spell_engine:flame_medium_b",
+              "origin": "FEET",
+              "shape": "WIDE_PIPE",
+              "count": 1.0,
+              "min_speed": 0.1,
+              "max_speed": 0.2
+            }
+          ],
+          "sound": {
+            "id": "spell_engine:generic_fire_ignite",
+            "volume": 0.6
+          }
+        }
+      ],
+      "power_modifier": {
+        "power_multiplier": 0.1
+      }
+    }
+  ]
+}

@@ -15,6 +15,7 @@ import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
+import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_power.api.SpellSchools;
 import org.jetbrains.annotations.Nullable;
 
@@ -607,6 +608,55 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
     }
 
+    public static final Entry priest_spec_a_modifier_2 = add(priest_spec_a_modifier_2());
+    private static Entry priest_spec_a_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_a_modifier_2");
+        var title = "Graceful Channeling";
+        var description = "Reduces the cooldown of Holy Light by {cooldown_duration_deduct} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:holy_beam";
+        modifier.cooldown_duration_deduct = 2;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
+    public static final Entry priest_spec_b_modifier_2 = add(priest_spec_b_modifier_2());
+    private static Entry priest_spec_b_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_b_modifier_2");
+        var title = "Searing Light";
+        var description = "Holy Light deals {power_multiplier} more damage, and lights enemies on fire.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:holy_beam";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.1F;
+
+        var impact = SpellBuilder.impactFire(2F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_a.id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        1, 0.1F, 0.2F),
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_b.id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        1, 0.1F, 0.2F)
+        };
+        impact.sound = Sound.withVolume(SpellEngineSounds.GENERIC_FIRE_IGNITE.id(), 0.6F);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
     public static final Entry priest_spec_a_passive_1 = add(priest_spec_a_passive_1());
     private static Entry priest_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "priest_spec_a_passive_1");
@@ -740,6 +790,49 @@ public class Spells {
         impact.action.status_effect.amplifier = cleanseCount;
         modifier.impacts = List.of(impact);
 
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_a_modifier_2 = add(paladin_spec_a_modifier_2());
+    private static Entry paladin_spec_a_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_2");
+        var title = "Pursuit of Justice";
+        var description = "Divine Protection also increases your movement speed by {bonus}, for {effect_duration} sec.";
+        var effect = SkillEffects.PURSUIT_OF_JUSTICE;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:divine_protection";
+
+        var impact = SpellBuilder.impactEffectSet(effect.id.toString(), 4, 0);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_b_modifier_2 = add(paladin_spec_b_modifier_2());
+    private static Entry paladin_spec_b_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_b_modifier_2");
+        var title = "Blessed Protection";
+        var description = "Divine Protection provides {effect_amplifier_add} extra effect stack.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:divine_protection";
+        modifier.effect_amplifier_add = 1;
+        modifier.effect_amplifier_cap_add = 1;
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));

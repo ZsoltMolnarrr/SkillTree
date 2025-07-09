@@ -173,6 +173,20 @@ public class SkillEffects {
                     )
             )
     ));
+    public static Effects.Entry PURSUIT_OF_JUSTICE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "pursuit_of_justice"),
+            "Pursuit of Justice",
+            "Increased movement speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ffcc),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.3F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
