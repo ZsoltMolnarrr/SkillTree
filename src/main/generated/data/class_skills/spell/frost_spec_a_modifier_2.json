@@ -1,0 +1,65 @@
+{
+  "school": "spell_power:frost",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "spell": {
+          "id": "wizards:frost_nova"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "delay": 7
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.5,
+          "knockback": 0.2
+        }
+      }
+    }
+  ],
+  "area_impact": {
+    "force_indirect": true,
+    "radius": 3.0,
+    "area": {
+      "distance_dropoff": "SQUARED"
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:snowflake",
+        "origin": "FEET",
+        "shape": "CIRCLE",
+        "count": 30.0,
+        "min_speed": 0.4,
+        "max_speed": 0.4
+      },
+      {
+        "particle_id": "spell_engine:area_effect_293",
+        "origin": "GROUND",
+        "shape": "SPHERE",
+        "count": 1.0,
+        "max_speed": 0.0,
+        "color_rgba": 1724710911,
+        "scale": 2.5
+      }
+    ],
+    "sound": {
+      "id": "wizards:frost_nova_damage_impact"
+    }
+  }
+}

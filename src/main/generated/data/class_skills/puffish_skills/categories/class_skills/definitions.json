@@ -1050,9 +1050,6 @@
     }
   },
   "fire_spec_a_modifier_2": {
-    "description": {
-      "translate": "skill.class_skills.fire_spec_a_modifier_2.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1071,7 +1068,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:fire_spec_a_modifier_2"
               ]
             }
           ]
@@ -1275,9 +1272,6 @@
     }
   },
   "fire_spec_b_modifier_2": {
-    "description": {
-      "translate": "skill.class_skills.fire_spec_b_modifier_2.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1290,13 +1284,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:fire_spec_b_modifier_2"
               ]
             }
           ]
@@ -1575,9 +1569,6 @@
     }
   },
   "frost_spec_a_modifier_2": {
-    "description": {
-      "translate": "skill.class_skills.frost_spec_a_modifier_2.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1596,7 +1587,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:frost_spec_a_modifier_2"
               ]
             }
           ]
@@ -1800,9 +1791,6 @@
     }
   },
   "frost_spec_b_modifier_2": {
-    "description": {
-      "translate": "skill.class_skills.frost_spec_b_modifier_2.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1815,13 +1803,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:frost_spec_b_modifier_2"
               ]
             }
           ]
@@ -3150,13 +3138,10 @@
     }
   },
   "rogue_spec_a_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.rogue_spec_a_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "rogues:textures/spell/rogue_spec_a_passive_1.png"
+        "texture": "class_skills:textures/spell/rogue_spec_a_passive_1.png"
       }
     },
     "rewards": [
@@ -3171,7 +3156,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:rogue_spec_a_passive_1"
               ]
             }
           ]
@@ -3378,13 +3363,10 @@
     }
   },
   "rogue_spec_b_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.rogue_spec_b_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "rogues:textures/spell/rogue_spec_b_passive_1.png"
+        "texture": "class_skills:textures/spell/rogue_spec_b_passive_1.png"
       }
     },
     "rewards": [
@@ -3399,7 +3381,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:rogue_spec_b_passive_1"
               ]
             }
           ]
@@ -3648,13 +3630,10 @@
     }
   },
   "warrior_spec_a_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.warrior_spec_a_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "rogues:textures/spell/warrior_spec_a_passive_1.png"
+        "texture": "class_skills:textures/spell/warrior_spec_a_passive_1.png"
       }
     },
     "rewards": [
@@ -3669,7 +3648,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:warrior_spec_a_passive_1"
               ]
             }
           ]
@@ -3876,13 +3855,10 @@
     }
   },
   "warrior_spec_b_passive_1": {
-    "description": {
-      "translate": "skill.class_skills.warrior_spec_b_passive_1.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "rogues:textures/spell/warrior_spec_b_passive_1.png"
+        "texture": "class_skills:textures/spell/warrior_spec_b_passive_1.png"
       }
     },
     "rewards": [
@@ -3897,7 +3873,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:warrior_spec_b_passive_1"
               ]
             }
           ]

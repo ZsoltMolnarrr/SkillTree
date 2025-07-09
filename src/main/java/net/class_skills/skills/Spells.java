@@ -2,6 +2,8 @@ package net.class_skills.skills;
 
 import net.class_skills.ClassSkillsMod;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
@@ -13,7 +15,6 @@ import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
-import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_power.api.SpellSchools;
 import org.jetbrains.annotations.Nullable;
 
@@ -98,7 +99,7 @@ public class Spells {
     private static Entry arcane_spec_a_modifier_2() {
         var id = Identifier.of(NAMESPACE, "arcane_spec_a_modifier_2");
         var title = "Conjured Missile";
-        var description = "Increases the projectiles shot by Arcane Missile by {extra_launch_count}.";
+        var description = "Arcane Missile shoots {extra_launch} additional missile per batch.";
 
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.ARCANE;
@@ -109,6 +110,10 @@ public class Spells {
         modifier.projectile_launch = Spell.LaunchProperties.EMPTY();
         modifier.projectile_launch.extra_launch_count = 1;
         modifier.projectile_launch.extra_launch_delay = 2;
+        modifier.projectile_launch.extra_launch_mod = 3;
+        modifier.power_modifier = new Spell.Impact.Modifier();
+//        modifier.power_modifier.power_multiplier = -0.3F;
+//        modifier.knockback_multiply_base = -0.1F;
 
         spell.modifiers = List.of(modifier);
 
@@ -295,6 +300,56 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
     }
 
+    public static final Entry fire_spec_a_modifier_2 = add(fire_spec_a_modifier_2());
+    private static Entry fire_spec_a_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_a_modifier_2");
+        var title = "Explosive Breath";
+        var description = "Fire Breath hits have {trigger_chance} to explode a target, dealing {damage} damage to nearby enemies.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FIRE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.triggerSpecificSpellHit("wizards:fire_breath");
+        trigger.chance = 0.1F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.impactDamage(0.5F, 0.2F);
+        var area_impact = new Spell.AreaImpact();
+        area_impact.radius = 3.0F;
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.fire_explosion.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        30, 0, 0)
+        };
+        area_impact.sound = new Sound("wizards:fireball_impact");
+        spell.area_impact = area_impact;
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.configureCooldown(spell, 0.5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
+    }
+
+    public static final Entry fire_spec_b_modifier_2 = add(fire_spec_b_modifier_2());
+    private static Entry fire_spec_b_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_b_modifier_2");
+        var title = "Flame Throwing";
+        var description = "Increased the range of Fire Breath by {range_add}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.FIRE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:fire_breath";
+        modifier.range_add = 2;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
+    }
+
     public static final Entry fire_spec_a_passive_1 = add(fire_spec_a_passive_1());
     private static Entry fire_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "fire_spec_a_passive_1");
@@ -380,6 +435,63 @@ public class Spells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "wizards:frostbolt";
         modifier.effect_duration_add = 2;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
+    public static final Entry frost_spec_a_modifier_2 = add(frost_spec_a_modifier_2());
+    private static Entry frost_spec_a_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_a_modifier_2");
+        var title = "Frost Splinters";
+        var description = "Frost Nova causes secondary explosions, dealing {damage} damage to nearby enemies.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FROST;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        spell.deliver.delay = 7;
+
+        var trigger = SpellBuilder.triggerSpecificSpellHit("wizards:frost_nova");
+        spell.passive.triggers = List.of(trigger);
+
+        var radius = 3.0F;
+
+        var impact = SpellBuilder.impactDamage(0.5F, 0.2F);
+        var area_impact = new Spell.AreaImpact();
+        area_impact.force_indirect = true;
+        area_impact.radius = radius;
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        30, 0.4F, 0.4F),
+                new ParticleBatch(
+                        SpellEngineParticles.area_effect_293.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.GROUND,
+                        1, 0,0)
+                        .scale(radius - 0.5F)
+                        .color(Color.FROST.toRGBA())
+        };
+        area_impact.sound = new Sound("wizards:frost_nova_damage_impact");
+        spell.area_impact = area_impact;
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
+    public static final Entry frost_spec_b_modifier_2 = add(frost_spec_b_modifier_2());
+    private static Entry frost_spec_b_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_b_modifier_2");
+        var title = "Deep Freeze";
+        var description = "Frost Nova applies {effect_amplifier_add} more stack of Freeze effect.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.FROST;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:frost_nova";
+        modifier.effect_amplifier_add = 1;
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
@@ -707,7 +819,7 @@ public class Spells {
         var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_1");
         var title = "Fleet Footed";
         var effect = SkillEffects.FLEET_FOOTED;
-        var description = "Slice and Dice attacks increases Move Speed by {bonus}, stacking up to {effect_amplifier_cap}, lasting {effect_duration} sec.";
+        var description = "Slice and Dice attacks increases movement speed by {bonus}, stacking up to {effect_amplifier_cap}, lasting {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
             var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
@@ -719,7 +831,7 @@ public class Spells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "rogues:slice_and_dice";
 
-        var impact = SpellBuilder.impactEffectAdd(effect.id.toString(), 5, 1, 4);
+        var impact = SpellBuilder.impactEffectAdd(effect.id.toString(), 4, 1, 4);
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
 
@@ -742,6 +854,85 @@ public class Spells {
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+    }
+
+    public static final Entry rogue_spec_a_passive_1 = add(rogue_spec_a_passive_1());
+    private static Entry rogue_spec_a_passive_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_1");
+        var title = "Poisoned Blades";
+        var description = "Melee attacks have {trigger_chance} chance, to apply poison effect lasting {effect_duration} sec, stacking up based on your attack damage.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.triggerMeleeAttack(false);
+        trigger.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.impactEffectAdd(StatusEffects.POISON.getIdAsString(), 6, 1, 1);
+        impact.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.5F, 0.8F)
+                        .color(Color.POISON_MID.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.5F, 0.8F)
+                        .color(Color.POISON_DARK.toRGBA()),
+        };
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+    }
+
+    public static final Entry rogue_spec_b_passive_1 = add(rogue_spec_b_passive_1());
+    private static Entry rogue_spec_b_passive_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_1");
+        var title = "Rupture";
+        var effect = SkillEffects.RUPTURE;
+        var description = "Melee attacks have {trigger_chance} chance to wound the enemy, dealing {damage} damage and increasing damage taken by {bonus}, for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellPassive();
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        spell.deliver.delay = 1;
+
+        var trigger = SpellBuilder.triggerMeleeAttack(false);
+        trigger.chance = 0.1F;
+        spell.passive.triggers = List.of(trigger);
+
+        var damage = SpellBuilder.impactDamage(0.5F, 0F);
+        damage.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        20, 0.5F, 0.8F)
+                        .color(Color.BLOOD.toRGBA()),
+        };
+        var debuff = SpellBuilder.impactEffectAdd(effect.id.toString(), 6, 1, 1);
+        spell.impacts = List.of(damage, debuff);
+
+        SpellBuilder.configureCooldown(spell, 10F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
 
     public static final Entry warrior_spec_a_modifier_1 = add(warrior_spec_a_modifier_1());
@@ -775,6 +966,80 @@ public class Spells {
         modifier.spell_pattern = "rogues:throw";
         modifier.knockback_multiply_base = bonus;
         spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry warrior_spec_a_passive_1 = add(warrior_spec_a_passive_1());
+    private static Entry warrior_spec_a_passive_1() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_a_passive_1");
+        var title = "Killing Spree";
+        var description = "Killing an enemy increases Attack Damage by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var effect = SkillEffects.KILLING_SPREE;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.triggerMeleeKill(false);
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.impactEffectAdd(effect.id.toString(), 8, 1, 2);
+        impact.action.apply_to_caster = true;
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        20, 0.2F, 0.3F)
+                        .color(Color.RAGE.toRGBA())
+        };
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.configureCooldown(spell, 1F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry warrior_spec_b_passive_1 = add(warrior_spec_b_passive_1());
+    private static Entry warrior_spec_b_passive_1() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_b_passive_1");
+        var title = "Vitality";
+        var description = "Blocking with shield has {trigger_chance} chance to heal you for {heal} health.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.triggerShieldBlock();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+
+        var impact = SpellBuilder.impactHeal(0.1F);
+        impact.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
+        impact.action.apply_to_caster = true;
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        20, 0.2F, 0.3F)
+                        .color(Color.NATURE.toRGBA())
+        };
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.configureCooldown(spell, 1F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
     }

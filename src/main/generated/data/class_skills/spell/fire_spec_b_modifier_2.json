@@ -1,0 +1,12 @@
+{
+  "school": "spell_power:fire",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "wizards:fire_breath",
+      "range_add": 2.0
+    }
+  ]
+}

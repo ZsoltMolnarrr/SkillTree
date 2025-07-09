@@ -119,7 +119,7 @@ public class SkillEffects {
     ));
     public static Effects.Entry REDOUBT = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "redoubt"),
             "Redoubt",
-            "Increased block chance.",
+            "Increased armor.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xcccccc),
             new EffectConfig(
                     List.of(
@@ -131,7 +131,34 @@ public class SkillEffects {
                     )
             )
     ));
-
+    public static Effects.Entry KILLING_SPREE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "killing_spree"),
+            "Killing Spree",
+            "Increased attack damage.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc66),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry RUPTURE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "rupture"),
+            "Rupture",
+            "Increased damage taken.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff6666),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
     public static Effects.Entry RHYTHM = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "rhythm"),
             "Rhythm",
             "Increased ranged attack speed.",

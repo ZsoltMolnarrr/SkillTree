@@ -1,0 +1,46 @@
+{
+  "school": "spell_power:physical_melee",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "SHIELD_BLOCK",
+        "chance": 0.5
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "action": {
+        "type": "HEAL",
+        "apply_to_caster": true,
+        "heal": {
+          "spell_power_coefficient": 0.1
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_spark_decelerate",
+          "origin": "FEET",
+          "shape": "WIDE_PIPE",
+          "count": 20.0,
+          "min_speed": 0.2,
+          "max_speed": 0.3,
+          "color_rgba": 1728014079
+        }
+      ]
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 1.0
+    }
+  }
+}
