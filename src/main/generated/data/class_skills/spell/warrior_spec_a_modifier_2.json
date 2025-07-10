@@ -1,0 +1,37 @@
+{
+  "school": "spell_power:physical_melee",
+  "range": 12.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false,
+    "show_range": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_CAST",
+        "spell": {
+          "id": "rogues:shout"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "AREA",
+    "area": {
+      "include_caster": true
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "class_skills:battle_shout",
+          "duration": 6.0
+        }
+      }
+    }
+  ]
+}

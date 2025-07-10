@@ -1,5 +1,5 @@
 {
-  "school": "spell_power:fire",
+  "school": "spell_power:physical_melee",
   "range": 0.0,
   "tier": 1,
   "tooltip": {
@@ -10,13 +10,11 @@
     "triggers": [
       {
         "type": "SPELL_IMPACT_SPECIFIC",
-        "chance": 0.1,
+        "chance": 0.5,
         "spell": {
-          "id": "wizards:fire_breath"
+          "id": "rogues:shock_powder"
         },
-        "impact": {
-          "impact_type": "DAMAGE"
-        }
+        "impact": {}
       }
     ]
   },
@@ -28,7 +26,7 @@
       "action": {
         "type": "DAMAGE",
         "damage": {
-          "spell_power_coefficient": 0.5,
+          "spell_power_coefficient": 0.6,
           "knockback": 0.2
         }
       }
@@ -50,11 +48,6 @@
     ],
     "sound": {
       "id": "wizards:fireball_impact"
-    }
-  },
-  "cost": {
-    "cooldown": {
-      "duration": 0.5
     }
   }
 }

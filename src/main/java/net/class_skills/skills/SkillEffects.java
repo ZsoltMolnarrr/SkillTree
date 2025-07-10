@@ -187,6 +187,39 @@ public class SkillEffects {
                     )
             )
     ));
+    public static Effects.Entry BATTLE_SHOUT = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "battle_shout"),
+            "Battle Shout",
+            "Increased attack power.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff9933),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry NATURES_GRASP = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "natures_grasp"),
+            "Nature's Grasp",
+            "Immobilized.",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x66ff66),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    -10,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_JUMP_STRENGTH.getIdAsString(),
+                                    -10,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {

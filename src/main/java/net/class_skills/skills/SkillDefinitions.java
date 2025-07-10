@@ -569,42 +569,11 @@ public class SkillDefinitions {
                     Icon.item("archers:composite_longbow"),
                     ARCHER_ROOT.attributeReward())
     );
-    public static final Entry ARCHER_SPEC_A_MODIFIER_1 = add(
-            Entry.spell("archer_spec_a_modifier_1",
-                    Spells.archer_spec_a_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("archers", "power_shot")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.archer_spec_a_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry ARCHER_SPEC_B_MODIFIER_1 = add(
-            Entry.spell("archer_spec_b_modifier_1",
-                    Spells.archer_spec_b_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("archers", "power_shot")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.archer_spec_b_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry ARCHER_SPEC_A_MODIFIER_2 = add(
-            Entry.spell("archer_spec_a_modifier_2",
-                    "Entangling Roots modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("archers", "entangling_roots")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry ARCHER_SPEC_B_MODIFIER_2 = add(
-            Entry.spell("archer_spec_b_modifier_2",
-                    "Entangling Roots modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("archers", "entangling_roots")),
-                    dummyContainer()
-            )
-    );
+    public static final Entry ARCHER_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.archer_spec_a_modifier_1));
+    public static final Entry ARCHER_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.archer_spec_b_modifier_1));
+    public static final Entry ARCHER_SPEC_A_MODIFIER_2 = add(modifierSpell(Spells.archer_spec_a_modifier_2));
+    public static final Entry ARCHER_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.archer_spec_b_modifier_2));
+
     public static final Entry ARCHER_SPEC_A_MODIFIER_3 = add(
             Entry.spell("archer_spec_a_modifier_3",
                     "Barrage modifier",
@@ -690,41 +659,11 @@ public class SkillDefinitions {
                     Icon.item("rogues:iron_sickle"),
                     ROGUE_ROOT.attributeReward())
     );
-    public static final Entry ROGUE_SPEC_A_MODIFIER_1 = add(
-            Entry.spell("rogue_spec_a_modifier_1",
-                    Spells.rogue_spec_a_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("rogues", "slice_and_dice")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.rogue_spec_a_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry ROGUE_SPEC_B_MODIFIER_1 = add(
-            Entry.spell("rogue_spec_b_modifier_1",
-                    Spells.rogue_spec_b_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("rogues", "slice_and_dice")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.rogue_spec_b_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry ROGUE_SPEC_A_MODIFIER_2 = add(
-            Entry.spell("rogue_spec_a_modifier_2",
-                    "Shock Powder modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "shock_powder")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry ROGUE_SPEC_B_MODIFIER_2 = add(
-            Entry.spell("rogue_spec_b_modifier_2",
-                    "Shock Powder modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "shock_powder")),
-                    dummyContainer()
-            )
+    public static final Entry ROGUE_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.rogue_spec_a_modifier_1));
+    public static final Entry ROGUE_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.rogue_spec_b_modifier_1));
+    public static final Entry ROGUE_SPEC_A_MODIFIER_2 = add(modifierSpell(Spells.rogue_spec_a_modifier_2));
+    public static final Entry ROGUE_SPEC_B_MODIFIER_2 = add(passiveSpell(Spells.rogue_spec_b_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("rogues:shock_powder")))
     );
     public static final Entry ROGUE_SPEC_A_MODIFIER_3 = add(
             Entry.spell("rogue_spec_a_modifier_3",
@@ -811,42 +750,13 @@ public class SkillDefinitions {
                     Icon.item("rogues:iron_double_axe"),
                     WARRIOR_ROOT.attributeReward())
     );
-    public static final Entry WARRIOR_SPEC_A_MODIFIER_1 = add(
-            Entry.spell("warrior_spec_a_modifier_1",
-                    Spells.warrior_spec_a_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("rogues", "throw")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.warrior_spec_a_modifier_1.id())
-                    )
-            )
+    public static final Entry WARRIOR_SPEC_A_MODIFIER_1 = add(modifierSpell(Spells.warrior_spec_a_modifier_1));
+    public static final Entry WARRIOR_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.warrior_spec_b_modifier_1));
+    public static final Entry WARRIOR_SPEC_A_MODIFIER_2 = add(passiveSpell(Spells.warrior_spec_a_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("rogues", "shout")))
     );
-    public static final Entry WARRIOR_SPEC_B_MODIFIER_1 = add(
-            Entry.spell("warrior_spec_b_modifier_1",
-                    Spells.warrior_spec_b_modifier_1.title(),
-                    null,
-                    Icon.spell(Identifier.of("rogues", "throw")),
-                    List.of(
-                        SpellContainerHelper.createForModifier(Spells.warrior_spec_b_modifier_1.id())
-                    )
-            )
-    );
-    public static final Entry WARRIOR_SPEC_A_MODIFIER_2 = add(
-            Entry.spell("warrior_spec_a_modifier_2",
-                    "Demoralizing Shout modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "shout")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry WARRIOR_SPEC_B_MODIFIER_2 = add(
-            Entry.spell("warrior_spec_b_modifier_2",
-                    "Demoralizing Shout modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "shout")),
-                    dummyContainer()
-            )
-    );
+    public static final Entry WARRIOR_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.warrior_spec_b_modifier_2));
+
     public static final Entry WARRIOR_SPEC_A_MODIFIER_3 = add(
             Entry.spell("warrior_spec_a_modifier_3",
                     "Charge modifier",
