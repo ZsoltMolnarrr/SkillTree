@@ -220,6 +220,49 @@ public class SkillEffects {
                     )
             )
     ));
+    public static final float ARCANE_EXPOSURE_MULTIPLIER = 0.02F;
+    public static Effects.Entry ARCANE_EXPOSURE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_exposure"),
+            "Arcane Exposure",
+            "Increased arcane damage taken.",
+            new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, 0x9999ff)
+                    .setVulnerability(SpellSchools.ARCANE, new SpellPower.Vulnerability(ARCANE_EXPOSURE_MULTIPLIER, 0F, 0F)),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+    public static Effects.Entry ARCANE_SPEED = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_speed"),
+            "Arcane Speed",
+            "Increased movement speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_JUMP_STRENGTH.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry FROST_SHIELD_SPEED = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_shield_speed"),
+            "Frost Shield Speed",
+            "Increased movement speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.5F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {

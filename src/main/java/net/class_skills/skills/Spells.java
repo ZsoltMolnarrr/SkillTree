@@ -4,6 +4,7 @@ import net.class_skills.ClassSkillsMod;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
+import net.puffish.skillsmod.api.Skill;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
@@ -16,6 +17,7 @@ import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_power.api.SpellSchools;
+import net.spell_power.api.statuseffects.SpellVulnerabilityStatusEffect;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -156,6 +158,53 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCANE));
     }
 
+    public static final Entry arcane_spec_a_modifier_3 = add(arcane_spec_a_modifier_3());
+    private static Entry arcane_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "arcane_spec_a_modifier_3");
+        var title = "Beam Exposure";
+        var description = "Arcane Beam applies Arcane Exposure increasing Arcane damage taken by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var effect = SkillEffects.ARCANE_EXPOSURE;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            return args.description().replace("{bonus}", SpellTooltip.percent(SkillEffects.ARCANE_EXPOSURE_MULTIPLIER));
+        };
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.ARCANE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:arcane_beam";
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 6, 1, 9);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCANE));
+    }
+
+    public static final Entry arcane_spec_b_modifier_3 = add(arcane_spec_b_modifier_3());
+    private static Entry arcane_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "arcane_spec_b_modifier_3");
+        var title = "Beam Propulsion";
+        var description = "Arcane Beam hits increase your speed and jump strength by {bonus} for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
+        var effect = SkillEffects.ARCANE_SPEED;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.ARCANE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:arcane_beam";
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 3, 1, 4);
+        impact.action.apply_to_caster = true;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCANE));
+    }
 
     public static final Entry arcane_spec_a_passive_1 = add(arcane_spec_a_passive_1());
     private static Entry arcane_spec_a_passive_1() {
@@ -268,20 +317,8 @@ public class Spells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "wizards:fire_blast";
-        modifier.replacing_area_impact = new Spell.AreaImpact();
-        modifier.replacing_area_impact.radius = 2.5F * (1F + bonus);
-        modifier.replacing_area_impact.area = new Spell.Target.Area();
-        modifier.replacing_area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-
-        var particleBatch = new ParticleBatch();
-        particleBatch.particle_id = SpellEngineParticles.fire_explosion.id().toString();
-        particleBatch.shape = ParticleBatch.Shape.SPHERE;
-        particleBatch.origin = ParticleBatch.Origin.CENTER;
-        particleBatch.count = 1;
-        particleBatch.min_speed = 0;
-        particleBatch.max_speed = 0;
-        particleBatch.scale = 1F + bonus * 0.6F; // Scale up by bonus
-        modifier.replacing_area_impact.particles = new ParticleBatch[]{ particleBatch };
+        var extendedRadius = 2.5F * (1F + bonus);
+        modifier.replacing_area_impact = SpellBuilder.Complex.fireExplosion(extendedRadius);
 
         modifier.replacing_area_impact.sound = new Sound("wizards:fireball_impact");
 
@@ -332,17 +369,7 @@ public class Spells {
 
     private static void explosionImpact(Spell spell, float coefficient) {
         var impact = SpellBuilder.Impacts.damage(coefficient, 0.2F);
-        var area_impact = new Spell.AreaImpact();
-        area_impact.radius = 3.0F;
-        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.fire_explosion.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        30, 0, 0)
-        };
-        area_impact.sound = new Sound("wizards:fireball_impact");
-        spell.area_impact = area_impact;
+        spell.area_impact = SpellBuilder.Complex.fireExplosion(2.5F);
         spell.impacts = List.of(impact);
     }
 
@@ -358,6 +385,47 @@ public class Spells {
         modifier.spell_pattern = "wizards:fire_breath";
         modifier.range_add = 2;
         spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
+    }
+
+    public static final Entry fire_spec_a_modifier_3 = add(fire_spec_a_modifier_3());
+    private static Entry fire_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_a_modifier_3");
+        var title = "Meteor Shower";
+        var description = "Meteor launches {extra_launch} extra projectile.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            return args.description().replace("{bonus}", SpellTooltip.percent(SkillEffects.FIRE_VULNERABILITY_MULTIPLIER));
+        };
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.FIRE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:fire_meteor";
+        modifier.projectile_launch = Spell.LaunchProperties.EMPTY();
+        modifier.projectile_launch.extra_launch_count = 1;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FIRE));
+    }
+
+    public static final Entry fire_spec_b_modifier_3 = add(fire_spec_b_modifier_3());
+    private static Entry fire_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_b_modifier_3");
+        var title = "Meteor Splash";
+        var description = "Meteor impacts leave a fiery area behind, lasting {cloud_duration} sec.";
+
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = SpellSchools.FIRE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellAreaImpact("wizards:fire_meteor");
+        spell.passive.triggers = List.of(trigger);
+
+        SpellBuilder.Complex.flameCloud(spell, 3.0F, 0.3F, 6, null);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
     }
@@ -504,6 +572,43 @@ public class Spells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "wizards:frost_nova";
         modifier.effect_amplifier_add = 1;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
+    public static final Entry frost_spec_a_modifier_3 = add(frost_spec_a_modifier_3());
+    private static Entry frost_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_a_modifier_3");
+        var title = "Nimble Shield";
+        var description = "Allows normal movement speed during the effect of Frost Shield.";
+        var effect = SkillEffects.FROST_SHIELD_SPEED;
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.FROST;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:frost_shield";
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8F, 0);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
+    public static final Entry frost_spec_b_modifier_3 = add(frost_spec_b_modifier_3());
+    private static Entry frost_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_b_modifier_3");
+        var title = "Durable Shield";
+        var description = "Increases the duration of Frost Shield by {effect_duration_add} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.FROST;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:frost_shield";
+        modifier.effect_duration_add = 2;
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));

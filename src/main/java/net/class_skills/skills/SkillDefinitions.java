@@ -116,23 +116,9 @@ public class SkillDefinitions {
     public static final Entry ARCANE_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.arcane_spec_b_modifier_1));
     public static final Entry ARCANE_SPEC_A_MODIFIER_2 = add(modifierSpell(Spells.arcane_spec_a_modifier_2));
     public static final Entry ARCANE_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.arcane_spec_b_modifier_2));
+    public static final Entry ARCANE_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.arcane_spec_a_modifier_3));
+    public static final Entry ARCANE_SPEC_B_MODIFIER_3 = add(modifierSpell(Spells.arcane_spec_b_modifier_3));
 
-    public static final Entry ARCANE_SPEC_A_MODIFIER_3 = add(
-            Entry.spell("arcane_spec_a_modifier_3",
-                    "Arcane Beam modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "arcane_beam")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry ARCANE_SPEC_B_MODIFIER_3 = add(
-            Entry.spell("arcane_spec_b_modifier_3",
-                    "Arcane Beam modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "arcane_beam")),
-                    dummyContainer()
-            )
-    );
     public static final Entry ARCANE_SPEC_A_MODIFIER_4 = add(
             Entry.spell("arcane_spec_a_modifier_4",
                     "Blink modifier",
@@ -208,23 +194,10 @@ public class SkillDefinitions {
     public static final Entry FIRE_SPEC_A_MODIFIER_2 = add(passiveSpell(Spells.fire_spec_a_modifier_2)
             .withIcon(Icon.spell(Identifier.of("wizards", "fire_breath"))));
     public static final Entry FIRE_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.fire_spec_b_modifier_2));
+    public static final Entry FIRE_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.fire_spec_a_modifier_3));
+    public static final Entry FIRE_SPEC_B_MODIFIER_3 = add(passiveSpell(Spells.fire_spec_b_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("wizards", "fire_meteor"))));
 
-    public static final Entry FIRE_SPEC_A_MODIFIER_3 = add(
-            Entry.spell("fire_spec_a_modifier_3",
-                    "Meteor modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "fire_meteor")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry FIRE_SPEC_B_MODIFIER_3 = add(
-            Entry.spell("fire_spec_b_modifier_3",
-                    "Meteor modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "fire_meteor")),
-                    dummyContainer()
-            )
-    );
     public static final Entry FIRE_SPEC_A_MODIFIER_4 = add(
             Entry.spell("fire_spec_a_modifier_4",
                     "Wall of Flames modifier",
@@ -301,23 +274,9 @@ public class SkillDefinitions {
             .withIcon(Icon.spell(Identifier.of("wizards", "frost_nova")))
     );
     public static final Entry FROST_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.frost_spec_b_modifier_2));
+    public static final Entry FROST_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.frost_spec_a_modifier_3));
+    public static final Entry FROST_SPEC_B_MODIFIER_3 = add(modifierSpell(Spells.frost_spec_b_modifier_3));
 
-    public static final Entry FROST_SPEC_A_MODIFIER_3 = add(
-            Entry.spell("frost_spec_a_modifier_3",
-                    "Frost Shield modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_shield")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry FROST_SPEC_B_MODIFIER_3 = add(
-            Entry.spell("frost_spec_b_modifier_3",
-                    "Frost Shield modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_shield")),
-                    dummyContainer()
-            )
-    );
     public static final Entry FROST_SPEC_A_MODIFIER_4 = add(
             Entry.spell("frost_spec_a_modifier_4",
                     "Blizzard modifier",

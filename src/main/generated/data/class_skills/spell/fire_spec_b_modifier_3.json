@@ -1,0 +1,114 @@
+{
+  "school": "spell_power:fire",
+  "range": 0.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_AREA_IMPACT",
+        "spell": {
+          "id": "wizards:fire_meteor"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "CLOUD",
+    "delay": 10,
+    "clouds": [
+      {
+        "volume": {
+          "radius": 3.0,
+          "area": {
+            "vertical_range_multiplier": 0.3
+          },
+          "sound": {
+            "id": "spell_engine:generic_fire_impact_2"
+          }
+        },
+        "time_to_live_seconds": 6.0,
+        "impact_tick_interval": 8,
+        "client_data": {
+          "light_level": 15,
+          "particles": [
+            {
+              "particle_id": "spell_engine:flame_ground",
+              "origin": "FEET",
+              "shape": "PILLAR",
+              "count": 3.0,
+              "max_speed": 0.0
+            },
+            {
+              "particle_id": "spell_engine:flame_medium_a",
+              "origin": "FEET",
+              "shape": "PILLAR",
+              "count": 2.0,
+              "min_speed": 0.02,
+              "max_speed": 0.1
+            },
+            {
+              "particle_id": "spell_engine:flame_medium_b",
+              "origin": "FEET",
+              "shape": "PILLAR",
+              "count": 1.0,
+              "min_speed": 0.02,
+              "max_speed": 0.1
+            },
+            {
+              "particle_id": "spell_engine:flame_spark",
+              "origin": "FEET",
+              "shape": "PILLAR",
+              "count": 3.0,
+              "min_speed": 0.03,
+              "max_speed": 0.2
+            }
+          ]
+        },
+        "spawn": {
+          "sound": {
+            "id": "spell_engine:generic_fire_ignite"
+          }
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.3,
+          "knockback": 0.2
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:flame",
+          "origin": "FEET",
+          "shape": "PILLAR",
+          "count": 20.0,
+          "min_speed": 0.05,
+          "max_speed": 0.15
+        },
+        {
+          "particle_id": "spell_engine:flame_medium_a",
+          "origin": "FEET",
+          "shape": "PILLAR",
+          "count": 20.0,
+          "min_speed": 0.05,
+          "max_speed": 0.15
+        }
+      ],
+      "sound": {
+        "id": "spell_engine:generic_fire_impact_1"
+      }
+    }
+  ]
+}
