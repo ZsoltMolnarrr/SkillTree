@@ -350,23 +350,11 @@ public class SkillDefinitions {
     public static final Entry PRIEST_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.priest_spec_b_modifier_1));
     public static final Entry PRIEST_SPEC_A_MODIFIER_2 = add(modifierSpell(Spells.priest_spec_a_modifier_2));
     public static final Entry PRIEST_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.priest_spec_b_modifier_2));
+    public static final Entry PRIEST_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.priest_spec_a_modifier_3));
+    public static final Entry PRIEST_SPEC_B_MODIFIER_3 = add(passiveSpell(Spells.priest_spec_b_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("paladins", "circle_of_healing")))
+    );
 
-    public static final Entry PRIEST_SPEC_A_MODIFIER_3 = add(
-            Entry.spell("priest_spec_a_modifier_3",
-                    "Circle of Healing modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "circle_of_healing")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry PRIEST_SPEC_B_MODIFIER_3 = add(
-            Entry.spell("priest_spec_b_modifier_3",
-                    "Circle of Healing modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "circle_of_healing")),
-                    dummyContainer()
-            )
-    );
     public static final Entry PRIEST_SPEC_A_MODIFIER_4 = add(
             Entry.spell("priest_spec_a_modifier_4",
                     "Barrier modifier",
@@ -441,23 +429,9 @@ public class SkillDefinitions {
     public static final Entry PALADIN_SPEC_B_MODIFIER_1 = add(modifierSpell(Spells.paladin_spec_b_modifier_1));
     public static final Entry PALADIN_SPEC_A_MODIFIER_2 = add(modifierSpell(Spells.paladin_spec_a_modifier_2));
     public static final Entry PALADIN_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.paladin_spec_b_modifier_2));
+    public static final Entry PALADIN_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.paladin_spec_a_modifier_3));
+    public static final Entry PALADIN_SPEC_B_MODIFIER_3 = add(modifierSpell(Spells.paladin_spec_b_modifier_3));
 
-    public static final Entry PALADIN_SPEC_A_MODIFIER_3 = add(
-            Entry.spell("paladin_spec_a_modifier_3",
-                    "Judgement modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "judgement")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry PALADIN_SPEC_B_MODIFIER_3 = add(
-            Entry.spell("paladin_spec_b_modifier_3",
-                    "Judgement modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "judgement")),
-                    dummyContainer()
-            )
-    );
     public static final Entry PALADIN_SPEC_A_MODIFIER_4 = add(
             Entry.spell("paladin_spec_a_modifier_4",
                     "Battle Banner modifier",

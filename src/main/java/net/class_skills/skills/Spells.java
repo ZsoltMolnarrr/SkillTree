@@ -3,8 +3,8 @@ package net.class_skills.skills;
 import net.class_skills.ClassSkillsMod;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
-import net.puffish.skillsmod.api.Skill;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
@@ -17,7 +17,6 @@ import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_power.api.SpellSchools;
-import net.spell_power.api.statuseffects.SpellVulnerabilityStatusEffect;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -773,6 +772,111 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
     }
 
+    public static final Entry priest_spec_a_modifier_3 = add(priest_speca_a_modifier_3());
+    private static Entry priest_speca_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_a_modifier_3");
+        var title = "Mass Dispel";
+        var description = "Circle of Healing removes {effect_amplifier} negative effect from allies.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:circle_of_healing";
+
+        var impact = SpellBuilder.Impacts.effectCleanse();
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.6F, 0.6F)
+                        .color(Color.WHITE.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
+                        10, 0.2F, 0.4F)
+                        .color(Color.WHITE.toRGBA())
+        };
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_DISPEL_1.id());
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
+    public static final Entry priest_spec_b_modifier_3 = add(priest_spec_b_modifier_3());
+    private static Entry priest_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_b_modifier_3");
+        var title = "Consecration";
+        var description = "Circle of Healing leaves a consecrated area behind, dealing {damage} damage to enemies, for {cloud_duration} sec.";
+
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = SpellSchools.HEALING;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("paladins:circle_of_healing");
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        trigger.aoe_source_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var radius = 6.0F;
+        consecration(spell, 0.2F, radius, 4);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
+    private static void consecration(Spell spell, float coefficient, float radius, float particleMultiplier) {
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+
+        var cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = radius;
+        cloud.impact_tick_interval = 10;
+        cloud.time_to_live_seconds = 5;
+        cloud.client_data.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND,
+                        3 * particleMultiplier, 0.05F, 0.1F)
+                        .color(HOLY_COLOR),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HOLY,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND,
+                        3 * particleMultiplier, 0.05F, 0.15F)
+                        .color(HOLY_COLOR),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.GROUND,
+                        3 * particleMultiplier, 0.05F, 0.15F)
+                        .color(HOLY_COLOR).extent(radius),
+        };
+        spell.deliver.clouds = List.of(cloud);
+
+        var impact = SpellBuilder.Impacts.damage(coefficient, 0.1F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HOLY,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
+                        10, 0.4F, 0.4F)
+                        .color(HOLY_COLOR),
+        };
+        spell.impacts = List.of(impact);
+    }
+
     public static final Entry priest_spec_a_passive_1 = add(priest_spec_a_passive_1());
     private static Entry priest_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "priest_spec_a_passive_1");
@@ -949,6 +1053,42 @@ public class Spells {
         modifier.spell_pattern = "paladins:divine_protection";
         modifier.effect_amplifier_add = 1;
         modifier.effect_amplifier_cap_add = 1;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_a_modifier_3 = add(paladin_spec_a_modifier_3());
+    private static Entry paladin_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_3");
+        var title = "Empowered Judgement";
+        var description = "Increases the damage of Judgement by {power_multiplier}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:judgement";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.2F;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_b_modifier_3 = add(paladin_spec_b_modifier_3());
+    private static Entry paladin_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_b_modifier_3");
+        var title = "Judgement of Command";
+        var description = "Judgement taunts enemies hit, forcing them to attack you.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:judgement";
+
+        var impact = SpellBuilder.Impacts.taunt();
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));

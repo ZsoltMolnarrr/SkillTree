@@ -2061,9 +2061,6 @@
     }
   },
   "paladin_spec_a_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.paladin_spec_a_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2076,13 +2073,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:paladin_spec_a_modifier_3"
               ]
             }
           ]
@@ -2283,9 +2280,6 @@
     }
   },
   "paladin_spec_b_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.paladin_spec_b_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2298,13 +2292,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:paladin_spec_b_modifier_3"
               ]
             }
           ]
@@ -2547,9 +2541,6 @@
     }
   },
   "priest_spec_a_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.priest_spec_a_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2562,13 +2553,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:priest_spec_a_modifier_3"
               ]
             }
           ]
@@ -2769,9 +2760,6 @@
     }
   },
   "priest_spec_b_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.priest_spec_b_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2790,7 +2778,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:priest_spec_b_modifier_3"
               ]
             }
           ]

@@ -1,0 +1,90 @@
+{
+  "school": "spell_power:healing",
+  "range": 0.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "aoe_source_override": "CASTER",
+        "type": "SPELL_CAST",
+        "spell": {
+          "id": "paladins:circle_of_healing"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "CLOUD",
+    "clouds": [
+      {
+        "volume": {
+          "radius": 6.0
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 10,
+        "client_data": {
+          "particles": [
+            {
+              "particle_id": "spell_engine:magic_spark_float",
+              "origin": "GROUND",
+              "shape": "PILLAR",
+              "count": 12.0,
+              "min_speed": 0.05,
+              "max_speed": 0.1,
+              "color_rgba": 4294954239
+            },
+            {
+              "particle_id": "spell_engine:magic_holy_burst",
+              "origin": "GROUND",
+              "shape": "PILLAR",
+              "count": 12.0,
+              "min_speed": 0.05,
+              "max_speed": 0.15,
+              "color_rgba": 4294954239
+            },
+            {
+              "particle_id": "spell_engine:magic_arcane_burst",
+              "origin": "GROUND",
+              "shape": "CIRCLE",
+              "count": 12.0,
+              "min_speed": 0.05,
+              "max_speed": 0.15,
+              "extent": 6.0,
+              "color_rgba": 4294954239
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.2,
+          "knockback": 0.1
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_holy_burst",
+          "origin": "FEET",
+          "shape": "SPHERE",
+          "count": 10.0,
+          "min_speed": 0.4,
+          "max_speed": 0.4,
+          "color_rgba": 4294954239
+        }
+      ]
+    }
+  ]
+}
