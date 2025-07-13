@@ -1,0 +1,16 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "archers:barrage",
+      "projectile_launch": {
+        "velocity": 0.0,
+        "extra_launch_count": 1,
+        "extra_launch_delay": 0
+      }
+    }
+  ]
+}

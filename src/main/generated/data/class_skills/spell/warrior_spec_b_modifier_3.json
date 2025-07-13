@@ -1,25 +1,32 @@
 {
-  "school": "spell_power:fire",
+  "school": "spell_power:physical_melee",
   "range": 0.0,
   "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
   "type": "PASSIVE",
   "passive": {
     "triggers": [
       {
-        "type": "SPELL_IMPACT_SPECIFIC",
-        "chance": 0.05,
+        "type": "SPELL_CAST",
         "spell": {
-          "school": "fire",
-          "type": "ACTIVE"
-        },
-        "impact": {
-          "impact_type": "DAMAGE"
+          "id": "rogues:charge"
         }
       }
     ]
   },
-  "target": {
-    "type": "FROM_TRIGGER"
+  "deliver": {
+    "type": "STASH_EFFECT",
+    "stash_effect": {
+      "id": "class_skills:concussion_blow",
+      "triggers": [
+        {
+          "type": "MELEE_IMPACT"
+        }
+      ],
+      "consumed_next_tick": true
+    }
   },
   "impacts": [
     {
@@ -34,10 +41,5 @@
         "id": "spell_engine:stun_generic"
       }
     }
-  ],
-  "cost": {
-    "cooldown": {
-      "duration": 10.0
-    }
-  }
+  ]
 }

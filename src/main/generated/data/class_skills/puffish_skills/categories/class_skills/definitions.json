@@ -582,9 +582,6 @@
     }
   },
   "archer_spec_a_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.archer_spec_a_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -597,13 +594,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:archer_spec_a_modifier_3"
               ]
             }
           ]
@@ -804,9 +801,6 @@
     }
   },
   "archer_spec_b_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.archer_spec_b_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -819,13 +813,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:archer_spec_b_modifier_3"
               ]
             }
           ]
@@ -3021,9 +3015,6 @@
     }
   },
   "rogue_spec_a_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.rogue_spec_a_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3036,13 +3027,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:rogue_spec_a_modifier_3"
               ]
             }
           ]
@@ -3243,9 +3234,6 @@
     }
   },
   "rogue_spec_b_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.rogue_spec_b_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3258,13 +3246,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:rogue_spec_b_modifier_3"
               ]
             }
           ]
@@ -3507,9 +3495,6 @@
     }
   },
   "warrior_spec_a_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.warrior_spec_a_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3522,13 +3507,13 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:warrior_spec_a_modifier_3"
               ]
             }
           ]
@@ -3729,9 +3714,6 @@
     }
   },
   "warrior_spec_b_modifier_3": {
-    "description": {
-      "translate": "skill.class_skills.warrior_spec_b_modifier_3.description"
-    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3750,7 +3732,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "class_skills:warrior_spec_b_modifier_3"
               ]
             }
           ]

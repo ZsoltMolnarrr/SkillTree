@@ -11,6 +11,10 @@ import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
 import net.spell_engine.api.effect.*;
 import net.spell_engine.api.entity.SpellEngineAttributes;
+import net.spell_engine.api.event.CombatEvents;
+import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.client.util.Color;
+import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_power.api.SpellPower;
 import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchools;
@@ -263,11 +267,60 @@ public class SkillEffects {
                     )
             )
     ));
+    public static Effects.Entry CONCUSSION_BLOW = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "concussion_blow"),
+            "Concussion Blow",
+            "Next attack stuns.",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xffcc66),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+
+    private static ParticleBatch CLOAK_OF_SHADOWS_POP = new ParticleBatch(
+            SpellEngineParticles.MagicParticles.get(
+                    SpellEngineParticles.MagicParticles.Shape.SKULL,
+                    SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+            ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+            25, 0.25F, 0.25F)
+            .color(Color.from(0xcc00cc).toRGBA());
+    public static Effects.Entry CLOAK_OF_SHADOWS = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "cloak_of_shadows"),
+            "Cloak of Shadows",
+            "Protects you from an attack",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x333333),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+
+    public static Effects.Entry AMBUSH = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "ambush"),
+            "Ambush",
+            "Increased attack damage.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99cc66),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.5F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);
         }
         Effects.register(entries, config.effects);
+
+        Protection.register(CLOAK_OF_SHADOWS.entry, new Protection.Pop(
+                new ParticleBatch[]{ CLOAK_OF_SHADOWS_POP },
+                null // FIXME: SkillSound ???
+        ));
+        CombatEvents.PLAYER_MELEE_ATTACK.register((event) -> {
+            if (event.player().hasStatusEffect(AMBUSH.entry)) {
+                event.player().removeStatusEffect(AMBUSH.entry);
+            }
+        });
     }
 }

@@ -3,7 +3,6 @@ package net.class_skills.skills;
 import net.class_skills.ClassSkillsMod;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
@@ -17,7 +16,6 @@ import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_power.api.SpellSchools;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -60,6 +58,10 @@ public class Spells {
     private static final Identifier SPARK_DECELERATE = SpellEngineParticles.MagicParticles.get(
             SpellEngineParticles.MagicParticles.Shape.SPARK,
             SpellEngineParticles.MagicParticles.Motion.DECELERATE
+    ).id();
+    private static final Identifier SPARK_FLOAT = SpellEngineParticles.MagicParticles.get(
+            SpellEngineParticles.MagicParticles.Shape.SPARK,
+            SpellEngineParticles.MagicParticles.Motion.FLOAT
     ).id();
     private static final Identifier HEAL_DECELERATE = SpellEngineParticles.MagicParticles.get(
             SpellEngineParticles.MagicParticles.Shape.HEAL,
@@ -478,7 +480,7 @@ public class Spells {
         var trigger = SpellBuilder.Triggers.activeSpellHit(0.05F, "fire");
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectSet(SpellEngineEffects.STUN.id.toString(), 2F, 0);
+        var impact = SpellBuilder.Impacts.stun(2F);
         spell.impacts = List.of(impact);
 
         SpellBuilder.configureCooldown(spell, 10F);
@@ -1259,6 +1261,60 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
     }
 
+    public static final Entry rogue_spec_a_modifier_3 = add(rogue_spec_a_modifier_3());
+    private static Entry rogue_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_3");
+        var title = "Cloak of Shadows";
+        var description = "Shadowstep grants you Cloak of Shadows effect, protecting your from {effect_amplifier} incoming attack for {effect_duration} sec.";
+
+        var effect = SkillEffects.CLOAK_OF_SHADOWS;
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:shadow_step";
+
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 0, 1);
+        impact.action.apply_to_caster = true;
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+    }
+
+    public static final Entry rogue_spec_b_modifier_3 = add(rogue_spec_b_modifier_3());
+    private static Entry rogue_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_b_modifier_3");
+        var title = "Ambush";
+        var description = "Next attack after Shadowstep, within {effect_duration} sec, deals {bonus} extra damage.";
+
+        var effect = SkillEffects.AMBUSH;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:shadow_step";
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 5, 0);
+        impact.action.apply_to_caster = true;
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
+    }
+
     public static final Entry rogue_spec_a_passive_1 = add(rogue_spec_a_passive_1());
     private static Entry rogue_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_1");
@@ -1428,6 +1484,49 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
     }
 
+    public static final Entry warrior_spec_a_modifier_3 = add(warrior_spec_a_modifier_3());
+    private static Entry warrior_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_a_modifier_3");
+        var title = "Endurance";
+        var description = "Charge lasts {effect_duration} sec longer.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:charge";
+        modifier.effect_duration_add = 1;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry warrior_spec_b_modifier_3 = add(warrior_spec_b_modifier_3());
+    private static Entry warrior_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_b_modifier_3");
+        var title = "Concussion Blow";
+        var description = "Next attack after using Charge, stuns the target for {effect_duration} sec.";
+        var stashEffect = SkillEffects.CONCUSSION_BLOW;
+
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("rogues:charge");
+        spell.passive.triggers = List.of(trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
+        spell.deliver.stash_effect = new Spell.Delivery.StashEffect();
+        spell.deliver.stash_effect.id = stashEffect.id.toString();
+        spell.deliver.stash_effect.triggers = List.of(
+                SpellBuilder.Triggers.meleeAttack(false));
+        spell.deliver.stash_effect.consumed_next_tick = true;
+
+        var impact = SpellBuilder.Impacts.stun(2F);
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+    }
+
     public static final Entry warrior_spec_a_passive_1 = add(warrior_spec_a_passive_1());
     private static Entry warrior_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "warrior_spec_a_passive_1");
@@ -1480,8 +1579,8 @@ public class Spells {
 
         var trigger = SpellBuilder.Triggers.shieldBlock();
         trigger.chance = 0.5F;
-        spell.passive.triggers = List.of(trigger);
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.heal(0.1F);
         impact.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
@@ -1602,6 +1701,62 @@ public class Spells {
         impact.chance = 0.3F;
         modifier.impacts = List.of(impact);
 
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_a_modifier_3 = add(archer_spec_a_modifier_3());
+    private static Entry archer_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_a_modifier_3");
+        var title = "Extensive Barrage";
+        var description = "Barrage fires {extra_launch} extra arrow.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers:barrage";
+        modifier.projectile_launch = Spell.LaunchProperties.EMPTY();
+        modifier.projectile_launch.extra_launch_count = 1; // TODO: Check if works for arrows
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_b_modifier_3 = add(archer_spec_b_modifier_3());
+    private static Entry archer_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_b_modifier_3");
+        var title = "Blood Barrage";
+        var description = "Barrage arrow hits heal you by {heal}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers:barrage";
+        var impact = SpellBuilder.Impacts.heal(0.1F);
+        impact.action.apply_to_caster = true;
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(SPARK_FLOAT.toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        15, 0.02F, 0.1F)
+                        .color(Color.BLOOD.toRGBA()),
+                new ParticleBatch(SPARK_DECELERATE.toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.08F, 0.12F)
+                        .invert()
+                        .preSpawnTravel(5)
+                        .followEntity(true)
+                        .color(Color.BLOOD.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.ground_glow.id().toString(),
+                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.GROUND,
+                        1, 0.0F, 0.F)
+                        .followEntity(true)
+                        .scale(0.8F)
+                        .color(Color.BLOOD.alpha(0.2F).toRGBA())
+        };
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
