@@ -254,13 +254,13 @@
 	"dfz8ulaolipew40g": {
 		"definition": "archer_spec_a_modifier_1",
 		"x": -128,
-		"y": 36.95041722813605,
+		"y": -36.95041722813605,
 		"root": false
 	},
 	"8dk6cinrlca8xafa": {
 		"definition": "archer_spec_b_modifier_1",
 		"x": -128,
-		"y": -36.95041722813605,
+		"y": 36.95041722813605,
 		"root": false
 	},
 	"sv8oqekmdxt8cl2o": {
