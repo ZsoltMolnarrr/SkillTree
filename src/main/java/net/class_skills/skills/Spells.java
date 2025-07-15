@@ -1558,13 +1558,13 @@ public class Spells {
     private static Entry rogue_spec_b_modifier_4() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_b_modifier_4");
         var title = "Deep Stealth";
-        var description = "Increases the number of Stealth effect stacks by {effect_amplifier_add}, so you can stay hidden when taking damage.";
+        var description = "Increases the duration of Stealth by {effect_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
 
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "rogues:vanish";
-        modifier.effect_amplifier_add = 2; // FIXME: This doesn't actually allow players to move
+        modifier.effect_duration_add = 8;
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));

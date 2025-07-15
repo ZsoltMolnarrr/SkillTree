@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "rogues:vanish",
-      "effect_amplifier_add": 2
+      "effect_duration_add": 8.0
     }
   ]
 }

@@ -347,7 +347,7 @@
   "spell.class_skills.rogue_spec_b_modifier_2.name": "Explosive Powder",
   "spell.class_skills.rogue_spec_b_modifier_3.description": "Next attack after Shadowstep, within {effect_duration} sec, deals {bonus} extra damage.",
   "spell.class_skills.rogue_spec_b_modifier_3.name": "Ambush",
-  "spell.class_skills.rogue_spec_b_modifier_4.description": "Increases the number of Stealth effect stacks by {effect_amplifier_add}, so you can stay hidden when taking damage.",
+  "spell.class_skills.rogue_spec_b_modifier_4.description": "Increases the duration of Stealth by {effect_duration_add} sec.",
   "spell.class_skills.rogue_spec_b_modifier_4.name": "Deep Stealth",
   "spell.class_skills.rogue_spec_b_passive_1.description": "Melee attacks have {trigger_chance} chance to wound the enemy, dealing {damage} damage and increasing damage taken by {bonus}, for {effect_duration} sec.",
   "spell.class_skills.rogue_spec_b_passive_1.name": "Rupture",
