@@ -118,23 +118,10 @@ public class SkillDefinitions {
     public static final Entry ARCANE_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.arcane_spec_b_modifier_2));
     public static final Entry ARCANE_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.arcane_spec_a_modifier_3));
     public static final Entry ARCANE_SPEC_B_MODIFIER_3 = add(modifierSpell(Spells.arcane_spec_b_modifier_3));
-
-    public static final Entry ARCANE_SPEC_A_MODIFIER_4 = add(
-            Entry.spell("arcane_spec_a_modifier_4",
-                    "Blink modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "arcane_blink")),
-                    dummyContainer()
-            )
+    public static final Entry ARCANE_SPEC_A_MODIFIER_4 = add(passiveSpell(Spells.arcane_spec_a_modifier_4)
+            .withIcon(Icon.spell(Identifier.of("wizards", "arcane_blink")))
     );
-    public static final Entry ARCANE_SPEC_B_MODIFIER_4 = add(
-            Entry.spell("arcane_spec_b_modifier_4",
-                    "Blink modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "arcane_blink")),
-                    dummyContainer()
-            )
-    );
+    public static final Entry ARCANE_SPEC_B_MODIFIER_4 = add(modifierSpell(Spells.arcane_spec_b_modifier_4));
 
     public static final Entry ARCANE_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.arcane_spec_a_passive_1));
     public static final Entry ARCANE_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.arcane_spec_b_passive_1));
@@ -197,23 +184,8 @@ public class SkillDefinitions {
     public static final Entry FIRE_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.fire_spec_a_modifier_3));
     public static final Entry FIRE_SPEC_B_MODIFIER_3 = add(passiveSpell(Spells.fire_spec_b_modifier_3)
             .withIcon(Icon.spell(Identifier.of("wizards", "fire_meteor"))));
-
-    public static final Entry FIRE_SPEC_A_MODIFIER_4 = add(
-            Entry.spell("fire_spec_a_modifier_4",
-                    "Wall of Flames modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "fire_wall")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry FIRE_SPEC_B_MODIFIER_4 = add(
-            Entry.spell("fire_spec_b_modifier_4",
-                    "Wall of Flames modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "fire_wall")),
-                    dummyContainer()
-            )
-    );
+    public static final Entry FIRE_SPEC_A_MODIFIER_4 = add(modifierSpell(Spells.fire_spec_a_modifier_4));
+    public static final Entry FIRE_SPEC_B_MODIFIER_4 = add(modifierSpell(Spells.fire_spec_b_modifier_4));
 
     public static final Entry FIRE_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.fire_spec_a_passive_1));
     public static final Entry FIRE_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.fire_spec_b_passive_1));
@@ -276,23 +248,9 @@ public class SkillDefinitions {
     public static final Entry FROST_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.frost_spec_b_modifier_2));
     public static final Entry FROST_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.frost_spec_a_modifier_3));
     public static final Entry FROST_SPEC_B_MODIFIER_3 = add(modifierSpell(Spells.frost_spec_b_modifier_3));
+    public static final Entry FROST_SPEC_A_MODIFIER_4 = add(modifierSpell(Spells.frost_spec_a_modifier_4));
+    public static final Entry FROST_SPEC_B_MODIFIER_4 = add(modifierSpell(Spells.frost_spec_b_modifier_4));
 
-    public static final Entry FROST_SPEC_A_MODIFIER_4 = add(
-            Entry.spell("frost_spec_a_modifier_4",
-                    "Blizzard modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_blizzard")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry FROST_SPEC_B_MODIFIER_4 = add(
-            Entry.spell("frost_spec_b_modifier_4",
-                    "Blizzard modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_blizzard")),
-                    dummyContainer()
-            )
-    );
     public static final Entry FROST_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.frost_spec_a_passive_1));
     public static final Entry FROST_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.frost_spec_b_passive_1));
 

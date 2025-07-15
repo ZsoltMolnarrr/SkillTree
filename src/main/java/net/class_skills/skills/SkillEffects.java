@@ -5,6 +5,7 @@ import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.ConfigFile;
@@ -13,6 +14,7 @@ import net.spell_engine.api.effect.*;
 import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.event.CombatEvents;
 import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.registry.SpellRegistry;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_power.api.SpellPower;
@@ -307,6 +309,32 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry PRESENCE_OF_MIND = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "presence_of_mind"),
+            "Presence of Mind",
+            "Next spell cast is instant.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier()
+                    )
+            )
+    ));
+
+    public static Effects.Entry BLIZZARD_SLOW = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "blizzard_slow"),
+            "Blizzard Slow",
+            "Decreased movement speed.",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    -0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);
@@ -322,5 +350,7 @@ public class SkillEffects {
                 event.player().removeStatusEffect(AMBUSH.entry);
             }
         });
+        InstantCast.register(PRESENCE_OF_MIND.entry,
+                TagKey.of(SpellRegistry.KEY, Identifier.of("wizards:arcane")));
     }
 }

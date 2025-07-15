@@ -1,0 +1,25 @@
+{
+  "school": "spell_power:fire",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "wizards:fire_wall",
+      "additional_placements": [
+        {
+          "delay_ticks": 4,
+          "location_offset_by_look": 6.4,
+          "location_yaw_offset": -72.0,
+          "apply_yaw": true
+        },
+        {
+          "delay_ticks": 4,
+          "location_offset_by_look": 6.4,
+          "location_yaw_offset": 72.0,
+          "apply_yaw": true
+        }
+      ]
+    }
+  ]
+}

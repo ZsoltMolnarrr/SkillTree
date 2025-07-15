@@ -207,6 +207,67 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCANE));
     }
 
+    public static final Entry arcane_spec_a_modifier_4 = add(arcane_spec_a_modifier_4());
+    private static Entry arcane_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "arcane_spec_a_modifier_4");
+        var title = "Presence of Mind";
+        var description = "Blink turns your next spell cast instant, within the next {stash_duration} sec.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = SpellSchools.ARCANE;
+        spell.range = 0;
+
+        var effect = SkillEffects.PRESENCE_OF_MIND;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("wizards:arcane_blink");
+        spell.passive.triggers = List.of(trigger);
+
+        var stashTrigger = SpellBuilder.Triggers.specificSpellCast("#wizards:arcane");
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, stashTrigger);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
+    }
+
+    public static final Entry arcane_spec_b_modifier_4 = add(arcane_spec_b_modifier_4());
+    private static Entry arcane_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "arcane_spec_b_modifier_4");
+        var title = "Purge";
+        var description = "Blink attempts to remove 2 negative effects from you entirely.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.ARCANE;
+
+        var impact1 = SpellBuilder.Impacts.effectCleanse();
+        impact1.action.status_effect.amplifier = -1;
+        impact1.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.6F, 0.6F)
+                        .color(Color.WHITE.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
+                        10, 0.2F, 0.4F)
+                        .color(Color.WHITE.toRGBA())
+        };
+        impact1.sound = new Sound(SpellEngineSounds.GENERIC_DISPEL_1.id());
+        var impact2 = SpellBuilder.Impacts.effectCleanse();
+        impact2.action.status_effect.amplifier = -1;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:arcane_blink";
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact1, impact2);
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
+    }
+
     public static final Entry arcane_spec_a_passive_1 = add(arcane_spec_a_passive_1());
     private static Entry arcane_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "arcane_spec_a_passive_1");
@@ -246,7 +307,7 @@ public class Spells {
         };
         spell.area_impact = area_impact;
 
-        SpellBuilder.configureCooldown(spell, 1F);
+        SpellBuilder.Cost.cooldown(spell, 1F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
     }
@@ -290,7 +351,7 @@ public class Spells {
 
         spell.impacts = List.of(impact);
 
-        SpellBuilder.configureCooldown(spell, 1F);
+        SpellBuilder.Cost.cooldown(spell, 1F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
     }
@@ -363,7 +424,7 @@ public class Spells {
 
         explosionImpact(spell, 0.5F);
 
-        SpellBuilder.configureCooldown(spell, 0.5F);
+        SpellBuilder.Cost.cooldown(spell, 0.5F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
     }
@@ -431,6 +492,46 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
     }
 
+    public static final Entry fire_spec_a_modifier_4 = add(fire_spec_a_modifier_4());
+    private static Entry fire_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_a_modifier_4");
+        var title = "Great Fire Wall";
+        var description = "Wall of Flames 2 additional columns.";
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.FIRE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:fire_wall";
+        modifier.additional_placements = List.of(
+                SpellBuilder.Deliver.placementByLook(6.4f, -72, 4),
+                SpellBuilder.Deliver.placementByLook(6.4f, 72, 4)
+        );
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
+    }
+
+    public static final Entry fire_spec_b_modifier_4 = add(fire_spec_b_modifier_4());
+    private static Entry fire_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_b_modifier_4");
+        var title = "Healing Flames";
+        var description = "Wall of Flames heals you and allies for {heal}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.FIRE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:fire_wall";
+        var impact = SpellBuilder.Impacts.heal(0.05F);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
+    }
+
     public static final Entry fire_spec_a_passive_1 = add(fire_spec_a_passive_1());
     private static Entry fire_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "fire_spec_a_passive_1");
@@ -483,7 +584,7 @@ public class Spells {
         var impact = SpellBuilder.Impacts.stun(2F);
         spell.impacts = List.of(impact);
 
-        SpellBuilder.configureCooldown(spell, 10F);
+        SpellBuilder.Cost.cooldown(spell, 10F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
     }
@@ -615,6 +716,47 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
     }
 
+    public static final Entry frost_spec_a_modifier_4 = add(frost_spec_a_modifier_4());
+    private static Entry frost_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_a_modifier_4");
+        var title = "Hail Storm";
+        var description = "Blizzard damage increased by {power_multiplier}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.FROST;
+        spell.range = 0;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:frost_blizzard";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.2F;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
+    public static final Entry frost_spec_b_modifier_4 = add(frost_spec_b_modifier_4());
+    private static Entry frost_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_b_modifier_4");
+        var title = "Snow Storm";
+        var description = "Blizzard applies Slowness for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.FROST;
+        spell.range = 0;
+
+        var effect = SkillEffects.BLIZZARD_SLOW;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:frost_blizzard";
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 3, 1, 2);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
     public static final Entry frost_spec_a_passive_1 = add(frost_spec_a_passive_1());
     private static Entry frost_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "frost_spec_a_passive_1");
@@ -671,7 +813,7 @@ public class Spells {
         };
         spell.impacts = List.of(impact);
 
-        SpellBuilder.configureCooldown(spell, 10F);
+        SpellBuilder.Cost.cooldown(spell, 10F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
     }
@@ -1160,7 +1302,7 @@ public class Spells {
         };
         spell.impacts = List.of(impact);
 
-        SpellBuilder.configureCooldown(spell, 1F);
+        SpellBuilder.Cost.cooldown(spell, 1F);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PALADIN));
     }
@@ -1393,7 +1535,7 @@ public class Spells {
         var debuff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 6, 1, 1);
         spell.impacts = List.of(damage, debuff);
 
-        SpellBuilder.configureCooldown(spell, 10F);
+        SpellBuilder.Cost.cooldown(spell, 10F);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
@@ -1560,7 +1702,7 @@ public class Spells {
         };
         spell.impacts = List.of(impact);
 
-        SpellBuilder.configureCooldown(spell, 1F);
+        SpellBuilder.Cost.cooldown(spell, 1F);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WARRIOR));
     }
@@ -1596,7 +1738,7 @@ public class Spells {
         };
         spell.impacts = List.of(impact);
 
-        SpellBuilder.configureCooldown(spell, 1F);
+        SpellBuilder.Cost.cooldown(spell, 1F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
     }
@@ -1828,7 +1970,7 @@ public class Spells {
         };
         spell.impacts = List.of(impact);
 
-        SpellBuilder.configureCooldown(spell, 10F);
+        SpellBuilder.Cost.cooldown(spell, 10F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
     }

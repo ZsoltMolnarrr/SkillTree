@@ -1,0 +1,22 @@
+{
+  "school": "spell_power:fire",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "wizards:fire_wall",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "HEAL",
+            "heal": {
+              "spell_power_coefficient": 0.05
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
