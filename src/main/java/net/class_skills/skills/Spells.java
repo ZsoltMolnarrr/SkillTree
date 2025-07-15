@@ -46,6 +46,7 @@ public class Spells {
 
     private static Spell createModifierAlikePassiveSpell() {
         var spell = SpellBuilder.createSpellPassive();
+        spell.range = 0;
         spell.tooltip = new Spell.Tooltip();
         spell.tooltip.show_activation = false;
         return spell;
@@ -1276,7 +1277,7 @@ public class Spells {
     private static Entry paladin_spec_a_modifier_4() {
         var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_4");
         var title = "Conqueror's Banner";
-        var description = "Increases the duration of Battle Banner by {effect_duration_add} sec.";
+        var description = "Increases the duration of Battle Banner by {spawn_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
@@ -1973,6 +1974,41 @@ public class Spells {
         };
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_a_modifier_4 = add(archer_spec_a_modifier_4());
+    private static Entry archer_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_a_modifier_4");
+        var title = "Conjured Arrow";
+        var description = "Magic Arrow has {trigger_chance} chance to reset its own cooldown.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("archers:magic_arrow");
+        trigger.chance = 0.4F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.resetCooldownActive("archers:magic_arrow");
+        impact.action.apply_to_caster = true;
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_b_modifier_4 = add(archer_spec_b_modifier_4());
+    private static Entry archer_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_b_modifier_4");
+        var title = "Magic Punch";
+        var description = "Magic Arrow deals extra {knockback_multiply_base} knockback.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers:magic_arrow";
+        modifier.knockback_multiply_base = 1.5F;
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));

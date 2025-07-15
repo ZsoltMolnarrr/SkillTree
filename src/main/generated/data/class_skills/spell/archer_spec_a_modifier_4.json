@@ -1,0 +1,34 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_CAST",
+        "chance": 0.2,
+        "spell": {
+          "id": "archers:magic_arrow"
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "COOLDOWN",
+        "apply_to_caster": true,
+        "cooldown": {
+          "actives": {
+            "id": "archers:magic_arrow",
+            "duration_multiplier": 0.0
+          }
+        }
+      }
+    }
+  ]
+}

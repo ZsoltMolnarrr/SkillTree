@@ -436,23 +436,10 @@ public class SkillDefinitions {
     public static final Entry ARCHER_SPEC_B_MODIFIER_2 = add(modifierSpell(Spells.archer_spec_b_modifier_2));
     public static final Entry ARCHER_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.archer_spec_a_modifier_3));
     public static final Entry ARCHER_SPEC_B_MODIFIER_3 = add(modifierSpell(Spells.archer_spec_b_modifier_3));
+    public static final Entry ARCHER_SPEC_A_MODIFIER_4 = add(passiveSpell(Spells.archer_spec_a_modifier_4)
+            .withIcon(Icon.spell(Identifier.of("archers", "magic_arrow"))));
+    public static final Entry ARCHER_SPEC_B_MODIFIER_4 = add(modifierSpell(Spells.archer_spec_b_modifier_4));
 
-    public static final Entry ARCHER_SPEC_A_MODIFIER_4 = add(
-            Entry.spell("archer_spec_a_modifier_4",
-                    "Magic Arrow modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("archers", "magic_arrow")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry ARCHER_SPEC_B_MODIFIER_4 = add(
-            Entry.spell("archer_spec_b_modifier_4",
-                    "Magic Arrow modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("archers", "magic_arrow")),
-                    dummyContainer()
-            )
-    );
     public static final Entry ARCHER_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.archer_spec_a_passive_1));
     public static final Entry ARCHER_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.archer_spec_b_passive_1));
 
