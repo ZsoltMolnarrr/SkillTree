@@ -350,6 +350,26 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry HAMSTRING = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "hamstring"),
+            "Hamstring",
+            "Immobilized.",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xcc0000),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    -10,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_JUMP_STRENGTH.getIdAsString(),
+                                    -10,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);

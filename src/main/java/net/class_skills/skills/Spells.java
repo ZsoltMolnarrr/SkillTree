@@ -1532,6 +1532,44 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
 
+    public static final Entry rogue_spec_a_modifier_4 = add(rogue_spec_a_modifier_4());
+    private static Entry rogue_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_4");
+        var title = "Stealth Speed";
+        var description = "Stealth no longer slows you down.";
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:vanish";
+
+        var impact = SpellBuilder.Impacts.effectSet("rogues:stealth_speed", 8, 0);
+        impact.action.apply_to_caster = true;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+    }
+
+    public static final Entry rogue_spec_b_modifier_4 = add(rogue_spec_b_modifier_4());
+    private static Entry rogue_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_b_modifier_4");
+        var title = "Deep Stealth";
+        var description = "Increases the number of Stealth effect stacks by {effect_amplifier_add}, so you can stay hidden when taking damage.";
+        var spell = SpellBuilder.createSpellModifier();
+
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:vanish";
+        modifier.effect_amplifier_add = 2; // FIXME: This doesn't actually allow players to move
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+    }
+
     public static final Entry rogue_spec_a_passive_1 = add(rogue_spec_a_passive_1());
     private static Entry rogue_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_1");
@@ -1740,6 +1778,47 @@ public class Spells {
 
         var impact = SpellBuilder.Impacts.stun(2F);
         spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry warrior_spec_a_modifier_4 = add(warrior_spec_a_modifier_4());
+    private static Entry warrior_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_a_modifier_4");
+        var title = "Whirlwind Mastery";
+        var description = "Whirlwind deals {power_multiplier} more damage.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:whirlwind";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.3F;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry warrior_spec_b_modifier_4 = add(warrior_spec_b_modifier_4());
+    private static Entry warrior_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_b_modifier_4");
+        var title = "Hamstring";
+        var description = "Whirlwind has {impact_chance} to immobilize the target for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var effect = SkillEffects.HAMSTRING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "rogues:whirlwind";
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
+        impact.chance = 0.3F;
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+        spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
     }

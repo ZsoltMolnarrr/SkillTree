@@ -501,23 +501,9 @@ public class SkillDefinitions {
     );
     public static final Entry ROGUE_SPEC_A_MODIFIER_3 = add(modifierSpell(Spells.rogue_spec_a_modifier_3));
     public static final Entry ROGUE_SPEC_B_MODIFIER_3 = add(modifierSpell(Spells.rogue_spec_b_modifier_3));
+    public static final Entry ROGUE_SPEC_A_MODIFIER_4 = add(modifierSpell(Spells.rogue_spec_a_modifier_4));
+    public static final Entry ROGUE_SPEC_B_MODIFIER_4 = add(modifierSpell(Spells.rogue_spec_b_modifier_4));
 
-    public static final Entry ROGUE_SPEC_A_MODIFIER_4 = add(
-            Entry.spell("rogue_spec_a_modifier_4",
-                    "Vanish modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "vanish")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry ROGUE_SPEC_B_MODIFIER_4 = add(
-            Entry.spell("rogue_spec_b_modifier_4",
-                    "Vanish modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "vanish")),
-                    dummyContainer()
-            )
-    );
     public static final Entry ROGUE_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.rogue_spec_a_passive_1));
     public static final Entry ROGUE_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.rogue_spec_b_passive_1));
 
@@ -581,23 +567,9 @@ public class SkillDefinitions {
     public static final Entry WARRIOR_SPEC_B_MODIFIER_3 = add(passiveSpell(Spells.warrior_spec_b_modifier_3)
             .withIcon(Icon.spell(Identifier.of("rogues", "charge")))
     );
+    public static final Entry WARRIOR_SPEC_A_MODIFIER_4 = add(modifierSpell(Spells.warrior_spec_a_modifier_4));
+    public static final Entry WARRIOR_SPEC_B_MODIFIER_4 = add(modifierSpell(Spells.warrior_spec_b_modifier_4));
 
-    public static final Entry WARRIOR_SPEC_A_MODIFIER_4 = add(
-            Entry.spell("warrior_spec_a_modifier_4",
-                    "Whirlwind modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "whirlwind")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry WARRIOR_SPEC_B_MODIFIER_4 = add(
-            Entry.spell("warrior_spec_b_modifier_4",
-                    "Whirlwind modifier",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "whirlwind")),
-                    dummyContainer()
-            )
-    );
     public static final Entry WARRIOR_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.warrior_spec_a_passive_1));
     public static final Entry WARRIOR_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.warrior_spec_b_passive_1));
     public static final Entry WARRIOR_SPEC_A_PASSIVE_2 = add(

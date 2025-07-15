@@ -10,7 +10,7 @@
     "triggers": [
       {
         "type": "SPELL_CAST",
-        "chance": 0.2,
+        "chance": 0.4,
         "spell": {
           "id": "archers:magic_arrow"
         }

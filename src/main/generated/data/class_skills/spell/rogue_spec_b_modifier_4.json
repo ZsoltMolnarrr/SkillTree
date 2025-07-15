@@ -1,0 +1,12 @@
+{
+  "school": "spell_power:physical_melee",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "rogues:vanish",
+      "effect_amplifier_add": 2
+    }
+  ]
+}

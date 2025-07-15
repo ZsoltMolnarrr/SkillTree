@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "archers:magic_arrow",
-      "knockback_multiply_base": 1.0
+      "knockback_multiply_base": 1.5
     }
   ]
 }
