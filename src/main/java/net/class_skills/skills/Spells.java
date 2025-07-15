@@ -916,8 +916,8 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
     }
 
-    public static final Entry priest_spec_a_modifier_3 = add(priest_speca_a_modifier_3());
-    private static Entry priest_speca_a_modifier_3() {
+    public static final Entry priest_spec_a_modifier_3 = add(priest_spec_a_modifier_3());
+    private static Entry priest_spec_a_modifier_3() {
         var id = Identifier.of(NAMESPACE, "priest_spec_a_modifier_3");
         var title = "Mass Dispel";
         var description = "Circle of Healing removes {effect_amplifier} negative effect from allies.";
@@ -1019,6 +1019,40 @@ public class Spells {
                         .color(HOLY_COLOR),
         };
         spell.impacts = List.of(impact);
+    }
+
+    public static final Entry priest_spec_a_modifier_4 = add(priest_spec_a_modifier_4());
+    private static Entry priest_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_a_modifier_4");
+        var title = "Barrier Recovery";
+        var description = "Reduces the cooldown of Barrier by {cooldown_duration_deduct} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:barrier";
+        modifier.cooldown_duration_deduct = 10;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
+    public static final Entry priest_spec_b_modifier_4 = add(priest_spec_b_modifier_4());
+    private static Entry priest_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_b_modifier_4");
+        var title = "Barrier Duration";
+        var description = "Increases the duration of Barrier by {spawn_duration_add} sec.";
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:barrier";
+        modifier.spawn_duration_add = 4;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
     }
 
     public static final Entry priest_spec_a_passive_1 = add(priest_spec_a_passive_1());
@@ -1236,6 +1270,46 @@ public class Spells {
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_a_modifier_4 = add(paladin_spec_a_modifier_4());
+    private static Entry paladin_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_4");
+        var title = "Conqueror's Banner";
+        var description = "Increases the duration of Battle Banner by {effect_duration_add} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:battle_banner";
+        modifier.spawn_duration_add = 4;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_b_modifier_4 = add(paladin_spec_b_modifier_4());
+    private static Entry paladin_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_b_modifier_4");
+        var title = "Protective Banner";
+        var description = "Battle Banner also reduces damage taken by {bonus}.";
+        var effect = SkillEffects.BANNER_PROTECTION;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent( Math.abs( effect.config().firstModifier().value ) );
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:battle_banner";
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 2, 0);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PALADIN));
     }
 
     public static final Entry paladin_spec_a_passive_1 = add(paladin_spec_a_passive_1());

@@ -335,6 +335,21 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry BANNER_PROTECTION = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "banner_protection"),
+            "Protective Banner",
+            "Reduces damage taken.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id,
+                                    -0.3F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);
