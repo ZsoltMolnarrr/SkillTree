@@ -270,7 +270,7 @@ public class SkillEffects {
             )
     ));
     public static Effects.Entry CONCUSSION_BLOW = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "concussion_blow"),
-            "Concussion Blow",
+            "Concussing Blow",
             "Next attack stuns.",
             new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xffcc66),
             new EffectConfig(

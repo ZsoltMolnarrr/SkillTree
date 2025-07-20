@@ -281,7 +281,7 @@ public class Spells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.activeSpellHit(0.2F, "arcane");
+        var trigger = SpellBuilder.Triggers.activeSpellHit(0.5F, "arcane");
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.damage(0.4F, 0.2F);
@@ -301,10 +301,10 @@ public class Spells {
                         30, 0.5F, 0.5F)
                         .color(Color.from(SpellSchools.ARCANE.color).toRGBA()),
                 new ParticleBatch(
-                        "firework",
+                        SpellEngineParticles.area_effect_642.id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.25F, 0.25F)
-                        .color(ARCANE_COLOR)
+                        1, 0, 0)
+                        .color(ARCANE_COLOR),
         };
         spell.area_impact = area_impact;
 
@@ -841,7 +841,7 @@ public class Spells {
     public static final Entry priest_spec_b_modifier_1 = add(priest_spec_b_modifier_1());
     private static Entry priest_spec_b_modifier_1() {
         var id = Identifier.of(NAMESPACE, "priest_spec_b_modifier_1");
-        var title = "Shock Blast";
+        var title = "Holy Blast";
         var description = "Damaging with Holy Shock causes small explosion, hitting enemies within {impact_range} blocks radius.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.HEALING;
@@ -855,13 +855,19 @@ public class Spells {
         modifier.replacing_area_impact.area = new Spell.Target.Area();
         modifier.replacing_area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
 
-        var particleBatch = new ParticleBatch(
-                HOLY_DECELERATE.toString(),
-                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                40, 0.5F, 0.5F
-        ).color(Color.HOLY.toRGBA());
-
-        modifier.replacing_area_impact.particles = new ParticleBatch[]{ particleBatch };
+        modifier.replacing_area_impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        HOLY_DECELERATE.toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        40, 0.5F, 0.5F)
+                        .color(Color.HOLY.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.area_effect_649.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        1, 0, 0)
+                        .color(Color.HOLY.toRGBA())
+                        .scale(radius - 0.5F),
+        };
 
         spell.modifiers = List.of(modifier);
 
@@ -1743,7 +1749,7 @@ public class Spells {
     private static Entry warrior_spec_a_modifier_3() {
         var id = Identifier.of(NAMESPACE, "warrior_spec_a_modifier_3");
         var title = "Endurance";
-        var description = "Charge lasts {effect_duration} sec longer.";
+        var description = "Charge lasts {effect_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 

@@ -21,6 +21,15 @@
             "min_speed": 0.5,
             "max_speed": 0.5,
             "color_rgba": 4294954239
+          },
+          {
+            "particle_id": "spell_engine:area_effect_649",
+            "origin": "CENTER",
+            "shape": "SPHERE",
+            "count": 1.0,
+            "max_speed": 0.0,
+            "color_rgba": 4294954239,
+            "scale": 2.0
           }
         ]
       }

@@ -7,7 +7,7 @@
     "triggers": [
       {
         "type": "SPELL_IMPACT_SPECIFIC",
-        "chance": 0.2,
+        "chance": 0.5,
         "spell": {
           "school": "arcane",
           "type": "ACTIVE"
@@ -49,12 +49,11 @@
         "color_rgba": 4284940287
       },
       {
-        "particle_id": "firework",
+        "particle_id": "spell_engine:area_effect_642",
         "origin": "CENTER",
         "shape": "SPHERE",
-        "count": 20.0,
-        "min_speed": 0.25,
-        "max_speed": 0.25,
+        "count": 1.0,
+        "max_speed": 0.0,
         "color_rgba": 4284940287
       }
     ]
