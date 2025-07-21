@@ -4,9 +4,9 @@
   "version": "${version}",
   "name": "Skill Tree (RPG Series)",
   "description": "Specialise your RPG class with a skill tree.",
-  "authors": [],
+  "authors": [ "Daedelus" ],
   "contact": {},
-  "license": "MIT",
+  "license": "All Rights Reserved",
   "icon": "assets/class_skills/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -27,6 +27,10 @@
     "minecraft": ">=${minecraft_compat_version}",
     "fabricloader": ">=${fabric_loader_version}",
     "spell_engine": ">=${spell_engine_version}",
-    "spell_power": "*"
+    "spell_power": "*",
+    "wizards": "*",
+    "paladins": "*",
+    "rogues": "*",
+    "archers": "*"
   }
 }
