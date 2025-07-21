@@ -10,6 +10,7 @@ import net.spell_engine.api.effect.CustomParticleStatusEffect;
 import net.spell_engine.api.render.BuffParticleSpawner;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 
 public class ClassSkillsModClient implements ClientModInitializer {
@@ -37,18 +38,23 @@ public class ClassSkillsModClient implements ClientModInitializer {
     }
 
     private static void registerEffectRenderers() {
-        final var arcaneSlowness = new ParticleBatch(
+        final var magicSnareParticles = new ParticleBatch(
                 SpellEngineParticles.MagicParticles.get(
                         SpellEngineParticles.MagicParticles.Shape.SPARK,
                         SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
                 ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
                 2F, 0.15F, 0.15F)
                 .preSpawnTravel(5)
-                .invert()
-                .color(Spells.ARCANE_COLOR);
+                .invert();
         CustomParticleStatusEffect.register(
                 SkillEffects.ARCANE_SLOWNESS.effect,
-                new BuffParticleSpawner(new ParticleBatch[]{ arcaneSlowness })
+                new BuffParticleSpawner(new ParticleBatch[]{ magicSnareParticles
+                        .copy().color(Spells.ARCANE_COLOR) })
+        );
+        CustomParticleStatusEffect.register(
+                SkillEffects.HAMSTRING.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ magicSnareParticles
+                        .copy().color(Color.RAGE.toRGBA()) })
         );
 
         final var fireVulnerability = new ParticleBatch(
@@ -92,6 +98,65 @@ public class ClassSkillsModClient implements ClientModInitializer {
         CustomParticleStatusEffect.register(
                 SkillEffects.INCANTER_CADENCE.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ incanterParticles })
+        );
+
+        final var ruptureParticles = new ParticleBatch(
+                SpellEngineParticles.MagicParticles.get(
+                        SpellEngineParticles.MagicParticles.Shape.SPARK,
+                        SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                0.2F, 0.25F, 0.25F)
+                .preSpawnTravel(1)
+                .invert()
+                .color(Color.BLOOD.toRGBA());
+        CustomParticleStatusEffect.register(
+                SkillEffects.RUPTURE.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ ruptureParticles })
+        );
+
+        final var rhytmParticles = new ParticleBatch(
+                SpellEngineParticles.area_circle_1.id().toString(),
+                ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.GROUND,
+                1F, 0.1F, 0.1F)
+                .color(Color.NATURE.toRGBA())
+                .scale(0.75F);
+        CustomParticleStatusEffect.register(
+                SkillEffects.RHYTHM.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ rhytmParticles })
+                        .scaleWithAmplifier(false)
+                        .withFrequency(30)
+                        .invertFrequency()
+        );
+
+        final var speedParticles = new ParticleBatch(
+                SpellEngineParticles.MagicParticles.get(
+                        SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                        SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                0.5F, 0.15F, 0.2F)
+                .extent(-0.2F);
+        CustomParticleStatusEffect.register(
+                SkillEffects.PURSUIT_OF_JUSTICE.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{
+                        speedParticles.copy()
+                                .color(Spells.HOLY_COLOR)
+                })
+        );
+        CustomParticleStatusEffect.register(
+                SkillEffects.ARCANE_SPEED.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{
+                        speedParticles.copy()
+                                .color(Spells.ARCANE_COLOR)
+                        })
+        );
+
+        final var blizzardSlowParticles = new ParticleBatch(
+                SpellEngineParticles.snowflake.id().toString(),
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
+                1F, 0.15F, 0.15F);
+        CustomParticleStatusEffect.register(
+                SkillEffects.BLIZZARD_SLOW.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ blizzardSlowParticles })
         );
     }
 }
