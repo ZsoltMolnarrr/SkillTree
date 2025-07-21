@@ -552,7 +552,7 @@ public class Spells {
         var trigger = SpellBuilder.Triggers.activeSpellHit(0.5F, "fire");
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 1, 4);
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 4);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.flame_medium_a.id().toString(),
@@ -792,7 +792,7 @@ public class Spells {
     private static Entry frost_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "frost_spec_b_passive_1");
         var title = "Frostbite";
-        var description = "Frost spell impacts have {trigger_chance}, to freeze the target for {effect_duration} sec.";
+        var description = "Frost spell impacts have {trigger_chance} chance, to freeze the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.FROST;
         spell.range = 0;
@@ -1118,7 +1118,7 @@ public class Spells {
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 1, 2);
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 2);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
@@ -1591,7 +1591,7 @@ public class Spells {
         trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 6, 1, 1);
+        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 8, 1, 1);
         impact.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
         impact.particles = poisonImpactParticles();
         spell.impacts = List.of(impact);

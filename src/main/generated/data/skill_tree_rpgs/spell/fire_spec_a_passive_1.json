@@ -27,7 +27,7 @@
         "type": "STATUS_EFFECT",
         "status_effect": {
           "effect_id": "skill_tree_rpgs:fire_vulnerability",
-          "duration": 5.0,
+          "duration": 8.0,
           "amplifier": 1,
           "amplifier_cap": 4,
           "apply_mode": "ADD"

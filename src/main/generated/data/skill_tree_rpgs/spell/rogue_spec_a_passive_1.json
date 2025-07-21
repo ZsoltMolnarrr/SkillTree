@@ -20,7 +20,7 @@
         "type": "STATUS_EFFECT",
         "status_effect": {
           "effect_id": "minecraft:poison",
-          "duration": 6.0,
+          "duration": 8.0,
           "amplifier": 1,
           "amplifier_cap": 1,
           "amplifier_cap_power_multiplier": 0.5,

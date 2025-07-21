@@ -289,7 +289,7 @@
   "spell.skill_tree_rpgs.frost_spec_b_modifier_3.name": "Durable Shield",
   "spell.skill_tree_rpgs.frost_spec_b_modifier_4.description": "Blizzard applies Slowness for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.",
   "spell.skill_tree_rpgs.frost_spec_b_modifier_4.name": "Snow Storm",
-  "spell.skill_tree_rpgs.frost_spec_b_passive_1.description": "Frost spell impacts have {trigger_chance}, to freeze the target for {effect_duration} sec.",
+  "spell.skill_tree_rpgs.frost_spec_b_passive_1.description": "Frost spell impacts have {trigger_chance} chance, to freeze the target for {effect_duration} sec.",
   "spell.skill_tree_rpgs.frost_spec_b_passive_1.name": "Frostbite",
   "spell.skill_tree_rpgs.paladin_spec_a_modifier_1.description": "Flash Heal increases Attack Damage by {bonus} for {effect_duration} sec.",
   "spell.skill_tree_rpgs.paladin_spec_a_modifier_1.name": "Divine Strength",
