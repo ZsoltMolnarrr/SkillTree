@@ -7,7 +7,7 @@
 		}
 	},
 	"unlocked_by_default": true,
-	"spent_points_limit": 11,
+	"spent_points_limit": 9,
 	"exclusive_root": true,
 	"background": {
 		"texture": "skill_tree_rpgs:textures/gui/background_4.png",

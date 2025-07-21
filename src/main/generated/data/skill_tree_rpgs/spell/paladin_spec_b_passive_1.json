@@ -20,7 +20,7 @@
         "apply_to_caster": true,
         "status_effect": {
           "effect_id": "skill_tree_rpgs:redoubt",
-          "duration": 6.0,
+          "duration": 8.0,
           "amplifier": 1,
           "amplifier_cap": 2,
           "apply_mode": "ADD"

@@ -343,7 +343,7 @@
   "spell.skill_tree_rpgs.rogue_spec_a_passive_1.name": "Poisoned Blades",
   "spell.skill_tree_rpgs.rogue_spec_b_modifier_1.description": "Increases the maximum number of Slice and Dice stacks by {effect_amplifier_cap_add}.",
   "spell.skill_tree_rpgs.rogue_spec_b_modifier_1.name": "Blade Fury",
-  "spell.skill_tree_rpgs.rogue_spec_b_modifier_2.description": "Shock Powder has {trigger_chance} to create secondary explosions, dealing {damage} damage.",
+  "spell.skill_tree_rpgs.rogue_spec_b_modifier_2.description": "Shock Powder has {trigger_chance} chance to create secondary explosions, dealing {damage} damage.",
   "spell.skill_tree_rpgs.rogue_spec_b_modifier_2.name": "Explosive Powder",
   "spell.skill_tree_rpgs.rogue_spec_b_modifier_3.description": "Next attack after Shadowstep, within {effect_duration} sec, deals {bonus} extra damage.",
   "spell.skill_tree_rpgs.rogue_spec_b_modifier_3.name": "Ambush",
@@ -367,7 +367,7 @@
   "spell.skill_tree_rpgs.warrior_spec_b_modifier_2.name": "Challenging Shout",
   "spell.skill_tree_rpgs.warrior_spec_b_modifier_3.description": "Next attack after using Charge, stuns the target for {effect_duration} sec.",
   "spell.skill_tree_rpgs.warrior_spec_b_modifier_3.name": "Concussion Blow",
-  "spell.skill_tree_rpgs.warrior_spec_b_modifier_4.description": "Whirlwind has {impact_chance} to immobilize the target for {effect_duration} sec.",
+  "spell.skill_tree_rpgs.warrior_spec_b_modifier_4.description": "Whirlwind has {impact_chance} chance to immobilize the target for {effect_duration} sec.",
   "spell.skill_tree_rpgs.warrior_spec_b_modifier_4.name": "Hamstring",
   "spell.skill_tree_rpgs.warrior_spec_b_passive_1.description": "Blocking with shield has {trigger_chance} chance to heal you for {heal} health.",
   "spell.skill_tree_rpgs.warrior_spec_b_passive_1.name": "Vitality"

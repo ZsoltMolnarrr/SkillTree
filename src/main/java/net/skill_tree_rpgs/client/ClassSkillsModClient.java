@@ -105,9 +105,7 @@ public class ClassSkillsModClient implements ClientModInitializer {
                         SpellEngineParticles.MagicParticles.Shape.SPARK,
                         SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
                 ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                0.2F, 0.25F, 0.25F)
-                .preSpawnTravel(1)
-                .invert()
+                2F, 0.45F, 0.75F)
                 .color(Color.BLOOD.toRGBA());
         CustomParticleStatusEffect.register(
                 SkillEffects.RUPTURE.effect,

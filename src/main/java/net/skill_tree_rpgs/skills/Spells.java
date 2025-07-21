@@ -776,7 +776,7 @@ public class Spells {
         var trigger = SpellBuilder.Triggers.activeSpellHit(0.5F, "frost");
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 1, 4);
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 4);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.snowflake.id().toString(),
@@ -1370,7 +1370,7 @@ public class Spells {
         var trigger = SpellBuilder.Triggers.shieldBlock();
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(SkillEffects.REDOUBT.id.toString(), 6, 1, 2);
+        var impact = SpellBuilder.Impacts.effectAdd(SkillEffects.REDOUBT.id.toString(), 8, 1, 2);
         impact.action.apply_to_caster = true;
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
@@ -1467,7 +1467,7 @@ public class Spells {
     private static Entry rogue_spec_b_modifier_2() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_b_modifier_2");
         var title = "Explosive Powder";
-        var description = "Shock Powder has {trigger_chance} to create secondary explosions, dealing {damage} damage.";
+        var description = "Shock Powder has {trigger_chance} chance to create secondary explosions, dealing {damage} damage.";
         var spell = createModifierAlikePassiveSpell();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         spell.range = 0;
@@ -1638,7 +1638,7 @@ public class Spells {
         spell.deliver.delay = 1;
 
         var trigger = SpellBuilder.Triggers.meleeAttack(false);
-        trigger.chance = 0.1F;
+        trigger.chance = 0.25F;
         spell.passive.triggers = List.of(trigger);
 
         var damage = SpellBuilder.Impacts.damage(0.5F, 0F);
@@ -1648,13 +1648,13 @@ public class Spells {
                                 SpellEngineParticles.MagicParticles.Shape.SPARK,
                                 SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.5F, 0.8F)
+                        40, 0.5F, 0.8F)
                         .color(Color.BLOOD.toRGBA()),
         };
         var debuff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 6, 1, 1);
         spell.impacts = List.of(damage, debuff);
 
-        SpellBuilder.Cost.cooldown(spell, 10F);
+        SpellBuilder.Cost.cooldown(spell, 6F);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
@@ -1810,7 +1810,7 @@ public class Spells {
     private static Entry warrior_spec_b_modifier_4() {
         var id = Identifier.of(NAMESPACE, "warrior_spec_b_modifier_4");
         var title = "Hamstring";
-        var description = "Whirlwind has {impact_chance} to immobilize the target for {effect_duration} sec.";
+        var description = "Whirlwind has {impact_chance} chance to immobilize the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 

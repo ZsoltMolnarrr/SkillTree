@@ -7,7 +7,7 @@
     "triggers": [
       {
         "type": "MELEE_IMPACT",
-        "chance": 0.1
+        "chance": 0.25
       }
     ]
   },
@@ -31,7 +31,7 @@
           "particle_id": "spell_engine:magic_spark_burst",
           "origin": "CENTER",
           "shape": "SPHERE",
-          "count": 20.0,
+          "count": 40.0,
           "min_speed": 0.5,
           "max_speed": 0.8,
           "color_rgba": 3003121919
@@ -53,7 +53,7 @@
   ],
   "cost": {
     "cooldown": {
-      "duration": 10.0
+      "duration": 6.0
     }
   }
 }
