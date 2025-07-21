@@ -1,0 +1,24 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "archers:entangling_roots",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "chance": 0.3,
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "skill_tree_rpgs:natures_grasp",
+              "duration": 2.0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

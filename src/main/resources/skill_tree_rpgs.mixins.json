@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.skill_tree_rpgs.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+  ],
+  "client": [
+    "SkillsScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,38 @@
+{
+	"title": "Class Skills",
+	"icon": {
+		"type": "texture",
+		"data": {
+			"texture": "wizards:textures/spell/fire_blast.png"
+		}
+	},
+	"unlocked_by_default": true,
+	"spent_points_limit": 11,
+	"exclusive_root": true,
+	"background": {
+		"texture": "skill_tree_rpgs:textures/gui/background_4.png",
+		"width": 768,
+		"height": 300,
+		"position": "fill_height"
+	},
+	"colors": {
+		"connections": {
+			"locked": {
+				"fill": "#23211d",
+				"stroke": "#272521"
+			},
+			"available": {
+				"fill": "#595856",
+				"stroke": "#605e5c"
+			},
+			"unlocked": {
+				"fill": "#b37d12",
+				"stroke": "#bf8c26"
+			},
+			"excluded": {
+				"fill": "#b31212",
+				"stroke": "#bf2626"
+			}
+		}
+	}
+}

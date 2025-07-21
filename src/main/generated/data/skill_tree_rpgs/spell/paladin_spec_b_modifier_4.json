@@ -1,0 +1,23 @@
+{
+  "school": "spell_power:physical_melee",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "paladins:battle_banner",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "skill_tree_rpgs:banner_protection",
+              "duration": 2.0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:diamond"
+    },
+    "X": {
+      "item": "minecraft:experience_bottle"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XCX",
+    " X "
+  ],
+  "result": {
+    "count": 1,
+    "id": "skill_tree_rpgs:orb_of_oblivion"
+  }
+}

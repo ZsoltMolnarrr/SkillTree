@@ -1,0 +1,26 @@
+{
+  "school": "spell_power:frost",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "wizards:frost_blizzard",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "skill_tree_rpgs:blizzard_slow",
+              "duration": 3.0,
+              "amplifier": 1,
+              "amplifier_cap": 2,
+              "apply_mode": "ADD"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

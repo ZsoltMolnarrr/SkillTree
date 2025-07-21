@@ -1,0 +1,160 @@
+package net.skill_tree_rpgs.data_gen;
+
+import net.skill_tree_rpgs.items.SkillItems;
+import net.skill_tree_rpgs.node.SpellContainerReward;
+import net.skill_tree_rpgs.skills.SkillDefinitions;
+import net.skill_tree_rpgs.skills.SkillEffects;
+import net.skill_tree_rpgs.skills.Spells;
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.data.client.BlockStateModelGenerator;
+import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.Models;
+import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryWrapper;
+import net.puffish.skillsmod.reward.builtin.AttributeReward;
+import net.spell_engine.api.datagen.SpellGenerator;
+import net.spell_engine.client.gui.SpellTooltip;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.concurrent.CompletableFuture;
+
+public class ClassSkillsModDataGenerator implements DataGeneratorEntrypoint {
+
+    @Override
+    public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+        FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+        pack.addProvider(LangGenerator::new);
+        pack.addProvider(ModelProvider::new);
+        pack.addProvider(RecipeProvider::new);
+        pack.addProvider(SpellsGen::new);
+        pack.addProvider(SkillDefinitionGen::new);
+    }
+
+    public static class LangGenerator extends FabricLanguageProvider {
+        protected LangGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+            super(dataOutput, registryLookup);
+        }
+
+        @Override
+        public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
+            for (var item: SkillItems.ENTRIES) {
+                translationBuilder.add(item.item(), item.title());
+                for (var lore : item.loreTranslation()) {
+                    translationBuilder.add(lore.translationKey(), lore.line().text());
+                }
+            }
+            for (var skill: SkillDefinitions.ENTRIES) {
+                if (skill.title() != null && !skill.title().isEmpty()) {
+                    translationBuilder.add(skill.titleTranslationKey(), skill.title());
+                }
+                if (skill.description() != null && !skill.description().isEmpty()) {
+                    translationBuilder.add(skill.descriptionTranslationKey(), skill.description());
+                }
+            }
+            for (var entry: Spells.all) {
+                translationBuilder.add(SpellTooltip.spellTranslationKey(entry.id()), entry.title());
+                translationBuilder.add(SpellTooltip.spellDescriptionTranslationKey(entry.id()), entry.description());
+            }
+            SkillEffects.entries.forEach(entry -> {
+                translationBuilder.add(entry.effect.getTranslationKey(), entry.title);
+                translationBuilder.add(entry.effect.getTranslationKey() + ".description", entry.description);
+            });
+        }
+    }
+
+    public static class ModelProvider extends FabricModelProvider {
+        public ModelProvider(FabricDataOutput output) {
+            super(output);
+        }
+
+        @Override
+        public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        }
+
+        @Override
+        public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+            SkillItems.ENTRIES.forEach(entry -> {
+                itemModelGenerator.register(entry.item(), Models.GENERATED);
+            });
+        }
+    }
+
+    public static class RecipeProvider extends FabricRecipeProvider {
+        public RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+            super(output, registriesFuture);
+        }
+
+        @Override
+        public void generate(RecipeExporter recipeExporter) {
+            ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, SkillItems.ORB_OF_OBLIVION.item())
+                    .pattern(" X ")
+                    .pattern("XCX")
+                    .pattern(" X ")
+                    .input('X', Items.EXPERIENCE_BOTTLE)
+                    .input('C', Items.DIAMOND)
+                    .criterion(FabricRecipeProvider.hasItem(Items.EXPERIENCE_BOTTLE), FabricRecipeProvider.conditionsFromItem(Items.EXPERIENCE_BOTTLE))
+                    .offerTo(recipeExporter);
+        }
+    }
+
+    public static class SkillDefinitionGen extends SkillDefinitionGenerator {
+        public SkillDefinitionGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+            super(dataOutput, registryLookup);
+        }
+
+        @Override
+        public void generate(Builder builder) {
+            LinkedHashMap<String, Format> skillDefinitions = new LinkedHashMap<>();
+            for (var skill : SkillDefinitions.ENTRIES) {
+                Translatable title = null;
+                if (skill.title() != null && !skill.title().isEmpty()) {
+                    title = new Translatable(skill.titleTranslationKey());
+                }
+                Translatable description = null;
+                if (skill.description() != null && !skill.description().isEmpty()) {
+                    description = new Translatable(skill.descriptionTranslationKey());
+                }
+
+                Icon icon = null;
+                switch (skill.icon().type()) {
+                    case TEXTURE -> icon = Icon.texture(skill.icon().value());
+                    case ITEM -> icon = Icon.item(skill.icon().value());
+                    case EFFECT -> icon = Icon.effect(skill.icon().value());
+                }
+                ArrayList<Reward> rewards = new ArrayList<>();
+                if (skill.attributeReward() != null) {
+                    var attribute = skill.attributeReward();
+                    rewards.add(new Reward(AttributeReward.ID.toString(), RewardAttribute.from(attribute.attribute(),  attribute.modifier())));
+                }
+                if(skill.spellReward() != null) {
+                    rewards.add(new Reward(SpellContainerReward.ID.toString(), new SpellContainerReward.DataStructure(skill.spellReward())));
+                }
+                var format = new Format(title, description, icon, rewards);
+                skillDefinitions.put(skill.id(), format);
+            }
+            builder.entries.add(new Entry(SkillDefinitions.CATEGORY_ID, skillDefinitions));
+        }
+    }
+
+    public static class SpellsGen extends SpellGenerator {
+        public SpellsGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+            super(dataOutput, registryLookup);
+        }
+
+        @Override
+        public void generateSpells(Builder builder) {
+            for (var entry : Spells.all) {
+                builder.add(entry.id(), entry.spell());
+            }
+        }
+    }
+}

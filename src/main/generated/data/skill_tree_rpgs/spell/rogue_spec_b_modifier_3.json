@@ -1,0 +1,24 @@
+{
+  "school": "spell_power:physical_melee",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "rogues:shadow_step",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "apply_to_caster": true,
+            "status_effect": {
+              "effect_id": "skill_tree_rpgs:ambush",
+              "duration": 5.0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
