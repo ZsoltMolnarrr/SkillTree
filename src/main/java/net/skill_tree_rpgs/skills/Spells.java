@@ -579,7 +579,7 @@ public class Spells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.activeSpellHit(0.05F, "fire");
+        var trigger = SpellBuilder.Triggers.activeSpellHit(0.1F, "fire");
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.stun(2F);
@@ -2152,7 +2152,7 @@ public class Spells {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.arrowHit();
-        trigger.chance = 0.05F;
+        trigger.chance = 0.1F;
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 2F, 0);

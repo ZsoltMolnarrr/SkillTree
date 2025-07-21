@@ -7,7 +7,7 @@
     "triggers": [
       {
         "type": "SPELL_IMPACT_SPECIFIC",
-        "chance": 0.05,
+        "chance": 0.1,
         "spell": {
           "school": "fire",
           "type": "ACTIVE"
