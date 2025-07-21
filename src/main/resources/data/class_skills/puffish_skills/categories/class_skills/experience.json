@@ -3,6 +3,9 @@
 		"type": "expression",
 		"data": {
 			"expression": "min(level ^ 1.432 + 10, 200)"
+		},
+		"team_sharing": {
+			"distance_limit": 200
 		}
 	},
 	"sources": [
