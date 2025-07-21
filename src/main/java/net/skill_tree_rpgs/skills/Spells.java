@@ -272,7 +272,7 @@ public class Spells {
     public static final Entry arcane_spec_a_passive_1 = add(arcane_spec_a_passive_1());
     private static Entry arcane_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "arcane_spec_a_passive_1");
-        var title = "Volatile Magic";
+        var title = "Fissile Magic";
         var description = "Arcane spell impacts have {trigger_chance}, to cause a small explosion, dealing {damage} damage.";
 
         var spell = SpellBuilder.createSpellPassive();
