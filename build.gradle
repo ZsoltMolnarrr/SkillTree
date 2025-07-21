@@ -137,9 +137,8 @@ if(project.hasProperty('release_type')) {
 
             relations {
                 requiredDependency 'fabric-api'
-                requiredDependency 'ranged-weapon-api'
-                requiredDependency 'shield-api'
                 requiredDependency 'spell-engine'
+                requiredDependency 'puffish-skills'
             }
 
             mainArtifact(remapJar)
@@ -166,9 +165,8 @@ if(project.hasProperty('release_type')) {
             // The scope can be `required`, `optional`, `incompatible`, or `embedded`
             // The type can either be `project` or `version`
             required.project "fabric-api"
-            required.project "ranged-weapon-api"
-            required.project "shield-api"
             required.project "spell-engine"
+            required.project "skills"
         }
     }
 
