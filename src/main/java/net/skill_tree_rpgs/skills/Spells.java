@@ -281,7 +281,7 @@ public class Spells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.activeSpellHit(0.5F, "arcane");
+        var trigger = SpellBuilder.Triggers.activeSpellHit(0.2F, "arcane");
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.damage(0.4F, 0.2F);
