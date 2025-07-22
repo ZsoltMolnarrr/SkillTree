@@ -18,13 +18,22 @@
       "action": {
         "type": "DAMAGE",
         "damage": {
-          "spell_power_coefficient": 0.6,
+          "spell_power_coefficient": 0.5,
           "knockback": 0.0
         }
       },
       "particles": [
         {
           "particle_id": "spell_engine:magic_arcane_burst",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 15.0,
+          "min_speed": 0.5,
+          "max_speed": 0.8,
+          "color_rgba": 4294954239
+        },
+        {
+          "particle_id": "spell_engine:magic_spell_burst",
           "origin": "CENTER",
           "shape": "SPHERE",
           "count": 15.0,
