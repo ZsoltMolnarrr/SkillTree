@@ -1,3 +1,7 @@
+# 1.0.2
+
+- Fix xp curve
+
 # 1.0.1
 
 - Reduce trigger chance of Fissile Magic to 20%

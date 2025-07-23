@@ -2,7 +2,7 @@
 	"experience_per_level": {
 		"type": "expression",
 		"data": {
-			"expression": "min(level ^ 1.432 + 10, 200)"
+			"expression": "min((level * 10) ^ 1.432 + 100, 2000)"
 		}
 	},
 	"sources": [
@@ -28,7 +28,7 @@
 						]
 					}
 				},
-				"experience": "dropped_xp + max_health / 20",
+				"experience": "dropped_xp + max_health / 40",
 				"anti_farming": {
 					"limit_per_chunk": 15,
 					"reset_after_seconds": 300
