@@ -8,8 +8,10 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.DataWriter;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.nio.file.Path;
@@ -29,7 +31,7 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
 
     public record Format(
             Translatable title,
-            Translatable description,
+            Text description,
             Icon icon,
             List<Reward> rewards
     ) {}
@@ -82,7 +84,10 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
 
     public abstract void generate(Builder builder);
 
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeHierarchyAdapter(Text.class, new Text.Serializer(DynamicRegistryManager.EMPTY))
+            .setPrettyPrinting()
+            .create();
 
     @Override
     public CompletableFuture<?> run(DataWriter writer) {

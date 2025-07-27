@@ -1,5 +1,7 @@
 package net.skill_tree_rpgs.data_gen;
 
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.skills.SkillDefinitions;
@@ -20,6 +22,7 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.puffish.skillsmod.reward.builtin.AttributeReward;
+import net.skill_tree_rpgs.utils.ResolvableTextContent;
 import net.spell_engine.api.datagen.SpellGenerator;
 import net.spell_engine.client.gui.SpellTooltip;
 
@@ -119,9 +122,11 @@ public class ClassSkillsModDataGenerator implements DataGeneratorEntrypoint {
                 if (skill.title() != null && !skill.title().isEmpty()) {
                     title = new Translatable(skill.titleTranslationKey());
                 }
-                Translatable description = null;
+                Text description;
                 if (skill.description() != null && !skill.description().isEmpty()) {
-                    description = new Translatable(skill.descriptionTranslationKey());
+                    description = Text.translatable(skill.descriptionTranslationKey());
+                } else {
+                    description = MutableText.of(new ResolvableTextContent(skill.id()));
                 }
 
                 Icon icon = null;
