@@ -6,7 +6,7 @@
   "mixins": [
   ],
   "client": [
-    "SkillsScreenMixin"
+    "TextCodecsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

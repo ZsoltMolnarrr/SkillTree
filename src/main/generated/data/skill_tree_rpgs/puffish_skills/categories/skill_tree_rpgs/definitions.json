@@ -1,5 +1,8 @@
 {
   "arcane_boost": {
+    "description": {
+      "skill_definition_id": "arcane_boost"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -21,6 +24,9 @@
     }
   },
   "arcane_root": {
+    "description": {
+      "skill_definition_id": "arcane_root"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -42,6 +48,9 @@
     }
   },
   "arcane_spec_a_modifier_1": {
+    "description": {
+      "skill_definition_id": "arcane_spec_a_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -72,6 +81,9 @@
     }
   },
   "arcane_spec_a_modifier_2": {
+    "description": {
+      "skill_definition_id": "arcane_spec_a_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -102,6 +114,9 @@
     }
   },
   "arcane_spec_a_modifier_3": {
+    "description": {
+      "skill_definition_id": "arcane_spec_a_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -132,6 +147,9 @@
     }
   },
   "arcane_spec_a_modifier_4": {
+    "description": {
+      "skill_definition_id": "arcane_spec_a_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -162,6 +180,9 @@
     }
   },
   "arcane_spec_a_passive_1": {
+    "description": {
+      "skill_definition_id": "arcane_spec_a_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -258,6 +279,9 @@
     }
   },
   "arcane_spec_b_modifier_1": {
+    "description": {
+      "skill_definition_id": "arcane_spec_b_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -288,6 +312,9 @@
     }
   },
   "arcane_spec_b_modifier_2": {
+    "description": {
+      "skill_definition_id": "arcane_spec_b_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -318,6 +345,9 @@
     }
   },
   "arcane_spec_b_modifier_3": {
+    "description": {
+      "skill_definition_id": "arcane_spec_b_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -348,6 +378,9 @@
     }
   },
   "arcane_spec_b_modifier_4": {
+    "description": {
+      "skill_definition_id": "arcane_spec_b_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -378,6 +411,9 @@
     }
   },
   "arcane_spec_b_passive_1": {
+    "description": {
+      "skill_definition_id": "arcane_spec_b_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -474,6 +510,9 @@
     }
   },
   "archer_boost": {
+    "description": {
+      "skill_definition_id": "archer_boost"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -495,6 +534,9 @@
     }
   },
   "archer_root": {
+    "description": {
+      "skill_definition_id": "archer_root"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -516,6 +558,9 @@
     }
   },
   "archer_spec_a_modifier_1": {
+    "description": {
+      "skill_definition_id": "archer_spec_a_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -546,6 +591,9 @@
     }
   },
   "archer_spec_a_modifier_2": {
+    "description": {
+      "skill_definition_id": "archer_spec_a_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -576,6 +624,9 @@
     }
   },
   "archer_spec_a_modifier_3": {
+    "description": {
+      "skill_definition_id": "archer_spec_a_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -606,6 +657,9 @@
     }
   },
   "archer_spec_a_modifier_4": {
+    "description": {
+      "skill_definition_id": "archer_spec_a_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -636,6 +690,9 @@
     }
   },
   "archer_spec_a_passive_1": {
+    "description": {
+      "skill_definition_id": "archer_spec_a_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -732,6 +789,9 @@
     }
   },
   "archer_spec_b_modifier_1": {
+    "description": {
+      "skill_definition_id": "archer_spec_b_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -762,6 +822,9 @@
     }
   },
   "archer_spec_b_modifier_2": {
+    "description": {
+      "skill_definition_id": "archer_spec_b_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -792,6 +855,9 @@
     }
   },
   "archer_spec_b_modifier_3": {
+    "description": {
+      "skill_definition_id": "archer_spec_b_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -822,6 +888,9 @@
     }
   },
   "archer_spec_b_modifier_4": {
+    "description": {
+      "skill_definition_id": "archer_spec_b_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -852,6 +921,9 @@
     }
   },
   "archer_spec_b_passive_1": {
+    "description": {
+      "skill_definition_id": "archer_spec_b_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -948,6 +1020,9 @@
     }
   },
   "fire_boost": {
+    "description": {
+      "skill_definition_id": "fire_boost"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -969,6 +1044,9 @@
     }
   },
   "fire_root": {
+    "description": {
+      "skill_definition_id": "fire_root"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -990,6 +1068,9 @@
     }
   },
   "fire_spec_a_modifier_1": {
+    "description": {
+      "skill_definition_id": "fire_spec_a_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1020,6 +1101,9 @@
     }
   },
   "fire_spec_a_modifier_2": {
+    "description": {
+      "skill_definition_id": "fire_spec_a_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1050,6 +1134,9 @@
     }
   },
   "fire_spec_a_modifier_3": {
+    "description": {
+      "skill_definition_id": "fire_spec_a_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1080,6 +1167,9 @@
     }
   },
   "fire_spec_a_modifier_4": {
+    "description": {
+      "skill_definition_id": "fire_spec_a_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1110,6 +1200,9 @@
     }
   },
   "fire_spec_a_passive_1": {
+    "description": {
+      "skill_definition_id": "fire_spec_a_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1206,6 +1299,9 @@
     }
   },
   "fire_spec_b_modifier_1": {
+    "description": {
+      "skill_definition_id": "fire_spec_b_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1236,6 +1332,9 @@
     }
   },
   "fire_spec_b_modifier_2": {
+    "description": {
+      "skill_definition_id": "fire_spec_b_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1266,6 +1365,9 @@
     }
   },
   "fire_spec_b_modifier_3": {
+    "description": {
+      "skill_definition_id": "fire_spec_b_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1296,6 +1398,9 @@
     }
   },
   "fire_spec_b_modifier_4": {
+    "description": {
+      "skill_definition_id": "fire_spec_b_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1326,6 +1431,9 @@
     }
   },
   "fire_spec_b_passive_1": {
+    "description": {
+      "skill_definition_id": "fire_spec_b_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1455,6 +1563,9 @@
     }
   },
   "frost_boost": {
+    "description": {
+      "skill_definition_id": "frost_boost"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -1476,6 +1587,9 @@
     }
   },
   "frost_root": {
+    "description": {
+      "skill_definition_id": "frost_root"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -1497,6 +1611,9 @@
     }
   },
   "frost_spec_a_modifier_1": {
+    "description": {
+      "skill_definition_id": "frost_spec_a_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1527,6 +1644,9 @@
     }
   },
   "frost_spec_a_modifier_2": {
+    "description": {
+      "skill_definition_id": "frost_spec_a_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1557,6 +1677,9 @@
     }
   },
   "frost_spec_a_modifier_3": {
+    "description": {
+      "skill_definition_id": "frost_spec_a_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1587,6 +1710,9 @@
     }
   },
   "frost_spec_a_modifier_4": {
+    "description": {
+      "skill_definition_id": "frost_spec_a_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1617,6 +1743,9 @@
     }
   },
   "frost_spec_a_passive_1": {
+    "description": {
+      "skill_definition_id": "frost_spec_a_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1713,6 +1842,9 @@
     }
   },
   "frost_spec_b_modifier_1": {
+    "description": {
+      "skill_definition_id": "frost_spec_b_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1743,6 +1875,9 @@
     }
   },
   "frost_spec_b_modifier_2": {
+    "description": {
+      "skill_definition_id": "frost_spec_b_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1773,6 +1908,9 @@
     }
   },
   "frost_spec_b_modifier_3": {
+    "description": {
+      "skill_definition_id": "frost_spec_b_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1803,6 +1941,9 @@
     }
   },
   "frost_spec_b_modifier_4": {
+    "description": {
+      "skill_definition_id": "frost_spec_b_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1833,6 +1974,9 @@
     }
   },
   "frost_spec_b_passive_1": {
+    "description": {
+      "skill_definition_id": "frost_spec_b_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -1929,6 +2073,9 @@
     }
   },
   "paladin_boost": {
+    "description": {
+      "skill_definition_id": "paladin_boost"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -1950,6 +2097,9 @@
     }
   },
   "paladin_root": {
+    "description": {
+      "skill_definition_id": "paladin_root"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -1971,6 +2121,9 @@
     }
   },
   "paladin_spec_a_modifier_1": {
+    "description": {
+      "skill_definition_id": "paladin_spec_a_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2001,6 +2154,9 @@
     }
   },
   "paladin_spec_a_modifier_2": {
+    "description": {
+      "skill_definition_id": "paladin_spec_a_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2031,6 +2187,9 @@
     }
   },
   "paladin_spec_a_modifier_3": {
+    "description": {
+      "skill_definition_id": "paladin_spec_a_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2061,6 +2220,9 @@
     }
   },
   "paladin_spec_a_modifier_4": {
+    "description": {
+      "skill_definition_id": "paladin_spec_a_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2091,6 +2253,9 @@
     }
   },
   "paladin_spec_a_passive_1": {
+    "description": {
+      "skill_definition_id": "paladin_spec_a_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2187,6 +2352,9 @@
     }
   },
   "paladin_spec_b_modifier_1": {
+    "description": {
+      "skill_definition_id": "paladin_spec_b_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2217,6 +2385,9 @@
     }
   },
   "paladin_spec_b_modifier_2": {
+    "description": {
+      "skill_definition_id": "paladin_spec_b_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2247,6 +2418,9 @@
     }
   },
   "paladin_spec_b_modifier_3": {
+    "description": {
+      "skill_definition_id": "paladin_spec_b_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2277,6 +2451,9 @@
     }
   },
   "paladin_spec_b_modifier_4": {
+    "description": {
+      "skill_definition_id": "paladin_spec_b_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2307,6 +2484,9 @@
     }
   },
   "paladin_spec_b_passive_1": {
+    "description": {
+      "skill_definition_id": "paladin_spec_b_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2403,6 +2583,9 @@
     }
   },
   "priest_boost": {
+    "description": {
+      "skill_definition_id": "priest_boost"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -2424,6 +2607,9 @@
     }
   },
   "priest_root": {
+    "description": {
+      "skill_definition_id": "priest_root"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -2445,6 +2631,9 @@
     }
   },
   "priest_spec_a_modifier_1": {
+    "description": {
+      "skill_definition_id": "priest_spec_a_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2475,6 +2664,9 @@
     }
   },
   "priest_spec_a_modifier_2": {
+    "description": {
+      "skill_definition_id": "priest_spec_a_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2505,6 +2697,9 @@
     }
   },
   "priest_spec_a_modifier_3": {
+    "description": {
+      "skill_definition_id": "priest_spec_a_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2535,6 +2730,9 @@
     }
   },
   "priest_spec_a_modifier_4": {
+    "description": {
+      "skill_definition_id": "priest_spec_a_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2565,6 +2763,9 @@
     }
   },
   "priest_spec_a_passive_1": {
+    "description": {
+      "skill_definition_id": "priest_spec_a_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2661,6 +2862,9 @@
     }
   },
   "priest_spec_b_modifier_1": {
+    "description": {
+      "skill_definition_id": "priest_spec_b_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2691,6 +2895,9 @@
     }
   },
   "priest_spec_b_modifier_2": {
+    "description": {
+      "skill_definition_id": "priest_spec_b_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2721,6 +2928,9 @@
     }
   },
   "priest_spec_b_modifier_3": {
+    "description": {
+      "skill_definition_id": "priest_spec_b_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2751,6 +2961,9 @@
     }
   },
   "priest_spec_b_modifier_4": {
+    "description": {
+      "skill_definition_id": "priest_spec_b_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2781,6 +2994,9 @@
     }
   },
   "priest_spec_b_passive_1": {
+    "description": {
+      "skill_definition_id": "priest_spec_b_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2877,6 +3093,9 @@
     }
   },
   "rogue_boost": {
+    "description": {
+      "skill_definition_id": "rogue_boost"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -2898,6 +3117,9 @@
     }
   },
   "rogue_root": {
+    "description": {
+      "skill_definition_id": "rogue_root"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -2919,6 +3141,9 @@
     }
   },
   "rogue_spec_a_modifier_1": {
+    "description": {
+      "skill_definition_id": "rogue_spec_a_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2949,6 +3174,9 @@
     }
   },
   "rogue_spec_a_modifier_2": {
+    "description": {
+      "skill_definition_id": "rogue_spec_a_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -2979,6 +3207,9 @@
     }
   },
   "rogue_spec_a_modifier_3": {
+    "description": {
+      "skill_definition_id": "rogue_spec_a_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3009,6 +3240,9 @@
     }
   },
   "rogue_spec_a_modifier_4": {
+    "description": {
+      "skill_definition_id": "rogue_spec_a_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3039,6 +3273,9 @@
     }
   },
   "rogue_spec_a_passive_1": {
+    "description": {
+      "skill_definition_id": "rogue_spec_a_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3135,6 +3372,9 @@
     }
   },
   "rogue_spec_b_modifier_1": {
+    "description": {
+      "skill_definition_id": "rogue_spec_b_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3165,6 +3405,9 @@
     }
   },
   "rogue_spec_b_modifier_2": {
+    "description": {
+      "skill_definition_id": "rogue_spec_b_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3195,6 +3438,9 @@
     }
   },
   "rogue_spec_b_modifier_3": {
+    "description": {
+      "skill_definition_id": "rogue_spec_b_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3225,6 +3471,9 @@
     }
   },
   "rogue_spec_b_modifier_4": {
+    "description": {
+      "skill_definition_id": "rogue_spec_b_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3255,6 +3504,9 @@
     }
   },
   "rogue_spec_b_passive_1": {
+    "description": {
+      "skill_definition_id": "rogue_spec_b_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3351,6 +3603,9 @@
     }
   },
   "warrior_boost": {
+    "description": {
+      "skill_definition_id": "warrior_boost"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -3372,6 +3627,9 @@
     }
   },
   "warrior_root": {
+    "description": {
+      "skill_definition_id": "warrior_root"
+    },
     "icon": {
       "type": "item",
       "data": {
@@ -3393,6 +3651,9 @@
     }
   },
   "warrior_spec_a_modifier_1": {
+    "description": {
+      "skill_definition_id": "warrior_spec_a_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3423,6 +3684,9 @@
     }
   },
   "warrior_spec_a_modifier_2": {
+    "description": {
+      "skill_definition_id": "warrior_spec_a_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3453,6 +3717,9 @@
     }
   },
   "warrior_spec_a_modifier_3": {
+    "description": {
+      "skill_definition_id": "warrior_spec_a_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3483,6 +3750,9 @@
     }
   },
   "warrior_spec_a_modifier_4": {
+    "description": {
+      "skill_definition_id": "warrior_spec_a_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3513,6 +3783,9 @@
     }
   },
   "warrior_spec_a_passive_1": {
+    "description": {
+      "skill_definition_id": "warrior_spec_a_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3609,6 +3882,9 @@
     }
   },
   "warrior_spec_b_modifier_1": {
+    "description": {
+      "skill_definition_id": "warrior_spec_b_modifier_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3639,6 +3915,9 @@
     }
   },
   "warrior_spec_b_modifier_2": {
+    "description": {
+      "skill_definition_id": "warrior_spec_b_modifier_2"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3669,6 +3948,9 @@
     }
   },
   "warrior_spec_b_modifier_3": {
+    "description": {
+      "skill_definition_id": "warrior_spec_b_modifier_3"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3699,6 +3981,9 @@
     }
   },
   "warrior_spec_b_modifier_4": {
+    "description": {
+      "skill_definition_id": "warrior_spec_b_modifier_4"
+    },
     "icon": {
       "type": "texture",
       "data": {
@@ -3729,6 +4014,9 @@
     }
   },
   "warrior_spec_b_passive_1": {
+    "description": {
+      "skill_definition_id": "warrior_spec_b_passive_1"
+    },
     "icon": {
       "type": "texture",
       "data": {
