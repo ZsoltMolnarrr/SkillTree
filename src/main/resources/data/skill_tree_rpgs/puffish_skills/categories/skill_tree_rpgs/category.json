@@ -13,7 +13,7 @@
 		"texture": "skill_tree_rpgs:textures/gui/background_4.png",
 		"width": 768,
 		"height": 300,
-		"position": "fill_height"
+		"position": "fill"
 	},
 	"colors": {
 		"connections": {
