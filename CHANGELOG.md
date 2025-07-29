@@ -1,3 +1,7 @@
+# 1.0.3
+
+- Fix technical implementation of skill node tooltip texts, Huge thanks to Pufferfish #1
+
 # 1.0.2
 
 - Fix xp curve
