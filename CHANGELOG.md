@@ -2,6 +2,7 @@
 
 - Fix technical implementation of skill node tooltip texts, Huge thanks to Pufferfish #1
 - Fix background image fitment, Huge thanks to Pufferfish
+- Update xp curve
 
 # 1.0.2
 
