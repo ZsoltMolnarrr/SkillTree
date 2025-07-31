@@ -95,6 +95,18 @@
 		"y": -221.70250336881628,
 		"root": false
 	},
+	"x3ouzc8temz30cin": {
+		"definition": "fire_spec_a_passive_2",
+		"x": -64,
+		"y": -332.55375505322445,
+		"root": false
+	},
+	"oo7bvawwd1d5db3z": {
+		"definition": "fire_spec_a_passive_3",
+		"x": -64,
+		"y": -443.40500673763256,
+		"root": false
+	},
 	"cxgrzujb8ok7goqh": {
 		"definition": "fire_spec_b_modifier_1",
 		"x": 32,
@@ -123,6 +135,18 @@
 		"definition": "fire_spec_b_passive_1",
 		"x": 64,
 		"y": -221.70250336881628,
+		"root": false
+	},
+	"wk3c3v606bix2jlw": {
+		"definition": "fire_spec_b_passive_2",
+		"x": 64,
+		"y": -332.55375505322445,
+		"root": false
+	},
+	"ael7lany9swsjhgy": {
+		"definition": "fire_spec_b_passive_3",
+		"x": 64,
+		"y": -443.40500673763256,
 		"root": false
 	},
 	"kx17pr14rtc5gpne": {
@@ -197,10 +221,34 @@
 		"y": -221.70250336881628,
 		"root": false
 	},
+	"pzwf17ukf1m73ag5": {
+		"definition": "arcane_spec_b_passive_2",
+		"x": -224,
+		"y": -277.1281292110203,
+		"root": false
+	},
+	"hfuuo18bl6n65dfh": {
+		"definition": "arcane_spec_b_passive_3",
+		"x": -320,
+		"y": -332.5537550532244,
+		"root": false
+	},
 	"4mz3dsmef5hjefi8": {
 		"definition": "arcane_spec_a_passive_1",
 		"x": -192,
 		"y": -110.85125168440814,
+		"root": false
+	},
+	"ukbeqrzvwus1htcz": {
+		"definition": "arcane_spec_a_passive_2",
+		"x": -288,
+		"y": -166.27687752661222,
+		"root": false
+	},
+	"fcoj22kades1hhy7": {
+		"definition": "arcane_spec_a_passive_3",
+		"x": -384,
+		"y": -221.70250336881628,
 		"root": false
 	},
 	"dfz8ulaolipew40g": {
@@ -251,6 +299,18 @@
 		"y": -36.950417228136075,
 		"root": false
 	},
+	"yf69accpikzlejod": {
+		"definition": "archer_spec_a_passive_2",
+		"x": -320,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"8h0qifjh8f5agi1k": {
+		"definition": "archer_spec_a_passive_3",
+		"x": -448,
+		"y": -73.9008344562721,
+		"root": false
+	},
 	"fdokq01n0tk6nmwl": {
 		"definition": "archer_spec_b_modifier_2",
 		"x": -256,
@@ -267,6 +327,18 @@
 		"definition": "archer_spec_b_modifier_4",
 		"x": -512,
 		"y": 36.95041722813602,
+		"root": false
+	},
+	"xsibupou0kia7u24": {
+		"definition": "archer_spec_b_passive_2",
+		"x": -320,
+		"y": 73.9008344562721,
+		"root": false
+	},
+	"1nmfn2021oke8wu8": {
+		"definition": "archer_spec_b_passive_3",
+		"x": -448,
+		"y": 73.9008344562721,
 		"root": false
 	},
 	"wh4hfqtt872975do": {
@@ -359,6 +431,30 @@
 		"y": -110.85125168440811,
 		"root": false
 	},
+	"2sbyohss0ym2xg8l": {
+		"definition": "frost_spec_a_passive_3",
+		"x": 320,
+		"y": -332.55375505322434,
+		"root": false
+	},
+	"nutmzqvgo4lajcb0": {
+		"definition": "frost_spec_a_passive_2",
+		"x": 224,
+		"y": -277.12812921102034,
+		"root": false
+	},
+	"dprqnknv3uwofo55": {
+		"definition": "frost_spec_b_passive_2",
+		"x": 288,
+		"y": -166.2768775266122,
+		"root": false
+	},
+	"wb3tz3kk85ou88l6": {
+		"definition": "frost_spec_b_passive_3",
+		"x": 384,
+		"y": -221.7025033688163,
+		"root": false
+	},
 	"x9it8aavrrwsojhg": {
 		"definition": "paladin_boost",
 		"x": 160,
@@ -407,6 +503,18 @@
 		"y": 110.85125168440814,
 		"root": false
 	},
+	"o1hjwedn7ygrt37e": {
+		"definition": "paladin_spec_a_passive_2",
+		"x": 288,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"l2fd82xj20g6thh9": {
+		"definition": "paladin_spec_a_passive_3",
+		"x": 384,
+		"y": 221.7025033688163,
+		"root": false
+	},
 	"zahe8l9q3kpie3do": {
 		"definition": "paladin_spec_b_modifier_1",
 		"x": 96,
@@ -435,6 +543,18 @@
 		"definition": "paladin_spec_b_passive_1",
 		"x": 128,
 		"y": 221.7025033688163,
+		"root": false
+	},
+	"19retxukpiocfea2": {
+		"definition": "paladin_spec_b_passive_2",
+		"x": 224,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"zc9xk0tkjuk0kd39": {
+		"definition": "paladin_spec_b_passive_3",
+		"x": 320,
+		"y": 332.55375505322445,
 		"root": false
 	},
 	"83jp9jrlaz4vph8e": {
@@ -485,6 +605,18 @@
 		"y": -73.9008344562721,
 		"root": false
 	},
+	"x2iblrhrxswo5u84": {
+		"definition": "priest_spec_a_passive_2",
+		"x": 320,
+		"y": -73.90083445627207,
+		"root": false
+	},
+	"jj4edxd8mc717snx": {
+		"definition": "priest_spec_a_passive_3",
+		"x": 448,
+		"y": -73.90083445627215,
+		"root": false
+	},
 	"z0liydxd1pexnk2l": {
 		"definition": "priest_spec_b_modifier_1",
 		"x": 128,
@@ -513,6 +645,18 @@
 		"definition": "priest_spec_b_passive_1",
 		"x": 192,
 		"y": 73.9008344562721,
+		"root": false
+	},
+	"7zvk576cejewz88u": {
+		"definition": "priest_spec_b_passive_2",
+		"x": 320,
+		"y": 73.9008344562721,
+		"root": false
+	},
+	"0gj1bcpk55756ahe": {
+		"definition": "priest_spec_b_passive_3",
+		"x": 448,
+		"y": 73.90083445627207,
 		"root": false
 	},
 	"jo7zae6quimtvale": {
@@ -563,6 +707,18 @@
 		"y": 221.70250336881628,
 		"root": false
 	},
+	"70rphbz0695lk1zt": {
+		"definition": "warrior_spec_a_passive_2",
+		"x": 64,
+		"y": 332.55375505322445,
+		"root": false
+	},
+	"yrwsf561hppw20ev": {
+		"definition": "warrior_spec_a_passive_3",
+		"x": 64,
+		"y": 443.40500673763256,
+		"root": false
+	},
 	"2hela5re0r2k2f2v": {
 		"definition": "warrior_spec_b_modifier_1",
 		"x": -32,
@@ -591,6 +747,18 @@
 		"definition": "warrior_spec_b_passive_1",
 		"x": -64,
 		"y": 221.70250336881625,
+		"root": false
+	},
+	"1int91be6gixqqnq": {
+		"definition": "warrior_spec_b_passive_2",
+		"x": -64,
+		"y": 332.55375505322445,
+		"root": false
+	},
+	"97f8tpocca2p6mwf": {
+		"definition": "warrior_spec_b_passive_3",
+		"x": -64,
+		"y": 443.40500673763256,
 		"root": false
 	},
 	"0dc6bn5w4uy2ystm": {
@@ -641,6 +809,18 @@
 		"y": 110.85125168440814,
 		"root": false
 	},
+	"l4jeass9apeapcno": {
+		"definition": "rogue_spec_a_passive_2",
+		"x": -288,
+		"y": 166.27687752661222,
+		"root": false
+	},
+	"9h24ldeo70mvvbbp": {
+		"definition": "rogue_spec_a_passive_3",
+		"x": -384,
+		"y": 221.70250336881628,
+		"root": false
+	},
 	"rxuvati77gizbs8b": {
 		"definition": "rogue_spec_b_modifier_1",
 		"x": -96,
@@ -669,6 +849,18 @@
 		"definition": "rogue_spec_b_passive_1",
 		"x": -128,
 		"y": 221.70250336881628,
+		"root": false
+	},
+	"miwybq6zyt6e5yab": {
+		"definition": "rogue_spec_b_passive_2",
+		"x": -224,
+		"y": 277.12812921102034,
+		"root": false
+	},
+	"dyg5jr9us7c9lely": {
+		"definition": "rogue_spec_b_passive_3",
+		"x": -320,
+		"y": 332.55375505322434,
 		"root": false
 	}
 }
