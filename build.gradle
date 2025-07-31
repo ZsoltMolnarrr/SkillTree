@@ -57,8 +57,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
 
-//    modApi(files("run/mods/dev/spell_engine-${project.spell_engine_version}.jar"))
-    modImplementation("maven.modrinth:spell-engine:${project.spell_engine_version}")
+    modApi(files("run/mods/dev/spell_engine-${project.spell_engine_version}.jar"))
+//    modImplementation("maven.modrinth:spell-engine:${project.spell_engine_version}")
 
     modImplementation("dev.emi:trinkets:${project.trinkets_version}")
     modImplementation("dev.kosmx.player-anim:player-animation-lib-fabric:${project.player_anim_version}")

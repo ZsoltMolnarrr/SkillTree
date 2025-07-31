@@ -1,0 +1,88 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {},
+  "deliver": {
+    "type": "CLOUD",
+    "clouds": [
+      {
+        "volume": {
+          "radius": 1.5,
+          "area": {
+            "vertical_range_multiplier": 0.3
+          }
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 4,
+        "impact_cap": 1,
+        "impact_particles": [
+          {
+            "particle_id": "spell_engine:magic_spell_decelerate",
+            "origin": "FEET",
+            "shape": "SPHERE",
+            "count": 20.0,
+            "min_speed": 0.4,
+            "max_speed": 0.4,
+            "color_rgba": 4284940287
+          }
+        ],
+        "client_data": {
+          "light_level": 8,
+          "particles": [
+            {
+              "particle_id": "spell_engine:magic_spell_decelerate",
+              "origin": "GROUND",
+              "shape": "CIRCLE",
+              "count": 3.0,
+              "min_speed": 0.05,
+              "max_speed": 0.15,
+              "extent": 1.5,
+              "color_rgba": 4284940287
+            },
+            {
+              "particle_id": "spell_engine:magic_spell_decelerate",
+              "origin": "GROUND",
+              "shape": "PILLAR",
+              "count": 3.0,
+              "min_speed": 0.05,
+              "max_speed": 0.1,
+              "color_rgba": 4284940287
+            }
+          ]
+        },
+        "spawn": {
+          "sound": {
+            "id": "spell_engine:generic_arcane_release"
+          }
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.5,
+          "knockback": 0.5
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_arcane_burst",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 15.0,
+          "min_speed": 0.45,
+          "max_speed": 0.75,
+          "color_rgba": 4284940287
+        }
+      ],
+      "sound": {
+        "id": "wizards:arcane_blast_impact"
+      }
+    }
+  ]
+}

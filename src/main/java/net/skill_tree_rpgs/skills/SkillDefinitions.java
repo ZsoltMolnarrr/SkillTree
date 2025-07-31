@@ -125,15 +125,9 @@ public class SkillDefinitions {
 
     public static final Entry ARCANE_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.arcane_spec_a_passive_1));
     public static final Entry ARCANE_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.arcane_spec_b_passive_1));
+    public static final Entry ARCANE_SPEC_A_PASSIVE_2 = add(passiveSpell(Spells.arcane_spec_a_passive_2));
 
-    public static final Entry ARCANE_SPEC_A_PASSIVE_2 = add(
-            Entry.spell("arcane_spec_a_passive_2",
-                    "Arcane Spec A Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "arcane_spec_a_passive_2")),
-                    dummyContainer()
-            )
-    );
+
     public static final Entry ARCANE_SPEC_B_PASSIVE_2 = add(
             Entry.spell("arcane_spec_b_passive_2",
                     "Arcane Spec B Passive 2",

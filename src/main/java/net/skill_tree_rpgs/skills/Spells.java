@@ -357,6 +357,72 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
     }
 
+    public static final Entry arcane_spec_a_passive_2 = add(arcane_spec_a_passive_2());
+    private static Entry arcane_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "arcane_spec_a_passive_2");
+        var title = "Arcane Trap";
+        var description = "Upon rolling, you leave behind an Arcane Trap, which will explode after {trigger_delay} sec, dealing {damage} damage to nearby enemies.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.ARCANE;
+        spell.range = 0;
+
+
+        var radius = 1.5F;
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+
+        var cloudParticles = SpellBuilder.Particles.zoneMagic(
+                Color.ARCANE.toRGBA(),
+                SpellEngineParticles.MagicParticles.get(
+                        SpellEngineParticles.MagicParticles.Shape.SPELL,
+                        SpellEngineParticles.MagicParticles.Motion.DECELERATE
+                ).id(),
+                List.of(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPELL,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE
+                        ).id()
+                ),
+                1,
+                radius
+        );
+        var cloud = SpellBuilder.Deliver.cloud(
+                5,
+                1.5F,
+                SpellEngineSounds.GENERIC_ARCANE_RELEASE.id(), // FIXME
+                8,
+                cloudParticles
+        );
+        cloud.impact_particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPELL,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE
+                        ).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
+                        20, 0.4F, 0.4F)
+                        .color(Color.from(SpellSchools.ARCANE.color).toRGBA())
+        };
+        cloud.impact_cap = 1; // Trap
+        spell.deliver.clouds = List.of(cloud);
+
+        var damage = SpellBuilder.Impacts.damage(0.5F, 0.5F);
+        damage.particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
+                                SpellEngineParticles.MagicParticles.Motion.BURST
+                        ).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.45F, 0.75F)
+                        .color(Color.from(SpellSchools.ARCANE.color).toRGBA()),
+        };
+        damage.sound = new Sound("wizards:arcane_blast_impact");
+        spell.impacts = List.of(damage);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
+    }
+
     //
     // FIRE
     //
