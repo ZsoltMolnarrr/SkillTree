@@ -273,7 +273,7 @@ public class Spells {
     private static Entry arcane_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "arcane_spec_a_passive_1");
         var title = "Fissile Magic";
-        var description = "Arcane spell impacts have {trigger_chance}, to cause a small explosion, dealing {damage} damage.";
+        var description = "Arcane spell impacts have {trigger_chance} chance, to cause a small explosion, dealing {damage} damage.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.ARCANE;
@@ -317,7 +317,7 @@ public class Spells {
     private static Entry arcane_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "arcane_spec_b_passive_1");
         var title = "Evocation Radiance";
-        var description = "Arcane spell impacts have {trigger_chance}, to heal the you for {heal}.";
+        var description = "Arcane spell impacts have {trigger_chance} chance, to heal the you for {heal}.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.ARCANE;
@@ -361,12 +361,13 @@ public class Spells {
     private static Entry arcane_spec_a_passive_2() {
         var id = Identifier.of(NAMESPACE, "arcane_spec_a_passive_2");
         var title = "Arcane Trap";
-        var description = "Upon rolling, you leave behind an Arcane Trap, which will explode after {trigger_delay} sec, dealing {damage} damage to nearby enemies.";
+        var description = "Upon rolling, you leave behind an Arcane Trap, lasting {cloud_duration} sec, dealing {damage} damage to nearby enemies.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.ARCANE;
         spell.range = 0;
 
+        spell.passive.triggers = List.of(SpellBuilder.Triggers.roll());
 
         var radius = 1.5F;
         spell.deliver.type = Spell.Delivery.Type.CLOUD;
@@ -379,7 +380,7 @@ public class Spells {
                 ).id(),
                 List.of(
                         SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPELL,
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
                                 SpellEngineParticles.MagicParticles.Motion.DECELERATE
                         ).id()
                 ),
@@ -478,7 +479,7 @@ public class Spells {
     private static Entry fire_spec_a_modifier_2() {
         var id = Identifier.of(NAMESPACE, "fire_spec_a_modifier_2");
         var title = "Explosive Breath";
-        var description = "Fire Breath hits have {trigger_chance} to explode a target, dealing {damage} damage to nearby enemies.";
+        var description = "Fire Breath hits have {trigger_chance} chance to explode a target, dealing {damage} damage to nearby enemies.";
         var spell = createModifierAlikePassiveSpell();
         spell.school = SpellSchools.FIRE;
         spell.range = 0;
@@ -604,7 +605,7 @@ public class Spells {
         var id = Identifier.of(NAMESPACE, "fire_spec_a_passive_1");
         var effect = SkillEffects.FIRE_VULNERABILITY;
         var title = "Scorching Flames";
-        var description = "Fire spell impacts have {trigger_chance}, to apply Fire Vulnerability. Increasing damage taken from fire spells by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var description = "Fire spell impacts have {trigger_chance} chance to apply Fire Vulnerability. Increasing damage taken from fire spells by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             return args.description().replace("{bonus}", SpellTooltip.percent(SkillEffects.FIRE_VULNERABILITY_MULTIPLIER));
         };
@@ -638,7 +639,7 @@ public class Spells {
     private static Entry fire_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "fire_spec_b_passive_1");
         var title = "Hot Impact";
-        var description = "Fire spell impacts have {trigger_chance}, to stun the target for {effect_duration} sec.";
+        var description = "Fire spell impacts have {trigger_chance} chance to stun the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.FIRE;
         spell.range = 0;
@@ -829,7 +830,7 @@ public class Spells {
         var id = Identifier.of(NAMESPACE, "frost_spec_a_passive_1");
         var effect = SkillEffects.FROST_VULNERABILITY;
         var title = "Winter's Chill";
-        var description = "Frost spell impacts have {trigger_chance}, to apply Winter's Chill effect."
+        var description = "Frost spell impacts have {trigger_chance} chance to apply Winter's Chill effect."
                 + " Increasing damage taken from frost spell critical strikes by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             return args.description().replace("{bonus}", SpellTooltip.percent(SkillEffects.FROST_VULNERABILITY_MULTIPLIER));
@@ -1168,7 +1169,7 @@ public class Spells {
         var id = Identifier.of(NAMESPACE, "priest_spec_b_passive_1");
         var effect = SkillEffects.INCANTER_CADENCE;
         var title = "Incanters' Cadence";
-        var description = "Spell hits have {trigger_chance}, to increase spell haste by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var description = "Spell hits have {trigger_chance} chance to increase spell haste by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
             return args.description().replace("{bonus}", bonus);
@@ -2216,7 +2217,7 @@ public class Spells {
     private static Entry archer_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_1");
         var title = "Concussive Shot";
-        var description = "Arrows have {trigger_chance}, to stun the target for {effect_duration} sec.";
+        var description = "Arrows have {trigger_chance} chance, to stun the target for {effect_duration} sec.";
         var effect = SpellEngineEffects.STUN;
 
         var spell = SpellBuilder.createSpellPassive();
