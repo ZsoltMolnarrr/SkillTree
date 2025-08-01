@@ -22,5 +22,4 @@ public class TextCodecsMixin {
 	private static StringIdentifiable[] injectTextContent(StringIdentifiable[] types) {
 		return ArrayUtils.add(types, ResolvableTextContent.TYPE);
 	}
-
 }
