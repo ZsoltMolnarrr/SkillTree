@@ -9,8 +9,7 @@
         "type": "SPELL_IMPACT_SPECIFIC",
         "chance": 0.2,
         "spell": {
-          "school": "fire",
-          "type": "ACTIVE"
+          "school": "fire"
         },
         "impact": {
           "impact_type": "DAMAGE"

@@ -1,0 +1,64 @@
+{
+  "school": "spell_power:fire",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_CAST",
+        "chance": 0.5,
+        "spell": {
+          "school": "spell_power:fire",
+          "type": "ACTIVE"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "STASH_EFFECT",
+    "stash_effect": {
+      "id": "skill_tree_rpgs:fire_shield",
+      "amplifier_power_multiplier": 0.15,
+      "duration": 8.0,
+      "triggers": [
+        {
+          "type": "DAMAGE_TAKEN"
+        }
+      ],
+      "consume": 0
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.3,
+          "knockback": 0.2
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:flame_medium_b",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 15.0,
+          "min_speed": 0.15,
+          "max_speed": 0.2
+        }
+      ],
+      "sound": {
+        "id": "wizards:fire_scorch_impact"
+      }
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 16.0
+    }
+  }
+}

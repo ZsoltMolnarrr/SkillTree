@@ -519,11 +519,11 @@ public class Spells {
     public static final Entry arcane_spec_b_passive_3 = add(arcane_spec_b_passive_3());
     private static Entry arcane_spec_b_passive_3() {
         var id = Identifier.of(NAMESPACE, "arcane_spec_b_passive_3");
-        var title = "Arcane Barrier";
-        var description = "Arcane spells have {trigger_chance} chance, to grant you an Arcane Barrier, absorbing damage, lasting {effect_duration} sec.";
+        var title = "Arcane Shield";
+        var description = "Arcane spells have {trigger_chance} chance, to grant you Arcane Shield, absorbing high amount of damage, lasting {effect_duration} sec.";
         var duration = 8;
 
-        var effect = SkillEffects.ARCANE_BARRIER;
+        var effect = SkillEffects.ARCANE_SHIELD;
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.ARCANE;
@@ -536,7 +536,7 @@ public class Spells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), duration, 0);
-        impact.action.status_effect.amplifier_power_multiplier = 0.15F;
+        impact.action.status_effect.amplifier_power_multiplier = 0.3F;
         impact.action.apply_to_caster = true;
         spell.impacts = List.of(impact);
 
@@ -686,8 +686,8 @@ public class Spells {
     public static final Entry fire_spec_a_modifier_4 = add(fire_spec_a_modifier_4());
     private static Entry fire_spec_a_modifier_4() {
         var id = Identifier.of(NAMESPACE, "fire_spec_a_modifier_4");
-        var title = "Great Fire Wall";
-        var description = "Wall of Flames 2 additional columns.";
+        var title = "Great Wall";
+        var description = "Wall of Flames spawns 2 additional columns.";
 
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FIRE;
@@ -771,7 +771,7 @@ public class Spells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.activeSpellHit(0.2F, "fire");
+        var trigger = SpellBuilder.Triggers.spellHit(0.2F, "fire");
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.stun(2F);
@@ -890,6 +890,107 @@ public class Spells {
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FIRE));
     }
+
+    public static final Entry fire_spec_a_passive_3 = add(fire_spec_a_passive_3());
+    private static Entry fire_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_a_passive_3");
+        var title = "Eruption";
+        var description = "Taking damage has {trigger_chance} chance to cause a strong explosion, dealing {damage} damage to nearby enemies.";
+        var radius = 5F;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FIRE;
+        spell.range = radius;
+
+        var trigger = SpellBuilder.Triggers.damageTaken();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.target.type = Spell.Target.Type.AREA;
+        spell.target.area = new Spell.Target.Area();
+        spell.target.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+
+        spell.release.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_609.id())
+                        .scale(radius)
+                        .color(FIRE_MAGIC_COLOR.toRGBA()),
+                new ParticleBatch(
+                        "lava",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.15F, 0.2F),
+                new ParticleBatch(
+                        SpellEngineParticles.flame_spark.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        15, 0.2F, 0.2F),
+                new ParticleBatch(
+                        "flame",
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        15, 0.2F, 0.2F)
+        };
+
+        var damage = SpellBuilder.Impacts.damage(0.5F, 1.2F);
+        damage.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_b.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.15F, 0.2F)
+        };
+        damage.sound = new Sound("wizards:fire_meteor_impact");
+        spell.impacts = List.of(damage);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
+    }
+
+    public static final Entry fire_spec_b_passive_3 = add(fire_spec_b_passive_3()); // Flame Shield
+    private static Entry fire_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_b_passive_3");
+        var title = "Flame Shield";
+        var description = "Fire spells have {trigger_chance_1} chance, to grant you Flame Shield, absorbing damage and dealing {damage} damage to attackers, lasts {stash_duration} sec.";
+        var duration = 8;
+
+        var effect = SkillEffects.FIRE_SHIELD;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FIRE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var spell_trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.FIRE);
+        spell_trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(spell_trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
+        spell.deliver.stash_effect = new Spell.Delivery.StashEffect();
+        spell.deliver.stash_effect.id = effect.id.toString();
+        spell.deliver.stash_effect.duration = duration;
+        spell.deliver.stash_effect.amplifier = 0;
+        spell.deliver.stash_effect.amplifier_power_multiplier = 0.15F;
+        spell.deliver.stash_effect.consume = 0;
+
+        var stash_trigger = SpellBuilder.Triggers.damageTaken();
+        spell.deliver.stash_effect.triggers = List.of(stash_trigger);
+
+        var damage = SpellBuilder.Impacts.damage(0.3F, 0.2F);
+        damage.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_b.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.15F, 0.2F)
+        };
+        damage.sound = new Sound("wizards:fire_scorch_impact");
+        spell.impacts = List.of(damage);
+
+        SpellBuilder.Cost.cooldown(spell, duration * 2);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
+    }
+
+    //
+    // FROST
+    //
 
     public static final Entry frost_spec_a_modifier_1 = add(frost_spec_a_modifier_1());
     private static Entry frost_spec_a_modifier_1() {

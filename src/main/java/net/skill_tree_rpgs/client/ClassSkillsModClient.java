@@ -12,7 +12,6 @@ import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
-import net.spell_power.api.SpellSchools;
 
 public class ClassSkillsModClient implements ClientModInitializer {
 
@@ -166,7 +165,7 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 .scale(1.4F)
                 .followEntity(true);
         CustomParticleStatusEffect.register(
-                SkillEffects.ARCANE_BARRIER.effect,
+                SkillEffects.ARCANE_SHIELD.effect,
                 new BuffParticleSpawner(
                         arcaneBarrierParticles.copy().color(Color.ARCANE.alpha(0.5F).toRGBA())
                 ).withFrequency(30).scaleWithAmplifier(false)
@@ -180,7 +179,7 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 .followEntity(true);
         var fireColor = Color.from(0xff9933);
         CustomParticleStatusEffect.register(
-                SkillEffects.FIRE_BARRIER.effect,
+                SkillEffects.FIRE_SHIELD.effect,
                 new BuffParticleSpawner(
                         fireBarrierParticles.copy().color(fireColor.alpha(0.5F).toRGBA())
                 ).withFrequency(30).scaleWithAmplifier(false)
@@ -193,7 +192,7 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 .scale(1.4F)
                 .followEntity(true);
         CustomParticleStatusEffect.register(
-                SkillEffects.FROST_BARRIER.effect,
+                SkillEffects.FROST_SHIELD.effect,
                 new BuffParticleSpawner(
                         frostBarrierParticles.copy().color(Color.FROST.alpha(0.5F).toRGBA())
                 ).withFrequency(30).scaleWithAmplifier(false)

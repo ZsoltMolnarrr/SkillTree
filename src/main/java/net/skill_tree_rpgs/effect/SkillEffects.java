@@ -401,8 +401,8 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry ARCANE_BARRIER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_barrier"),
-            "Arcane Barrier",
+    public static Effects.Entry ARCANE_SHIELD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_shield"),
+            "Arcane Shield",
             "Absorbs damage.",
             new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
@@ -416,8 +416,8 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry FROST_BARRIER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_barrier"),
-            "Cold Barrier",
+    public static Effects.Entry FROST_SHIELD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_shield"),
+            "Cold Shield",
             "Absorbs damage.",
             new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
             new EffectConfig(
@@ -431,8 +431,8 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry FIRE_BARRIER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fire_barrier"),
-            "Flame Barrier",
+    public static Effects.Entry FIRE_SHIELD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fire_shield"),
+            "Flame Shield",
             "Absorbs damage.",
             new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0xff6600),
             new EffectConfig(

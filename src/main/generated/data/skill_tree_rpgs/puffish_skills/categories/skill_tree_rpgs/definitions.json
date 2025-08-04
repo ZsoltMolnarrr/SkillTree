@@ -1267,12 +1267,12 @@
   },
   "fire_spec_a_passive_3": {
     "description": {
-      "translate": "skill.skill_tree_rpgs.fire_spec_a_passive_3.description"
+      "skill_definition_id": "fire_spec_a_passive_3"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/fire_spec_a_passive_3.png"
+        "texture": "skill_tree_rpgs:textures/spell/fire_spec_a_passive_3.png"
       }
     },
     "rewards": [
@@ -1287,7 +1287,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "skill_tree_rpgs:fire_spec_a_passive_3"
               ]
             }
           ]
@@ -1498,12 +1498,12 @@
   },
   "fire_spec_b_passive_3": {
     "description": {
-      "translate": "skill.skill_tree_rpgs.fire_spec_b_passive_3.description"
+      "skill_definition_id": "fire_spec_b_passive_3"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/fire_spec_b_passive_3.png"
+        "texture": "skill_tree_rpgs:textures/spell/fire_spec_b_passive_3.png"
       }
     },
     "rewards": [
@@ -1518,7 +1518,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "skill_tree_rpgs:fire_spec_b_passive_3"
               ]
             }
           ]

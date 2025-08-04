@@ -9,7 +9,8 @@
         "type": "SPELL_CAST",
         "chance": 0.5,
         "spell": {
-          "school": "spell_power:arcane"
+          "school": "spell_power:arcane",
+          "type": "ACTIVE"
         }
       }
     ]
@@ -23,9 +24,9 @@
         "type": "STATUS_EFFECT",
         "apply_to_caster": true,
         "status_effect": {
-          "effect_id": "skill_tree_rpgs:arcane_barrier",
+          "effect_id": "skill_tree_rpgs:arcane_shield",
           "duration": 8.0,
-          "amplifier_power_multiplier": 0.15
+          "amplifier_power_multiplier": 0.3
         }
       }
     }
