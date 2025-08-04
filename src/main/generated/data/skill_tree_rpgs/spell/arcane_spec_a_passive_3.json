@@ -1,0 +1,72 @@
+{
+  "school": "spell_power:arcane",
+  "range": 30.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "DAMAGE_TAKEN"
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "PROJECTILE",
+    "projectile": {
+      "projectile": {
+        "client_data": {
+          "light_level": 10,
+          "travel_particles": [
+            {
+              "particle_id": "spell_engine:magic_spell_ascend",
+              "origin": "CENTER",
+              "shape": "CIRCLE",
+              "rotation": "LOOK",
+              "count": 1.0,
+              "min_speed": 0.05,
+              "max_speed": 0.1,
+              "color_rgba": 4284940287
+            }
+          ],
+          "model": {
+            "model_id": "wizards:projectile/arcane_bolt",
+            "scale": 0.5
+          }
+        }
+      }
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.5,
+          "knockback": 0.5
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_arcane_burst",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 25.0,
+          "min_speed": 0.45,
+          "max_speed": 0.85,
+          "color_rgba": 4284940287
+        }
+      ],
+      "sound": {
+        "id": "wizards:arcane_missile_impact"
+      }
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 2.0
+    }
+  }
+}

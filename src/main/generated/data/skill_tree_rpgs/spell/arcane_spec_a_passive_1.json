@@ -49,7 +49,7 @@
         "color_rgba": 4284940287
       },
       {
-        "particle_id": "spell_engine:area_effect_642",
+        "particle_id": "spell_engine:aura_effect_642",
         "origin": "CENTER",
         "shape": "SPHERE",
         "count": 1.0,

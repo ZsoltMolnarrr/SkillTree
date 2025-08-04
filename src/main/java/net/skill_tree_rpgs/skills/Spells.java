@@ -4,6 +4,7 @@ import net.skill_tree_rpgs.ClassSkillsMod;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
+import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
@@ -301,7 +302,7 @@ public class Spells {
                         30, 0.5F, 0.5F)
                         .color(Color.from(SpellSchools.ARCANE.color).toRGBA()),
                 new ParticleBatch(
-                        SpellEngineParticles.area_effect_642.id().toString(),
+                        SpellEngineParticles.aura_effect_642.id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         1, 0, 0)
                         .color(ARCANE_COLOR),
@@ -361,7 +362,7 @@ public class Spells {
     private static Entry arcane_spec_a_passive_2() {
         var id = Identifier.of(NAMESPACE, "arcane_spec_a_passive_2");
         var title = "Arcane Trap";
-        var description = "Upon rolling, you leave behind an Arcane Trap, lasting {cloud_duration} sec, dealing {damage} damage to nearby enemies.";
+        var description = "Upon rolling, you leave behind an Arcane Trap, lasting {cloud_duration} sec, dealing {damage} damage to entering enemies.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.ARCANE;
@@ -405,9 +406,20 @@ public class Spells {
                         .color(Color.from(SpellSchools.ARCANE.color).toRGBA())
         };
         cloud.impact_cap = 1; // Trap
+
+        cloud.client_data.interval_particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.area_effect_715.id().toString(),
+                        ParticleBatch.Shape.LINE, ParticleBatch.Origin.GROUND,
+                        1, 0F, 0F)
+                        .scale(radius * 1.5F) // 1.5F is asset specific
+                        .color(Color.from(SpellSchools.ARCANE.color).toRGBA())
+        };
+        cloud.client_data.particle_spawn_interval = 20;
+
         spell.deliver.clouds = List.of(cloud);
 
-        var damage = SpellBuilder.Impacts.damage(0.5F, 0.5F);
+        var damage = SpellBuilder.Impacts.damage(0.75F, 0.5F);
         damage.particles = new ParticleBatch[] {
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
@@ -421,12 +433,123 @@ public class Spells {
         damage.sound = new Sound("wizards:arcane_blast_impact");
         spell.impacts = List.of(damage);
 
+        var area_impact = new Spell.AreaImpact();
+        area_impact.radius = radius;
+        spell.area_impact = area_impact;
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
+    }
+
+    public static final Entry arcane_spec_b_passive_2 = add(arcane_spec_b_passive_2());
+    private static Entry arcane_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "arcane_spec_b_passive_2");
+        var title = "Phase Shift";
+        var description = "Upon rolling, you become invulnerable for {effect_duration} sec.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.ARCANE;
+        spell.range = 0;
+
+        spell.passive.triggers = List.of(SpellBuilder.Triggers.roll());
+
+        var effect = SkillEffects.PHASE_SHIFT;
+
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 2, 0, 0);
+        // impact.sound =  FIXME
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
+    }
+
+    public static final Entry arcane_spec_a_passive_3 = add(arcane_spec_a_passive_3());
+    private static Entry arcane_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "arcane_spec_a_passive_3");
+        var title = "Spell Riposte";
+        var description = "Upon taking damage, an Arcane Bolt is launched at the attacker, dealing {damage} damage.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.ARCANE;
+        spell.range = 30;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.damageTaken();
+        spell.passive.triggers = List.of(trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.PROJECTILE;
+        spell.deliver.projectile = new Spell.Delivery.ShootProjectile();
+        var projectile = new Spell.ProjectileData();
+        projectile.homing_angle = 1F;
+        projectile.client_data = new Spell.ProjectileData.Client();
+        projectile.client_data.light_level = 10;
+        projectile.client_data.travel_particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPELL,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND
+                        ).id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
+                        ParticleBatch.Rotation.LOOK, 1, 0.05F, 0.1F, 0.0F, 0F)
+                        .color(ARCANE_COLOR)
+        };
+        projectile.client_data.model = new Spell.ProjectileModel();
+        projectile.client_data.model.model_id = "wizards:projectile/arcane_bolt";
+        projectile.client_data.model.scale = 0.5F;
+        spell.deliver.projectile.projectile = projectile;
+
+        var impact = SpellBuilder.Impacts.damage(0.5F, 0.5F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
+                                SpellEngineParticles.MagicParticles.Motion.BURST
+                        ).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.45F, 0.85F)
+                        .color(Color.from(SpellSchools.ARCANE.color).toRGBA()),
+        };
+        impact.sound = new Sound("wizards:arcane_missile_impact");
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 2F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
+    }
+
+    public static final Entry arcane_spec_b_passive_3 = add(arcane_spec_b_passive_3());
+    private static Entry arcane_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "arcane_spec_b_passive_3");
+        var title = "Arcane Barrier";
+        var description = "Arcane spells have {trigger_chance} chance, to grant you an Arcane Barrier, absorbing damage, lasting {effect_duration} sec.";
+        var duration = 8;
+
+        var effect = SkillEffects.ARCANE_BARRIER;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.ARCANE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.ARCANE);
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), duration, 0);
+        impact.action.status_effect.amplifier_power_multiplier = 0.15F;
+        impact.action.apply_to_caster = true;
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, duration * 2);
+
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
     }
 
     //
     // FIRE
     //
+
+    public static final Color FIRE_MAGIC_COLOR = Color.from(0xff6600);
 
     public static final Entry fire_spec_a_modifier_1 = add(fire_spec_a_modifier_1());
     private static Entry fire_spec_a_modifier_1() {
@@ -600,6 +723,8 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
     }
 
+    public static final int FIRE_VULNERABILITY_DURATION = 8; // seconds
+
     public static final Entry fire_spec_a_passive_1 = add(fire_spec_a_passive_1());
     private static Entry fire_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "fire_spec_a_passive_1");
@@ -619,7 +744,7 @@ public class Spells {
         var trigger = SpellBuilder.Triggers.activeSpellHit(0.5F, "fire");
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 4);
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), FIRE_VULNERABILITY_DURATION, 1, 4);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.flame_medium_a.id().toString(),
@@ -655,6 +780,115 @@ public class Spells {
         SpellBuilder.Cost.cooldown(spell, 10F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
+    }
+
+    public static final Entry fire_spec_a_passive_2 = add(fire_spec_a_passive_2()); // Fire trap
+    private static Entry fire_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_a_passive_2");
+        var title = "Flame Trap";
+        var description = "Upon rolling, you leave behind a Flame Trap, lasting {cloud_duration} sec, dealing {damage} damage and applying Fire Vulnerability to entering enemies.";
+
+        var effect = SkillEffects.FIRE_VULNERABILITY;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FIRE;
+        spell.range = 0;
+
+        spell.passive.triggers = List.of(SpellBuilder.Triggers.roll());
+
+        var radius = 1.5F;
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+
+        var cloudParticles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.flame_ground.id().toString(),
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.CENTER,
+                        2, 0.01F, 0.02F),
+                new ParticleBatch(
+                        "flame",
+                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
+                        2, 0.02F, 0.05F),
+        };
+        var cloud = SpellBuilder.Deliver.cloud(
+                5,
+                1.5F,
+                SpellEngineSounds.GENERIC_ARCANE_RELEASE.id(), // FIXME
+                8,
+                cloudParticles
+        );
+        cloud.impact_particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        "lava",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
+                        20, 0.4F, 0.4F)
+        };
+        cloud.impact_cap = 1; // Trap
+
+        cloud.client_data.interval_particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.area_effect_715.id().toString(),
+                        ParticleBatch.Shape.LINE, ParticleBatch.Origin.GROUND,
+                        1, 0F, 0F)
+                        .scale(radius * 1.5F) // 1.5F is asset specific
+                        .color(FIRE_MAGIC_COLOR.toRGBA())
+        };
+        cloud.client_data.particle_spawn_interval = 20;
+
+        spell.deliver.clouds = List.of(cloud);
+
+        var damage = SpellBuilder.Impacts.damage(0.5F, 0.5F);
+        damage.particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_b.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.15F, 0.2F)
+        };
+        damage.sound = new Sound("wizards:fire_scorch_impact");
+        var debuff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), FIRE_VULNERABILITY_DURATION, 1, 4);
+        spell.impacts = List.of(damage, debuff);
+
+        var area_impact = new Spell.AreaImpact();
+        area_impact.radius = radius;
+        spell.area_impact = area_impact;
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FIRE));
+    }
+
+    public static final Entry fire_spec_b_passive_2 = add(fire_spec_b_passive_2()); // Blazing Speed
+    private static Entry fire_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "fire_spec_b_passive_2");
+        var title = "Blazing Speed";
+        var description = "Upon rolling, you have {trigger_chance} chance to gain {bonus} movement speed for {effect_duration} sec.";
+        var effect = SkillEffects.BLAZING_SPEED;
+
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FIRE;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 2, 0);
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_speed.id(), FIRE_MAGIC_COLOR),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND
+                        ).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.3F).color(FIRE_MAGIC_COLOR.toRGBA())
+        };
+        // impact.sound = SpellEngineSounds.
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FIRE));
     }
 
     public static final Entry frost_spec_a_modifier_1 = add(frost_spec_a_modifier_1());
@@ -929,7 +1163,7 @@ public class Spells {
                         40, 0.5F, 0.5F)
                         .color(Color.HOLY.toRGBA()),
                 new ParticleBatch(
-                        SpellEngineParticles.area_effect_649.id().toString(),
+                        SpellEngineParticles.aura_effect_649.id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         1, 0, 0)
                         .color(Color.HOLY.toRGBA())

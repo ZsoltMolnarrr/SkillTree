@@ -5,7 +5,7 @@ import net.minecraft.text.Text;
 import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.skills.SkillDefinitions;
-import net.skill_tree_rpgs.skills.SkillEffects;
+import net.skill_tree_rpgs.effect.SkillEffects;
 import net.skill_tree_rpgs.skills.Spells;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

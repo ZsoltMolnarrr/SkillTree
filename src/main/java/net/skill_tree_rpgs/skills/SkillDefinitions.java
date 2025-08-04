@@ -122,36 +122,12 @@ public class SkillDefinitions {
             .withIcon(Icon.spell(Identifier.of("wizards", "arcane_blink")))
     );
     public static final Entry ARCANE_SPEC_B_MODIFIER_4 = add(modifierSpell(Spells.arcane_spec_b_modifier_4));
-
     public static final Entry ARCANE_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.arcane_spec_a_passive_1));
     public static final Entry ARCANE_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.arcane_spec_b_passive_1));
     public static final Entry ARCANE_SPEC_A_PASSIVE_2 = add(passiveSpell(Spells.arcane_spec_a_passive_2));
-
-
-    public static final Entry ARCANE_SPEC_B_PASSIVE_2 = add(
-            Entry.spell("arcane_spec_b_passive_2",
-                    "Arcane Spec B Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "arcane_spec_b_passive_2")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry ARCANE_SPEC_A_PASSIVE_3 = add(
-            Entry.spell("arcane_spec_a_passive_3",
-                    "Arcane Spec A Passive 3",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "arcane_spec_a_passive_3")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry ARCANE_SPEC_B_PASSIVE_3 = add(
-            Entry.spell("arcane_spec_b_passive_3",
-                    "Arcane Spec B Passive 3",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "arcane_spec_b_passive_3")),
-                    dummyContainer()
-            )
-    );
+    public static final Entry ARCANE_SPEC_B_PASSIVE_2 = add(passiveSpell(Spells.arcane_spec_b_passive_2));
+    public static final Entry ARCANE_SPEC_A_PASSIVE_3 = add(passiveSpell(Spells.arcane_spec_a_passive_3));
+    public static final Entry ARCANE_SPEC_B_PASSIVE_3 = add(passiveSpell(Spells.arcane_spec_b_passive_3));
 
     public static final Entry FIRE_ROOT = add(
             Entry.attribute("fire_root",
@@ -183,23 +159,9 @@ public class SkillDefinitions {
 
     public static final Entry FIRE_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.fire_spec_a_passive_1));
     public static final Entry FIRE_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.fire_spec_b_passive_1));
+    public static final Entry FIRE_SPEC_A_PASSIVE_2 = add(passiveSpell(Spells.fire_spec_a_passive_2));
+    public static final Entry FIRE_SPEC_B_PASSIVE_2 = add(passiveSpell(Spells.fire_spec_b_passive_2));
 
-    public static final Entry FIRE_SPEC_A_PASSIVE_2 = add(
-            Entry.spell("fire_spec_a_passive_2",
-                    "Fire Spec A Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "fire_spec_a_passive_2")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry FIRE_SPEC_B_PASSIVE_2 = add(
-            Entry.spell("fire_spec_b_passive_2",
-                    "Fire Spec B Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "fire_spec_b_passive_2")),
-                    dummyContainer()
-            )
-    );
     public static final Entry FIRE_SPEC_A_PASSIVE_3 = add(
             Entry.spell("fire_spec_a_passive_3",
                     "Fire Spec A Passive 3",

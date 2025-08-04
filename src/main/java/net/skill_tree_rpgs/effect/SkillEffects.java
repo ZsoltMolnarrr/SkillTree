@@ -1,4 +1,4 @@
-package net.skill_tree_rpgs.skills;
+package net.skill_tree_rpgs.effect;
 
 import net.skill_tree_rpgs.ClassSkillsMod;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
@@ -298,6 +298,7 @@ public class SkillEffects {
             "Ambush",
             "Increased attack damage.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99cc66),
+
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -369,6 +370,82 @@ public class SkillEffects {
                     )
             )
     ));
+
+    public static Effects.Entry PHASE_SHIFT = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "phase_shift"),
+            "Phase Shift",
+            "Reduces damage taken.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
+                                    -1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry BLAZING_SPEED = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "blazing_speed"),
+            "Blazing Speed",
+            "Increased movement speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff6600),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.5F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry ARCANE_BARRIER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_barrier"),
+            "Arcane Barrier",
+            "Absorbs damage.",
+            new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry FROST_BARRIER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_barrier"),
+            "Cold Barrier",
+            "Absorbs damage.",
+            new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry FIRE_BARRIER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fire_barrier"),
+            "Flame Barrier",
+            "Absorbs damage.",
+            new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0xff6600),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {

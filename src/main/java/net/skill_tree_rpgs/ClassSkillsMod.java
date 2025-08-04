@@ -2,7 +2,7 @@ package net.skill_tree_rpgs;
 
 import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.node.SpellContainerReward;
-import net.skill_tree_rpgs.skills.SkillEffects;
+import net.skill_tree_rpgs.effect.SkillEffects;
 import net.fabricmc.api.ModInitializer;
 import net.spell_engine.api.config.ConfigFile;
 import net.tinyconfig.ConfigManager;

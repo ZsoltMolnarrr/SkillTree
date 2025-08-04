@@ -1,7 +1,7 @@
 package net.skill_tree_rpgs.client;
 
 import net.skill_tree_rpgs.skills.SkillDefinitions;
-import net.skill_tree_rpgs.skills.SkillEffects;
+import net.skill_tree_rpgs.effect.SkillEffects;
 import net.skill_tree_rpgs.skills.Spells;
 import net.skill_tree_rpgs.utils.TranslationUtil;
 import net.fabricmc.api.ClientModInitializer;
@@ -12,6 +12,7 @@ import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
+import net.spell_power.api.SpellSchools;
 
 public class ClassSkillsModClient implements ClientModInitializer {
 
@@ -131,7 +132,7 @@ public class ClassSkillsModClient implements ClientModInitializer {
                         SpellEngineParticles.MagicParticles.Shape.STRIPE,
                         SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
                 ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                0.5F, 0.15F, 0.2F)
+                0.3F, 0.05F, 0.15F)
                 .extent(-0.2F);
         CustomParticleStatusEffect.register(
                 SkillEffects.PURSUIT_OF_JUSTICE.effect,
@@ -155,6 +156,69 @@ public class ClassSkillsModClient implements ClientModInitializer {
         CustomParticleStatusEffect.register(
                 SkillEffects.BLIZZARD_SLOW.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ blizzardSlowParticles })
+        );
+
+
+        final var arcaneBarrierParticles = new ParticleBatch(
+                SpellEngineParticles.aura_effect_622.id().toString(),
+                ParticleBatch.Shape.LINE, ParticleBatch.Origin.CENTER,
+                1, 0, 0)
+                .scale(1.4F)
+                .followEntity(true);
+        CustomParticleStatusEffect.register(
+                SkillEffects.ARCANE_BARRIER.effect,
+                new BuffParticleSpawner(
+                        arcaneBarrierParticles.copy().color(Color.ARCANE.alpha(0.5F).toRGBA())
+                ).withFrequency(30).scaleWithAmplifier(false)
+        );
+
+        final var fireBarrierParticles = new ParticleBatch(
+                SpellEngineParticles.aura_effect_716.id().toString(),
+                ParticleBatch.Shape.LINE, ParticleBatch.Origin.CENTER,
+                1, 0, 0)
+                .scale(1.4F)
+                .followEntity(true);
+        var fireColor = Color.from(0xff9933);
+        CustomParticleStatusEffect.register(
+                SkillEffects.FIRE_BARRIER.effect,
+                new BuffParticleSpawner(
+                        fireBarrierParticles.copy().color(fireColor.alpha(0.5F).toRGBA())
+                ).withFrequency(30).scaleWithAmplifier(false)
+        );
+
+        final var frostBarrierParticles = new ParticleBatch(
+                SpellEngineParticles.aura_effect_620.id().toString(),
+                ParticleBatch.Shape.LINE, ParticleBatch.Origin.CENTER,
+                1, 0, 0)
+                .scale(1.4F)
+                .followEntity(true);
+        CustomParticleStatusEffect.register(
+                SkillEffects.FROST_BARRIER.effect,
+                new BuffParticleSpawner(
+                        frostBarrierParticles.copy().color(Color.FROST.alpha(0.5F).toRGBA())
+                ).withFrequency(30).scaleWithAmplifier(false)
+        );
+
+        final var phaseShiftParticles = new ParticleBatch(
+                SpellEngineParticles.aura_effect_668.id().toString(),
+                ParticleBatch.Shape.LINE, ParticleBatch.Origin.CENTER,
+                1, 0, 0)
+                .scale(1.4F)
+                .followEntity(true);
+        CustomParticleStatusEffect.register(
+                SkillEffects.PHASE_SHIFT.effect,
+                new BuffParticleSpawner(
+                        phaseShiftParticles.color(Color.ARCANE.toRGBA())
+                ).withFrequency(20).scaleWithAmplifier(false)
+        );
+
+        final var blazingSpeedParticles = new ParticleBatch(
+                SpellEngineParticles.flame_ground.id().toString(),
+                ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
+                1F, 0F, 0F);
+        CustomParticleStatusEffect.register(
+                SkillEffects.BLAZING_SPEED.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ blazingSpeedParticles })
         );
     }
 }
