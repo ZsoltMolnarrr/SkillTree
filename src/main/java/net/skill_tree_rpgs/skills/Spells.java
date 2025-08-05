@@ -535,6 +535,7 @@ public class Spells {
 
         var trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.ARCANE);
         trigger.chance = WIZARD_WARD_CHANCE;
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), duration, 0);
@@ -961,6 +962,7 @@ public class Spells {
 
         var spell_trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.FIRE);
         spell_trigger.chance = WIZARD_WARD_CHANCE;
+        spell_trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(spell_trigger);
 
         spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
@@ -1366,6 +1368,7 @@ public class Spells {
 
         var spell_trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.FROST);
         spell_trigger.chance = WIZARD_WARD_CHANCE;
+        spell_trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(spell_trigger);
 
         spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;

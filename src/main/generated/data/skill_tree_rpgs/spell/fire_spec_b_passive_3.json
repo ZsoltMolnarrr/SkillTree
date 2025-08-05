@@ -6,6 +6,7 @@
   "passive": {
     "triggers": [
       {
+        "target_override": "CASTER",
         "type": "SPELL_CAST",
         "chance": 0.25,
         "spell": {
