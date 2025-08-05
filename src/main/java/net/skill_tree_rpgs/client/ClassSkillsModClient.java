@@ -165,7 +165,7 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 .scale(1.4F)
                 .followEntity(true);
         CustomParticleStatusEffect.register(
-                SkillEffects.ARCANE_SHIELD.effect,
+                SkillEffects.ARCANE_WARD.effect,
                 new BuffParticleSpawner(
                         arcaneBarrierParticles.copy().color(Color.ARCANE.alpha(0.5F).toRGBA())
                 ).withFrequency(30).scaleWithAmplifier(false)
@@ -179,20 +179,20 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 .followEntity(true);
         var fireColor = Color.from(0xff9933);
         CustomParticleStatusEffect.register(
-                SkillEffects.FIRE_SHIELD.effect,
+                SkillEffects.FIRE_WARD.effect,
                 new BuffParticleSpawner(
                         fireBarrierParticles.copy().color(fireColor.alpha(0.5F).toRGBA())
                 ).withFrequency(30).scaleWithAmplifier(false)
         );
 
         final var frostBarrierParticles = new ParticleBatch(
-                SpellEngineParticles.aura_effect_620.id().toString(),
+                SpellEngineParticles.aura_effect_691.id().toString(),
                 ParticleBatch.Shape.LINE, ParticleBatch.Origin.CENTER,
                 1, 0, 0)
                 .scale(1.4F)
                 .followEntity(true);
         CustomParticleStatusEffect.register(
-                SkillEffects.FROST_SHIELD.effect,
+                SkillEffects.FROST_WARD.effect,
                 new BuffParticleSpawner(
                         frostBarrierParticles.copy().color(Color.FROST.alpha(0.5F).toRGBA())
                 ).withFrequency(30).scaleWithAmplifier(false)

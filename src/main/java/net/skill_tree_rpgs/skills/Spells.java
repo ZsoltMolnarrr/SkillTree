@@ -516,14 +516,16 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
     }
 
+    public static final float WIZARD_WARD_CHANCE = 0.25F;
+    public static final float WIZARD_WARD_DURATION = 8F;
+
     public static final Entry arcane_spec_b_passive_3 = add(arcane_spec_b_passive_3());
     private static Entry arcane_spec_b_passive_3() {
         var id = Identifier.of(NAMESPACE, "arcane_spec_b_passive_3");
-        var title = "Arcane Shield";
-        var description = "Arcane spells have {trigger_chance} chance, to grant you Arcane Shield, absorbing high amount of damage, lasting {effect_duration} sec.";
-        var duration = 8;
-
-        var effect = SkillEffects.ARCANE_SHIELD;
+        var effect = SkillEffects.ARCANE_WARD;
+        var title = effect.title;
+        var description = "Arcane spells have {trigger_chance} chance, to grant you " + effect.title + ", absorbing high amount of damage, lasting {effect_duration} sec.";
+        var duration = WIZARD_WARD_DURATION;
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.ARCANE;
@@ -532,11 +534,11 @@ public class Spells {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.ARCANE);
-        trigger.chance = 0.5F;
+        trigger.chance = WIZARD_WARD_CHANCE;
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), duration, 0);
-        impact.action.status_effect.amplifier_power_multiplier = 0.3F;
+        impact.action.status_effect.amplifier_power_multiplier = 0.4F;
         impact.action.apply_to_caster = true;
         spell.impacts = List.of(impact);
 
@@ -714,7 +716,7 @@ public class Spells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "wizards:fire_wall";
-        var impact = SpellBuilder.Impacts.heal(0.05F);
+        var impact = SpellBuilder.Impacts.heal(0.025F);
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
 
@@ -946,11 +948,10 @@ public class Spells {
     public static final Entry fire_spec_b_passive_3 = add(fire_spec_b_passive_3()); // Flame Shield
     private static Entry fire_spec_b_passive_3() {
         var id = Identifier.of(NAMESPACE, "fire_spec_b_passive_3");
-        var title = "Flame Shield";
-        var description = "Fire spells have {trigger_chance_1} chance, to grant you Flame Shield, absorbing damage and dealing {damage} damage to attackers, lasts {stash_duration} sec.";
-        var duration = 8;
-
-        var effect = SkillEffects.FIRE_SHIELD;
+        var effect = SkillEffects.FIRE_WARD;
+        var title = effect.title;
+        var description = "Fire spells have {trigger_chance_1} chance, to grant you " + effect.title + ", absorbing damage and dealing {damage} damage to attackers, lasts {stash_duration} sec.";
+        var duration = WIZARD_WARD_DURATION;
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.FIRE;
@@ -959,7 +960,7 @@ public class Spells {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var spell_trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.FIRE);
-        spell_trigger.chance = 0.5F;
+        spell_trigger.chance = WIZARD_WARD_CHANCE;
         spell.passive.triggers = List.of(spell_trigger);
 
         spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
@@ -967,7 +968,7 @@ public class Spells {
         spell.deliver.stash_effect.id = effect.id.toString();
         spell.deliver.stash_effect.duration = duration;
         spell.deliver.stash_effect.amplifier = 0;
-        spell.deliver.stash_effect.amplifier_power_multiplier = 0.15F;
+        spell.deliver.stash_effect.amplifier_power_multiplier = 0.2F;
         spell.deliver.stash_effect.consume = 0;
 
         var stash_trigger = SpellBuilder.Triggers.damageTaken();
@@ -1190,6 +1191,8 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FROST));
     }
 
+    public static final String WIZARDS_FREEZE_EFFECT = "wizards:frozen";
+
     public static final Entry frost_spec_b_passive_1 = add(frost_spec_b_passive_1());
     private static Entry frost_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "frost_spec_b_passive_1");
@@ -1204,7 +1207,7 @@ public class Spells {
         var trigger = SpellBuilder.Triggers.activeSpellHit(0.05F, "frost");
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectSet("wizards:frozen", 3F, 0);
+        var impact = SpellBuilder.Impacts.effectSet(WIZARDS_FREEZE_EFFECT, 3F, 0);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
@@ -1220,6 +1223,187 @@ public class Spells {
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
     }
+
+    public static final Entry frost_spec_a_passive_2 = add(frost_spec_a_passive_2()); // Frost Trap
+    private static Entry frost_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_a_passive_2");
+        var title = "Frost Trap";
+        var description = "Upon rolling, you leave behind a Frost Trap, lasting {cloud_duration} sec, applying Freeze effect to entering enemies.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FROST;
+        spell.range = 0;
+
+        spell.passive.triggers = List.of(SpellBuilder.Triggers.roll());
+
+        var radius = 1.5F;
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+
+        var cloudParticles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.CENTER,
+                        2, 0.01F, 0.02F)
+                        .color(Color.FROST.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
+                        2, 0.02F, 0.05F),
+        };
+        var cloud = SpellBuilder.Deliver.cloud(
+                5,
+                1.5F,
+                SpellEngineSounds.GENERIC_ARCANE_RELEASE.id(), // FIXME
+                8,
+                cloudParticles
+        );
+        cloud.impact_particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.FROST,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
+                        25, 0.4F, 0.4F)
+                        .color(Color.FROST.toRGBA())
+        };
+        cloud.impact_cap = 1; // Trap
+
+        cloud.client_data.interval_particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.area_effect_715.id().toString(),
+                        ParticleBatch.Shape.LINE, ParticleBatch.Origin.GROUND,
+                        1, 0F, 0F)
+                        .scale(radius * 1.5F) // 1.5F is asset specific
+                        .color(Color.FROST.toRGBA())
+        };
+        cloud.client_data.particle_spawn_interval = 20;
+
+        spell.deliver.clouds = List.of(cloud);
+
+        var debuff = SpellBuilder.Impacts.effectAdd(WIZARDS_FREEZE_EFFECT, 6, 1, 4);
+        spell.impacts = List.of(debuff);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
+    public static final Entry frost_spec_b_passive_2 = add(frost_spec_b_passive_2());
+    private static Entry frost_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_b_passive_2");
+        var title = "Arctic Reflex";
+        var description = "Upon rolling, you have {trigger_chance_1} chance to instantly cast a spell, within the next {stash_duration} sec.";
+        var effect = SkillEffects.ARCTIC_REFLEX;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FROST;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.25F;
+        spell.passive.triggers = List.of(trigger);
+
+        var stashTrigger = SpellBuilder.Triggers.specificSpellCast("#wizards:frost");
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, stashTrigger);
+
+        // No impacts, stash will just be consumed
+
+        SpellBuilder.Cost.cooldown(spell, 10F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
+    public static final Entry frost_spec_a_passive_3 = add(frost_spec_a_passive_3());
+    private static Entry frost_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_a_passive_3");
+        var title = "Cold Snap";
+        var description = "Taking damage has {trigger_chance} chance to reset cooldowns of Frost spells.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FROST;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.damageTaken();
+        trigger.chance = 0.1F;
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.resetCooldownActive("#wizards:frost");
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.FROST),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        25, 0.2F, 0.2F)
+                        .color(Color.FROST.toRGBA())
+        };
+        impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 30F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
+    public static final Entry frost_spec_b_passive_3 = add(frost_spec_b_passive_3()); // Frost Shield
+    private static Entry frost_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "frost_spec_b_passive_3");
+        var effect = SkillEffects.FROST_WARD;
+        var title = effect.title;
+        var description = "Frost spells have {trigger_chance_1} chance, to grant you " + effect.title + ", absorbing damage and slowing attackers, lasts {stash_duration} sec.";
+        var duration = WIZARD_WARD_DURATION;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FROST;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var spell_trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.FROST);
+        spell_trigger.chance = WIZARD_WARD_CHANCE;
+        spell.passive.triggers = List.of(spell_trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
+        spell.deliver.stash_effect = new Spell.Delivery.StashEffect();
+        spell.deliver.stash_effect.id = effect.id.toString();
+        spell.deliver.stash_effect.duration = duration;
+        spell.deliver.stash_effect.amplifier = 0;
+        spell.deliver.stash_effect.amplifier_power_multiplier = 0.2F;
+        spell.deliver.stash_effect.consume = 0;
+
+        var stash_trigger = SpellBuilder.Triggers.damageTaken();
+        spell.deliver.stash_effect.triggers = List.of(stash_trigger);
+
+        var impact = SpellBuilder.Impacts.effectAdd("wizards:frost_slowness", 5, 2, 9);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.FROST,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.25F, 0.3F)
+                        .color(FROST_COLOR),
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.25F, 0.3F)
+        };
+        impact.sound = new Sound("wizards:frost_nova_effect_impact");
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, duration * 2);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
+    }
+
+    //
+    // PRIEST
+    //
 
     public static final Entry priest_spec_a_modifier_1 = add(priest_spec_a_modifier_1());
     private static Entry priest_spec_a_modifier_1() {

@@ -12,7 +12,7 @@
           "action": {
             "type": "HEAL",
             "heal": {
-              "spell_power_coefficient": 0.05
+              "spell_power_coefficient": 0.025
             }
           }
         }

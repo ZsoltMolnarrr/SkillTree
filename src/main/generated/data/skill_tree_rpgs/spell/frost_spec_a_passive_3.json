@@ -1,0 +1,61 @@
+{
+  "school": "spell_power:frost",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "DAMAGE_TAKEN",
+        "chance": 0.1
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "COOLDOWN",
+        "cooldown": {
+          "actives": {
+            "id": "#wizards:frost",
+            "duration_multiplier": 0.0
+          }
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:sign_hourglass",
+          "origin": "CENTER",
+          "shape": "LINE_VERTICAL",
+          "count": 1.0,
+          "min_speed": 0.8,
+          "max_speed": 0.8,
+          "color_rgba": 1724710911,
+          "scale": 0.8,
+          "follow_entity": true
+        },
+        {
+          "particle_id": "spell_engine:magic_spark_decelerate",
+          "origin": "CENTER",
+          "shape": "WIDE_PIPE",
+          "count": 25.0,
+          "min_speed": 0.2,
+          "max_speed": 0.2,
+          "color_rgba": 1724710911
+        }
+      ],
+      "sound": {
+        "id": "spell_engine:spell_cooldown_impact"
+      }
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 30.0
+    }
+  }
+}

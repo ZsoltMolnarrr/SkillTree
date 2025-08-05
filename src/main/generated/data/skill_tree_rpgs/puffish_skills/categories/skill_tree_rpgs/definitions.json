@@ -1777,12 +1777,12 @@
   },
   "frost_spec_a_passive_2": {
     "description": {
-      "translate": "skill.skill_tree_rpgs.frost_spec_a_passive_2.description"
+      "skill_definition_id": "frost_spec_a_passive_2"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/frost_spec_a_passive_2.png"
+        "texture": "skill_tree_rpgs:textures/spell/frost_spec_a_passive_2.png"
       }
     },
     "rewards": [
@@ -1797,7 +1797,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "skill_tree_rpgs:frost_spec_a_passive_2"
               ]
             }
           ]
@@ -1810,12 +1810,12 @@
   },
   "frost_spec_a_passive_3": {
     "description": {
-      "translate": "skill.skill_tree_rpgs.frost_spec_a_passive_3.description"
+      "skill_definition_id": "frost_spec_a_passive_3"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/frost_spec_a_passive_3.png"
+        "texture": "skill_tree_rpgs:textures/spell/frost_spec_a_passive_3.png"
       }
     },
     "rewards": [
@@ -1830,7 +1830,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "skill_tree_rpgs:frost_spec_a_passive_3"
               ]
             }
           ]
@@ -2008,12 +2008,12 @@
   },
   "frost_spec_b_passive_2": {
     "description": {
-      "translate": "skill.skill_tree_rpgs.frost_spec_b_passive_2.description"
+      "skill_definition_id": "frost_spec_b_passive_2"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/frost_spec_b_passive_2.png"
+        "texture": "skill_tree_rpgs:textures/spell/frost_spec_b_passive_2.png"
       }
     },
     "rewards": [
@@ -2028,7 +2028,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "skill_tree_rpgs:frost_spec_b_passive_2"
               ]
             }
           ]
@@ -2041,12 +2041,12 @@
   },
   "frost_spec_b_passive_3": {
     "description": {
-      "translate": "skill.skill_tree_rpgs.frost_spec_b_passive_3.description"
+      "skill_definition_id": "frost_spec_b_passive_3"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "wizards:textures/spell/frost_spec_b_passive_3.png"
+        "texture": "skill_tree_rpgs:textures/spell/frost_spec_b_passive_3.png"
       }
     },
     "rewards": [
@@ -2061,7 +2061,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "skill_tree_rpgs:frost_spec_b_passive_3"
               ]
             }
           ]

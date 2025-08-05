@@ -1,0 +1,93 @@
+{
+  "school": "spell_power:frost",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ROLL"
+      }
+    ]
+  },
+  "deliver": {
+    "type": "CLOUD",
+    "clouds": [
+      {
+        "volume": {
+          "radius": 1.5,
+          "area": {
+            "vertical_range_multiplier": 0.3
+          }
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 4,
+        "impact_cap": 1,
+        "impact_particles": [
+          {
+            "particle_id": "spell_engine:magic_frost_decelerate",
+            "origin": "FEET",
+            "shape": "SPHERE",
+            "count": 25.0,
+            "min_speed": 0.4,
+            "max_speed": 0.4,
+            "color_rgba": 1724710911
+          }
+        ],
+        "client_data": {
+          "light_level": 8,
+          "particles": [
+            {
+              "particle_id": "spell_engine:magic_spark_decelerate",
+              "origin": "CENTER",
+              "shape": "PILLAR",
+              "count": 2.0,
+              "min_speed": 0.01,
+              "max_speed": 0.02,
+              "color_rgba": 1724710911
+            },
+            {
+              "particle_id": "spell_engine:snowflake",
+              "origin": "CENTER",
+              "shape": "PIPE",
+              "count": 2.0,
+              "min_speed": 0.02,
+              "max_speed": 0.05
+            }
+          ],
+          "particle_spawn_interval": 20,
+          "interval_particles": [
+            {
+              "particle_id": "spell_engine:area_effect_715",
+              "origin": "GROUND",
+              "shape": "LINE",
+              "count": 1.0,
+              "max_speed": 0.0,
+              "color_rgba": 1724710911,
+              "scale": 2.25
+            }
+          ]
+        },
+        "spawn": {
+          "sound": {
+            "id": "spell_engine:generic_arcane_release"
+          }
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "wizards:frozen",
+          "duration": 6.0,
+          "amplifier": 1,
+          "amplifier_cap": 4,
+          "apply_mode": "ADD"
+        }
+      }
+    }
+  ]
+}

@@ -7,7 +7,7 @@
     "triggers": [
       {
         "type": "SPELL_CAST",
-        "chance": 0.5,
+        "chance": 0.25,
         "spell": {
           "school": "spell_power:arcane",
           "type": "ACTIVE"
@@ -24,9 +24,9 @@
         "type": "STATUS_EFFECT",
         "apply_to_caster": true,
         "status_effect": {
-          "effect_id": "skill_tree_rpgs:arcane_shield",
+          "effect_id": "skill_tree_rpgs:arcane_ward",
           "duration": 8.0,
-          "amplifier_power_multiplier": 0.3
+          "amplifier_power_multiplier": 0.4
         }
       }
     }

@@ -401,8 +401,17 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry ARCANE_SHIELD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_shield"),
-            "Arcane Shield",
+    public static Effects.Entry ARCTIC_REFLEX = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arctic_reflex"),
+            "Arctic Reflex",
+            "Increased dodge chance.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+
+    public static Effects.Entry ARCANE_WARD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_ward"),
+            "Arcane Ward",
             "Absorbs damage.",
             new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
@@ -416,23 +425,8 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry FROST_SHIELD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_shield"),
-            "Cold Shield",
-            "Absorbs damage.",
-            new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
-                                    2,
-                                    EntityAttributeModifier.Operation.ADD_VALUE
-                            )
-                    )
-            )
-    ));
-
-    public static Effects.Entry FIRE_SHIELD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fire_shield"),
-            "Flame Shield",
+    public static Effects.Entry FIRE_WARD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fire_ward"),
+            "Flame Ward",
             "Absorbs damage.",
             new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0xff6600),
             new EffectConfig(
@@ -446,6 +440,20 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry FROST_WARD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_ward"),
+            "Frost Ward",
+            "Absorbs damage.",
+            new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
@@ -464,5 +472,7 @@ public class SkillEffects {
         });
         InstantCast.register(PRESENCE_OF_MIND.entry,
                 TagKey.of(SpellRegistry.KEY, Identifier.of("wizards:arcane")));
+        InstantCast.register(ARCTIC_REFLEX.entry,
+                TagKey.of(SpellRegistry.KEY, Identifier.of("wizards:frost")));
     }
 }

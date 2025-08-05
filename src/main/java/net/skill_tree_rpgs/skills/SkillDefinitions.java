@@ -194,39 +194,10 @@ public class SkillDefinitions {
 
     public static final Entry FROST_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.frost_spec_a_passive_1));
     public static final Entry FROST_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.frost_spec_b_passive_1));
-
-    public static final Entry FROST_SPEC_A_PASSIVE_2 = add(
-            Entry.spell("frost_spec_a_passive_2",
-                    "Frost Spec A Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_spec_a_passive_2")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry FROST_SPEC_B_PASSIVE_2 = add(
-            Entry.spell("frost_spec_b_passive_2",
-                    "Frost Spec B Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_spec_b_passive_2")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry FROST_SPEC_A_PASSIVE_3 = add(
-            Entry.spell("frost_spec_a_passive_3",
-                    "Frost Spec A Passive 3",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_spec_a_passive_3")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry FROST_SPEC_B_PASSIVE_3 = add(
-            Entry.spell("frost_spec_b_passive_3",
-                    "Frost Spec B Passive 3",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("wizards", "frost_spec_b_passive_3")),
-                    dummyContainer()
-            )
-    );
+    public static final Entry FROST_SPEC_A_PASSIVE_2 = add(passiveSpell(Spells.frost_spec_a_passive_2));
+    public static final Entry FROST_SPEC_B_PASSIVE_2 = add(passiveSpell(Spells.frost_spec_b_passive_2));
+    public static final Entry FROST_SPEC_A_PASSIVE_3 = add(passiveSpell(Spells.frost_spec_a_passive_3));
+    public static final Entry FROST_SPEC_B_PASSIVE_3 = add(passiveSpell(Spells.frost_spec_b_passive_3));
 
     public static final Entry PRIEST_ROOT = add(
             Entry.attribute("priest_root",
