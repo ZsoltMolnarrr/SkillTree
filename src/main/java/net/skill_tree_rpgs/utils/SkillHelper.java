@@ -15,6 +15,7 @@ public class SkillHelper {
             return false; // No points to respec
         }
         skillCategory.resetSkills(player);
+
         return true;
     }
 }

@@ -4,6 +4,7 @@
   "package": "net.skill_tree_rpgs.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ServerPlayerEntityMixin",
     "TextCodecsMixin"
   ],
   "client": [
