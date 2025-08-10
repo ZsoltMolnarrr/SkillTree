@@ -455,6 +455,46 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry DIVINE_FAVOR = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "divine_favor"),
+            "Divine Favor",
+            "Guaranteed spell critical strike.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc99),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellPowerMechanics.CRITICAL_CHANCE.id,
+                                    1,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry PAIN_SUPPRESSION = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "pain_suppression"),
+            "Pain Suppression",
+            "Reduces damage taken.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id,
+                                    -0.5F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry CELESTIAL_ORB = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "celestial_orb"),
+            "Celestial Orb",
+            "Damages nearby enemies.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc99),
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);

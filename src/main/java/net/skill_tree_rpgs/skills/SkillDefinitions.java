@@ -229,39 +229,10 @@ public class SkillDefinitions {
 
     public static final Entry PRIEST_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.priest_spec_a_passive_1));
     public static final Entry PRIEST_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.priest_spec_b_passive_1));
-
-    public static final Entry PRIEST_SPEC_A_PASSIVE_2 = add(
-            Entry.spell("priest_spec_a_passive_2",
-                    "Priest Spec A Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "priest_spec_a_passive_2")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry PRIEST_SPEC_B_PASSIVE_2 = add(
-            Entry.spell("priest_spec_b_passive_2",
-                    "Priest Spec B Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "priest_spec_b_passive_2")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry PRIEST_SPEC_A_PASSIVE_3 = add(
-            Entry.spell("priest_spec_a_passive_3",
-                    "Priest Spec A Passive 3",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "priest_spec_a_passive_3")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry PRIEST_SPEC_B_PASSIVE_3 = add(
-            Entry.spell("priest_spec_b_passive_3",
-                    "Priest Spec B Passive 3",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "priest_spec_b_passive_3")),
-                    dummyContainer()
-            )
-    );
+    public static final Entry PRIEST_SPEC_A_PASSIVE_2 = add(passiveSpell(Spells.priest_spec_a_passive_2));
+    public static final Entry PRIEST_SPEC_B_PASSIVE_2 = add(passiveSpell(Spells.priest_spec_b_passive_2));
+    public static final Entry PRIEST_SPEC_A_PASSIVE_3 = add(passiveSpell(Spells.priest_spec_a_passive_3));
+    public static final Entry PRIEST_SPEC_B_PASSIVE_3 = add(passiveSpell(Spells.priest_spec_b_passive_3));
 
     public static final Entry PALADIN_ROOT = add(
             Entry.attribute("paladin_root",

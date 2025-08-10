@@ -33,13 +33,16 @@
       },
       "particles": [
         {
-          "particle_id": "spell_engine:magic_heal_decelerate",
-          "origin": "CENTER",
-          "shape": "WIDE_PIPE",
-          "count": 15.0,
-          "min_speed": 0.1,
-          "max_speed": 0.25,
-          "color_rgba": 4294954239
+          "particle_id": "spell_engine:area_circle_1",
+          "origin": "FEET",
+          "shape": "LINE_VERTICAL",
+          "count": 1.0,
+          "min_speed": 0.15,
+          "max_speed": 0.16,
+          "color_rgba": 4294954239,
+          "scale": 0.8,
+          "follow_entity": true,
+          "max_age": 0.8
         }
       ]
     }

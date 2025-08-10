@@ -385,8 +385,7 @@ public class Spells {
                                 SpellEngineParticles.MagicParticles.Motion.DECELERATE
                         ).id()
                 ),
-                1,
-                radius
+                1
         );
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
@@ -1674,12 +1673,13 @@ public class Spells {
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 1, 4);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HEAL,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        15, 0.1F, 0.25F)
-                        .color(HOLY_COLOR)
+                        SpellEngineParticles.area_circle_1.id().toString(),
+                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
+                        1, 0.15F, 0.16F)
+                        .followEntity(true)
+                        .scale(0.8F)
+                        .maxAge(0.8F)
+                        .color(Color.HOLY.toRGBA()),
         };
         spell.impacts = List.of(impact);
 
@@ -1721,6 +1721,155 @@ public class Spells {
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PRIEST));
     }
+
+    public static final Entry priest_spec_a_passive_2 = add(priest_spec_a_passive_2()); // Fade
+    private static Entry priest_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_a_passive_2");
+        var title = "Fade";
+        var description = "Upon rolling, nearby mobs stop attacking you, allowing them to target your allies.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.HEALING;
+        spell.range = 15;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        spell.passive.triggers = List.of(trigger);
+
+        spell.target.type = Spell.Target.Type.AREA;
+        spell.target.area = new Spell.Target.Area();
+
+        var impact = SpellBuilder.Impacts.disengage(true);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.2F, 0.2F)
+                        .color(Color.HOLY.toRGBA())
+        };
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
+    public static final Entry priest_spec_b_passive_2 = add(priest_spec_b_passive_2()); // Divine Favor
+    private static Entry priest_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_b_passive_2");
+        var effect = SkillEffects.DIVINE_FAVOR;
+        var title = effect.title;
+        var description = "Upon rolling, you have {trigger_chance_1} chance to guarantee critical strike for your next spell cast.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.HEALING;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.25F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.release.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.HOLY),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HOLY,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        25, 0.2F, 0.2F)
+                        .color(Color.HOLY.toRGBA())
+        };
+        spell.release.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
+
+        var cooldownDuration = 15F;
+        var stashTriggers = List.of(
+                SpellBuilder.Triggers.activeSpellCast(),
+                SpellBuilder.Triggers.activeSpellHit(1, null)
+        );
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), cooldownDuration, stashTriggers);
+        spell.deliver.stash_effect.consumed_next_tick = true;
+
+        SpellBuilder.Cost.cooldown(spell, 30F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
+    public static final Entry priest_spec_a_passive_3 = add(priest_spec_a_passive_3()); // Pain Suppression
+    private static Entry priest_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_a_passive_3");
+        var effect = SkillEffects.PAIN_SUPPRESSION;
+        var title = effect.title;
+        var healthThreshold = 0.3F;
+        var description = "Healing targets under {threshold} health, grants them " + effect.title + ", reducing damage taken by {bonus}, for {effect_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(Math.abs(effect.config().firstModifier().value));
+            return args.description()
+                    .replace("{bonus}", bonus)
+                    .replace("{threshold}", SpellTooltip.percent(healthThreshold));
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.HEALING;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.activeSpellHeal(1F);
+        trigger.stage = Spell.Trigger.Stage.PRE;
+        trigger.target_conditions = List.of(SpellBuilder.TargetConditions.lowHP(healthThreshold));
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 0);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.2F, 0.2F)
+                        .color(HOLY_COLOR)
+        };
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 30F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PRIEST));
+    }
+
+    public static final Entry priest_spec_b_passive_3 = add(priest_spec_b_passive_3()); // Celestial Orbs
+    private static Entry priest_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "priest_spec_b_passive_3");
+        var effect = SkillEffects.CELESTIAL_ORB;
+        var title = "Celestial Orbs";
+        var description = "Spell critical strikes and heals grant you {stash_amplifier} Divine Charges. Charges damage enemies attacking you, dealing {damage} spell damage.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.HEALING;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.activeSpellCrit();
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 15, SpellBuilder.Triggers.damageTaken());
+        spell.deliver.stash_effect.amplifier = 2;
+
+        var impact = SpellBuilder.Impacts.damage(0.5F, 0.1F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HOLY,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.2F, 0.2F)
+                        .color(HOLY_COLOR)
+        };
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
+    }
+
+    //
+    // PALADIN
+    //
 
     public static final Entry paladin_spec_a_modifier_1 = add(paladin_spec_a_modifier_1());
     private static Entry paladin_spec_a_modifier_1() {
@@ -1871,7 +2020,7 @@ public class Spells {
     public static final Entry paladin_spec_a_modifier_4 = add(paladin_spec_a_modifier_4());
     private static Entry paladin_spec_a_modifier_4() {
         var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_4");
-        var title = "Conqueror's Banner";
+        var title = "Persistent Banner";
         var description = "Increases the duration of Battle Banner by {spawn_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;

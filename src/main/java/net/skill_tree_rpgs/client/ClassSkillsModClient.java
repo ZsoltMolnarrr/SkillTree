@@ -1,17 +1,23 @@
 package net.skill_tree_rpgs.client;
 
+import net.skill_tree_rpgs.client.effect.HolyChargeEffectRenderer;
 import net.skill_tree_rpgs.skills.SkillDefinitions;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.skill_tree_rpgs.skills.Spells;
 import net.skill_tree_rpgs.utils.TranslationUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.util.Identifier;
+import net.spell_engine.api.datagen.SpellBuilder;
+import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
 import net.spell_engine.api.render.BuffParticleSpawner;
+import net.spell_engine.api.render.CustomModels;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
+
+import java.util.List;
 
 public class ClassSkillsModClient implements ClientModInitializer {
 
@@ -34,7 +40,14 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveAttributeModifierTooltip(attribute));
             }
         }
+        registerCustomModels();
         registerEffectRenderers();
+    }
+
+    private static void registerCustomModels() {
+        CustomModels.registerModelIds(List.of(
+                HolyChargeEffectRenderer.modelId
+        ));
     }
 
     private static void registerEffectRenderers() {
@@ -219,5 +232,17 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 SkillEffects.BLAZING_SPEED.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ blazingSpeedParticles })
         );
+
+        CustomParticleStatusEffect.register(
+                SkillEffects.PAIN_SUPPRESSION.effect,
+                new BuffParticleSpawner(
+                        SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_619.id())
+                                .scale(1.5F)
+                                .color(Color.HOLY.blend(Color.WHITE, 0.5F).alpha(0.5F).toRGBA())
+                ).withFrequency(30).scaleWithAmplifier(false)
+        );
+
+
+        CustomModelStatusEffect.register(SkillEffects.CELESTIAL_ORB.effect, new HolyChargeEffectRenderer());
     }
 }

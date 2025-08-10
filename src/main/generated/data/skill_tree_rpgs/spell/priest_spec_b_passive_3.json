@@ -1,0 +1,58 @@
+{
+  "school": "spell_power:healing",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "spell": {
+          "type": "ACTIVE"
+        },
+        "impact": {
+          "critical": true
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "STASH_EFFECT",
+    "stash_effect": {
+      "id": "skill_tree_rpgs:celestial_orb",
+      "amplifier": 2,
+      "duration": 15.0,
+      "triggers": [
+        {
+          "type": "DAMAGE_TAKEN"
+        }
+      ]
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.5,
+          "knockback": 0.1
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_holy_burst",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 15.0,
+          "min_speed": 0.2,
+          "max_speed": 0.2,
+          "color_rgba": 4294954239
+        }
+      ]
+    }
+  ]
+}

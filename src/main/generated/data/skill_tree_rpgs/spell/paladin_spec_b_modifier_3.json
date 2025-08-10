@@ -10,8 +10,8 @@
       "impacts": [
         {
           "action": {
-            "type": "TAUNT",
-            "taunt": {}
+            "type": "AGGRO",
+            "aggro": {}
           }
         }
       ]
