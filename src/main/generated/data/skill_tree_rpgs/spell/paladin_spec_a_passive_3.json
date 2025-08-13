@@ -51,8 +51,8 @@
           "origin": "CENTER",
           "shape": "SPHERE",
           "count": 15.0,
-          "min_speed": 0.2,
-          "max_speed": 0.2,
+          "min_speed": 0.6,
+          "max_speed": 0.8,
           "color_rgba": 4294954239
         }
       ]

@@ -331,7 +331,7 @@
   "spell.skill_tree_rpgs.paladin_spec_a_passive_1.name": "Seal of Righteousness",
   "spell.skill_tree_rpgs.paladin_spec_a_passive_2.description": "Upon rolling, you have {trigger_chance_1} chance for your next melee attack to apply Crusader's Mark, increasing damage taken by {bonus}, for {effect_duration} sec.",
   "spell.skill_tree_rpgs.paladin_spec_a_passive_2.name": "Crusader Strike",
-  "spell.skill_tree_rpgs.paladin_spec_a_passive_3.description": "Melee attacks have {trigger_chance} chance to throw a hammer at the target, dealing {damage} damage, ricocheting {ricochet} to nearby enemies.",
+  "spell.skill_tree_rpgs.paladin_spec_a_passive_3.description": "Melee attacks throw a hammer at the target, dealing {damage} damage, ricocheting {ricochet} to nearby enemies.",
   "spell.skill_tree_rpgs.paladin_spec_a_passive_3.name": "Divine Hammer",
   "spell.skill_tree_rpgs.paladin_spec_b_modifier_1.description": "Flash Heal attempts to cure the target, by reducing the strength of a harmful effect.",
   "spell.skill_tree_rpgs.paladin_spec_b_modifier_1.name": "Cleanse",

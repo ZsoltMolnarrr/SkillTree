@@ -2221,7 +2221,7 @@ public class Spells {
     private static Entry paladin_spec_a_passive_3() {
         var id = Identifier.of(NAMESPACE, "paladin_spec_a_passive_3");
         var title = "Divine Hammer";
-        var description = "Melee attacks have {trigger_chance} chance to throw a hammer at the target, dealing {damage} damage, ricocheting {ricochet} to nearby enemies.";
+        var description = "Melee attacks throw a hammer at the target, dealing {damage} damage, ricocheting {ricochet} to nearby enemies.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -2259,7 +2259,7 @@ public class Spells {
                                 SpellEngineParticles.MagicParticles.Shape.HOLY,
                                 SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.2F, 0.2F)
+                        15, 0.6F, 0.8F)
                         .color(HOLY_COLOR)
         };
         spell.impacts = List.of(impact);
