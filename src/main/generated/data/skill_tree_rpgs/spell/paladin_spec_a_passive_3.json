@@ -1,0 +1,66 @@
+{
+  "school": "spell_power:physical_melee",
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "MELEE_IMPACT"
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "PROJECTILE",
+    "projectile": {
+      "direct_towards_target": true,
+      "launch_properties": {
+        "velocity": 0.6
+      },
+      "projectile": {
+        "perks": {
+          "ricochet": 2,
+          "ricochet_range": 8.0,
+          "bounce": 3
+        },
+        "client_data": {
+          "model": {
+            "model_id": "paladins:projectile/judgement",
+            "light_emission": "RADIATE",
+            "scale": 0.8,
+            "rotate_degrees_per_tick": 20.0
+          }
+        }
+      }
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.5,
+          "knockback": 0.0
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_holy_burst",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 15.0,
+          "min_speed": 0.2,
+          "max_speed": 0.2,
+          "color_rgba": 4294954239
+        }
+      ]
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 5.0
+    }
+  }
+}

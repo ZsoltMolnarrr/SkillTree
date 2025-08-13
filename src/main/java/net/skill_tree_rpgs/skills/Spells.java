@@ -8,6 +8,7 @@ import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
+import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.ParticleBatch;
@@ -16,6 +17,7 @@ import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
+import net.spell_engine.network.Packets;
 import net.spell_power.api.SpellSchools;
 import org.jetbrains.annotations.Nullable;
 
@@ -807,9 +809,9 @@ public class Spells {
                         ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.CENTER,
                         2, 0.01F, 0.02F),
                 new ParticleBatch(
-                        "flame",
+                        SpellEngineParticles.flame_medium_b.id().toString(),
                         ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        2, 0.02F, 0.05F),
+                        1, 0.02F, 0.05F),
         };
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
@@ -2133,6 +2135,209 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PALADIN));
     }
 
+    public static final Entry paladin_spec_a_passive_2 = add(paladin_spec_a_passive_2()); // Crusader Strike
+    private static Entry paladin_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_a_passive_2");
+        var title = "Crusader Strike";
+        var debuffEffect = SkillEffects.CRUSADERS_MARK;
+        var description = "Upon rolling, you have {trigger_chance_1} chance for your next melee attack to apply " + debuffEffect.title + ", increasing damage taken by {bonus}, for {effect_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(Math.abs(debuffEffect.config().firstModifier().value));
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.HEALING;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        // Roll to stash
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+        spell.release.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.2F, 0.3F)
+                        .color(HOLY_COLOR),
+        };
+
+        var stashEffect = SkillEffects.SEAL_OF_CRUSADER;
+        var strashTrigger = SpellBuilder.Triggers.meleeAttack(false);
+        SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 5, strashTrigger);
+
+        var debuff = SpellBuilder.Impacts.effectAdd(debuffEffect.id.toString(), 15, 1, 2);
+        debuff.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.7F, 0.8F)
+                        .color(HOLY_COLOR)
+        };
+        spell.impacts = List.of(debuff);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_b_passive_2 = add(paladin_spec_b_passive_2()); // Conviction (rolling resets Flash Heal cooldown)
+    private static Entry paladin_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_b_passive_2");
+        var title = "Conviction";
+        var description = "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Flash Heal.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.HEALING;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.resetCooldownActive("paladins:flash_heal");
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.HOLY),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HOLY,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        15, 0.2F, 0.3F)
+                        .color(HOLY_COLOR)
+        };
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_a_passive_3 = add(paladin_spec_a_passive_3()); // Divine Hammer
+    private static Entry paladin_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_a_passive_3");
+        var title = "Divine Hammer";
+        var description = "Melee attacks have {trigger_chance} chance to throw a hammer at the target, dealing {damage} damage, ricocheting {ricochet} to nearby enemies.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.meleeAttack(false);
+        trigger.chance = 1F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.PROJECTILE;
+        spell.deliver.projectile = new Spell.Delivery.ShootProjectile();
+        spell.deliver.projectile.direct_towards_target = true;
+        spell.deliver.projectile.launch_properties.velocity = 0.6F;
+        spell.deliver.projectile.projectile = new Spell.ProjectileData();
+        spell.deliver.projectile.projectile.perks = new Spell.ProjectileData.Perks();
+        spell.deliver.projectile.projectile.perks.ricochet_range = 8F;
+        spell.deliver.projectile.projectile.perks.ricochet = 2;
+        spell.deliver.projectile.projectile.perks.bounce = 3;
+
+        var model = new Spell.ProjectileModel();
+        model.light_emission = LightEmission.RADIATE;
+        model.model_id = "paladins:projectile/judgement";
+        model.scale = 0.8F;
+        model.rotate_degrees_per_tick = 20F;
+
+        spell.deliver.projectile.projectile.client_data = new Spell.ProjectileData.Client();
+        spell.deliver.projectile.projectile.client_data.model = model;
+
+
+        var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HOLY,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.2F, 0.2F)
+                        .color(HOLY_COLOR)
+        };
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
+    }
+
+    public static final Entry paladin_spec_b_passive_3 = add(paladin_spec_b_passive_3()); // Ardent Defender (hp boost on low HP)
+    private static Entry paladin_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "paladin_spec_b_passive_3");
+        var effect = SkillEffects.ARDENT_DEFENDER;
+        var title = "Ardent Defender";
+        var healthThreshold = 0.3F;
+        var description = "Upon taking damage below {threshold} health, your max health is increased by {bonus}, for {effect_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(Math.abs(effect.config().firstModifier().value));
+            return args.description()
+                    .replace("{bonus}", bonus)
+                    .replace("{threshold}", SpellTooltip.percent(healthThreshold));
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.HEALTH;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.damageTaken();
+        trigger.stage = Spell.Trigger.Stage.POST;
+        trigger.caster_conditions = List.of(SpellBuilder.TargetConditions.lowHP(healthThreshold));
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 0);
+        buff.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        30, 0.2F, 0.2F)
+                        .color(Color.HOLY.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        20, 0.3F, 0.3F)
+                        .color(Color.HOLY.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.FEET,
+                        30, 0.1F, 0.3F)
+                        .color(Color.HOLY.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        30, 0.1F, 0.2F)
+                        .color(Color.HOLY.toRGBA())
+        };
+        var heal = SpellBuilder.Impacts.heal(0.5F);
+        spell.impacts = List.of(buff, heal);
+
+        SpellBuilder.Cost.cooldown(spell, 60F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PALADIN));
+    }
+
+    //
+    // ROGUE
+    //
+
     public static final Entry rogue_spec_a_modifier_1 = add(rogue_spec_a_modifier_1());
     private static Entry rogue_spec_a_modifier_1() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_1");
@@ -2466,6 +2671,9 @@ public class Spells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 6, 0);
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), MIGHT_COLOR)
+        };
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WARRIOR));

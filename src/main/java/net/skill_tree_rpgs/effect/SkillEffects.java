@@ -495,6 +495,46 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry SEAL_OF_CRUSADER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "seal_of_crusader"),
+            "Seal of Crusader",
+            "Increased attack speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc99),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier()
+                    )
+            )
+    ));
+    public static Effects.Entry CRUSADERS_MARK = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "crusaders_mark"),
+            "Crusader's Mark",
+            "Increased damage taken",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xffcc99),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry ARDENT_DEFENDER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "ardent_defender"),
+            "Ardent Defender",
+            "Increases max health.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString(),
+                                    1,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);

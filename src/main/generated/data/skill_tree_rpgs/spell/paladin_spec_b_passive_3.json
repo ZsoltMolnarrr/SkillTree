@@ -1,0 +1,84 @@
+{
+  "school": "spell_power:health",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "DAMAGE_TAKEN",
+        "caster_conditions": [
+          {
+            "health_percent_above": 0.01,
+            "health_percent_below": 0.3
+          }
+        ]
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "skill_tree_rpgs:ardent_defender"
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_spark_decelerate",
+          "origin": "FEET",
+          "shape": "CIRCLE",
+          "count": 30.0,
+          "min_speed": 0.2,
+          "max_speed": 0.2,
+          "color_rgba": 4294954239
+        },
+        {
+          "particle_id": "spell_engine:magic_spark_decelerate",
+          "origin": "FEET",
+          "shape": "CIRCLE",
+          "count": 20.0,
+          "min_speed": 0.3,
+          "max_speed": 0.3,
+          "color_rgba": 4294954239
+        },
+        {
+          "particle_id": "spell_engine:magic_stripe_float",
+          "origin": "FEET",
+          "shape": "PIPE",
+          "count": 30.0,
+          "min_speed": 0.1,
+          "max_speed": 0.3,
+          "color_rgba": 4294954239
+        },
+        {
+          "particle_id": "spell_engine:magic_stripe_ascend",
+          "origin": "FEET",
+          "shape": "WIDE_PIPE",
+          "count": 30.0,
+          "min_speed": 0.1,
+          "max_speed": 0.2,
+          "color_rgba": 4294954239
+        }
+      ]
+    },
+    {
+      "action": {
+        "type": "HEAL",
+        "heal": {
+          "spell_power_coefficient": 0.5
+        }
+      }
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 60.0
+    }
+  }
+}
