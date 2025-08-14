@@ -242,7 +242,6 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 ).withFrequency(30).scaleWithAmplifier(false)
         );
 
-
         CustomModelStatusEffect.register(SkillEffects.CELESTIAL_ORB.effect, new HolyChargeEffectRenderer());
 
         final var sealOfCrusaderParticles = new ParticleBatch(
@@ -255,6 +254,18 @@ public class ClassSkillsModClient implements ClientModInitializer {
         CustomParticleStatusEffect.register(
                 SkillEffects.SEAL_OF_CRUSADER.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ sealOfCrusaderParticles })
+        );
+
+        final var enrageParticles = new ParticleBatch(
+                SpellEngineParticles.MagicParticles.get(
+                        SpellEngineParticles.MagicParticles.Shape.SKULL,
+                        SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                1F, 0.15F, 0.15F)
+                .color(Color.RAGE.toRGBA());
+        CustomParticleStatusEffect.register(
+                SkillEffects.ENRAGE.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ enrageParticles })
         );
     }
 }

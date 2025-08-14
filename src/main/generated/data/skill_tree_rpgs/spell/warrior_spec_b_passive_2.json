@@ -1,0 +1,57 @@
+{
+  "school": "spell_power:physical_melee",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ROLL"
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "STASH_EFFECT",
+    "stash_effect": {
+      "id": "skill_tree_rpgs:trample",
+      "duration": 0.5,
+      "triggers": [
+        {
+          "type": "EFFECT_TICK",
+          "effect": {
+            "id": "skill_tree_rpgs:trample"
+          }
+        }
+      ],
+      "consume": 0
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.5,
+          "knockback": 0.0
+        }
+      }
+    }
+  ],
+  "area_impact": {
+    "force_indirect": true,
+    "radius": 2.0,
+    "particles": [
+      {
+        "particle_id": "spell_engine:smoke_medium",
+        "origin": "FEET",
+        "shape": "CIRCLE",
+        "count": 10.0,
+        "min_speed": 0.3,
+        "max_speed": 0.3
+      }
+    ]
+  }
+}

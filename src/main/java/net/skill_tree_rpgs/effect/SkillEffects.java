@@ -535,6 +535,40 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry TRAMPLE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "trample"),
+            "Trample",
+            "Damaging nearby enemies.",
+            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff).interval(3),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+
+    public static Effects.Entry ENRAGE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "enrage"),
+            "Enrage",
+            "Increased size and attack speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff6600),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_SCALE.getIdAsString(),
+                                    0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);

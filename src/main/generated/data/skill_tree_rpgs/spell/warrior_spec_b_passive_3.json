@@ -1,0 +1,91 @@
+{
+  "school": "spell_power:physical_melee",
+  "range": 5.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "aoe_source_override": "CASTER",
+        "type": "DAMAGE_TAKEN",
+        "caster_conditions": [
+          {
+            "health_percent_above": 0.01,
+            "health_percent_below": 0.3
+          }
+        ]
+      }
+    ]
+  },
+  "release": {
+    "particles": [
+      {
+        "particle_id": "spell_engine:magic_spark_ascend",
+        "origin": "CENTER",
+        "shape": "SPHERE",
+        "count": 40.0,
+        "min_speed": 0.6,
+        "max_speed": 0.8
+      },
+      {
+        "particle_id": "spell_engine:smoke_medium",
+        "origin": "FEET",
+        "shape": "CIRCLE",
+        "count": 20.0,
+        "min_speed": 0.4,
+        "max_speed": 0.4
+      },
+      {
+        "particle_id": "spell_engine:smoke_medium",
+        "origin": "FEET",
+        "shape": "CIRCLE",
+        "count": 20.0,
+        "min_speed": 0.6,
+        "max_speed": 0.6
+      },
+      {
+        "particle_id": "spell_engine:area_effect_658",
+        "origin": "GROUND",
+        "shape": "SPHERE",
+        "count": 1.0,
+        "max_speed": 0.0,
+        "color_rgba": 3873892095,
+        "scale": 4.0
+      },
+      {
+        "particle_id": "spell_engine:area_effect_658",
+        "origin": "GROUND",
+        "shape": "SPHERE",
+        "count": 1.0,
+        "max_speed": 0.0,
+        "color_rgba": 2795939583,
+        "scale": 5.0
+      }
+    ]
+  },
+  "target": {
+    "type": "AREA",
+    "area": {}
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "spell_engine:stun",
+          "duration": 4.0
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:smoke_medium",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 20.0,
+          "min_speed": 0.2,
+          "max_speed": 0.3
+        }
+      ]
+    }
+  ]
+}

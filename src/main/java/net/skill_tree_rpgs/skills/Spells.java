@@ -1,5 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
+import net.puffish.skillsmod.api.Skill;
 import net.skill_tree_rpgs.ClassSkillsMod;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
@@ -2289,9 +2290,7 @@ public class Spells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.damageTaken();
-        trigger.stage = Spell.Trigger.Stage.POST;
-        trigger.caster_conditions = List.of(SpellBuilder.TargetConditions.lowHP(healthThreshold));
+        var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
@@ -2672,7 +2671,7 @@ public class Spells {
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 6, 0);
         impact.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), MIGHT_COLOR)
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), Color.RAGE)
         };
         spell.impacts = List.of(impact);
 
@@ -2855,6 +2854,191 @@ public class Spells {
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
     }
+
+    public static final Entry warrior_spec_a_passive_2 = add(warrior_spec_a_passive_2());
+    private static Entry warrior_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_a_passive_2");
+        var title = "Intercept";
+        var description = "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Charge.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.25F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.resetCooldownActive("rogues:charge");
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.RAGE)
+        };
+        impact.action.apply_to_caster = true;
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry warrior_spec_b_passive_2 = add(warrior_spec_b_passive_2());
+    private static Entry warrior_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_b_passive_2");
+        var title = "Trample";
+        var description = "Shortly after rolling, you deal {damage} damage to nearby enemies.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        spell.passive.triggers = List.of(trigger);
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var stashEffect = SkillEffects.TRAMPLE;
+        var stashTrigger = SpellBuilder.Triggers.effectTick(stashEffect.id.toString());
+        SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 0.5F, List.of(stashTrigger));
+        spell.deliver.stash_effect.consume = 0;
+
+        var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
+        spell.impacts = List.of(impact);
+        var areaImpact = new Spell.AreaImpact();
+        areaImpact.radius = 2F;
+        areaImpact.force_indirect = true;
+        areaImpact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        10, 0.3F, 0.3F)
+        };
+        spell.area_impact = areaImpact;
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry warrior_spec_a_passive_3 = add(warrior_spec_a_passive_3()); // Enrage (on damage taken, gain Enrage effect)
+    private static Entry warrior_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_a_passive_3");
+        var effect = SkillEffects.ENRAGE;
+        var title = effect.title;
+        var description = "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by {bonus} but also the damage you take, staking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.damageTaken();
+        trigger.chance = 0.25F;
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var activateParticles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        15, 0.3F, 0.5F)
+                        .color(Color.RAGE.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        15, 0.3F, 0.5F)
+                        .invert()
+                        .color(Color.RAGE.toRGBA()),
+                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
+                        .origin(ParticleBatch.Origin.CENTER)
+                        .scale(1.5F)
+                        .color(Color.RAGE.toRGBA())
+        };
+
+        spell.release.particles = activateParticles;
+
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 10F, List.of(
+                SpellBuilder.Triggers.damageTaken()
+        ));
+        spell.deliver.stash_effect.consume = 0;
+
+        var buff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10F, 1, 2);
+        buff.action.apply_to_caster = true;
+        buff.action.status_effect.refresh_duration = false;
+        buff.particles = activateParticles;
+        spell.impacts = List.of(buff);
+
+        SpellBuilder.Cost.cooldown(spell, 30F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WARRIOR));
+    }
+
+    public static final Entry warrior_spec_b_passive_3 = add(warrior_spec_b_passive_3()); // Shockwave (like Ardent Defender)
+    private static Entry warrior_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "warrior_spec_b_passive_3");
+        var title = "Shockwave";
+        float healthThreshold = 0.3F;
+        float radius = 5F;
+        var description = "Taking damage below {threshold} causes a shockwave, stunning enemies nearby for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = radius;
+
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var threshold = SpellTooltip.percent(healthThreshold);
+            return args.description().replace("{threshold}", threshold);
+        };
+
+        spell.target.type = Spell.Target.Type.AREA;
+        spell.target.area = new Spell.Target.Area();
+
+        spell.release.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        40, 0.6F, 0.8F),
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        20, 0.4F, 0.4F),
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        20, 0.6F, 0.6F),
+                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
+                        .scale(radius * 0.8F)
+                        .color(Color.from(0xe6e6e6).toRGBA()),
+                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
+                        .scale(radius)
+                        .color(Color.from(0xa6a6a6).toRGBA())
+        };
+
+        var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
+        trigger.aoe_source_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var stun = SpellBuilder.Impacts.effectSet(SpellEngineEffects.STUN.id.toString(), 4, 0);
+        stun.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        20, 0.2F, 0.3F)
+        };
+        spell.impacts = List.of(stun);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WARRIOR));
+    }
+
+    //
+    // ARCHER
+    //
 
     public static final Entry archer_spec_a_modifier_1 = add(archer_spec_a_modifier_1());
     private static Entry archer_spec_a_modifier_1() {
