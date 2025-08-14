@@ -569,6 +569,21 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry DYNAMO = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "dynamo"),
+            "Dynamo",
+            "Increased attack damage.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);

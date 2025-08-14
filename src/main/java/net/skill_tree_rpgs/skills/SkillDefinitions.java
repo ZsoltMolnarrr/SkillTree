@@ -360,23 +360,9 @@ public class SkillDefinitions {
 
     public static final Entry ROGUE_SPEC_A_PASSIVE_1 = add(passiveSpell(Spells.rogue_spec_a_passive_1));
     public static final Entry ROGUE_SPEC_B_PASSIVE_1 = add(passiveSpell(Spells.rogue_spec_b_passive_1));
+    public static final Entry ROGUE_SPEC_A_PASSIVE_2 = add(passiveSpell(Spells.rogue_spec_a_passive_2));
+    public static final Entry ROGUE_SPEC_B_PASSIVE_2 = add(passiveSpell(Spells.rogue_spec_b_passive_2));
 
-    public static final Entry ROGUE_SPEC_A_PASSIVE_2 = add(
-            Entry.spell("rogue_spec_a_passive_2",
-                    "Rogue Spec A Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "rogue_spec_a_passive_2")),
-                    dummyContainer()
-            )
-    );
-    public static final Entry ROGUE_SPEC_B_PASSIVE_2 = add(
-            Entry.spell("rogue_spec_b_passive_2",
-                    "Rogue Spec B Passive 2",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("rogues", "rogue_spec_b_passive_2")),
-                    dummyContainer()
-            )
-    );
     public static final Entry ROGUE_SPEC_A_PASSIVE_3 = add(
             Entry.spell("rogue_spec_a_passive_3",
                     "Rogue Spec A Passive 3",

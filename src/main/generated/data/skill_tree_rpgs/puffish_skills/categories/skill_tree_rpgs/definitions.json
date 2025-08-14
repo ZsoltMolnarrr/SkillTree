@@ -3307,12 +3307,12 @@
   },
   "rogue_spec_a_passive_2": {
     "description": {
-      "translate": "skill.skill_tree_rpgs.rogue_spec_a_passive_2.description"
+      "skill_definition_id": "rogue_spec_a_passive_2"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "rogues:textures/spell/rogue_spec_a_passive_2.png"
+        "texture": "skill_tree_rpgs:textures/spell/rogue_spec_a_passive_2.png"
       }
     },
     "rewards": [
@@ -3327,7 +3327,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "skill_tree_rpgs:rogue_spec_a_passive_2"
               ]
             }
           ]
@@ -3538,12 +3538,12 @@
   },
   "rogue_spec_b_passive_2": {
     "description": {
-      "translate": "skill.skill_tree_rpgs.rogue_spec_b_passive_2.description"
+      "skill_definition_id": "rogue_spec_b_passive_2"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "rogues:textures/spell/rogue_spec_b_passive_2.png"
+        "texture": "skill_tree_rpgs:textures/spell/rogue_spec_b_passive_2.png"
       }
     },
     "rewards": [
@@ -3558,7 +3558,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "wizards:fireball"
+                "skill_tree_rpgs:rogue_spec_b_passive_2"
               ]
             }
           ]
