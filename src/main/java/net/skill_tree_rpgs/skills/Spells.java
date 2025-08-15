@@ -2066,6 +2066,7 @@ public class Spells {
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.HEALING;
+        spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
@@ -2147,6 +2148,7 @@ public class Spells {
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.HEALING;
+        spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
@@ -2224,6 +2226,7 @@ public class Spells {
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 5;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
@@ -2568,12 +2571,12 @@ public class Spells {
     public static final Entry rogue_spec_b_passive_1 = add(rogue_spec_b_passive_1());
     private static Entry rogue_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_1");
-        var title = "Rupture";
-        var effect = SkillEffects.RUPTURE;
-        var description = "Melee attacks have {trigger_chance} chance to wound the enemy, dealing {damage} damage and increasing damage taken by {bonus}, for {effect_duration} sec.";
+        var effect = SkillEffects.FRACTURE;
+        var title = effect.title;
+        var description = "Melee attacks have {trigger_chance} chance to wound the enemy, dealing {damage} damage and reducing its armor by {bonus}, for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            var bonus = SpellTooltip.percent(Math.abs(effect.config().firstModifier().value));
             return args.description().replace("{bonus}", bonus);
         };
 
@@ -2606,11 +2609,16 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
 
-    public static final Entry rogue_spec_a_passive_2 = add(rogue_spec_a_passive_2()); // Poison cloud (spawn poison cloud on roll)
+    public static final Entry rogue_spec_a_passive_2 = add(rogue_spec_a_passive_2()); // Sprint (movement speed on roll)
     private static Entry rogue_spec_a_passive_2() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_2");
-        var title = "Poison Cloud";
-        var description = "Upon rolling, you have {trigger_chance} chance to spawn a poison cloud, applying Poison to enemies within, lasting {effect_duration} sec.";
+        var effect = SkillEffects.SPRINT;
+        var title = effect.title;
+        var description = "Upon rolling, you have {trigger_chance} chance to gain Sprint effect, increasing your movement speed by {bonus}, for {effect_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.bonus(effect.config().firstModifier().value, effect.config().firstModifier().operation);
+            return args.description().replace("{bonus}", bonus);
+        };
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -2619,13 +2627,74 @@ public class Spells {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.roll();
-        trigger.chance = 0.5F;
+        trigger.chance = 0.25F;
         spell.passive.triggers = List.of(trigger);
 
-        SpellBuilder.Complex.poisonCloud(spell, 3F, 4F, 5F, 1, 0.5F);
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 2, 0);
+        buff.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_speed.id(), MIGHT_COLOR),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND
+                        ).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.3F).color(MIGHT_COLOR.toRGBA())
+        };
+        spell.impacts = List.of(buff);
 
-        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
+
+//    public static final Entry rogue_spec_b_passive_2 = add(rogue_spec_b_passive_2()); // Sidestep (stacking stashed evasion on roll)
+//    private static Entry rogue_spec_b_passive_2() {
+//        var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_2");
+//        var title = "Sidestep";
+//        var description = "Upon rolling, you gain a stack of Sidestep, increasing your Evasion Chance by {bonus}, stacking up to {stash_amplifier} times. Removed when taking damage.";
+//
+//        var effect = SkillEffects.;
+//        SpellTooltip.DescriptionMutator mutator = (args) -> {
+//            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+//            return args.description().replace("{bonus}", bonus);
+//        };
+//
+//        var spell = SpellBuilder.createSpellPassive();
+//        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+//        spell.range = 0;
+//
+//        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+//
+//        var trigger = SpellBuilder.Triggers.roll();
+//        spell.passive.triggers = List.of(trigger);
+//
+//        var stacks = 5;
+//        var stashTrigger = SpellBuilder.Triggers.meleeAttack(false);
+//        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 12, stashTrigger);
+//        spell.deliver.stash_effect.amplifier = stacks - 1;
+//        spell.deliver.stash_effect.stacking = true;
+//        spell.deliver.stash_effect.consume = stacks;
+//        spell.deliver.stash_effect.consumed_next_tick = true;
+//        spell.deliver.stash_effect.consume_any_stacks = true;
+//
+//        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
+//        buff.particles = new ParticleBatch[]{
+//                new ParticleBatch(
+//                        SpellEngineParticles.MagicParticles.get(
+//                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+//                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+//                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+//                        20, 0.4F, 0.5F)
+//                        .color(MIGHT_COLOR.toRGBA()),
+//                new ParticleBatch(
+//                        SpellEngineParticles.MagicParticles.get(
+//                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+//                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+//                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+//                        20, 0.7F, 0.8F)
+//                        .color(MIGHT_COLOR.toRGBA())
+//        }
+//
+//    }
 
     public static final Entry rogue_spec_b_passive_2 = add(rogue_spec_b_passive_2()); // Dynamo (stacking damage on roll)
     private static Entry rogue_spec_b_passive_2() {

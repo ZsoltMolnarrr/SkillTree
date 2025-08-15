@@ -121,7 +121,7 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 2F, 0.45F, 0.75F)
                 .color(Color.BLOOD.toRGBA());
         CustomParticleStatusEffect.register(
-                SkillEffects.RUPTURE.effect,
+                SkillEffects.FRACTURE.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ ruptureParticles })
         );
 
@@ -231,6 +231,14 @@ public class ClassSkillsModClient implements ClientModInitializer {
         CustomParticleStatusEffect.register(
                 SkillEffects.BLAZING_SPEED.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ blazingSpeedParticles })
+        );
+        final var sprintParticles = new ParticleBatch(
+                SpellEngineParticles.smoke_medium.id().toString(),
+                ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
+                1F, 0F, 0F);
+        CustomParticleStatusEffect.register(
+                SkillEffects.SPRINT.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ sprintParticles })
         );
 
         CustomParticleStatusEffect.register(

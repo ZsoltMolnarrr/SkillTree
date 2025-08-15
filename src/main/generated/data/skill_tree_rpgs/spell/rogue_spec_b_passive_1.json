@@ -42,7 +42,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "skill_tree_rpgs:rupture",
+          "effect_id": "skill_tree_rpgs:fracture",
           "duration": 6.0,
           "amplifier": 1,
           "amplifier_cap": 1,

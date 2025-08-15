@@ -151,15 +151,15 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry RUPTURE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "rupture"),
-            "Rupture",
-            "Increased damage taken.",
+    public static Effects.Entry FRACTURE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fracture"),
+            "Fracture",
+            "Reduces armor.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff6666),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    SpellEngineAttributes.DAMAGE_TAKEN.id,
-                                    0.1F,
+                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
+                                    -0.3F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
@@ -563,6 +563,21 @@ public class SkillEffects {
                             new AttributeModifier(
                                     SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
                                     0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry SPRINT = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "sprint"),
+            "Sprint",
+            "Increased movement speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.8F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
