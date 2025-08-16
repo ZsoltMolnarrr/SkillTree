@@ -275,5 +275,17 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 SkillEffects.ENRAGE.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ enrageParticles })
         );
+
+        final var cheatDeathParticles = new ParticleBatch(
+                SpellEngineParticles.MagicParticles.get(
+                        SpellEngineParticles.MagicParticles.Shape.SKULL,
+                        SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                0.5F, 0F, 0F)
+                .color(Spells.ROGUE_SHADOW_COLOR.toRGBA());
+        CustomParticleStatusEffect.register(
+                SkillEffects.CHEAT_DEATH.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ cheatDeathParticles })
+        );
     }
 }

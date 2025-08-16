@@ -1,6 +1,9 @@
 # 1.1.0
 
 - Fix skills not working after death
+- Rework some of the existing skills
+  - Rogue: Rupture renamed to Fracture, applies armor reduction instead damage taken increase
+  - Warrior: Vitality now provides stacking Evasion Chance
 - Add new passive skills for all classes
 
 # 1.0.3

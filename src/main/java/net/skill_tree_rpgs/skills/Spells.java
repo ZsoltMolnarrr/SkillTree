@@ -2338,6 +2338,8 @@ public class Spells {
     // ROGUE
     //
 
+    public static final Color ROGUE_SHADOW_COLOR = Color.from(0x6600FF);
+
     public static final Entry rogue_spec_a_modifier_1 = add(rogue_spec_a_modifier_1());
     private static Entry rogue_spec_a_modifier_1() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_1");
@@ -2683,6 +2685,73 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
 
+    public static final Entry rogue_spec_a_passive_3 = add(rogue_spec_a_passive_3()); // Cheat Death
+    private static Entry rogue_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_3");
+        var effect = SkillEffects.CHEAT_DEATH;
+        var title = effect.title;
+        var description = "When taking damage that would be fatal, you become invulnerable for {effect_duration} sec.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.damageIncomingFatal();
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
+        buff.action.apply_to_caster = true;
+        buff.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_728.id())
+                        .scale(1.2F)
+                        .color(ROGUE_SHADOW_COLOR.alpha(0.5F).toRGBA())
+        };
+        spell.impacts = List.of(buff);
+
+        SpellBuilder.Cost.cooldown(spell, 60F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+    }
+
+    public static final Entry rogue_spec_b_passive_3 = add(rogue_spec_b_passive_3()); // Preparation (reset all cooldowns on evade)
+    private static Entry rogue_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_3");
+        var title = "Preparation";
+        var description = "Upon evading an attack, you have {trigger_chance} chance for all your cooldowns to reset.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.evade();
+        trigger.chance = 0.25F;
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.resetCooldownActive("#rogues:rogue");
+        impact.action.apply_to_caster = true;
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), MIGHT_COLOR),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        25, 0.3F, 0.4F)
+                        .color(MIGHT_COLOR.toRGBA())
+        };
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 30F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
+    }
+
     //
     // WARRIOR
     //
@@ -2901,8 +2970,13 @@ public class Spells {
     public static final Entry warrior_spec_b_passive_1 = add(warrior_spec_b_passive_1());
     private static Entry warrior_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "warrior_spec_b_passive_1");
+        var effect = SkillEffects.VITALITY;
         var title = "Vitality";
-        var description = "Blocking with shield has {trigger_chance} chance to heal you for {heal} health.";
+        var description = "Blocking with shield has {trigger_chance} chance to increase your Evasion Chance by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -2915,9 +2989,7 @@ public class Spells {
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.heal(0.1F);
-        impact.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
-        impact.action.apply_to_caster = true;
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 2);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
@@ -2931,7 +3003,7 @@ public class Spells {
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WARRIOR));
     }
 
     public static final Entry warrior_spec_a_passive_2 = add(warrior_spec_a_passive_2());

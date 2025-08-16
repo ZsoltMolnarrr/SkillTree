@@ -17,12 +17,14 @@
   },
   "impacts": [
     {
-      "attribute": "minecraft:generic.max_health",
       "action": {
-        "type": "HEAL",
-        "apply_to_caster": true,
-        "heal": {
-          "spell_power_coefficient": 0.1
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "skill_tree_rpgs:vitality",
+          "duration": 8.0,
+          "amplifier": 1,
+          "amplifier_cap": 2,
+          "apply_mode": "ADD"
         }
       },
       "particles": [

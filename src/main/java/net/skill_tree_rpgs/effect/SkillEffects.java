@@ -535,6 +535,21 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry VITALITY = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "vitality"),
+            "Vitality",
+            "Increased evasion chance.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.EVASION_CHANCE.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
     public static Effects.Entry TRAMPLE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "trample"),
             "Trample",
             "Damaging nearby enemies.",
@@ -593,6 +608,21 @@ public class SkillEffects {
                             new AttributeModifier(
                                     SpellEngineAttributes.EVASION_CHANCE.id,
                                     0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry CHEAT_DEATH = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "cheat_death"),
+            "Cheat Death",
+            "Reduces damage taken.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id,
+                                    -1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
