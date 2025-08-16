@@ -16,13 +16,13 @@
   "deliver": {
     "type": "STASH_EFFECT",
     "stash_effect": {
-      "id": "skill_tree_rpgs:dynamo",
+      "id": "skill_tree_rpgs:side_step",
       "amplifier": 4,
       "stacking": true,
       "duration": 12.0,
       "triggers": [
         {
-          "type": "MELEE_IMPACT"
+          "type": "DAMAGE_TAKEN"
         }
       ],
       "consume": 5,
@@ -33,32 +33,15 @@
   "impacts": [
     {
       "action": {
-        "type": "DAMAGE",
-        "damage": {
-          "spell_power_coefficient": 0.0,
-          "knockback": 0.0
+        "type": "STATUS_EFFECT",
+        "apply_to_caster": true,
+        "status_effect": {
+          "apply_mode": "REMOVE",
+          "remove": {
+            "id": "skill_tree_rpgs:side_step"
+          }
         }
-      },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_spark_decelerate",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 25.0,
-          "min_speed": 0.4,
-          "max_speed": 0.5,
-          "color_rgba": 3439329279
-        },
-        {
-          "particle_id": "spell_engine:magic_spark_decelerate",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 25.0,
-          "min_speed": 0.7,
-          "max_speed": 0.8,
-          "color_rgba": 3439329279
-        }
-      ]
+      }
     }
   ]
 }

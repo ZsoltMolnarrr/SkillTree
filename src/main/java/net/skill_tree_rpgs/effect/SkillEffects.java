@@ -584,15 +584,15 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry DYNAMO = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "dynamo"),
-            "Dynamo",
-            "Increased attack damage.",
+    public static Effects.Entry SIDE_STEP = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "side_step"),
+            "Sidestep",
+            "Increased evasion chance.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
-                                    0.2F,
+                                    SpellEngineAttributes.EVASION_CHANCE.id,
+                                    0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )

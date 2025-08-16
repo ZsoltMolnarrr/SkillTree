@@ -2646,63 +2646,13 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
 
-//    public static final Entry rogue_spec_b_passive_2 = add(rogue_spec_b_passive_2()); // Sidestep (stacking stashed evasion on roll)
-//    private static Entry rogue_spec_b_passive_2() {
-//        var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_2");
-//        var title = "Sidestep";
-//        var description = "Upon rolling, you gain a stack of Sidestep, increasing your Evasion Chance by {bonus}, stacking up to {stash_amplifier} times. Removed when taking damage.";
-//
-//        var effect = SkillEffects.;
-//        SpellTooltip.DescriptionMutator mutator = (args) -> {
-//            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-//            return args.description().replace("{bonus}", bonus);
-//        };
-//
-//        var spell = SpellBuilder.createSpellPassive();
-//        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-//        spell.range = 0;
-//
-//        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-//
-//        var trigger = SpellBuilder.Triggers.roll();
-//        spell.passive.triggers = List.of(trigger);
-//
-//        var stacks = 5;
-//        var stashTrigger = SpellBuilder.Triggers.meleeAttack(false);
-//        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 12, stashTrigger);
-//        spell.deliver.stash_effect.amplifier = stacks - 1;
-//        spell.deliver.stash_effect.stacking = true;
-//        spell.deliver.stash_effect.consume = stacks;
-//        spell.deliver.stash_effect.consumed_next_tick = true;
-//        spell.deliver.stash_effect.consume_any_stacks = true;
-//
-//        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
-//        buff.particles = new ParticleBatch[]{
-//                new ParticleBatch(
-//                        SpellEngineParticles.MagicParticles.get(
-//                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-//                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-//                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-//                        20, 0.4F, 0.5F)
-//                        .color(MIGHT_COLOR.toRGBA()),
-//                new ParticleBatch(
-//                        SpellEngineParticles.MagicParticles.get(
-//                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-//                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-//                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-//                        20, 0.7F, 0.8F)
-//                        .color(MIGHT_COLOR.toRGBA())
-//        }
-//
-//    }
-
-    public static final Entry rogue_spec_b_passive_2 = add(rogue_spec_b_passive_2()); // Dynamo (stacking damage on roll)
+    public static final Entry rogue_spec_b_passive_2 = add(rogue_spec_b_passive_2());
     private static Entry rogue_spec_b_passive_2() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_2");
-        var title = "Dynamo";
-        var description = "Upon rolling, you gain a stack of Dynamo, increasing your next attack damage by {bonus}, stacking up to {stash_amplifier} times.";
+        var effect = SkillEffects.SIDE_STEP;
+        var title = effect.title;
+        var description = "Upon rolling, you gain a stack of Sidestep, increasing your Evasion Chance by {bonus}, stacking up to {stash_amplifier} times. Removed when taking damage.";
 
-        var effect = SkillEffects.DYNAMO;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
             return args.description().replace("{bonus}", bonus);
@@ -2718,7 +2668,7 @@ public class Spells {
         spell.passive.triggers = List.of(trigger);
 
         var stacks = 5;
-        var stashTrigger = SpellBuilder.Triggers.meleeAttack(false);
+        var stashTrigger = SpellBuilder.Triggers.damageTaken();
         SpellBuilder.Deliver.stash(spell, effect.id.toString(), 12, stashTrigger);
         spell.deliver.stash_effect.amplifier = stacks - 1;
         spell.deliver.stash_effect.stacking = true;
@@ -2726,24 +2676,9 @@ public class Spells {
         spell.deliver.stash_effect.consumed_next_tick = true;
         spell.deliver.stash_effect.consume_any_stacks = true;
 
-        var damage = SpellBuilder.Impacts.damage(0F, 0);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.4F, 0.5F)
-                        .color(MIGHT_COLOR.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.7F, 0.8F)
-                        .color(MIGHT_COLOR.toRGBA())
-        };
-        spell.impacts = List.of(damage);
+        var impact = SpellBuilder.Impacts.effectRemove(effect.id.toString());
+        impact.action.apply_to_caster = true;
+        spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
