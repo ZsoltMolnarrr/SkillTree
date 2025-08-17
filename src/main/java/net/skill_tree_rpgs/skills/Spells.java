@@ -1838,7 +1838,7 @@ public class Spells {
         var id = Identifier.of(NAMESPACE, "priest_spec_b_passive_3");
         var effect = SkillEffects.CELESTIAL_ORB;
         var title = "Celestial Orbs";
-        var description = "Spell critical strikes and heals grant you {stash_amplifier} Divine Charges. Charges damage enemies attacking you, dealing {damage} spell damage.";
+        var description = "Spell critical strikes and heals grant you {stash_amplifier} Celestial Orbs. Orbs damage enemies attacking you, dealing {damage} spell damage.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.HEALING;
@@ -2291,9 +2291,11 @@ public class Spells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
-        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
-        spell.passive.triggers = List.of(trigger);
+        var trigger1 = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
+        trigger1.target_override = Spell.Trigger.TargetSelector.CASTER;
+        var trigger2 = SpellBuilder.Triggers.damageIncomingFatal();
+        trigger2.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger1, trigger2);
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 0);
         buff.particles = new ParticleBatch[]{
@@ -3035,7 +3037,7 @@ public class Spells {
     private static Entry warrior_spec_b_passive_2() {
         var id = Identifier.of(NAMESPACE, "warrior_spec_b_passive_2");
         var title = "Trample";
-        var description = "Shortly after rolling, you deal {damage} damage to nearby enemies.";
+        var description = "While rolling, you deal {damage} damage to nearby enemies.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -3387,6 +3389,22 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
     }
 
+    private static final float RHYTHM_DURATION = 6F;
+    private static Spell.Impact rhythmImpact() {
+        var impact = SpellBuilder.Impacts.effectAdd(SkillEffects.RHYTHM.id.toString(), RHYTHM_DURATION, 1, 4);
+        impact.action.apply_to_caster = true;
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.4F)
+                        .color(Color.NATURE.toRGBA())
+        };
+        return impact;
+    }
+
     private static SpellEntityPredicates.Entry HAS_HUNTERS_MARK = SpellEntityPredicates.hasEffectOptimized(Identifier.of("archers", "hunters_mark"));
     public static final Entry archer_spec_a_passive_1 = add(archer_spec_a_passive_1());
     private static Entry archer_spec_a_passive_1() {
@@ -3406,23 +3424,13 @@ public class Spells {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         var condition = new Spell.TargetCondition();
         condition.entity_predicate_id = HAS_HUNTERS_MARK.id().toString();
         trigger.target_conditions = List.of(condition);
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(SkillEffects.RHYTHM.id.toString(), 6, 1, 4);
-        impact.action.apply_to_caster = true;
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.4F)
-                        .color(Color.NATURE.toRGBA())
-        };
-        spell.impacts = List.of(impact);
+        spell.impacts = List.of(rhythmImpact());
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCHER));
     }
@@ -3456,5 +3464,176 @@ public class Spells {
         SpellBuilder.Cost.cooldown(spell, 10F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_a_passive_2 = add(archer_spec_a_passive_2()); // Momentum (additional stack of Rhythm on roll)
+    private static Entry archer_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_a_passive_2");
+        var title = "Momentum";
+        var effect = SkillEffects.RHYTHM;
+        var description = "Rolling grants you an additional stack of " + effect.title + ".";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        spell.passive.triggers = List.of(trigger);
+
+        spell.impacts = List.of(rhythmImpact());
+
+        SpellBuilder.Cost.cooldown(spell, RHYTHM_DURATION);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_b_passive_2 = add(archer_spec_b_passive_2()); // Tactical Maneuver (effect on roll)
+    private static Entry archer_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_2");
+        var title = "Tactical Maneuver";
+        var description = "Rolling has {trigger_chance} chance to increase your roll recharge speed by {bonus}, for {effect_duration} sec.";
+        var effect = SkillEffects.TACTICAL_MANEUVER;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.4F)
+                        .color(Color.NATURE.toRGBA())
+        };
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 10F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_a_passive_3 = add(archer_spec_a_passive_3()); // Supercharge on arrow hit
+    private static Entry archer_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_a_passive_3");
+        var title = "Supercharge";
+        var effect = SkillEffects.SUPERCHARGE;
+        var damageMultiplier = 2F;
+        var description = "Arrow hits have {trigger_chance_1} chance to Supercharge your next shot within {stash_duration} sec, taking longer to pull but dealing {bonus} damage.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(damageMultiplier);
+            return args.description().replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        trigger.chance = 0.25F;
+
+        spell.passive.triggers = List.of(trigger);
+
+        var stashTrigger = SpellBuilder.Triggers.arrowShot(false);
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5F, stashTrigger);
+        spell.deliver.stash_effect.impact_mode = Spell.Delivery.StashEffect.ImpactMode.TRANSFER;
+
+        spell.arrow_perks = new Spell.ArrowPerks();
+        spell.arrow_perks.damage_multiplier = damageMultiplier;
+        spell.arrow_perks.launch_particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.LAUNCH_POINT,
+                        ParticleBatch.Rotation.LOOK, 50,0.18F,0.2F, 0)
+                        .color(Color.WHITE.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.LAUNCH_POINT,
+                        ParticleBatch.Rotation.LOOK, 25,0.28F,0.3F, 0)
+                        .color(Color.WHITE.toRGBA())
+        };
+        spell.arrow_perks.travel_particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
+                        5, 0.1F, 0.2F)
+                        .color(Color.WHITE.toRGBA())
+        };
+
+        var impact = SpellBuilder.Impacts.damage(0F, 0);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.4F, 0.5F)
+                        .color(Color.WHITE.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.7F, 0.8F)
+                        .color(Color.WHITE.toRGBA())
+        };
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCHER));
+    }
+
+    public static final Entry archer_spec_b_passive_3 = add(archer_spec_b_passive_3()); // Deflection (protective effect on low HP)
+    private static Entry archer_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_3");
+        var title = "Deflection";
+        final var healthThreshold = 0.5F;
+        var description = "Upon taking damage below {threshold} health you gain Deflection effect, parrying the next {effect_amplifier} incoming melee attack, lasting {effect_duration} sec.";
+        var effect = SkillEffects.DEFLECTION;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var threshold = SpellTooltip.percent(healthThreshold);
+            return args.description()
+                    .replace("{threshold}", threshold);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 2);
+        spell.impacts = List.of(buff);
+
+        SpellBuilder.Cost.cooldown(spell, 45F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCHER));
     }
 }

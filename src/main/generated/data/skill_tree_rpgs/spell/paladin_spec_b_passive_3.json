@@ -14,6 +14,14 @@
             "health_percent_below": 0.3
           }
         ]
+      },
+      {
+        "target_override": "CASTER",
+        "type": "DAMAGE_TAKEN",
+        "stage": "PRE",
+        "damage": {
+          "fatal": true
+        }
       }
     ]
   },

@@ -15,6 +15,7 @@ import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.event.CombatEvents;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.api.spell.registry.SpellRegistry;
+import net.spell_engine.api.tags.SpellEngineDamageTypeTags;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_power.api.SpellPower;
@@ -629,6 +630,46 @@ public class SkillEffects {
             )
     ));
 
+    public static Effects.Entry TACTICAL_MANEUVER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "tactical_maneuver"),
+            "Tactical Maneuver",
+            "Increased roll recharge.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    "combat_roll:recharge",
+                                    2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
+
+    public static Effects.Entry SUPERCHARGE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "supercharge"),
+            "Supercharge",
+            "Powerful ranged shot.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.HASTE.id,
+                                    -0.25F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL // Total to fully half the ranged attack speed
+                            )
+                    )
+            )
+    ));
+
+    public static Effects.Entry DEFLECTION = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "deflection"),
+            "Deflection",
+            "Protects you from physical attacks.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);
@@ -636,6 +677,10 @@ public class SkillEffects {
         Effects.register(entries, config.effects);
 
         Protection.register(CLOAK_OF_SHADOWS.entry, new Protection.Pop(
+                new ParticleBatch[]{ CLOAK_OF_SHADOWS_POP },
+                null // FIXME: SkillSound ???
+        ));
+        Protection.register(DEFLECTION.entry, SpellEngineDamageTypeTags.EVADABLE, new Protection.Pop(
                 new ParticleBatch[]{ CLOAK_OF_SHADOWS_POP },
                 null // FIXME: SkillSound ???
         ));

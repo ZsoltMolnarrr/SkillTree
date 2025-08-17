@@ -125,17 +125,18 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 new BuffParticleSpawner(new ParticleBatch[]{ ruptureParticles })
         );
 
-        final var rhytmParticles = new ParticleBatch(
+        final var rhythmParticles = new ParticleBatch(
                 SpellEngineParticles.area_circle_1.id().toString(),
                 ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.GROUND,
                 1F, 0.1F, 0.1F)
                 .color(Color.NATURE.toRGBA())
-                .scale(0.75F);
+                .scale(0.75F)
+                .followEntity(true);
         CustomParticleStatusEffect.register(
                 SkillEffects.RHYTHM.effect,
-                new BuffParticleSpawner(new ParticleBatch[]{ rhytmParticles })
+                new BuffParticleSpawner(new ParticleBatch[]{ rhythmParticles })
                         .scaleWithAmplifier(false)
-                        .withFrequency(30)
+                        .withFrequency(40)
                         .invertFrequency()
         );
 
@@ -287,5 +288,7 @@ public class ClassSkillsModClient implements ClientModInitializer {
                 SkillEffects.CHEAT_DEATH.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ cheatDeathParticles })
         );
+
+        CustomModelStatusEffect.register(SkillEffects.DEFLECTION.effect, new HolyChargeEffectRenderer());
     }
 }
