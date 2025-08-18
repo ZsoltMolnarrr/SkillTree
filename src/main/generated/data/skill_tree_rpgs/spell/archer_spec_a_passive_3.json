@@ -12,6 +12,30 @@
       }
     ]
   },
+  "release": {
+    "particles": [
+      {
+        "particle_id": "spell_engine:sign_arrow",
+        "origin": "CENTER",
+        "shape": "LINE_VERTICAL",
+        "count": 1.0,
+        "min_speed": 0.8,
+        "max_speed": 0.8,
+        "color_rgba": 3003101951,
+        "scale": 0.8,
+        "follow_entity": true
+      },
+      {
+        "particle_id": "spell_engine:magic_spark_ascend",
+        "origin": "FEET",
+        "shape": "WIDE_PIPE",
+        "count": 15.0,
+        "min_speed": 0.1,
+        "max_speed": 0.3,
+        "color_rgba": 3003101951
+      }
+    ]
+  },
   "target": {
     "type": "FROM_TRIGGER"
   },
@@ -37,7 +61,7 @@
         "type": "DAMAGE",
         "damage": {
           "spell_power_coefficient": 0.0,
-          "knockback": 0.0
+          "knockback": 1.5
         }
       },
       "particles": [
@@ -48,7 +72,7 @@
           "count": 25.0,
           "min_speed": 0.4,
           "max_speed": 0.5,
-          "color_rgba": 4294967295
+          "color_rgba": 3003101951
         },
         {
           "particle_id": "spell_engine:magic_spark_decelerate",
@@ -57,7 +81,7 @@
           "count": 25.0,
           "min_speed": 0.7,
           "max_speed": 0.8,
-          "color_rgba": 4294967295
+          "color_rgba": 3003101951
         }
       ]
     }
@@ -72,7 +96,7 @@
         "count": 5.0,
         "min_speed": 0.1,
         "max_speed": 0.2,
-        "color_rgba": 4294967295
+        "color_rgba": 3003101951
       }
     ],
     "launch_particles": [
@@ -84,7 +108,7 @@
         "count": 50.0,
         "min_speed": 0.18,
         "max_speed": 0.2,
-        "color_rgba": 4294967295
+        "color_rgba": 3003101951
       },
       {
         "particle_id": "spell_engine:magic_spark_decelerate",
@@ -94,7 +118,7 @@
         "count": 25.0,
         "min_speed": 0.28,
         "max_speed": 0.3,
-        "color_rgba": 4294967295
+        "color_rgba": 3003101951
       }
     ]
   },

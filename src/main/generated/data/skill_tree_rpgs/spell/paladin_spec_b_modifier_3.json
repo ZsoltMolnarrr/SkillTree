@@ -12,7 +12,20 @@
           "action": {
             "type": "AGGRO",
             "aggro": {}
-          }
+          },
+          "particles": [
+            {
+              "particle_id": "spell_engine:sign_aggro",
+              "origin": "CENTER",
+              "shape": "LINE_VERTICAL",
+              "count": 1.0,
+              "min_speed": 0.8,
+              "max_speed": 0.8,
+              "color_rgba": 3208659199,
+              "scale": 0.8,
+              "follow_entity": true
+            }
+          ]
         }
       ]
     }

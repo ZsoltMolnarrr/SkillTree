@@ -1,7 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
 import net.skill_tree_rpgs.ClassSkillsMod;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.effect.SkillEffects;
@@ -222,6 +221,16 @@ public class Spells {
         var effect = SkillEffects.PRESENCE_OF_MIND;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        spell.release.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_cast.id(), Color.ARCANE),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.3F).color(Color.ARCANE.toRGBA())
+        };
 
         var trigger = SpellBuilder.Triggers.specificSpellCast("wizards:arcane_blink");
         spell.passive.triggers = List.of(trigger);
@@ -1303,6 +1312,17 @@ public class Spells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
+        // Release particle `sign_cast`
+        spell.release.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_cast.id(), Color.FROST),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.3F).color(Color.FROST.toRGBA())
+        };
+
         var trigger = SpellBuilder.Triggers.roll();
         trigger.chance = 0.25F;
         spell.passive.triggers = List.of(trigger);
@@ -1767,7 +1787,7 @@ public class Spells {
         spell.passive.triggers = List.of(trigger);
 
         spell.release.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.HOLY),
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_wand.id(), Color.HOLY),
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
                                 SpellEngineParticles.MagicParticles.Shape.HOLY,
@@ -2011,6 +2031,9 @@ public class Spells {
         modifier.spell_pattern = "paladins:judgement";
 
         var impact = SpellBuilder.Impacts.taunt();
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_aggro.id(), Color.RAGE),
+        };
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
@@ -2840,6 +2863,9 @@ public class Spells {
         modifier.spell_pattern = "rogues:shout";
 
         var impact = SpellBuilder.Impacts.taunt();
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), Color.RAGE)
+        };
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
@@ -3488,6 +3514,8 @@ public class Spells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
     }
 
+    public static final Color ROLL_COLOR = Color.from(0x3399ff);
+
     public static final Entry archer_spec_b_passive_2 = add(archer_spec_b_passive_2()); // Tactical Maneuver (effect on roll)
     private static Entry archer_spec_b_passive_2() {
         var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_2");
@@ -3504,6 +3532,16 @@ public class Spells {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        spell.release.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_roll.id(), ROLL_COLOR),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.3F).color(ROLL_COLOR.toRGBA())
+        };
 
         var trigger = SpellBuilder.Triggers.roll();
         trigger.chance = 0.5F;
@@ -3526,13 +3564,15 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCHER));
     }
 
+    public static final Color SUPERCHARGE_COLOR = Color.NATURE.blend(Color.WHITE, 0.5F);
+
     public static final Entry archer_spec_a_passive_3 = add(archer_spec_a_passive_3()); // Supercharge on arrow hit
     private static Entry archer_spec_a_passive_3() {
         var id = Identifier.of(NAMESPACE, "archer_spec_a_passive_3");
         var title = "Supercharge";
         var effect = SkillEffects.SUPERCHARGE;
         var damageMultiplier = 2F;
-        var description = "Arrow hits have {trigger_chance_1} chance to Supercharge your next shot within {stash_duration} sec, taking longer to pull but dealing {bonus} damage.";
+        var description = "Arrow hits have {trigger_chance_1} chance to Supercharge your next shot within {stash_duration} sec, taking longer to pull but dealing {bonus} damage with strong knockback.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var bonus = SpellTooltip.percent(damageMultiplier);
             return args.description().replace("{bonus}", bonus);
@@ -3543,6 +3583,16 @@ public class Spells {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        spell.release.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_arrow.id(), SUPERCHARGE_COLOR),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.3F).color(SUPERCHARGE_COLOR.toRGBA())
+        };
 
         var trigger = SpellBuilder.Triggers.arrowHit();
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
@@ -3563,14 +3613,14 @@ public class Spells {
                                 SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
                         ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.LAUNCH_POINT,
                         ParticleBatch.Rotation.LOOK, 50,0.18F,0.2F, 0)
-                        .color(Color.WHITE.toRGBA()),
+                        .color(SUPERCHARGE_COLOR.toRGBA()),
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
                                 SpellEngineParticles.MagicParticles.Shape.SPARK,
                                 SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
                         ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.LAUNCH_POINT,
                         ParticleBatch.Rotation.LOOK, 25,0.28F,0.3F, 0)
-                        .color(Color.WHITE.toRGBA())
+                        .color(SUPERCHARGE_COLOR.toRGBA())
         };
         spell.arrow_perks.travel_particles = new ParticleBatch[]{
                 new ParticleBatch(
@@ -3579,10 +3629,10 @@ public class Spells {
                                 SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
                         5, 0.1F, 0.2F)
-                        .color(Color.WHITE.toRGBA())
+                        .color(SUPERCHARGE_COLOR.toRGBA())
         };
 
-        var impact = SpellBuilder.Impacts.damage(0F, 0);
+        var impact = SpellBuilder.Impacts.damage(0F, 1.5F);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
@@ -3590,14 +3640,14 @@ public class Spells {
                                 SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         25, 0.4F, 0.5F)
-                        .color(Color.WHITE.toRGBA()),
+                        .color(SUPERCHARGE_COLOR.toRGBA()),
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
                                 SpellEngineParticles.MagicParticles.Shape.SPARK,
                                 SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         25, 0.7F, 0.8F)
-                        .color(Color.WHITE.toRGBA())
+                        .color(SUPERCHARGE_COLOR.toRGBA())
         };
         spell.impacts = List.of(impact);
 

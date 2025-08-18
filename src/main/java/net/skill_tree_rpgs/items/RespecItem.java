@@ -12,6 +12,10 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.client.util.Color;
+import net.spell_engine.fx.ParticleHelper;
+import net.spell_engine.fx.SpellEngineParticles;
 
 public class RespecItem extends Item {
     public RespecItem(Settings settings) {
@@ -21,6 +25,24 @@ public class RespecItem extends Item {
     public SoundEvent getBreakSound() {
         return SoundEvents.BLOCK_AMETHYST_CLUSTER_BREAK;
     }
+
+    public static final ParticleBatch[] RESET_PARTICLES = new ParticleBatch[] {
+        new ParticleBatch(
+                SpellEngineParticles.MagicParticles.get(
+                        SpellEngineParticles.MagicParticles.Shape.SPARK,
+                        SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                30, 0.2F, 0.25F)
+                .color(Color.from(0x8000ff).toRGBA()),
+            new ParticleBatch(
+                    SpellEngineParticles.MagicParticles.get(
+                            SpellEngineParticles.MagicParticles.Shape.SPARK,
+                            SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                    ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                    30, 0.2F, 0.25F)
+                    .color(Color.from(0x8000ff).toRGBA())
+                    .invert()
+    };
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -32,6 +54,7 @@ public class RespecItem extends Item {
                 itemStack.damage(1, ((ServerPlayerEntity) user).getServerWorld(), serverUser, item -> {
                     serverUser.sendEquipmentBreakStatus(item, equipmentSlot);
                 });
+                ParticleHelper.sendBatches(user, RESET_PARTICLES);
                 return TypedActionResult.success(itemStack, true);
             }
         }

@@ -14,7 +14,7 @@
   "release": {
     "particles": [
       {
-        "particle_id": "spell_engine:sign_hourglass",
+        "particle_id": "spell_engine:sign_wand",
         "origin": "CENTER",
         "shape": "LINE_VERTICAL",
         "count": 1.0,

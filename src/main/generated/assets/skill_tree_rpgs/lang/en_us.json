@@ -261,7 +261,7 @@
   "spell.skill_tree_rpgs.archer_spec_a_passive_1.name": "Rhythm",
   "spell.skill_tree_rpgs.archer_spec_a_passive_2.description": "Rolling grants you an additional stack of Rhythm.",
   "spell.skill_tree_rpgs.archer_spec_a_passive_2.name": "Momentum",
-  "spell.skill_tree_rpgs.archer_spec_a_passive_3.description": "Arrow hits have {trigger_chance_1} chance to Supercharge your next shot within {stash_duration} sec, taking longer to pull but dealing {bonus} damage.",
+  "spell.skill_tree_rpgs.archer_spec_a_passive_3.description": "Arrow hits have {trigger_chance_1} chance to Supercharge your next shot within {stash_duration} sec, taking longer to pull but dealing {bonus} damage with strong knockback.",
   "spell.skill_tree_rpgs.archer_spec_a_passive_3.name": "Supercharge",
   "spell.skill_tree_rpgs.archer_spec_b_modifier_1.description": "Power Shot deals {damage} damage around the target hit.",
   "spell.skill_tree_rpgs.archer_spec_b_modifier_1.name": "Charged Shot",
