@@ -7,7 +7,7 @@ import net.fabricmc.api.ModInitializer;
 import net.spell_engine.api.config.ConfigFile;
 import net.tinyconfig.ConfigManager;
 
-public class ClassSkillsMod implements ModInitializer {
+public class SkillTreeMod implements ModInitializer {
     public static final String NAMESPACE = "skill_tree_rpgs";
     private static final String DIRECTORY = NAMESPACE;
     public static ConfigManager<ConfigFile.Effects> effectConfig = new ConfigManager<>

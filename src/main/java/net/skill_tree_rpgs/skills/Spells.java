@@ -1,6 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
-import net.skill_tree_rpgs.ClassSkillsMod;
+import net.skill_tree_rpgs.SkillTreeMod;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.effect.SkillEffects;
@@ -24,7 +24,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class Spells {
-    public static final String NAMESPACE = ClassSkillsMod.NAMESPACE;
+    public static final String NAMESPACE = SkillTreeMod.NAMESPACE;
     public enum Category {
         ARCANE, FIRE, FROST, PRIEST, PALADIN, ROGUE, WARRIOR, ARCHER
     }
@@ -3540,7 +3540,8 @@ public class Spells {
                                 SpellEngineParticles.MagicParticles.Shape.STRIPE,
                                 SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.3F).color(ROLL_COLOR.toRGBA())
+                        15, 0.1F, 0.3F)
+                        .color(ROLL_COLOR.toRGBA())
         };
 
         var trigger = SpellBuilder.Triggers.roll();
@@ -3596,7 +3597,7 @@ public class Spells {
 
         var trigger = SpellBuilder.Triggers.arrowHit();
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
-        trigger.chance = 0.25F;
+        trigger.chance = 0.2F;
 
         spell.passive.triggers = List.of(trigger);
 
@@ -3651,7 +3652,7 @@ public class Spells {
         };
         spell.impacts = List.of(impact);
 
-        SpellBuilder.Cost.cooldown(spell, 5F);
+        SpellBuilder.Cost.cooldown(spell, 10F);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ARCHER));
     }

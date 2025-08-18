@@ -1,6 +1,6 @@
 package net.skill_tree_rpgs.items;
 
-import net.skill_tree_rpgs.ClassSkillsMod;
+import net.skill_tree_rpgs.SkillTreeMod;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
@@ -52,7 +52,7 @@ public class SkillItems {
     }
 
     public static final Entry ORB_OF_OBLIVION = add(
-            new Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "orb_of_oblivion"),
+            new Entry(Identifier.of(SkillTreeMod.NAMESPACE, "orb_of_oblivion"),
                     "Orb of Oblivion",
                     List.of(
                             new LoreLine("Reset all skill points spend on the Class Skill Tree.", Formatting.GRAY)

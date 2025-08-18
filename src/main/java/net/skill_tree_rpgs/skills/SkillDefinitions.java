@@ -1,6 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
-import net.skill_tree_rpgs.ClassSkillsMod;
+import net.skill_tree_rpgs.SkillTreeMod;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SkillDefinitions {
-    public static final Identifier CATEGORY_ID = Identifier.of(ClassSkillsMod.NAMESPACE, "skill_tree_rpgs");
+    public static final Identifier CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "skill_tree_rpgs");
     public record Icon(IconType type, String value) {
         public static Icon texture(String texture) {
             return new Icon(IconType.TEXTURE, texture);
@@ -33,7 +33,7 @@ public class SkillDefinitions {
     }
     public record EntityAttributeReward(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier) {
         public static EntityAttributeReward of(RegistryEntry<EntityAttribute> attribute, double value, EntityAttributeModifier.Operation operation) {
-            return new EntityAttributeReward(attribute, new EntityAttributeModifier(Identifier.of(ClassSkillsMod.NAMESPACE + ":attribute_reward"), value, operation));
+            return new EntityAttributeReward(attribute, new EntityAttributeModifier(Identifier.of(SkillTreeMod.NAMESPACE + ":attribute_reward"), value, operation));
         }
     }
     public record Entry(String id, String title, String description, Icon icon, List<SpellContainer> spellReward, EntityAttributeReward attributeReward) {
@@ -48,10 +48,10 @@ public class SkillDefinitions {
             return new Entry(id, title, description, icon, null, attributeReward);
         }
         public String titleTranslationKey() {
-            return "skill." + ClassSkillsMod.NAMESPACE + "." + id + ".title";
+            return "skill." + SkillTreeMod.NAMESPACE + "." + id + ".title";
         }
         public String descriptionTranslationKey() {
-            return "skill." + ClassSkillsMod.NAMESPACE + "." + id + ".description";
+            return "skill." + SkillTreeMod.NAMESPACE + "." + id + ".description";
         }
         public Entry withIcon(Icon icon) {
             return new Entry(id, title, description, icon, spellReward, attributeReward);

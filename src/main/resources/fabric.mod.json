@@ -11,13 +11,13 @@
   "environment": "*",
   "entrypoints": {
     "fabric-datagen": [
-      "net.skill_tree_rpgs.data_gen.ClassSkillsModDataGenerator"
+      "net.skill_tree_rpgs.data_gen.SkillTreeModDataGenerator"
     ],
     "client": [
-      "net.skill_tree_rpgs.client.ClassSkillsModClient"
+      "net.skill_tree_rpgs.client.SkillTreeModClient"
     ],
     "main": [
-      "net.skill_tree_rpgs.ClassSkillsMod"
+      "net.skill_tree_rpgs.SkillTreeMod"
     ]
   },
   "mixins": [

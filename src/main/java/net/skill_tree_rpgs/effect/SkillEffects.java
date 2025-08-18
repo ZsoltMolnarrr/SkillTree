@@ -1,6 +1,6 @@
 package net.skill_tree_rpgs.effect;
 
-import net.skill_tree_rpgs.ClassSkillsMod;
+import net.skill_tree_rpgs.SkillTreeMod;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -33,7 +33,7 @@ public class SkillEffects {
         return entry;
     }
 
-    public static Effects.Entry DIVINE_STRENGTH = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "divine_strength"),
+    public static Effects.Entry DIVINE_STRENGTH = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "divine_strength"),
             "Divine Strength",
             "Increased attack damage.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc99),
@@ -47,7 +47,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry FLEET_FOOTED = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fleet_footed"),
+    public static Effects.Entry FLEET_FOOTED = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "fleet_footed"),
             "Fleet Footed",
             "Increased movement speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x33ccff),
@@ -61,7 +61,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry ARCANE_SLOWNESS = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_slowness"),
+    public static Effects.Entry ARCANE_SLOWNESS = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "arcane_slowness"),
             "Arcane Slowness",
             "Decreased movement speed.",
             new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xff99ff),
@@ -76,7 +76,7 @@ public class SkillEffects {
             )
     ));
     public static final float FIRE_VULNERABILITY_MULTIPLIER = 0.05F;
-    public static Effects.Entry FIRE_VULNERABILITY = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fire_vulnerability"),
+    public static Effects.Entry FIRE_VULNERABILITY = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "fire_vulnerability"),
             "Fire Vulnerability",
             "Increased damage taken from fire.",
             new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, 0xff6600)
@@ -86,7 +86,7 @@ public class SkillEffects {
             )
     ));
     public static final float FROST_VULNERABILITY_MULTIPLIER = 0.1F;
-    public static Effects.Entry FROST_VULNERABILITY = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_vulnerability"),
+    public static Effects.Entry FROST_VULNERABILITY = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "frost_vulnerability"),
             "Winter's Chill",
             "Increased damage taken from frost critical strikes.",
             new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, 0x99ccff)
@@ -96,7 +96,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry HEALING_FOCUS = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "healing_focus"),
+    public static Effects.Entry HEALING_FOCUS = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "healing_focus"),
             "Healing Focus",
             "Increased healing received.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ff99),
@@ -110,7 +110,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry INCANTER_CADENCE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "incanter_cadence"),
+    public static Effects.Entry INCANTER_CADENCE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "incanter_cadence"),
             "Incanters' Cadence",
             "Increased spell haste.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -124,7 +124,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry REDOUBT = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "redoubt"),
+    public static Effects.Entry REDOUBT = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "redoubt"),
             "Redoubt",
             "Increased armor.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xcccccc),
@@ -138,7 +138,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry KILLING_SPREE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "killing_spree"),
+    public static Effects.Entry KILLING_SPREE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "killing_spree"),
             "Killing Spree",
             "Increased attack damage.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc66),
@@ -152,7 +152,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry FRACTURE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fracture"),
+    public static Effects.Entry FRACTURE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "fracture"),
             "Fracture",
             "Reduces armor.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff6666),
@@ -166,7 +166,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry RHYTHM = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "rhythm"),
+    public static Effects.Entry RHYTHM = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "rhythm"),
             "Rhythm",
             "Increased ranged attack speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xccff99),
@@ -180,7 +180,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry PURSUIT_OF_JUSTICE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "pursuit_of_justice"),
+    public static Effects.Entry PURSUIT_OF_JUSTICE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "pursuit_of_justice"),
             "Pursuit of Justice",
             "Increased movement speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ffcc),
@@ -194,7 +194,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry BATTLE_SHOUT = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "battle_shout"),
+    public static Effects.Entry BATTLE_SHOUT = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "battle_shout"),
             "Battle Shout",
             "Increased attack power.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff9933),
@@ -208,7 +208,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry NATURES_GRASP = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "natures_grasp"),
+    public static Effects.Entry NATURES_GRASP = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "natures_grasp"),
             "Nature's Grasp",
             "Immobilized.",
             new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x66ff66),
@@ -228,7 +228,7 @@ public class SkillEffects {
             )
     ));
     public static final float ARCANE_EXPOSURE_MULTIPLIER = 0.02F;
-    public static Effects.Entry ARCANE_EXPOSURE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_exposure"),
+    public static Effects.Entry ARCANE_EXPOSURE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "arcane_exposure"),
             "Arcane Exposure",
             "Increased arcane damage taken.",
             new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, 0x9999ff)
@@ -237,7 +237,7 @@ public class SkillEffects {
                     List.of()
             )
     ));
-    public static Effects.Entry ARCANE_SPEED = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_speed"),
+    public static Effects.Entry ARCANE_SPEED = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "arcane_speed"),
             "Arcane Speed",
             "Increased movement speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
@@ -256,7 +256,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry FROST_SHIELD_SPEED = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_shield_speed"),
+    public static Effects.Entry FROST_SHIELD_SPEED = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "frost_shield_speed"),
             "Frost Shield Speed",
             "Increased movement speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -270,7 +270,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry CONCUSSION_BLOW = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "concussion_blow"),
+    public static Effects.Entry CONCUSSION_BLOW = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "concussion_blow"),
             "Concussing Blow",
             "Next attack stuns.",
             new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xffcc66),
@@ -286,7 +286,7 @@ public class SkillEffects {
             ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
             25, 0.25F, 0.25F)
             .color(Color.from(0xcc00cc).toRGBA());
-    public static Effects.Entry CLOAK_OF_SHADOWS = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "cloak_of_shadows"),
+    public static Effects.Entry CLOAK_OF_SHADOWS = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "cloak_of_shadows"),
             "Cloak of Shadows",
             "Protects you from an attack",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x333333),
@@ -295,7 +295,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry AMBUSH = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "ambush"),
+    public static Effects.Entry AMBUSH = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "ambush"),
             "Ambush",
             "Increased attack damage.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99cc66),
@@ -311,7 +311,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry PRESENCE_OF_MIND = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "presence_of_mind"),
+    public static Effects.Entry PRESENCE_OF_MIND = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "presence_of_mind"),
             "Presence of Mind",
             "Next spell cast is instant.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -322,7 +322,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry BLIZZARD_SLOW = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "blizzard_slow"),
+    public static Effects.Entry BLIZZARD_SLOW = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "blizzard_slow"),
             "Blizzard Slow",
             "Decreased movement speed.",
             new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x99ccff),
@@ -337,7 +337,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry BANNER_PROTECTION = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "banner_protection"),
+    public static Effects.Entry BANNER_PROTECTION = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "banner_protection"),
             "Protective Banner",
             "Reduces damage taken.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -352,7 +352,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry HAMSTRING = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "hamstring"),
+    public static Effects.Entry HAMSTRING = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "hamstring"),
             "Hamstring",
             "Immobilized.",
             new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xcc0000),
@@ -372,7 +372,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry PHASE_SHIFT = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "phase_shift"),
+    public static Effects.Entry PHASE_SHIFT = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "phase_shift"),
             "Phase Shift",
             "Reduces damage taken.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
@@ -387,7 +387,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry BLAZING_SPEED = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "blazing_speed"),
+    public static Effects.Entry BLAZING_SPEED = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "blazing_speed"),
             "Blazing Speed",
             "Increased movement speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff6600),
@@ -402,7 +402,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry ARCTIC_REFLEX = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arctic_reflex"),
+    public static Effects.Entry ARCTIC_REFLEX = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "arctic_reflex"),
             "Arctic Reflex",
             "Increased dodge chance.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -411,7 +411,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry ARCANE_WARD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "arcane_ward"),
+    public static Effects.Entry ARCANE_WARD = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "arcane_ward"),
             "Arcane Ward",
             "Absorbs damage.",
             new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
@@ -426,7 +426,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry FIRE_WARD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "fire_ward"),
+    public static Effects.Entry FIRE_WARD = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "fire_ward"),
             "Flame Ward",
             "Absorbs damage.",
             new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0xff6600),
@@ -441,7 +441,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry FROST_WARD = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "frost_ward"),
+    public static Effects.Entry FROST_WARD = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "frost_ward"),
             "Frost Ward",
             "Absorbs damage.",
             new WizardAbsorbEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -456,7 +456,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry DIVINE_FAVOR = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "divine_favor"),
+    public static Effects.Entry DIVINE_FAVOR = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "divine_favor"),
             "Divine Favor",
             "Guaranteed spell critical strike.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc99),
@@ -471,7 +471,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry PAIN_SUPPRESSION = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "pain_suppression"),
+    public static Effects.Entry PAIN_SUPPRESSION = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "pain_suppression"),
             "Pain Suppression",
             "Reduces damage taken.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -486,7 +486,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry CELESTIAL_ORB = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "celestial_orb"),
+    public static Effects.Entry CELESTIAL_ORB = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "celestial_orb"),
             "Celestial Orb",
             "Damages nearby enemies.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc99),
@@ -496,7 +496,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry SEAL_OF_CRUSADER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "seal_of_crusader"),
+    public static Effects.Entry SEAL_OF_CRUSADER = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "seal_of_crusader"),
             "Seal of Crusader",
             "Increased attack speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc99),
@@ -506,7 +506,7 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry CRUSADERS_MARK = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "crusaders_mark"),
+    public static Effects.Entry CRUSADERS_MARK = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "crusaders_mark"),
             "Crusader's Mark",
             "Increased damage taken",
             new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xffcc99),
@@ -521,7 +521,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry ARDENT_DEFENDER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "ardent_defender"),
+    public static Effects.Entry ARDENT_DEFENDER = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "ardent_defender"),
             "Ardent Defender",
             "Increases max health.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -536,7 +536,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry VITALITY = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "vitality"),
+    public static Effects.Entry VITALITY = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "vitality"),
             "Vitality",
             "Increased evasion chance.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -551,7 +551,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry TRAMPLE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "trample"),
+    public static Effects.Entry TRAMPLE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "trample"),
             "Trample",
             "Damaging nearby enemies.",
             new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff).interval(3),
@@ -560,7 +560,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry ENRAGE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "enrage"),
+    public static Effects.Entry ENRAGE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "enrage"),
             "Enrage",
             "Increased size and attack speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff6600),
@@ -585,7 +585,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry SPRINT = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "sprint"),
+    public static Effects.Entry SPRINT = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "sprint"),
             "Sprint",
             "Increased movement speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -600,7 +600,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry SIDE_STEP = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "side_step"),
+    public static Effects.Entry SIDE_STEP = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "side_step"),
             "Sidestep",
             "Increased evasion chance.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -615,7 +615,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry CHEAT_DEATH = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "cheat_death"),
+    public static Effects.Entry CHEAT_DEATH = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "cheat_death"),
             "Cheat Death",
             "Reduces damage taken.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
@@ -630,7 +630,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry TACTICAL_MANEUVER = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "tactical_maneuver"),
+    public static Effects.Entry TACTICAL_MANEUVER = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "tactical_maneuver"),
             "Tactical Maneuver",
             "Increased roll recharge.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -646,7 +646,7 @@ public class SkillEffects {
     ));
 
 
-    public static Effects.Entry SUPERCHARGE = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "supercharge"),
+    public static Effects.Entry SUPERCHARGE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "supercharge"),
             "Supercharge",
             "Powerful ranged shot.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
@@ -661,7 +661,7 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry DEFLECTION = add(new Effects.Entry(Identifier.of(ClassSkillsMod.NAMESPACE, "deflection"),
+    public static Effects.Entry DEFLECTION = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "deflection"),
             "Deflection",
             "Protects you from physical attacks.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),

@@ -2,7 +2,7 @@ package net.skill_tree_rpgs.node;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.skill_tree_rpgs.ClassSkillsMod;
+import net.skill_tree_rpgs.SkillTreeMod;
 import net.minecraft.util.Identifier;
 import net.puffish.skillsmod.api.SkillsAPI;
 import net.puffish.skillsmod.api.reward.Reward;
@@ -17,7 +17,7 @@ import net.spell_engine.internals.container.SpellContainerSource;
 import java.util.List;
 
 public class SpellContainerReward implements Reward {
-    public static final Identifier ID = Identifier.of(ClassSkillsMod.NAMESPACE, "spell");
+    public static final Identifier ID = Identifier.of(SkillTreeMod.NAMESPACE, "spell");
     public static void register() {
         SkillsAPI.registerReward(ID, SpellContainerReward::parse);
     }
