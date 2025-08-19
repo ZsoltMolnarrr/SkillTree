@@ -1,5 +1,6 @@
 package net.skill_tree_rpgs.client;
 
+import net.skill_tree_rpgs.client.effect.DeflectionEffectRenderer;
 import net.skill_tree_rpgs.client.effect.HolyChargeEffectRenderer;
 import net.skill_tree_rpgs.skills.SkillDefinitions;
 import net.skill_tree_rpgs.effect.SkillEffects;
@@ -46,7 +47,8 @@ public class SkillTreeModClient implements ClientModInitializer {
 
     private static void registerCustomModels() {
         CustomModels.registerModelIds(List.of(
-                HolyChargeEffectRenderer.modelId
+                HolyChargeEffectRenderer.modelId,
+                DeflectionEffectRenderer.modelId
         ));
     }
 
@@ -233,14 +235,14 @@ public class SkillTreeModClient implements ClientModInitializer {
                 SkillEffects.BLAZING_SPEED.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ blazingSpeedParticles })
         );
-        final var sprintParticles = new ParticleBatch(
-                SpellEngineParticles.smoke_medium.id().toString(),
-                ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
-                1F, 0F, 0F);
-        CustomParticleStatusEffect.register(
-                SkillEffects.SPRINT.effect,
-                new BuffParticleSpawner(new ParticleBatch[]{ sprintParticles })
-        );
+//        final var sprintParticles = new ParticleBatch(
+//                SpellEngineParticles.smoke_medium.id().toString(),
+//                ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
+//                1F, 0F, 0F);
+//        CustomParticleStatusEffect.register(
+//                SkillEffects.SPRINT.effect,
+//                new BuffParticleSpawner(new ParticleBatch[]{ sprintParticles })
+//        );
 
         CustomParticleStatusEffect.register(
                 SkillEffects.PAIN_SUPPRESSION.effect,
@@ -289,6 +291,6 @@ public class SkillTreeModClient implements ClientModInitializer {
                 new BuffParticleSpawner(new ParticleBatch[]{ cheatDeathParticles })
         );
 
-        CustomModelStatusEffect.register(SkillEffects.DEFLECTION.effect, new HolyChargeEffectRenderer());
+        CustomModelStatusEffect.register(SkillEffects.DEFLECTION.effect, new DeflectionEffectRenderer());
     }
 }

@@ -8,7 +8,7 @@
       {
         "target_override": "CASTER",
         "type": "ARROW_IMPACT",
-        "chance": 0.25
+        "chance": 0.2
       }
     ]
   },
@@ -124,7 +124,7 @@
   },
   "cost": {
     "cooldown": {
-      "duration": 5.0
+      "duration": 10.0
     }
   }
 }

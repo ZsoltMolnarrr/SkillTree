@@ -17,6 +17,7 @@ import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_power.api.SpellSchools;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -2636,14 +2637,14 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
 
-    public static final Entry rogue_spec_a_passive_2 = add(rogue_spec_a_passive_2()); // Sprint (movement speed on roll)
+    public static final Entry rogue_spec_a_passive_2 = add(rogue_spec_a_passive_2()); // Leeching Strike (upon roll, next attack life steal)
     private static Entry rogue_spec_a_passive_2() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_2");
-        var effect = SkillEffects.SPRINT;
+        var effect = SkillEffects.LEECHING_STRIKE;
         var title = effect.title;
-        var description = "Upon rolling, you have {trigger_chance} chance to gain Sprint effect, increasing your movement speed by {bonus}, for {effect_duration} sec.";
+        var description = "Upon rolling, you have {trigger_chance_1} chance for your next melee attack to heal you by {heal}.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.bonus(effect.config().firstModifier().value, effect.config().firstModifier().operation);
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
             return args.description().replace("{bonus}", bonus);
         };
 
@@ -2657,18 +2658,23 @@ public class Spells {
         trigger.chance = 0.25F;
         spell.passive.triggers = List.of(trigger);
 
-        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 2, 0);
-        buff.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_speed.id(), MIGHT_COLOR),
+        spell.release.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
                                 SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND
-                        ).id().toString(),
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.3F).color(MIGHT_COLOR.toRGBA())
+                        15, 0.2F, 0.3F)
+                        .color(Color.BLOOD.toRGBA())
         };
-        spell.impacts = List.of(buff);
+
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, SpellBuilder.Triggers.meleeAttack(false));
+
+        var impact = SpellBuilder.Impacts.heal(0.1F);
+        impact.action.apply_to_caster = true;
+        impact.particles = leechImpactParticles();
+
+        spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
@@ -3353,7 +3359,16 @@ public class Spells {
         modifier.spell_pattern = "archers:barrage";
         var impact = SpellBuilder.Impacts.heal(0.1F);
         impact.action.apply_to_caster = true;
-        impact.particles = new ParticleBatch[]{
+        impact.particles = leechImpactParticles();
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
+    }
+
+    private static ParticleBatch[] leechImpactParticles() {
+        return new ParticleBatch[]{
                 new ParticleBatch(SPARK_FLOAT.toString(),
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
                         15, 0.02F, 0.1F)
@@ -3373,11 +3388,6 @@ public class Spells {
                         .scale(0.8F)
                         .color(Color.BLOOD.alpha(0.2F).toRGBA())
         };
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-        spell.modifiers = List.of(modifier);
-
-        return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCHER));
     }
 
     public static final Entry archer_spec_a_modifier_4 = add(archer_spec_a_modifier_4());
@@ -3548,7 +3558,7 @@ public class Spells {
         trigger.chance = 0.5F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 4, 0);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(

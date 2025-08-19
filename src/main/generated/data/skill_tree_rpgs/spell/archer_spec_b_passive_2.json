@@ -44,7 +44,7 @@
         "type": "STATUS_EFFECT",
         "status_effect": {
           "effect_id": "skill_tree_rpgs:tactical_maneuver",
-          "duration": 8.0
+          "duration": 4.0
         }
       },
       "particles": [

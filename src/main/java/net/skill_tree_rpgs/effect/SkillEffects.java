@@ -585,18 +585,12 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry SPRINT = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "sprint"),
-            "Sprint",
-            "Increased movement speed.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+    public static Effects.Entry LEECHING_STRIKE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "leeching_strike"),
+            "Leeching Strike",
+            "Next attack heals you.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc66),
             new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.8F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
+                    List.of()
             )
     ));
 
