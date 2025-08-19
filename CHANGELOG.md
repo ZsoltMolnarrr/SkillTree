@@ -40,7 +40,6 @@
   - Rogue - Preparation - Evade chance to reset all cooldowns
 - New skill tree background :)
 - Project now also has a fancy logo :)
-  Add to `CHANGELOG.md` (version 1.1.0):
 
 # 1.0.3
 
