@@ -675,7 +675,14 @@ public class SkillEffects {
                 null // FIXME: SkillSound ???
         ));
         Protection.register(DEFLECTION.entry, SpellEngineDamageTypeTags.EVADABLE, new Protection.Pop(
-                new ParticleBatch[]{ CLOAK_OF_SHADOWS_POP },
+                new ParticleBatch[]{ new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.25F, 0.3F)
+                        .color(Color.WHITE.toRGBA())
+                },
                 null // FIXME: SkillSound ???
         ));
         CombatEvents.PLAYER_MELEE_ATTACK.register((event) -> {
