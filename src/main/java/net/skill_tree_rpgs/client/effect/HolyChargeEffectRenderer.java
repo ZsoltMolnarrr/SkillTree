@@ -15,6 +15,6 @@ public class HolyChargeEffectRenderer extends OrbitingEffectRenderer {
             CustomLayers.spellEffect(LightEmission.GLOW, false);
 
     public HolyChargeEffectRenderer() {
-        super(List.of(new Model(GLOWING_RENDER_LAYER, modelId)), 0.5F, 0.6F);
+        super(List.of(new Model(GLOWING_RENDER_LAYER, modelId)), 0.8F, 0.7F);
     }
 }
