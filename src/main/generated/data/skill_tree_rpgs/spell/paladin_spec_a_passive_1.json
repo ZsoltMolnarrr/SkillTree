@@ -16,6 +16,18 @@
   },
   "impacts": [
     {
+      "target_modifiers": [
+        {
+          "conditions": [
+            {
+              "entity_type": "#minecraft:undead"
+            }
+          ],
+          "modifier": {
+            "critical_chance_bonus": 1.0
+          }
+        }
+      ],
       "action": {
         "type": "DAMAGE",
         "damage": {
