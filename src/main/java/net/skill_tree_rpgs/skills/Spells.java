@@ -898,7 +898,7 @@ public class Spells {
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
                         15, 0.1F, 0.3F).color(FIRE_MAGIC_COLOR.toRGBA())
         };
-        // impact.sound = SpellEngineSounds.
+        impact.sound = new Sound(SpellEngineSounds.SPEED_BOOST.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FIRE));
@@ -918,6 +918,8 @@ public class Spells {
         var trigger = SpellBuilder.Triggers.damageTaken();
         trigger.chance = 0.5F;
         spell.passive.triggers = List.of(trigger);
+
+        spell.release.sound = new Sound("wizards:fire_meteor_impact");
 
         spell.target.type = Spell.Target.Type.AREA;
         spell.target.area = new Spell.Target.Area();
@@ -948,7 +950,7 @@ public class Spells {
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         25, 0.15F, 0.2F)
         };
-        damage.sound = new Sound("wizards:fire_meteor_impact");
+        damage.sound = new Sound("wizards:fire_scorch_impact");
         spell.impacts = List.of(damage);
 
         SpellBuilder.Cost.cooldown(spell, 5F);

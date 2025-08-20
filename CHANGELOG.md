@@ -26,10 +26,10 @@
   - Archer - Tactical Maneuver - Faster roll recharge chance
   - Archer - Supercharge - Empower next shot
   - Archer - Deflection - Parry buff on low HP hit
-  - Priest - Healing Focus - Heals apply a stacking heal received buff
-  - Priest - Incanters' Cadence - Spell hits grant stacking spell haste
   - Priest - Fade - Roll makes nearby mobs drop aggro
   - Priest - Divine Favor - Big heal grants a brief damage absorb shield
+  - Priest - Pain Suppression - Damage taken reduction for low HP targets
+  - Priest - Celestial Orbs - Spell crits grant damaging orbs
   - Paladin - Crusader Strike - Roll empowers next melee to apply damage taken debuff
   - Paladin - Conviction - Consecutive hits build stacking damage buff
   - Paladin - Divine Hammer - Melee attacks launch a ricocheting hammer dealing spell damage (5s cooldown)

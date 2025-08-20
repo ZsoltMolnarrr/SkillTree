@@ -284,8 +284,8 @@ public class SkillEffects {
                     SpellEngineParticles.MagicParticles.Shape.SKULL,
                     SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
             ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-            25, 0.25F, 0.25F)
-            .color(Color.from(0xcc00cc).toRGBA());
+            15, 0.25F, 0.25F)
+            .color(Color.from(0xcc00cc).alpha(0.5F).toRGBA());
     public static Effects.Entry CLOAK_OF_SHADOWS = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "cloak_of_shadows"),
             "Cloak of Shadows",
             "Protects you from an attack",
