@@ -19,6 +19,9 @@
           "duration": 2.0,
           "apply_mode": "ADD"
         }
+      },
+      "sound": {
+        "id": "skill_tree_rpgs:arcane_phase_shift"
       }
     }
   ]

@@ -42,7 +42,10 @@
           "min_speed": 0.1,
           "max_speed": 0.3
         }
-      ]
+      ],
+      "sound": {
+        "id": "skill_tree_rpgs:frost_winters_chill"
+      }
     }
   ]
 }

@@ -318,6 +318,7 @@ public class Spells {
                         1, 0, 0)
                         .color(ARCANE_COLOR),
         };
+        area_impact.sound = new Sound(SkillTreeSounds.arcane_fissile_impact.id());
         spell.area_impact = area_impact;
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -361,7 +362,7 @@ public class Spells {
                         15, 0.2F, 0.25F)
                         .color(ARCANE_COLOR)
         };
-
+        impact.sound = new Sound(SkillTreeSounds.arcane_radiance.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -465,7 +466,7 @@ public class Spells {
         var effect = SkillEffects.PHASE_SHIFT;
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 2, 0, 0);
-        // impact.sound =  FIXME
+        impact.sound = new Sound(SkillTreeSounds.arcane_phase_shift.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
@@ -769,6 +770,7 @@ public class Spells {
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
                         5, 0.1F, 0.3F)
         };
+        impact.sound = new Sound("wizards:fire_scorch_impact");
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FIRE));
@@ -857,7 +859,7 @@ public class Spells {
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         15, 0.15F, 0.2F)
         };
-        damage.sound = new Sound("wizards:fire_scorch_impact");
+        damage.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IMPACT_3.id());
         var debuff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), FIRE_VULNERABILITY_DURATION, 1, 4);
         spell.impacts = List.of(damage, debuff);
 
@@ -951,7 +953,7 @@ public class Spells {
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         25, 0.15F, 0.2F)
         };
-        damage.sound = new Sound("wizards:fire_scorch_impact");
+        damage.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IMPACT_2.id());
         spell.impacts = List.of(damage);
 
         SpellBuilder.Cost.cooldown(spell, 5F);
@@ -1202,6 +1204,7 @@ public class Spells {
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
                         25, 0.1F, 0.3F),
         };
+        impact.sound = new Sound(SkillTreeSounds.frost_winters_chill.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FROST));
@@ -1233,6 +1236,7 @@ public class Spells {
                         25, 0.25F, 0.3F)
                         .color(FROST_COLOR)
         };
+        impact.sound = new Sound("wizards:frost_nova_effect_impact");
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 10F);
@@ -1271,7 +1275,7 @@ public class Spells {
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
-                SkillTreeSounds.fire_trap_activate.id(),
+                SkillTreeSounds.frost_trap_activate.id(),
                 8,
                 cloudParticles
         );
@@ -1316,6 +1320,7 @@ public class Spells {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        spell.release.sound = new Sound(SpellEngineSounds.SIGNAL_INSTANT_CAST.id());
 
         // Release particle `sign_cast`
         spell.release.particles = new ParticleBatch[]{
@@ -1369,7 +1374,7 @@ public class Spells {
                         25, 0.2F, 0.2F)
                         .color(Color.FROST.toRGBA())
         };
-        impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
+        impact.sound = new Sound(SkillTreeSounds.frost_cold_snap.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 30F);

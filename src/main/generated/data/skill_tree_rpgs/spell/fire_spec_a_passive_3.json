@@ -77,7 +77,7 @@
         }
       ],
       "sound": {
-        "id": "wizards:fire_scorch_impact"
+        "id": "spell_engine:generic_fire_impact_2"
       }
     }
   ],

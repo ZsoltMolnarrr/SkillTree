@@ -1,4 +1,19 @@
 {
+  "arcane_fissile_impact": {
+    "sounds": [
+      "skill_tree_rpgs:arcane_fissile_impact"
+    ]
+  },
+  "arcane_phase_shift": {
+    "sounds": [
+      "skill_tree_rpgs:arcane_phase_shift"
+    ]
+  },
+  "arcane_radiance": {
+    "sounds": [
+      "skill_tree_rpgs:arcane_radiance"
+    ]
+  },
   "arcane_trap_activate": {
     "sounds": [
       "skill_tree_rpgs:arcane_trap_activate"
@@ -19,6 +34,11 @@
       "skill_tree_rpgs:fire_ward_activate"
     ]
   },
+  "frost_cold_snap": {
+    "sounds": [
+      "skill_tree_rpgs:frost_cold_snap"
+    ]
+  },
   "frost_trap_activate": {
     "sounds": [
       "skill_tree_rpgs:frost_trap_activate"
@@ -27,6 +47,11 @@
   "frost_ward_activate": {
     "sounds": [
       "skill_tree_rpgs:frost_ward_activate"
+    ]
+  },
+  "frost_winters_chill": {
+    "sounds": [
+      "skill_tree_rpgs:frost_winters_chill"
     ]
   }
 }

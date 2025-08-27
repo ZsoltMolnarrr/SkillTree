@@ -40,7 +40,10 @@
           "max_speed": 0.3,
           "color_rgba": 3439329279
         }
-      ]
+      ],
+      "sound": {
+        "id": "wizards:frost_nova_effect_impact"
+      }
     }
   ],
   "cost": {

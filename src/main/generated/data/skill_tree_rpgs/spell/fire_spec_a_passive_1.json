@@ -50,7 +50,10 @@
           "min_speed": 0.1,
           "max_speed": 0.3
         }
-      ]
+      ],
+      "sound": {
+        "id": "wizards:fire_scorch_impact"
+      }
     }
   ]
 }

@@ -61,7 +61,10 @@
           "max_speed": 0.25,
           "color_rgba": 4284940287
         }
-      ]
+      ],
+      "sound": {
+        "id": "skill_tree_rpgs:arcane_radiance"
+      }
     }
   ],
   "cost": {

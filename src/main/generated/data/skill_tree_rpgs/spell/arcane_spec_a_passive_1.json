@@ -56,7 +56,10 @@
         "max_speed": 0.0,
         "color_rgba": 4284940287
       }
-    ]
+    ],
+    "sound": {
+      "id": "skill_tree_rpgs:arcane_fissile_impact"
+    }
   },
   "cost": {
     "cooldown": {
