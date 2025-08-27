@@ -2,10 +2,12 @@ package net.skill_tree_rpgs.data_gen;
 
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.skills.SkillDefinitions;
 import net.skill_tree_rpgs.effect.SkillEffects;
+import net.skill_tree_rpgs.skills.SkillTreeSounds;
 import net.skill_tree_rpgs.skills.Spells;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -23,6 +25,7 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.puffish.skillsmod.reward.builtin.AttributeReward;
 import net.skill_tree_rpgs.utils.ResolvableTextContent;
+import net.spell_engine.api.datagen.SimpleSoundGeneratorV2;
 import net.spell_engine.api.datagen.SpellGenerator;
 import net.spell_engine.client.gui.SpellTooltip;
 
@@ -36,6 +39,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
         pack.addProvider(LangGenerator::new);
+        pack.addProvider(SoundGen::new);
         pack.addProvider(ModelProvider::new);
         pack.addProvider(RecipeProvider::new);
         pack.addProvider(SpellsGen::new);
@@ -71,6 +75,22 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 translationBuilder.add(entry.effect.getTranslationKey(), entry.title);
                 translationBuilder.add(entry.effect.getTranslationKey() + ".description", entry.description);
             });
+        }
+    }
+
+    public static class SoundGen extends SimpleSoundGeneratorV2 {
+        public SoundGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+            super(dataOutput, registryLookup);
+        }
+
+        @Override
+        public void generateSounds(Builder builder) {
+            builder.entries.add(new Entry(SkillTreeMod.NAMESPACE,
+                        SkillTreeSounds.entries.stream()
+                                    .map(entry -> SoundEntry.withVariants(entry.id().getPath(), entry.variants()))
+                                    .toList()
+                    )
+            );
         }
     }
 

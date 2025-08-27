@@ -16,6 +16,11 @@
       }
     ]
   },
+  "release": {
+    "sound": {
+      "id": "skill_tree_rpgs:frost_ward_activate"
+    }
+  },
   "target": {
     "type": "FROM_TRIGGER"
   },

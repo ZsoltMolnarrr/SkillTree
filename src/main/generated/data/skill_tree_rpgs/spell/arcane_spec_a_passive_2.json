@@ -71,7 +71,7 @@
         },
         "spawn": {
           "sound": {
-            "id": "spell_engine:generic_arcane_release"
+            "id": "skill_tree_rpgs:arcane_trap_activate"
           }
         }
       }

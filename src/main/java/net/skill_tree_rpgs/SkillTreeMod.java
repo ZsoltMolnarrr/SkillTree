@@ -4,6 +4,7 @@ import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.fabricmc.api.ModInitializer;
+import net.skill_tree_rpgs.skills.SkillTreeSounds;
 import net.spell_engine.api.config.ConfigFile;
 import net.tinyconfig.ConfigManager;
 
@@ -20,7 +21,7 @@ public class SkillTreeMod implements ModInitializer {
     @Override
     public void onInitialize() {
         effectConfig.refresh();
-
+        SkillTreeSounds.register();
         SpellContainerReward.register();
         SkillItems.register();
         SkillEffects.register(effectConfig.value);

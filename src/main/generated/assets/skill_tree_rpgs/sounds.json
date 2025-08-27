@@ -1,0 +1,32 @@
+{
+  "arcane_trap_activate": {
+    "sounds": [
+      "skill_tree_rpgs:arcane_trap_activate"
+    ]
+  },
+  "arcane_ward_activate": {
+    "sounds": [
+      "skill_tree_rpgs:arcane_ward_activate"
+    ]
+  },
+  "fire_trap_activate": {
+    "sounds": [
+      "skill_tree_rpgs:fire_trap_activate"
+    ]
+  },
+  "fire_ward_activate": {
+    "sounds": [
+      "skill_tree_rpgs:fire_ward_activate"
+    ]
+  },
+  "frost_trap_activate": {
+    "sounds": [
+      "skill_tree_rpgs:frost_trap_activate"
+    ]
+  },
+  "frost_ward_activate": {
+    "sounds": [
+      "skill_tree_rpgs:frost_ward_activate"
+    ]
+  }
+}

@@ -173,7 +173,6 @@ public class SkillTreeModClient implements ClientModInitializer {
                 new BuffParticleSpawner(new ParticleBatch[]{ blizzardSlowParticles })
         );
 
-
         final var arcaneBarrierParticles = new ParticleBatch(
                 SpellEngineParticles.aura_effect_622.id().toString(),
                 ParticleBatch.Shape.LINE, ParticleBatch.Origin.CENTER,

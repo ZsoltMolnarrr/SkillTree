@@ -401,7 +401,7 @@ public class Spells {
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
-                SpellEngineSounds.GENERIC_ARCANE_RELEASE.id(), // FIXME
+                SkillTreeSounds.arcane_trap_activate.id(),
                 8,
                 cloudParticles
         );
@@ -551,6 +551,7 @@ public class Spells {
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), duration, 0);
         impact.action.status_effect.amplifier_power_multiplier = 0.4F;
         impact.action.apply_to_caster = true;
+        impact.sound = new Sound(SkillTreeSounds.arcane_ward_activate.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
@@ -825,7 +826,7 @@ public class Spells {
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
-                SpellEngineSounds.GENERIC_ARCANE_RELEASE.id(), // FIXME
+                SkillTreeSounds.fire_trap_activate.id(),
                 8,
                 cloudParticles
         );
@@ -971,6 +972,7 @@ public class Spells {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        spell.release.sound = new Sound(SkillTreeSounds.fire_ward_activate.id());
 
         var spell_trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.FIRE);
         spell_trigger.chance = WIZARD_WARD_CHANCE;
@@ -1269,7 +1271,7 @@ public class Spells {
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
-                SpellEngineSounds.GENERIC_ARCANE_RELEASE.id(), // FIXME
+                SkillTreeSounds.fire_trap_activate.id(),
                 8,
                 cloudParticles
         );
@@ -1388,6 +1390,7 @@ public class Spells {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        spell.release.sound = new Sound(SkillTreeSounds.frost_ward_activate.id());
 
         var spell_trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.FROST);
         spell_trigger.chance = WIZARD_WARD_CHANCE;
