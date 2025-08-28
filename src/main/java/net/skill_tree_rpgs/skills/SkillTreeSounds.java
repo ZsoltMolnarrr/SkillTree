@@ -52,6 +52,9 @@ public class SkillTreeSounds  {
     public static final SpellEngineSounds.Entry archer_supercharge_release = add(entry("archer_supercharge_release"));
     public static final SpellEngineSounds.Entry archer_deflection_activate = add(entry("archer_deflection_activate"));
     public static final SpellEngineSounds.Entry archer_deflection_impact = add(entry("archer_deflection_impact"));
+    public static final SpellEngineSounds.Entry warrior_stomp = add(entry("warrior_stomp").variants(3));
+    public static final SpellEngineSounds.Entry warrior_enrage = add(entry("warrior_enrage"));
+    public static final SpellEngineSounds.Entry warrior_shockwave = add(entry("warrior_shockwave"));
 
     public static void register() {
         for (var entry: entries) {

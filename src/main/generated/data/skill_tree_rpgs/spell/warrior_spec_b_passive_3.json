@@ -61,7 +61,10 @@
         "color_rgba": 2795939583,
         "scale": 5.0
       }
-    ]
+    ],
+    "sound": {
+      "id": "skill_tree_rpgs:warrior_shockwave"
+    }
   },
   "target": {
     "type": "AREA",

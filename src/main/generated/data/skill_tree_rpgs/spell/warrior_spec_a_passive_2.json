@@ -38,7 +38,10 @@
           "scale": 0.8,
           "follow_entity": true
         }
-      ]
+      ],
+      "sound": {
+        "id": "spell_engine:spell_cooldown_impact"
+      }
     }
   ]
 }

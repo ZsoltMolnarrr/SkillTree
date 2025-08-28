@@ -173,5 +173,22 @@
     "sounds": [
       "skill_tree_rpgs:rogue_sidestep_activate"
     ]
+  },
+  "warrior_enrage": {
+    "sounds": [
+      "skill_tree_rpgs:warrior_enrage"
+    ]
+  },
+  "warrior_shockwave": {
+    "sounds": [
+      "skill_tree_rpgs:warrior_shockwave"
+    ]
+  },
+  "warrior_stomp": {
+    "sounds": [
+      "skill_tree_rpgs:warrior_stomp_1",
+      "skill_tree_rpgs:warrior_stomp_2",
+      "skill_tree_rpgs:warrior_stomp_3"
+    ]
   }
 }

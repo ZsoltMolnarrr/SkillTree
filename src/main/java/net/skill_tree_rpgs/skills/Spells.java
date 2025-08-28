@@ -3104,6 +3104,7 @@ public class Spells {
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.RAGE)
         };
         impact.action.apply_to_caster = true;
+        impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
@@ -3140,6 +3141,7 @@ public class Spells {
                         ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
                         10, 0.3F, 0.3F)
         };
+        areaImpact.sound = new Sound(SkillTreeSounds.warrior_stomp.id());
         spell.area_impact = areaImpact;
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WARRIOR));
@@ -3200,6 +3202,7 @@ public class Spells {
         buff.action.apply_to_caster = true;
         buff.action.status_effect.refresh_duration = false;
         buff.particles = activateParticles;
+        buff.sound = new Sound(SkillTreeSounds.warrior_enrage.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 30F);
@@ -3248,6 +3251,7 @@ public class Spells {
                         .scale(radius)
                         .color(Color.from(0xa6a6a6).toRGBA())
         };
+        spell.release.sound = new Sound(SkillTreeSounds.warrior_shockwave.id());
 
         var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
         trigger.aoe_source_override = Spell.Trigger.TargetSelector.CASTER;
