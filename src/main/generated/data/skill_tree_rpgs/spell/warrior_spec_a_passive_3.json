@@ -42,7 +42,10 @@
         "color_rgba": 3208659199,
         "scale": 1.5
       }
-    ]
+    ],
+    "sound": {
+      "id": "skill_tree_rpgs:warrior_enrage"
+    }
   },
   "target": {
     "type": "FROM_TRIGGER"
@@ -101,10 +104,7 @@
           "color_rgba": 3208659199,
           "scale": 1.5
         }
-      ],
-      "sound": {
-        "id": "skill_tree_rpgs:warrior_enrage"
-      }
+      ]
     }
   ],
   "cost": {

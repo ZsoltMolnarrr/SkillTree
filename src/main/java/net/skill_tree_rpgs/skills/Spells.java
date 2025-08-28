@@ -3192,6 +3192,7 @@ public class Spells {
         };
 
         spell.release.particles = activateParticles;
+        spell.release.sound = new Sound(SkillTreeSounds.warrior_enrage.id());
 
         SpellBuilder.Deliver.stash(spell, effect.id.toString(), 10F, List.of(
                 SpellBuilder.Triggers.damageTaken()
@@ -3202,7 +3203,7 @@ public class Spells {
         buff.action.apply_to_caster = true;
         buff.action.status_effect.refresh_duration = false;
         buff.particles = activateParticles;
-        buff.sound = new Sound(SkillTreeSounds.warrior_enrage.id());
+        // buff.sound = new Sound(SkillTreeSounds.warrior_enrage.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 30F);
