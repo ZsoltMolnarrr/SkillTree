@@ -17,7 +17,6 @@ import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_power.api.SpellSchools;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -2136,6 +2135,7 @@ public class Spells {
                         15, 0.5F, 0.8F)
                         .color(HOLY_COLOR)
         };
+        impact.sound = new Sound(SkillTreeSounds.paladin_seal_impact.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
@@ -2173,6 +2173,7 @@ public class Spells {
                         20, 0.2F, 0.3F)
                         .color(MIGHT_COLOR.toRGBA())
         };
+        impact.sound = new Sound(SkillTreeSounds.paladin_redoubt.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -2196,6 +2197,7 @@ public class Spells {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        spell.release.sound = new Sound(SkillTreeSounds.paladin_crusader_activate.id());
 
         // Roll to stash
 
@@ -2226,6 +2228,7 @@ public class Spells {
                         25, 0.7F, 0.8F)
                         .color(HOLY_COLOR)
         };
+        debuff.sound = new Sound(SkillTreeSounds.paladin_crusader_impact.id());
         spell.impacts = List.of(debuff);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PALADIN));
@@ -2258,6 +2261,7 @@ public class Spells {
                         15, 0.2F, 0.3F)
                         .color(HOLY_COLOR)
         };
+        impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PALADIN));
@@ -2274,6 +2278,7 @@ public class Spells {
         spell.range = 5;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        spell.release.sound = new Sound(SpellEngineSounds.GENERIC_HEALING_RELEASE.id());
 
         var trigger = SpellBuilder.Triggers.meleeAttack(false);
         trigger.chance = 1F;
@@ -2309,6 +2314,7 @@ public class Spells {
                         15, 0.6F, 0.8F)
                         .color(HOLY_COLOR)
         };
+        impact.sound = new Sound(SkillTreeSounds.paladin_divine_hammer_impact.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 5F);
@@ -2371,8 +2377,12 @@ public class Spells {
                                 SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
                         30, 0.1F, 0.2F)
+                        .color(Color.HOLY.toRGBA()),
+                SpellBuilder.Particles.area(SpellEngineParticles.aura_effect_415.id())
+                        .scale(1.5F)
                         .color(Color.HOLY.toRGBA())
         };
+        buff.sound = new Sound(SkillTreeSounds.paladin_ardent_defender.id());
         var heal = SpellBuilder.Impacts.heal(0.5F);
         spell.impacts = List.of(buff, heal);
 

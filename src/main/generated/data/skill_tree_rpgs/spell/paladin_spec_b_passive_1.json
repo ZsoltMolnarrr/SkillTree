@@ -36,7 +36,10 @@
           "max_speed": 0.3,
           "color_rgba": 3439329279
         }
-      ]
+      ],
+      "sound": {
+        "id": "skill_tree_rpgs:paladin_redoubt"
+      }
     }
   ],
   "cost": {

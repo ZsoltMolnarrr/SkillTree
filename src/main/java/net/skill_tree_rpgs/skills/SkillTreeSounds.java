@@ -35,6 +35,12 @@ public class SkillTreeSounds  {
     public static final SpellEngineSounds.Entry priest_pain_suppression = add(entry("priest_pain_suppression"));
     public static final SpellEngineSounds.Entry priest_consecration_impact = add(entry("priest_consecration_impact"));
     public static final SpellEngineSounds.Entry priest_orbs_activate = add(entry("priest_orbs_activate"));
+    public static final SpellEngineSounds.Entry paladin_seal_impact = add(entry("paladin_seal_impact"));
+    public static final SpellEngineSounds.Entry paladin_redoubt = add(entry("paladin_redoubt"));
+    public static final SpellEngineSounds.Entry paladin_crusader_activate = add(entry("paladin_crusader_activate"));
+    public static final SpellEngineSounds.Entry paladin_crusader_impact = add(entry("paladin_crusader_impact"));
+    public static final SpellEngineSounds.Entry paladin_divine_hammer_impact = add(entry("paladin_divine_hammer_impact"));
+    public static final SpellEngineSounds.Entry paladin_ardent_defender = add(entry("paladin_ardent_defender"));
 
     public static void register() {
         for (var entry: entries) {

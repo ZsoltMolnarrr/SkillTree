@@ -54,6 +54,36 @@
       "skill_tree_rpgs:frost_winters_chill"
     ]
   },
+  "paladin_ardent_defender": {
+    "sounds": [
+      "skill_tree_rpgs:paladin_ardent_defender"
+    ]
+  },
+  "paladin_crusader_activate": {
+    "sounds": [
+      "skill_tree_rpgs:paladin_crusader_activate"
+    ]
+  },
+  "paladin_crusader_impact": {
+    "sounds": [
+      "skill_tree_rpgs:paladin_crusader_impact"
+    ]
+  },
+  "paladin_divine_hammer_impact": {
+    "sounds": [
+      "skill_tree_rpgs:paladin_divine_hammer_impact"
+    ]
+  },
+  "paladin_redoubt": {
+    "sounds": [
+      "skill_tree_rpgs:paladin_redoubt"
+    ]
+  },
+  "paladin_seal_impact": {
+    "sounds": [
+      "skill_tree_rpgs:paladin_seal_impact"
+    ]
+  },
   "priest_consecration_impact": {
     "sounds": [
       "skill_tree_rpgs:priest_consecration_impact"

@@ -22,7 +22,10 @@
         "max_speed": 0.3,
         "color_rgba": 4294954239
       }
-    ]
+    ],
+    "sound": {
+      "id": "skill_tree_rpgs:paladin_crusader_activate"
+    }
   },
   "target": {
     "type": "FROM_TRIGGER"
@@ -61,7 +64,10 @@
           "max_speed": 0.8,
           "color_rgba": 4294954239
         }
-      ]
+      ],
+      "sound": {
+        "id": "skill_tree_rpgs:paladin_crusader_impact"
+      }
     }
   ]
 }
