@@ -53,5 +53,40 @@
     "sounds": [
       "skill_tree_rpgs:frost_winters_chill"
     ]
+  },
+  "priest_consecration_impact": {
+    "sounds": [
+      "skill_tree_rpgs:priest_consecration_impact"
+    ]
+  },
+  "priest_fade": {
+    "sounds": [
+      "skill_tree_rpgs:priest_fade"
+    ]
+  },
+  "priest_healing_focus": {
+    "sounds": [
+      "skill_tree_rpgs:priest_healing_focus"
+    ]
+  },
+  "priest_holy_blast": {
+    "sounds": [
+      "skill_tree_rpgs:priest_holy_blast"
+    ]
+  },
+  "priest_incanter_cadence": {
+    "sounds": [
+      "skill_tree_rpgs:priest_incanter_cadence"
+    ]
+  },
+  "priest_orbs_activate": {
+    "sounds": [
+      "skill_tree_rpgs:priest_orbs_activate"
+    ]
+  },
+  "priest_pain_suppression": {
+    "sounds": [
+      "skill_tree_rpgs:priest_pain_suppression"
+    ]
   }
 }

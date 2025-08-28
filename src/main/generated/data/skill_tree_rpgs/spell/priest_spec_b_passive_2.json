@@ -35,7 +35,7 @@
       }
     ],
     "sound": {
-      "id": "spell_engine:spell_cooldown_impact"
+      "id": "spell_engine:signal_spell_crit"
     }
   },
   "deliver": {

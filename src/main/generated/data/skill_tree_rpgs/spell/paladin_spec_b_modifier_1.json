@@ -29,7 +29,10 @@
               "max_speed": 0.3,
               "color_rgba": 4294954239
             }
-          ]
+          ],
+          "sound": {
+            "id": "spell_engine:generic_dispel_1"
+          }
         }
       ]
     }

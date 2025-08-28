@@ -28,6 +28,13 @@ public class SkillTreeSounds  {
     public static final SpellEngineSounds.Entry frost_ward_activate = add(entry("frost_ward_activate"));
     public static final SpellEngineSounds.Entry frost_winters_chill = add(entry("frost_winters_chill"));
     public static final SpellEngineSounds.Entry frost_cold_snap = add(entry("frost_cold_snap"));
+    public static final SpellEngineSounds.Entry priest_holy_blast = add(entry("priest_holy_blast"));
+    public static final SpellEngineSounds.Entry priest_healing_focus = add(entry("priest_healing_focus"));
+    public static final SpellEngineSounds.Entry priest_incanter_cadence = add(entry("priest_incanter_cadence"));
+    public static final SpellEngineSounds.Entry priest_fade = add(entry("priest_fade"));
+    public static final SpellEngineSounds.Entry priest_pain_suppression = add(entry("priest_pain_suppression"));
+    public static final SpellEngineSounds.Entry priest_consecration_impact = add(entry("priest_consecration_impact"));
+    public static final SpellEngineSounds.Entry priest_orbs_activate = add(entry("priest_orbs_activate"));
 
     public static void register() {
         for (var entry: entries) {

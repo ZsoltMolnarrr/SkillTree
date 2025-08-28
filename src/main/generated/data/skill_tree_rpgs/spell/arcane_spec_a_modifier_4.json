@@ -38,7 +38,10 @@
         "max_speed": 0.3,
         "color_rgba": 4284940287
       }
-    ]
+    ],
+    "sound": {
+      "id": "spell_engine:signal_instant_cast"
+    }
   },
   "target": {
     "type": "FROM_TRIGGER"

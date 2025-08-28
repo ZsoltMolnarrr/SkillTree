@@ -19,7 +19,7 @@
       "action": {
         "type": "AGGRO",
         "aggro": {
-          "only_if_targeted": false,
+          "only_if_targeted": true,
           "mode": "CLEAR"
         }
       },
@@ -33,7 +33,10 @@
           "max_speed": 0.2,
           "color_rgba": 4294954239
         }
-      ]
+      ],
+      "sound": {
+        "id": "skill_tree_rpgs:priest_fade"
+      }
     }
   ]
 }

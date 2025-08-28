@@ -44,7 +44,10 @@
           "max_speed": 0.2,
           "color_rgba": 4294954239
         }
-      ]
+      ],
+      "sound": {
+        "id": "skill_tree_rpgs:priest_pain_suppression"
+      }
     }
   ],
   "cost": {

@@ -31,7 +31,10 @@
             "color_rgba": 4294954239,
             "scale": 2.0
           }
-        ]
+        ],
+        "sound": {
+          "id": "skill_tree_rpgs:priest_holy_blast"
+        }
       }
     }
   ]

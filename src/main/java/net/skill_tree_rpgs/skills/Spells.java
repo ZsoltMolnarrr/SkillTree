@@ -222,6 +222,7 @@ public class Spells {
         var effect = SkillEffects.PRESENCE_OF_MIND;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        spell.release.sound = new Sound(SpellEngineSounds.SIGNAL_INSTANT_CAST.id());
 
         spell.release.particles = new ParticleBatch[]{
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_cast.id(), Color.ARCANE),
@@ -730,6 +731,7 @@ public class Spells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "wizards:fire_wall";
         var impact = SpellBuilder.Impacts.heal(0.025F);
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_HEALING_IMPACT_4.id());
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
 
@@ -1469,13 +1471,12 @@ public class Spells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "paladins:holy_shock";
-        modifier.replacing_area_impact = new Spell.AreaImpact();
-        modifier.replacing_area_impact.triggering_action_type = Spell.Impact.Action.Type.DAMAGE;
-        modifier.replacing_area_impact.radius = radius;
-        modifier.replacing_area_impact.area = new Spell.Target.Area();
-        modifier.replacing_area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-
-        modifier.replacing_area_impact.particles = new ParticleBatch[]{
+        var area_impact = new Spell.AreaImpact();
+        area_impact.triggering_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.radius = radius;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         HOLY_DECELERATE.toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
@@ -1488,6 +1489,8 @@ public class Spells {
                         .color(Color.HOLY.toRGBA())
                         .scale(radius - 0.5F),
         };
+        area_impact.sound = new Sound(SkillTreeSounds.priest_holy_blast.id());
+        modifier.replacing_area_impact = area_impact;
 
         spell.modifiers = List.of(modifier);
 
@@ -1645,6 +1648,7 @@ public class Spells {
                         10, 0.4F, 0.4F)
                         .color(HOLY_COLOR),
         };
+        impact.sound = new Sound(SkillTreeSounds.priest_consecration_impact.id());
         spell.impacts = List.of(impact);
     }
 
@@ -1713,6 +1717,7 @@ public class Spells {
                         .maxAge(0.8F)
                         .color(Color.HOLY.toRGBA()),
         };
+        impact.sound = new Sound(SkillTreeSounds.priest_healing_focus.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PRIEST));
@@ -1749,6 +1754,7 @@ public class Spells {
                         10, 0.15F, 0.3F)
                         .color(HOLY_COLOR)
         };
+        impact.sound = new Sound(SkillTreeSounds.priest_incanter_cadence.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.PRIEST));
@@ -1778,6 +1784,7 @@ public class Spells {
                         10, 0.2F, 0.2F)
                         .color(Color.HOLY.toRGBA())
         };
+        impact.sound = new Sound(SkillTreeSounds.priest_fade.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));
@@ -1807,7 +1814,7 @@ public class Spells {
                         25, 0.2F, 0.2F)
                         .color(Color.HOLY.toRGBA())
         };
-        spell.release.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
+        spell.release.sound = new Sound(SpellEngineSounds.SIGNAL_SPELL_CRIT.id());
 
         var cooldownDuration = 15F;
         var stashTriggers = List.of(
@@ -1857,6 +1864,7 @@ public class Spells {
                         15, 0.2F, 0.2F)
                         .color(HOLY_COLOR)
         };
+        impact.sound = new Sound(SkillTreeSounds.priest_pain_suppression.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 30F);
@@ -1876,6 +1884,7 @@ public class Spells {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        spell.release.sound = new Sound(SkillTreeSounds.priest_orbs_activate.id());
 
         var trigger = SpellBuilder.Triggers.activeSpellCrit();
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
@@ -1891,9 +1900,10 @@ public class Spells {
                                 SpellEngineParticles.MagicParticles.Shape.HOLY,
                                 SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.2F, 0.2F)
+                        25, 0.6F, 0.8F)
                         .color(HOLY_COLOR)
         };
+        impact.sound = new Sound(SkillTreeSounds.priest_holy_blast.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.PRIEST));

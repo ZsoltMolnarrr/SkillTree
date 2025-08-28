@@ -53,6 +53,9 @@
                 "id": "!minecraft:trial_omen"
               }
             }
+          },
+          "sound": {
+            "id": "spell_engine:generic_dispel_1"
           }
         }
       ]

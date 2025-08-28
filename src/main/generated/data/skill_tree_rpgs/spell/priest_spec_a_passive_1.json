@@ -44,7 +44,10 @@
           "follow_entity": true,
           "max_age": 0.8
         }
-      ]
+      ],
+      "sound": {
+        "id": "skill_tree_rpgs:priest_healing_focus"
+      }
     }
   ]
 }

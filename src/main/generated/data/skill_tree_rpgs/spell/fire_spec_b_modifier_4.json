@@ -14,6 +14,9 @@
             "heal": {
               "spell_power_coefficient": 0.025
             }
+          },
+          "sound": {
+            "id": "spell_engine:generic_healing_impact_4"
           }
         }
       ]
