@@ -48,7 +48,10 @@
           "max_speed": 0.4,
           "color_rgba": 3439329279
         }
-      ]
+      ],
+      "sound": {
+        "id": "spell_engine:spell_cooldown_impact"
+      }
     }
   ],
   "cost": {

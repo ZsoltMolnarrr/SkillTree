@@ -10,6 +10,11 @@
       }
     ]
   },
+  "release": {
+    "sound": {
+      "id": "skill_tree_rpgs:rogue_sidestep_activate"
+    }
+  },
   "target": {
     "type": "FROM_TRIGGER"
   },

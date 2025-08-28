@@ -1,3 +1,8 @@
+# 1.1.1
+
+- Add missing sound effects
+- Update some passive spell particle effects 
+
 # 1.1.0
 
 - Vastly increased XP curve, maximal skill points increased to 11

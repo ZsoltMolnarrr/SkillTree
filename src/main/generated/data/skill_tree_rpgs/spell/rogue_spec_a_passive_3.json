@@ -39,7 +39,10 @@
           "scale": 1.2,
           "follow_entity": true
         }
-      ]
+      ],
+      "sound": {
+        "id": "skill_tree_rpgs:rogue_cheat_death"
+      }
     }
   ],
   "cost": {

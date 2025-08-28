@@ -35,6 +35,15 @@
           "min_speed": 0.5,
           "max_speed": 0.8,
           "color_rgba": 3003121919
+        },
+        {
+          "particle_id": "spell_engine:aura_effect_409",
+          "origin": "CENTER",
+          "shape": "LINE",
+          "count": 1.0,
+          "max_speed": 0.0,
+          "color_rgba": 3003121919,
+          "follow_entity": true
         }
       ]
     },
@@ -48,6 +57,9 @@
           "amplifier_cap": 1,
           "apply_mode": "ADD"
         }
+      },
+      "sound": {
+        "id": "skill_tree_rpgs:rogue_fracture_impact"
       }
     }
   ],

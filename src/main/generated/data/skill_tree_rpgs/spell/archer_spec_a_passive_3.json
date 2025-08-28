@@ -34,7 +34,10 @@
         "max_speed": 0.3,
         "color_rgba": 3003101951
       }
-    ]
+    ],
+    "sound": {
+      "id": "skill_tree_rpgs:archer_supercharge_activate"
+    }
   },
   "target": {
     "type": "FROM_TRIGGER"
@@ -120,7 +123,10 @@
         "max_speed": 0.3,
         "color_rgba": 3003101951
       }
-    ]
+    ],
+    "launch_sound": {
+      "id": "skill_tree_rpgs:archer_supercharge_release"
+    }
   },
   "cost": {
     "cooldown": {

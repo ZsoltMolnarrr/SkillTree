@@ -24,6 +24,36 @@
       "skill_tree_rpgs:arcane_ward_activate"
     ]
   },
+  "archer_deflection_activate": {
+    "sounds": [
+      "skill_tree_rpgs:archer_deflection_activate"
+    ]
+  },
+  "archer_deflection_impact": {
+    "sounds": [
+      "skill_tree_rpgs:archer_deflection_impact"
+    ]
+  },
+  "archer_maneuver_activate": {
+    "sounds": [
+      "skill_tree_rpgs:archer_maneuver_activate"
+    ]
+  },
+  "archer_rhythm_activate": {
+    "sounds": [
+      "skill_tree_rpgs:archer_rhythm_activate"
+    ]
+  },
+  "archer_supercharge_activate": {
+    "sounds": [
+      "skill_tree_rpgs:archer_supercharge_activate"
+    ]
+  },
+  "archer_supercharge_release": {
+    "sounds": [
+      "skill_tree_rpgs:archer_supercharge_release"
+    ]
+  },
   "fire_trap_activate": {
     "sounds": [
       "skill_tree_rpgs:fire_trap_activate"
@@ -117,6 +147,31 @@
   "priest_pain_suppression": {
     "sounds": [
       "skill_tree_rpgs:priest_pain_suppression"
+    ]
+  },
+  "rogue_cheat_death": {
+    "sounds": [
+      "skill_tree_rpgs:rogue_cheat_death"
+    ]
+  },
+  "rogue_fracture_impact": {
+    "sounds": [
+      "skill_tree_rpgs:rogue_fracture_impact"
+    ]
+  },
+  "rogue_shadows_activate": {
+    "sounds": [
+      "skill_tree_rpgs:rogue_shadows_activate"
+    ]
+  },
+  "rogue_shadows_impact": {
+    "sounds": [
+      "skill_tree_rpgs:rogue_shadows_impact"
+    ]
+  },
+  "rogue_sidestep_activate": {
+    "sounds": [
+      "skill_tree_rpgs:rogue_sidestep_activate"
     ]
   }
 }

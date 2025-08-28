@@ -28,6 +28,9 @@
           "effect_id": "skill_tree_rpgs:deflection",
           "amplifier": 2
         }
+      },
+      "sound": {
+        "id": "skill_tree_rpgs:archer_deflection_activate"
       }
     }
   ],

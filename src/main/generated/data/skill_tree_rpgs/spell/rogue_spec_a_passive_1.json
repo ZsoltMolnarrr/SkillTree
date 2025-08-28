@@ -46,7 +46,10 @@
           "max_speed": 0.8,
           "color_rgba": 10027263
         }
-      ]
+      ],
+      "sound": {
+        "id": "spell_engine:generic_poison_impact"
+      }
     }
   ]
 }

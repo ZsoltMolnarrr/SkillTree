@@ -41,6 +41,17 @@ public class SkillTreeSounds  {
     public static final SpellEngineSounds.Entry paladin_crusader_impact = add(entry("paladin_crusader_impact"));
     public static final SpellEngineSounds.Entry paladin_divine_hammer_impact = add(entry("paladin_divine_hammer_impact"));
     public static final SpellEngineSounds.Entry paladin_ardent_defender = add(entry("paladin_ardent_defender"));
+    public static final SpellEngineSounds.Entry rogue_shadows_activate = add(entry("rogue_shadows_activate"));
+    public static final SpellEngineSounds.Entry rogue_shadows_impact = add(entry("rogue_shadows_impact"));
+    public static final SpellEngineSounds.Entry rogue_fracture_impact = add(entry("rogue_fracture_impact"));
+    public static final SpellEngineSounds.Entry rogue_sidestep_activate = add(entry("rogue_sidestep_activate"));
+    public static final SpellEngineSounds.Entry rogue_cheat_death = add(entry("rogue_cheat_death"));
+    public static final SpellEngineSounds.Entry archer_rhythm_activate = add(entry("archer_rhythm_activate"));
+    public static final SpellEngineSounds.Entry archer_maneuver_activate = add(entry("archer_maneuver_activate"));
+    public static final SpellEngineSounds.Entry archer_supercharge_activate = add(entry("archer_supercharge_activate"));
+    public static final SpellEngineSounds.Entry archer_supercharge_release = add(entry("archer_supercharge_release"));
+    public static final SpellEngineSounds.Entry archer_deflection_activate = add(entry("archer_deflection_activate"));
+    public static final SpellEngineSounds.Entry archer_deflection_impact = add(entry("archer_deflection_impact"));
 
     public static void register() {
         for (var entry: entries) {

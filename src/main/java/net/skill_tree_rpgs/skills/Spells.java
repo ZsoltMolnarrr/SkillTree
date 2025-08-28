@@ -2508,7 +2508,13 @@ public class Spells {
         modifier.spell_pattern = "rogues:shadow_step";
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 0, 1);
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_538.id())
+                        .scale(1.2F)
+                        .color(ROGUE_SHADOW_COLOR.alpha(0.75F).toRGBA())
+        };
         impact.action.apply_to_caster = true;
+        impact.sound = new Sound(SkillTreeSounds.rogue_shadows_activate.id());
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
@@ -2603,6 +2609,7 @@ public class Spells {
         var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 8, 1, 1);
         impact.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
         impact.particles = poisonImpactParticles();
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_POISON_IMPACT.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ROGUE));
@@ -2659,8 +2666,11 @@ public class Spells {
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         40, 0.5F, 0.8F)
                         .color(Color.BLOOD.toRGBA()),
+                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_409.id())
+                        .color(Color.BLOOD.toRGBA())
         };
         var debuff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 6, 1, 1);
+        debuff.sound = new Sound(SkillTreeSounds.rogue_fracture_impact.id());
         spell.impacts = List.of(damage, debuff);
 
         SpellBuilder.Cost.cooldown(spell, 6F);
@@ -2704,7 +2714,7 @@ public class Spells {
         var impact = SpellBuilder.Impacts.heal(0.1F);
         impact.action.apply_to_caster = true;
         impact.particles = leechImpactParticles();
-
+        impact.sound = new Sound(SpellEngineSounds.LEECHING_IMPACT.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
@@ -2726,6 +2736,7 @@ public class Spells {
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         spell.range = 0;
 
+        spell.release.sound = new Sound(SkillTreeSounds.rogue_sidestep_activate.id());
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.roll();
@@ -2771,6 +2782,7 @@ public class Spells {
                         .scale(1.2F)
                         .color(ROGUE_SHADOW_COLOR.alpha(0.5F).toRGBA())
         };
+        buff.sound = new Sound(SkillTreeSounds.rogue_cheat_death.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 60F);
@@ -2807,6 +2819,7 @@ public class Spells {
                         25, 0.3F, 0.4F)
                         .color(MIGHT_COLOR.toRGBA())
         };
+        impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 30F);
@@ -3389,6 +3402,7 @@ public class Spells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers:barrage";
         var impact = SpellBuilder.Impacts.heal(0.1F);
+        impact.sound = Sound.withVolume(SpellEngineSounds.LEECHING_IMPACT.id(), 0.75F);
         impact.action.apply_to_caster = true;
         impact.particles = leechImpactParticles();
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
@@ -3469,6 +3483,7 @@ public class Spells {
                         15, 0.1F, 0.4F)
                         .color(Color.NATURE.toRGBA())
         };
+        impact.sound = new Sound(SkillTreeSounds.archer_rhythm_activate.id());
         return impact;
     }
 
@@ -3599,6 +3614,7 @@ public class Spells {
                         15, 0.1F, 0.4F)
                         .color(Color.NATURE.toRGBA())
         };
+        impact.sound = new Sound(SkillTreeSounds.archer_maneuver_activate.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 10F);
@@ -3635,6 +3651,7 @@ public class Spells {
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
                         15, 0.1F, 0.3F).color(SUPERCHARGE_COLOR.toRGBA())
         };
+        spell.release.sound = new Sound(SkillTreeSounds.archer_supercharge_activate.id());
 
         var trigger = SpellBuilder.Triggers.arrowHit();
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
@@ -3673,6 +3690,7 @@ public class Spells {
                         5, 0.1F, 0.2F)
                         .color(SUPERCHARGE_COLOR.toRGBA())
         };
+        spell.arrow_perks.launch_sound = new Sound(SkillTreeSounds.archer_supercharge_release.id());
 
         var impact = SpellBuilder.Impacts.damage(0F, 1.5F);
         impact.particles = new ParticleBatch[]{
@@ -3722,6 +3740,7 @@ public class Spells {
         spell.passive.triggers = List.of(trigger);
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 2);
+        buff.sound = new Sound(SkillTreeSounds.archer_deflection_activate.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 45F);

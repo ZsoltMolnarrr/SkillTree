@@ -48,7 +48,11 @@
               "scale": 0.8,
               "follow_entity": true
             }
-          ]
+          ],
+          "sound": {
+            "id": "spell_engine:leeching_impact",
+            "volume": 0.75
+          }
         }
       ]
     }
