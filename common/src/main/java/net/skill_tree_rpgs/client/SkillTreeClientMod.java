@@ -6,7 +6,6 @@ import net.skill_tree_rpgs.skills.SkillDefinitions;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.skill_tree_rpgs.skills.Spells;
 import net.skill_tree_rpgs.utils.TranslationUtil;
-import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
@@ -20,10 +19,8 @@ import net.spell_engine.fx.SpellEngineParticles;
 
 import java.util.List;
 
-public class SkillTreeModClient implements ClientModInitializer {
-
-    @Override
-    public void onInitializeClient() {
+public class SkillTreeClientMod {
+    public static void init() {
         for (var spell: Spells.all) {
             if (spell.mutator() != null) {
                 SpellTooltip.addDescriptionMutator(spell.id(), spell.mutator());

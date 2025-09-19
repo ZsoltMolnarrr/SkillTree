@@ -3,12 +3,11 @@ package net.skill_tree_rpgs;
 import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.effect.SkillEffects;
-import net.fabricmc.api.ModInitializer;
 import net.skill_tree_rpgs.skills.SkillTreeSounds;
 import net.spell_engine.api.config.ConfigFile;
-import net.tinyconfig.ConfigManager;
+import net.tiny_config.ConfigManager;
 
-public class SkillTreeMod implements ModInitializer {
+public class SkillTreeMod {
     public static final String NAMESPACE = "skill_tree_rpgs";
     private static final String DIRECTORY = NAMESPACE;
     public static ConfigManager<ConfigFile.Effects> effectConfig = new ConfigManager<>
@@ -18,12 +17,21 @@ public class SkillTreeMod implements ModInitializer {
             .sanitize(true)
             .build();
 
-    @Override
-    public void onInitialize() {
+    public static void init() {
         effectConfig.refresh();
-        SkillTreeSounds.register();
         SpellContainerReward.register();
+        effectConfig.save();
+    }
+
+    public static void registerSounds() {
+        SkillTreeSounds.register();
+    }
+
+    public static void registerItems() {
         SkillItems.register();
+    }
+
+    public static void registerEffects() {
         SkillEffects.register(effectConfig.value);
     }
 }

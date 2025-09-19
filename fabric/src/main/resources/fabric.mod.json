@@ -14,10 +14,10 @@
       "net.skill_tree_rpgs.data_gen.SkillTreeModDataGenerator"
     ],
     "client": [
-      "net.skill_tree_rpgs.client.SkillTreeModClient"
+      "net.skill_tree_rpgs.fabric.client.FabricClientMod"
     ],
     "main": [
-      "net.skill_tree_rpgs.SkillTreeMod"
+      "net.skill_tree_rpgs.fabric.FabricMod"
     ]
   },
   "mixins": [
