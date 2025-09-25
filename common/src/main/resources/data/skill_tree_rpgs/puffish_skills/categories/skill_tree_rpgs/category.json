@@ -3,7 +3,7 @@
 	"icon": {
 		"type": "texture",
 		"data": {
-			"texture": "wizards:textures/spell/fire_blast.png"
+			"texture": "skill_tree_rpgs:textures/gui/icon.png"
 		}
 	},
 	"unlocked_by_default": true,
