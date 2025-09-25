@@ -163,7 +163,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 if(skill.spellReward() != null) {
                     rewards.add(new Reward(SpellContainerReward.ID.toString(), new SpellContainerReward.DataStructure(skill.spellReward())));
                 }
-                var format = new Format(title, description, icon, rewards);
+                var format = new Format(title, description, icon, rewards, skill.required_mods());
                 skillDefinitions.put(skill.id(), format);
             }
             builder.entries.add(new Entry(SkillDefinitions.CATEGORY_ID, skillDefinitions));

@@ -14,6 +14,7 @@ architectury {
 
 fabricApi {
     configureDataGeneration() {
+        modId = "skill_tree_rpgs"
         client = true
         outputDirectory = project(':common').file('src/main/generated')
     }

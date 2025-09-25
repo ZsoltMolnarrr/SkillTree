@@ -33,7 +33,8 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
             Translatable title,
             Text description,
             Icon icon,
-            List<Reward> rewards
+            List<Reward> rewards,
+            List<String> required_mods
     ) {}
     public record Translatable(String translate) { }
     public record Icon(
