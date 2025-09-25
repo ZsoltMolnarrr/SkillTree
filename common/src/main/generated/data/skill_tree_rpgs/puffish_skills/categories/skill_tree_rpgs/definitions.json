@@ -9,6 +9,9 @@
         "item": "wizards:wand_arcane"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -33,6 +36,9 @@
         "item": "wizards:arcane_spell_book"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -57,6 +63,9 @@
         "texture": "wizards:textures/spell/arcane_blast.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -90,6 +99,9 @@
         "texture": "wizards:textures/spell/arcane_missile.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -123,6 +135,9 @@
         "texture": "wizards:textures/spell/arcane_beam.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -156,6 +171,9 @@
         "texture": "wizards:textures/spell/arcane_blink.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -189,6 +207,9 @@
         "texture": "skill_tree_rpgs:textures/spell/arcane_spec_a_passive_1.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -222,6 +243,9 @@
         "texture": "skill_tree_rpgs:textures/spell/arcane_spec_a_passive_2.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -255,6 +279,9 @@
         "texture": "skill_tree_rpgs:textures/spell/arcane_spec_a_passive_3.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -288,6 +315,9 @@
         "texture": "wizards:textures/spell/arcane_blast.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -321,6 +351,9 @@
         "texture": "wizards:textures/spell/arcane_missile.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -354,6 +387,9 @@
         "texture": "wizards:textures/spell/arcane_beam.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -387,6 +423,9 @@
         "texture": "wizards:textures/spell/arcane_blink.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -420,6 +459,9 @@
         "texture": "skill_tree_rpgs:textures/spell/arcane_spec_b_passive_1.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -453,6 +495,9 @@
         "texture": "skill_tree_rpgs:textures/spell/arcane_spec_b_passive_2.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -486,6 +531,9 @@
         "texture": "skill_tree_rpgs:textures/spell/arcane_spec_b_passive_3.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -519,6 +567,9 @@
         "item": "archers:composite_longbow"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -543,6 +594,9 @@
         "item": "archers:archer_spell_book"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -567,6 +621,9 @@
         "texture": "archers:textures/spell/power_shot.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -600,6 +657,9 @@
         "texture": "archers:textures/spell/entangling_roots.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -633,6 +693,9 @@
         "texture": "archers:textures/spell/barrage.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -666,6 +729,9 @@
         "texture": "archers:textures/spell/magic_arrow.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -699,6 +765,9 @@
         "texture": "skill_tree_rpgs:textures/spell/archer_spec_a_passive_1.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -732,6 +801,9 @@
         "texture": "skill_tree_rpgs:textures/spell/archer_spec_a_passive_2.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -765,6 +837,9 @@
         "texture": "skill_tree_rpgs:textures/spell/archer_spec_a_passive_3.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -798,6 +873,9 @@
         "texture": "archers:textures/spell/power_shot.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -831,6 +909,9 @@
         "texture": "archers:textures/spell/entangling_roots.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -864,6 +945,9 @@
         "texture": "archers:textures/spell/barrage.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -897,6 +981,9 @@
         "texture": "archers:textures/spell/magic_arrow.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -930,6 +1017,9 @@
         "texture": "skill_tree_rpgs:textures/spell/archer_spec_b_passive_1.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -963,6 +1053,9 @@
         "texture": "skill_tree_rpgs:textures/spell/archer_spec_b_passive_2.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -996,6 +1089,9 @@
         "texture": "skill_tree_rpgs:textures/spell/archer_spec_b_passive_3.png"
       }
     },
+    "required_mods": [
+      "archers"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1029,6 +1125,9 @@
         "item": "wizards:wand_fire"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -1053,6 +1152,9 @@
         "item": "wizards:fire_spell_book"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -1077,6 +1179,9 @@
         "texture": "wizards:textures/spell/fire_blast.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1110,6 +1215,9 @@
         "texture": "wizards:textures/spell/fire_breath.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1143,6 +1251,9 @@
         "texture": "wizards:textures/spell/fire_meteor.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1176,6 +1287,9 @@
         "texture": "wizards:textures/spell/fire_wall.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1209,6 +1323,9 @@
         "texture": "skill_tree_rpgs:textures/spell/fire_spec_a_passive_1.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1242,6 +1359,9 @@
         "texture": "skill_tree_rpgs:textures/spell/fire_spec_a_passive_2.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1275,6 +1395,9 @@
         "texture": "skill_tree_rpgs:textures/spell/fire_spec_a_passive_3.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1308,6 +1431,9 @@
         "texture": "wizards:textures/spell/fire_blast.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1341,6 +1467,9 @@
         "texture": "wizards:textures/spell/fire_breath.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1374,6 +1503,9 @@
         "texture": "wizards:textures/spell/fire_meteor.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1407,6 +1539,9 @@
         "texture": "wizards:textures/spell/fire_wall.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1440,6 +1575,9 @@
         "texture": "skill_tree_rpgs:textures/spell/fire_spec_b_passive_1.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1473,6 +1611,9 @@
         "texture": "skill_tree_rpgs:textures/spell/fire_spec_b_passive_2.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1506,6 +1647,9 @@
         "texture": "skill_tree_rpgs:textures/spell/fire_spec_b_passive_3.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1539,6 +1683,9 @@
         "texture": "wizards:textures/spell/fireball.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1572,6 +1719,9 @@
         "item": "wizards:wand_frost"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -1596,6 +1746,9 @@
         "item": "wizards:frost_spell_book"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -1620,6 +1773,9 @@
         "texture": "wizards:textures/spell/frostbolt.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1653,6 +1809,9 @@
         "texture": "wizards:textures/spell/frost_nova.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1686,6 +1845,9 @@
         "texture": "wizards:textures/spell/frost_shield.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1719,6 +1881,9 @@
         "texture": "wizards:textures/spell/frost_blizzard.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1752,6 +1917,9 @@
         "texture": "skill_tree_rpgs:textures/spell/frost_spec_a_passive_1.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1785,6 +1953,9 @@
         "texture": "skill_tree_rpgs:textures/spell/frost_spec_a_passive_2.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1818,6 +1989,9 @@
         "texture": "skill_tree_rpgs:textures/spell/frost_spec_a_passive_3.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1851,6 +2025,9 @@
         "texture": "wizards:textures/spell/frostbolt.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1884,6 +2061,9 @@
         "texture": "wizards:textures/spell/frost_nova.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1917,6 +2097,9 @@
         "texture": "wizards:textures/spell/frost_shield.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1950,6 +2133,9 @@
         "texture": "wizards:textures/spell/frost_blizzard.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -1983,6 +2169,9 @@
         "texture": "skill_tree_rpgs:textures/spell/frost_spec_b_passive_1.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2016,6 +2205,9 @@
         "texture": "skill_tree_rpgs:textures/spell/frost_spec_b_passive_2.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2049,6 +2241,9 @@
         "texture": "skill_tree_rpgs:textures/spell/frost_spec_b_passive_3.png"
       }
     },
+    "required_mods": [
+      "wizards"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2082,6 +2277,9 @@
         "item": "paladins:iron_mace"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -2106,6 +2304,9 @@
         "item": "paladins:paladin_spell_book"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -2130,6 +2331,9 @@
         "texture": "paladins:textures/spell/flash_heal.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2163,6 +2367,9 @@
         "texture": "paladins:textures/spell/divine_protection.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2196,6 +2403,9 @@
         "texture": "paladins:textures/spell/judgement.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2229,6 +2439,9 @@
         "texture": "paladins:textures/spell/battle_banner.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2262,6 +2475,9 @@
         "texture": "skill_tree_rpgs:textures/spell/paladin_spec_a_passive_1.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2295,6 +2511,9 @@
         "texture": "skill_tree_rpgs:textures/spell/paladin_spec_a_passive_2.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2328,6 +2547,9 @@
         "texture": "skill_tree_rpgs:textures/spell/paladin_spec_a_passive_3.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2361,6 +2583,9 @@
         "texture": "paladins:textures/spell/flash_heal.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2394,6 +2619,9 @@
         "texture": "paladins:textures/spell/divine_protection.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2427,6 +2655,9 @@
         "texture": "paladins:textures/spell/judgement.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2460,6 +2691,9 @@
         "texture": "paladins:textures/spell/battle_banner.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2493,6 +2727,9 @@
         "texture": "skill_tree_rpgs:textures/spell/paladin_spec_b_passive_1.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2526,6 +2763,9 @@
         "texture": "skill_tree_rpgs:textures/spell/paladin_spec_b_passive_2.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2559,6 +2799,9 @@
         "texture": "skill_tree_rpgs:textures/spell/paladin_spec_b_passive_3.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2592,6 +2835,9 @@
         "item": "paladins:holy_wand"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -2616,6 +2862,9 @@
         "item": "paladins:priest_spell_book"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -2640,6 +2889,9 @@
         "texture": "paladins:textures/spell/holy_shock.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2673,6 +2925,9 @@
         "texture": "paladins:textures/spell/holy_beam.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2706,6 +2961,9 @@
         "texture": "paladins:textures/spell/circle_of_healing.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2739,6 +2997,9 @@
         "texture": "paladins:textures/spell/barrier.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2772,6 +3033,9 @@
         "texture": "skill_tree_rpgs:textures/spell/priest_spec_a_passive_1.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2805,6 +3069,9 @@
         "texture": "skill_tree_rpgs:textures/spell/priest_spec_a_passive_2.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2838,6 +3105,9 @@
         "texture": "skill_tree_rpgs:textures/spell/priest_spec_a_passive_3.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2871,6 +3141,9 @@
         "texture": "paladins:textures/spell/holy_shock.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2904,6 +3177,9 @@
         "texture": "paladins:textures/spell/holy_beam.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2937,6 +3213,9 @@
         "texture": "paladins:textures/spell/circle_of_healing.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -2970,6 +3249,9 @@
         "texture": "paladins:textures/spell/barrier.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3003,6 +3285,9 @@
         "texture": "skill_tree_rpgs:textures/spell/priest_spec_b_passive_1.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3036,6 +3321,9 @@
         "texture": "skill_tree_rpgs:textures/spell/priest_spec_b_passive_2.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3069,6 +3357,9 @@
         "texture": "skill_tree_rpgs:textures/spell/priest_spec_b_passive_3.png"
       }
     },
+    "required_mods": [
+      "paladins"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3102,6 +3393,9 @@
         "item": "rogues:iron_sickle"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -3126,6 +3420,9 @@
         "item": "rogues:rogue_spell_book"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -3150,6 +3447,9 @@
         "texture": "rogues:textures/spell/slice_and_dice.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3183,6 +3483,9 @@
         "texture": "rogues:textures/spell/shock_powder.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3216,6 +3519,9 @@
         "texture": "rogues:textures/spell/shadow_step.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3249,6 +3555,9 @@
         "texture": "rogues:textures/spell/vanish.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3282,6 +3591,9 @@
         "texture": "skill_tree_rpgs:textures/spell/rogue_spec_a_passive_1.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3315,6 +3627,9 @@
         "texture": "skill_tree_rpgs:textures/spell/rogue_spec_a_passive_2.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3348,6 +3663,9 @@
         "texture": "skill_tree_rpgs:textures/spell/rogue_spec_a_passive_3.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3381,6 +3699,9 @@
         "texture": "rogues:textures/spell/slice_and_dice.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3414,6 +3735,9 @@
         "texture": "rogues:textures/spell/shock_powder.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3447,6 +3771,9 @@
         "texture": "rogues:textures/spell/shadow_step.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3480,6 +3807,9 @@
         "texture": "rogues:textures/spell/vanish.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3513,6 +3843,9 @@
         "texture": "skill_tree_rpgs:textures/spell/rogue_spec_b_passive_1.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3546,6 +3879,9 @@
         "texture": "skill_tree_rpgs:textures/spell/rogue_spec_b_passive_2.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3579,6 +3915,9 @@
         "texture": "skill_tree_rpgs:textures/spell/rogue_spec_b_passive_3.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3612,6 +3951,9 @@
         "item": "rogues:iron_double_axe"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -3636,6 +3978,9 @@
         "item": "rogues:warrior_spell_book"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -3660,6 +4005,9 @@
         "texture": "rogues:textures/spell/throw.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3693,6 +4041,9 @@
         "texture": "rogues:textures/spell/shout.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3726,6 +4077,9 @@
         "texture": "rogues:textures/spell/charge.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3759,6 +4113,9 @@
         "texture": "rogues:textures/spell/whirlwind.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3792,6 +4149,9 @@
         "texture": "skill_tree_rpgs:textures/spell/warrior_spec_a_passive_1.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3825,6 +4185,9 @@
         "texture": "skill_tree_rpgs:textures/spell/warrior_spec_a_passive_2.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3858,6 +4221,9 @@
         "texture": "skill_tree_rpgs:textures/spell/warrior_spec_a_passive_3.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3891,6 +4257,9 @@
         "texture": "rogues:textures/spell/throw.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3924,6 +4293,9 @@
         "texture": "rogues:textures/spell/shout.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3957,6 +4329,9 @@
         "texture": "rogues:textures/spell/charge.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -3990,6 +4365,9 @@
         "texture": "rogues:textures/spell/whirlwind.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -4023,6 +4401,9 @@
         "texture": "skill_tree_rpgs:textures/spell/warrior_spec_b_passive_1.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -4056,6 +4437,9 @@
         "texture": "skill_tree_rpgs:textures/spell/warrior_spec_b_passive_2.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
@@ -4089,6 +4473,9 @@
         "texture": "skill_tree_rpgs:textures/spell/warrior_spec_b_passive_3.png"
       }
     },
+    "required_mods": [
+      "rogues"
+    ],
     "rewards": [
       {
         "type": "skill_tree_rpgs:spell",
