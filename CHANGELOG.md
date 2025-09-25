@@ -1,4 +1,4 @@
-# 1.1.2
+# 1.2.0
 
 - Skill Tree now loads if some of the class mods are missing 
 
