@@ -1,3 +1,7 @@
+# 1.1.2
+
+- Skill Tree now loads if some of the class mods are missing 
+
 # 1.1.1
 
 - Add missing sound effects
