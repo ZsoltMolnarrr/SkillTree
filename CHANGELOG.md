@@ -1,3 +1,8 @@
+# 1.2.1
+
+- Swap Sidestep and Leeching Strike positions in Rogue skill tree
+- Increased radius of Trample 
+
 # 1.2.0
 
 - Skill Tree now loads if some of the class mods are missing 

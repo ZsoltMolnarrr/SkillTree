@@ -2678,9 +2678,9 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
 
-    public static final Entry rogue_spec_a_passive_2 = add(rogue_spec_a_passive_2()); // Leeching Strike (upon roll, next attack life steal)
-    private static Entry rogue_spec_a_passive_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_2");
+    public static final Entry rogue_spec_b_passive_2 = add(rogue_spec_b_passive_2()); // Leeching Strike (upon roll, next attack life steal)
+    private static Entry rogue_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_2");
         var effect = SkillEffects.LEECHING_STRIKE;
         var title = effect.title;
         var description = "Upon rolling, you have {trigger_chance_1} chance for your next melee attack to heal you by {heal}.";
@@ -2720,9 +2720,9 @@ public class Spells {
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.ROGUE));
     }
 
-    public static final Entry rogue_spec_b_passive_2 = add(rogue_spec_b_passive_2());
-    private static Entry rogue_spec_b_passive_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_2");
+    public static final Entry rogue_spec_a_passive_2 = add(rogue_spec_a_passive_2());
+    private static Entry rogue_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_2");
         var effect = SkillEffects.SIDE_STEP;
         var title = effect.title;
         var description = "Upon rolling, you gain a stack of Sidestep, increasing your Evasion Chance by {bonus}, stacking up to {stash_amplifier} times. Removed when taking damage.";
@@ -3133,7 +3133,7 @@ public class Spells {
         var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
         spell.impacts = List.of(impact);
         var areaImpact = new Spell.AreaImpact();
-        areaImpact.radius = 2F;
+        areaImpact.radius = 2.5F;
         areaImpact.force_indirect = true;
         areaImpact.particles = new ParticleBatch[]{
                 new ParticleBatch(

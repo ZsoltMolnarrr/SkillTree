@@ -6,23 +6,14 @@
   "passive": {
     "triggers": [
       {
-        "type": "ROLL",
-        "chance": 0.25
+        "type": "ROLL"
       }
     ]
   },
   "release": {
-    "particles": [
-      {
-        "particle_id": "spell_engine:magic_spark_decelerate",
-        "origin": "FEET",
-        "shape": "WIDE_PIPE",
-        "count": 15.0,
-        "min_speed": 0.2,
-        "max_speed": 0.3,
-        "color_rgba": 3003121919
-      }
-    ]
+    "sound": {
+      "id": "skill_tree_rpgs:rogue_sidestep_activate"
+    }
   },
   "target": {
     "type": "FROM_TRIGGER"
@@ -30,59 +21,31 @@
   "deliver": {
     "type": "STASH_EFFECT",
     "stash_effect": {
-      "id": "skill_tree_rpgs:leeching_strike",
-      "duration": 5.0,
+      "id": "skill_tree_rpgs:side_step",
+      "amplifier": 4,
+      "stacking": true,
+      "duration": 12.0,
       "triggers": [
         {
-          "type": "MELEE_IMPACT"
+          "type": "DAMAGE_TAKEN"
         }
-      ]
+      ],
+      "consume": 5,
+      "consumed_next_tick": true,
+      "consume_any_stacks": true
     }
   },
   "impacts": [
     {
       "action": {
-        "type": "HEAL",
+        "type": "STATUS_EFFECT",
         "apply_to_caster": true,
-        "heal": {
-          "spell_power_coefficient": 0.1
+        "status_effect": {
+          "apply_mode": "REMOVE",
+          "remove": {
+            "id": "skill_tree_rpgs:side_step"
+          }
         }
-      },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_spark_float",
-          "origin": "CENTER",
-          "shape": "WIDE_PIPE",
-          "count": 15.0,
-          "min_speed": 0.02,
-          "max_speed": 0.1,
-          "color_rgba": 3003121919
-        },
-        {
-          "particle_id": "spell_engine:magic_spark_decelerate",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 25.0,
-          "min_speed": 0.08,
-          "max_speed": 0.12,
-          "pre_spawn_travel": 5.0,
-          "invert": true,
-          "color_rgba": 3003121919,
-          "follow_entity": true
-        },
-        {
-          "particle_id": "spell_engine:ground_glow",
-          "origin": "GROUND",
-          "shape": "LINE_VERTICAL",
-          "count": 1.0,
-          "max_speed": 0.0,
-          "color_rgba": 3003121715,
-          "scale": 0.8,
-          "follow_entity": true
-        }
-      ],
-      "sound": {
-        "id": "spell_engine:leeching_impact"
       }
     }
   ]

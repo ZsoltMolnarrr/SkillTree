@@ -42,7 +42,7 @@
   ],
   "area_impact": {
     "force_indirect": true,
-    "radius": 2.0,
+    "radius": 2.5,
     "particles": [
       {
         "particle_id": "spell_engine:smoke_medium",
