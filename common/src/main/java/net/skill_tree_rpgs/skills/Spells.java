@@ -465,9 +465,12 @@ public class Spells {
 
         var effect = SkillEffects.PHASE_SHIFT;
 
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 2, 0, 0);
+        var duration = 2F;
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), duration, 0, 0);
         impact.sound = new Sound(SkillTreeSounds.arcane_phase_shift.id());
         spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, duration * 2);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
     }

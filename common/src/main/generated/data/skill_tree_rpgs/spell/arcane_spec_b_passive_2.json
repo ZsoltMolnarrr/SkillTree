@@ -24,5 +24,10 @@
         "id": "skill_tree_rpgs:arcane_phase_shift"
       }
     }
-  ]
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 4.0
+    }
+  }
 }
