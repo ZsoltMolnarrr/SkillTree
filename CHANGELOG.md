@@ -1,3 +1,7 @@
+# 1.2.2
+
+- Disable spell specific weakness
+
 # 1.2.1
 
 - Swap Sidestep and Leeching Strike positions in Rogue skill tree

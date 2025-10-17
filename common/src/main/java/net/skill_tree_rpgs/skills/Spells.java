@@ -2121,7 +2121,6 @@ public class Spells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
-        impact.target_modifiers = List.of(SpellBuilder.ImpactModifiers.alwaysCritAgainstUndead());
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
