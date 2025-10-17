@@ -1,6 +1,7 @@
 # 1.2.2
 
 - Disable spell specific weakness
+- Added Phase Shift cooldown
 
 # 1.2.1
 
