@@ -217,11 +217,12 @@ public class Spells {
         var spell = createModifierAlikePassiveSpell();
         spell.school = SpellSchools.ARCANE;
         spell.range = 0;
+        var duration = 5F;
 
         var effect = SkillEffects.PRESENCE_OF_MIND;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        spell.release.sound = new Sound(SpellEngineSounds.SIGNAL_INSTANT_CAST.id());
+        spell.release.sound = Sound.withVolume(SpellEngineSounds.SIGNAL_INSTANT_CAST.id(), 0.75F);
 
         spell.release.particles = new ParticleBatch[]{
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_cast.id(), Color.ARCANE),
@@ -237,7 +238,7 @@ public class Spells {
         spell.passive.triggers = List.of(trigger);
 
         var stashTrigger = SpellBuilder.Triggers.specificSpellCast("#wizards:arcane");
-        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, stashTrigger);
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), duration, stashTrigger);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.ARCANE));
     }
@@ -1318,13 +1319,14 @@ public class Spells {
         var title = "Arctic Reflex";
         var description = "Upon rolling, you have {trigger_chance_1} chance to instantly cast a spell, within the next {stash_duration} sec.";
         var effect = SkillEffects.ARCTIC_REFLEX;
+        var duration = 5F;
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.FROST;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        spell.release.sound = new Sound(SpellEngineSounds.SIGNAL_INSTANT_CAST.id());
+        spell.release.sound = Sound.withVolume(SpellEngineSounds.SIGNAL_INSTANT_CAST.id(), 0.75F);
 
         // Release particle `sign_cast`
         spell.release.particles = new ParticleBatch[]{
@@ -1342,11 +1344,11 @@ public class Spells {
         spell.passive.triggers = List.of(trigger);
 
         var stashTrigger = SpellBuilder.Triggers.specificSpellCast("#wizards:frost");
-        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, stashTrigger);
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), duration, stashTrigger);
 
         // No impacts, stash will just be consumed
 
-        SpellBuilder.Cost.cooldown(spell, 10F);
+        SpellBuilder.Cost.cooldown(spell, duration * 2);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FROST));
     }

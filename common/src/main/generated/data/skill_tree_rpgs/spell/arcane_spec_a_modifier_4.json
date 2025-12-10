@@ -40,7 +40,8 @@
       }
     ],
     "sound": {
-      "id": "spell_engine:signal_instant_cast"
+      "id": "spell_engine:signal_instant_cast",
+      "volume": 0.75
     }
   },
   "target": {

@@ -1,3 +1,7 @@
+# 1.2.3
+
+- Reduce volume of Arctic Reflex sound effect 
+
 # 1.2.2
 
 - Disable spell specific weakness
