@@ -1,5 +1,6 @@
 # 1.2.3
 
+- Fix triggers of Killing Spree
 - Reduce volume of Arctic Reflex sound effect 
 
 # 1.2.2

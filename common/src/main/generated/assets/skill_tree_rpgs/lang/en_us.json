@@ -429,7 +429,7 @@
   "spell.skill_tree_rpgs.warrior_spec_a_passive_1.name": "Killing Spree",
   "spell.skill_tree_rpgs.warrior_spec_a_passive_2.description": "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Charge.",
   "spell.skill_tree_rpgs.warrior_spec_a_passive_2.name": "Intercept",
-  "spell.skill_tree_rpgs.warrior_spec_a_passive_3.description": "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by {bonus} but also the damage you take, staking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.",
+  "spell.skill_tree_rpgs.warrior_spec_a_passive_3.description": "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by {bonus} but also the damage you take, stacking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.",
   "spell.skill_tree_rpgs.warrior_spec_a_passive_3.name": "Enrage",
   "spell.skill_tree_rpgs.warrior_spec_b_modifier_1.description": "Shattering Throw deals {knockback_multiply_base} more knockback.",
   "spell.skill_tree_rpgs.warrior_spec_b_modifier_1.name": "Punching Throw",

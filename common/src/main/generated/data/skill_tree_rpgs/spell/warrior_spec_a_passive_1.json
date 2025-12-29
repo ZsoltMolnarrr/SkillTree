@@ -12,6 +12,17 @@
             "health_percent_below": 0.0
           }
         ]
+      },
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "target_conditions": [
+          {
+            "health_percent_below": 0.0
+          }
+        ],
+        "spell": {
+          "school": "spell_power:physical_melee"
+        }
       }
     ]
   },

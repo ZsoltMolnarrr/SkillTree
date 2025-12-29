@@ -3025,11 +3025,8 @@ public class Spells {
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         spell.range = 0;
-
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-
-        var trigger = SpellBuilder.Triggers.meleeKill(false);
-        spell.passive.triggers = List.of(trigger);
+        spell.passive.triggers = SpellBuilder.Triggers.meleeKills();
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 2);
         impact.action.apply_to_caster = true;
@@ -3156,7 +3153,7 @@ public class Spells {
         var id = Identifier.of(NAMESPACE, "warrior_spec_a_passive_3");
         var effect = SkillEffects.ENRAGE;
         var title = effect.title;
-        var description = "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by {bonus} but also the damage you take, staking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.";
+        var description = "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by {bonus} but also the damage you take, stacking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
             return args.description().replace("{bonus}", bonus);
