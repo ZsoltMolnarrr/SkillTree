@@ -56,5 +56,8 @@
     "sound": {
       "id": "skill_tree_rpgs:warrior_stomp"
     }
+  },
+  "cost": {
+    "durability": 0
   }
 }

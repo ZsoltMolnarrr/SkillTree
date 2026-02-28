@@ -9,7 +9,7 @@ import net.spell_engine.api.render.OrbitingEffectRenderer;
 import java.util.List;
 
 public class DeflectionEffectRenderer extends OrbitingEffectRenderer {
-    public static final Identifier modelId = Identifier.of(SkillTreeMod.NAMESPACE, "effect/deflection_charge");
+    public static final Identifier modelId = Identifier.of(SkillTreeMod.NAMESPACE, "spell_effect/deflection_charge");
     // private static final RenderLayer GLOWING_RENDER_LAYER = CustomLayers.spellEffect(LightEmission.GLOW, false);
     private static final RenderLayer BASE_RENDER_LAYER = RenderLayer.getEntityTranslucent(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE);
 

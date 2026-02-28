@@ -8,6 +8,14 @@
       {
         "type": "MELEE_IMPACT",
         "chance": 0.25
+      },
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.25,
+        "spell": {
+          "archetype": "MELEE",
+          "type": "ACTIVE"
+        }
       }
     ]
   },
@@ -64,6 +72,7 @@
     }
   ],
   "cost": {
+    "durability": 0,
     "cooldown": {
       "duration": 6.0
     }

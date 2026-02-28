@@ -85,5 +85,8 @@
         "id": "spell_engine:leeching_impact"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

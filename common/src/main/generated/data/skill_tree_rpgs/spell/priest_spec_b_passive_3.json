@@ -62,5 +62,8 @@
         "id": "skill_tree_rpgs:priest_holy_blast"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

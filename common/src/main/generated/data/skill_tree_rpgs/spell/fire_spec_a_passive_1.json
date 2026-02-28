@@ -55,5 +55,8 @@
         "id": "wizards:fire_scorch_impact"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

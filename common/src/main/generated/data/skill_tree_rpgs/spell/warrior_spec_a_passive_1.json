@@ -21,7 +21,8 @@
           }
         ],
         "spell": {
-          "school": "spell_power:physical_melee"
+          "archetype": "MELEE",
+          "type": "ACTIVE"
         }
       }
     ]
@@ -56,6 +57,7 @@
     }
   ],
   "cost": {
+    "durability": 0,
     "cooldown": {
       "duration": 1.0
     }

@@ -38,15 +38,7 @@ public class SkillTreeClientMod {
                 TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveAttributeModifierTooltip(attribute));
             }
         }
-        registerCustomModels();
         registerEffectRenderers();
-    }
-
-    private static void registerCustomModels() {
-        CustomModels.registerModelIds(List.of(
-                HolyChargeEffectRenderer.modelId,
-                DeflectionEffectRenderer.modelId
-        ));
     }
 
     private static void registerEffectRenderers() {

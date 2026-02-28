@@ -38,5 +38,8 @@
         "id": "skill_tree_rpgs:priest_fade"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

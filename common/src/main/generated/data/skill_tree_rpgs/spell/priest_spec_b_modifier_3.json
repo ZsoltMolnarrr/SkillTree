@@ -89,5 +89,8 @@
         "id": "skill_tree_rpgs:priest_consecration_impact"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

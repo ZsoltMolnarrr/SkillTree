@@ -10,7 +10,7 @@ import net.spell_engine.api.render.OrbitingEffectRenderer;
 import java.util.List;
 
 public class HolyChargeEffectRenderer extends OrbitingEffectRenderer {
-    public static final Identifier modelId = Identifier.of(SkillTreeMod.NAMESPACE, "effect/holy_charge");
+    public static final Identifier modelId = Identifier.of(SkillTreeMod.NAMESPACE, "spell_effect/holy_charge");
     private static final RenderLayer GLOWING_RENDER_LAYER =
             CustomLayers.spellEffect(LightEmission.GLOW, false);
 

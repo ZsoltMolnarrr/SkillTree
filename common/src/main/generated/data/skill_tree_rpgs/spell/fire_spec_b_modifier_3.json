@@ -110,5 +110,8 @@
         "id": "spell_engine:generic_fire_impact_1"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

@@ -10,6 +10,7 @@ import net.minecraft.util.Identifier;
 import net.puffish.skillsmod.common.IconType;
 import net.spell_engine.api.spell.container.SpellContainer;
 import net.spell_engine.api.spell.container.SpellContainerHelper;
+import net.spell_engine.api.spell.container.SpellContainers;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class SkillDefinitions {
 //    }
 
     private static List<SpellContainer> dummyContainer() {
-        return List.of(SpellContainerHelper.createForSpellHost(Identifier.of("wizards:fireball")));
+        return List.of(SpellContainers.forModifier(Identifier.of("wizards:fireball")));
     }
 
     private static Entry modifierSpell(Spells.Entry entry) {
@@ -89,7 +90,7 @@ public class SkillDefinitions {
                 entry.title(),
                 null,
                 Icon.spell(modifiedSpellId),
-                List.of(SpellContainerHelper.createForModifier(entry.id()))
+                List.of(SpellContainers.forModifier(entry.id()))
         );
     }
 
@@ -98,7 +99,7 @@ public class SkillDefinitions {
                 entry.title(),
                 null,
                 Icon.spell(entry.id()),
-                List.of(SpellContainerHelper.createForSpellHost(entry.id()))
+                List.of(SpellContainers.forModifier(entry.id()))
         );
     }
 
@@ -392,7 +393,7 @@ public class SkillDefinitions {
                     "Fireball",
                     "Unlock Fireball",
                     Icon.spell(Identifier.of("wizards", "fireball")),
-                    List.of(SpellContainerHelper.createForSpellHost(Identifier.of("wizards:fireball")))
+                    List.of(SpellContainers.forModifier(Identifier.of("wizards:fireball")))
             ).require(WIZARDS)
     );
 }

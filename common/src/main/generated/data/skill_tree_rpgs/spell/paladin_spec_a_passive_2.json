@@ -69,5 +69,8 @@
         "id": "skill_tree_rpgs:paladin_crusader_impact"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

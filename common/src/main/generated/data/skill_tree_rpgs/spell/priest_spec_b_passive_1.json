@@ -48,5 +48,8 @@
         "id": "skill_tree_rpgs:priest_incanter_cadence"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

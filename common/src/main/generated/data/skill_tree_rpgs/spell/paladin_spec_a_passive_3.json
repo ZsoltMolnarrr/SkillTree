@@ -7,6 +7,13 @@
     "triggers": [
       {
         "type": "MELEE_IMPACT"
+      },
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "spell": {
+          "archetype": "MELEE",
+          "type": "ACTIVE"
+        }
       }
     ]
   },
@@ -33,7 +40,7 @@
         },
         "client_data": {
           "model": {
-            "model_id": "paladins:projectile/judgement",
+            "model_id": "paladins:spell_projectile/judgement",
             "light_emission": "RADIATE",
             "scale": 0.8,
             "rotate_degrees_per_tick": 20.0
@@ -68,6 +75,7 @@
     }
   ],
   "cost": {
+    "durability": 0,
     "cooldown": {
       "duration": 5.0
     }

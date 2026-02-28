@@ -43,5 +43,8 @@
         "id": "spell_engine:spell_cooldown_impact"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

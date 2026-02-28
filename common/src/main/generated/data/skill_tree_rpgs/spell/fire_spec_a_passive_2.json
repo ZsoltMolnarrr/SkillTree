@@ -112,5 +112,8 @@
   ],
   "area_impact": {
     "radius": 1.5
+  },
+  "cost": {
+    "durability": 0
   }
 }

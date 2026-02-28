@@ -49,5 +49,8 @@
         "id": "skill_tree_rpgs:priest_healing_focus"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

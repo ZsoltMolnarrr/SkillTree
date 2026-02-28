@@ -8,6 +8,14 @@
       {
         "type": "MELEE_IMPACT",
         "chance": 0.2
+      },
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.2,
+        "spell": {
+          "archetype": "MELEE",
+          "type": "ACTIVE"
+        }
       }
     ]
   },
@@ -51,5 +59,8 @@
         "id": "spell_engine:generic_poison_impact"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

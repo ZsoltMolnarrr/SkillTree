@@ -61,5 +61,8 @@
     "sound": {
       "id": "wizards:frost_nova_damage_impact"
     }
+  },
+  "cost": {
+    "durability": 0
   }
 }

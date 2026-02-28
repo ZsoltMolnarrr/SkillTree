@@ -508,7 +508,7 @@ public class Spells {
                         .color(ARCANE_COLOR)
         };
         projectile.client_data.model = new Spell.ProjectileModel();
-        projectile.client_data.model.model_id = "wizards:projectile/arcane_bolt";
+        projectile.client_data.model.model_id = "wizards:spell_projectile/arcane_bolt";
         projectile.client_data.model.scale = 0.5F;
         spell.deliver.projectile.projectile = projectile;
 
@@ -2118,9 +2118,11 @@ public class Spells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.meleeAttack(false);
-        trigger.chance = 0.5F;
-        spell.passive.triggers = List.of(trigger);
+        var triggers = SpellBuilder.Triggers.meleeImpact();
+        for (var trigger : triggers) {
+            trigger.chance = 0.5F;
+        }
+        spell.passive.triggers = triggers;
 
         var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
         impact.particles = new ParticleBatch[]{
@@ -2219,7 +2221,7 @@ public class Spells {
         };
 
         var stashEffect = SkillEffects.SEAL_OF_CRUSADER;
-        var strashTrigger = SpellBuilder.Triggers.meleeAttack(false);
+        var strashTrigger = SpellBuilder.Triggers.meleeAttackImpact();
         SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 5, strashTrigger);
 
         var debuff = SpellBuilder.Impacts.effectAdd(debuffEffect.id.toString(), 15, 1, 2);
@@ -2284,9 +2286,11 @@ public class Spells {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
         spell.release.sound = new Sound(SpellEngineSounds.GENERIC_HEALING_RELEASE.id());
 
-        var trigger = SpellBuilder.Triggers.meleeAttack(false);
-        trigger.chance = 1F;
-        spell.passive.triggers = List.of(trigger);
+        var triggers = SpellBuilder.Triggers.meleeImpact();
+        for (var trigger : triggers) {
+            trigger.chance = 1F;
+        }
+        spell.passive.triggers = triggers;
 
         spell.deliver.type = Spell.Delivery.Type.PROJECTILE;
         spell.deliver.projectile = new Spell.Delivery.ShootProjectile();
@@ -2300,7 +2304,7 @@ public class Spells {
 
         var model = new Spell.ProjectileModel();
         model.light_emission = LightEmission.RADIATE;
-        model.model_id = "paladins:projectile/judgement";
+        model.model_id = "paladins:spell_projectile/judgement";
         model.scale = 0.8F;
         model.rotate_degrees_per_tick = 20F;
 
@@ -2606,9 +2610,11 @@ public class Spells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.meleeAttack(false);
-        trigger.chance = 0.2F;
-        spell.passive.triggers = List.of(trigger);
+        var triggers = SpellBuilder.Triggers.meleeImpact();
+        for (var trigger : triggers) {
+            trigger.chance = 0.2F;
+        }
+        spell.passive.triggers = triggers;
 
         var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 8, 1, 1);
         impact.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
@@ -2657,9 +2663,11 @@ public class Spells {
 
         spell.deliver.delay = 1;
 
-        var trigger = SpellBuilder.Triggers.meleeAttack(false);
-        trigger.chance = 0.25F;
-        spell.passive.triggers = List.of(trigger);
+        var triggers = SpellBuilder.Triggers.meleeImpact();
+        for (var trigger : triggers) {
+            trigger.chance = 0.25F;
+        }
+        spell.passive.triggers = triggers;
 
         var damage = SpellBuilder.Impacts.damage(0.5F, 0F);
         damage.particles = new ParticleBatch[]{
@@ -2713,7 +2721,7 @@ public class Spells {
                         .color(Color.BLOOD.toRGBA())
         };
 
-        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, SpellBuilder.Triggers.meleeAttack(false));
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, SpellBuilder.Triggers.meleeAttackImpact());
 
         var impact = SpellBuilder.Impacts.heal(0.1F);
         impact.action.apply_to_caster = true;
@@ -2961,7 +2969,7 @@ public class Spells {
         spell.deliver.stash_effect = new Spell.Delivery.StashEffect();
         spell.deliver.stash_effect.id = stashEffect.id.toString();
         spell.deliver.stash_effect.triggers = List.of(
-                SpellBuilder.Triggers.meleeAttack(false));
+                SpellBuilder.Triggers.meleeAttackImpact());
         spell.deliver.stash_effect.consumed_next_tick = true;
 
         var impact = SpellBuilder.Impacts.stun(2F);

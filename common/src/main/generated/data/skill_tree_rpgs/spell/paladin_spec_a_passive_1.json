@@ -8,6 +8,14 @@
       {
         "type": "MELEE_IMPACT",
         "chance": 0.5
+      },
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.5,
+        "spell": {
+          "archetype": "MELEE",
+          "type": "ACTIVE"
+        }
       }
     ]
   },
@@ -47,5 +55,8 @@
         "id": "skill_tree_rpgs:paladin_seal_impact"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

@@ -47,5 +47,8 @@
         "id": "skill_tree_rpgs:frost_winters_chill"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

@@ -41,5 +41,8 @@
         "id": "spell_engine:stun_generic"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }
