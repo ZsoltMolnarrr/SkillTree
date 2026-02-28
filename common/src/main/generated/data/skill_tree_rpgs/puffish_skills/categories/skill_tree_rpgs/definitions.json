@@ -33,7 +33,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "wizards:arcane_spell_book"
+        "components": {
+          "spell_engine:item_model": "wizards:item/spell_book/arcane"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -605,7 +608,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "archers:archer_spell_book"
+        "components": {
+          "spell_engine:item_model": "archers:item/spell_book/archer"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -1177,7 +1183,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "wizards:fire_spell_book"
+        "components": {
+          "spell_engine:item_model": "wizards:item/spell_book/fire"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -1786,7 +1795,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "wizards:frost_spell_book"
+        "components": {
+          "spell_engine:item_model": "wizards:item/spell_book/frost"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -2358,7 +2370,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "paladins:paladin_spell_book"
+        "components": {
+          "spell_engine:item_model": "paladins:item/spell_book/paladin"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -2930,7 +2945,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "paladins:priest_spell_book"
+        "components": {
+          "spell_engine:item_model": "paladins:item/spell_book/priest"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -3502,7 +3520,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "rogues:rogue_spell_book"
+        "components": {
+          "spell_engine:item_model": "rogues:item/spell_book/rogue"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -4074,7 +4095,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "rogues:warrior_spell_book"
+        "components": {
+          "spell_engine:item_model": "rogues:item/spell_book/warrior"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -4212,7 +4236,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "rogues:textures/spell/whirlwind.png"
+        "texture": "rpg_series:textures/spell/whirlwind.png"
       }
     },
     "required_mods": [
@@ -4471,7 +4495,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "rogues:textures/spell/whirlwind.png"
+        "texture": "rpg_series:textures/spell/whirlwind.png"
       }
     },
     "required_mods": [

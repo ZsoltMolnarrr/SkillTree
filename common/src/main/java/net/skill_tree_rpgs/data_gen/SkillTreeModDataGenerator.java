@@ -152,7 +152,9 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 Icon icon = null;
                 switch (skill.icon().type()) {
                     case TEXTURE -> icon = Icon.texture(skill.icon().value());
-                    case ITEM -> icon = Icon.item(skill.icon().value());
+                    case ITEM -> icon = skill.icon().modelId() != null
+                            ? Icon.itemWithModel(skill.icon().value(), skill.icon().modelId())
+                            : Icon.item(skill.icon().value());
                     case EFFECT -> icon = Icon.effect(skill.icon().value());
                 }
                 ArrayList<Reward> rewards = new ArrayList<>();

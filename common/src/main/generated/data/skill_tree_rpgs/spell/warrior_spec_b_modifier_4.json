@@ -5,7 +5,7 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rogues:whirlwind",
+      "spell_pattern": "rpg_series:whirlwind",
       "mutate_impacts": "APPEND",
       "impacts": [
         {

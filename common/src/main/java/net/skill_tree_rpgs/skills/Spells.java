@@ -2110,7 +2110,7 @@ public class Spells {
     private static Entry paladin_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "paladin_spec_a_passive_1");
         var title = "Seal of Righteousness";
-        var description = "Melee attacks have {trigger_chance} chance, to deal additional {damage} damage based on Healing Power.";
+        var description = "Melee attacks have {trigger_chance_1} chance, to deal additional {damage} damage based on Healing Power.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.HEALING;
@@ -2603,7 +2603,7 @@ public class Spells {
     private static Entry rogue_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_1");
         var title = "Coated Blades";
-        var description = "Melee attacks have {trigger_chance} chance, to apply poison effect lasting {effect_duration} sec, stacking up based on your attack damage.";
+        var description = "Melee attacks have {trigger_chance_1} chance, to apply poison effect lasting {effect_duration} sec, stacking up based on your attack damage.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         spell.range = 0;
@@ -2649,7 +2649,7 @@ public class Spells {
         var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_1");
         var effect = SkillEffects.FRACTURE;
         var title = effect.title;
-        var description = "Melee attacks have {trigger_chance} chance to wound the enemy, dealing {damage} damage and reducing its armor by {bonus}, for {effect_duration} sec.";
+        var description = "Melee attacks have {trigger_chance_1} chance to wound the enemy, dealing {damage} damage and reducing its armor by {bonus}, for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var bonus = SpellTooltip.percent(Math.abs(effect.config().firstModifier().value));
@@ -2987,7 +2987,7 @@ public class Spells {
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rogues:whirlwind";
+        modifier.spell_pattern = "rpg_series:whirlwind";
         modifier.power_modifier = new Spell.Impact.Modifier();
         modifier.power_modifier.power_multiplier = 0.3F;
 
@@ -3007,7 +3007,7 @@ public class Spells {
         var effect = SkillEffects.HAMSTRING;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rogues:whirlwind";
+        modifier.spell_pattern = "rpg_series:whirlwind";
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
         impact.chance = 0.3F;

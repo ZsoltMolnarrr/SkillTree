@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class SkillDefinitionGenerator implements DataProvider {
@@ -45,14 +46,17 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
             return new Icon("texture", new IconTexture(texture));
         }
         public static Icon item(String item) {
-            return new Icon("item", new IconItem(item));
+            return new Icon("item", new IconItem(item, null));
+        }
+        public static Icon itemWithModel(String item, String modelId) {
+            return new Icon("item", new IconItem(item, Map.of("spell_engine:item_model", modelId)));
         }
         public static Icon effect(String effect) {
             return new Icon("effect", new IconEffect(effect));
         }
     }
     public record IconTexture(String texture) {}
-    public record IconItem(String item) {}
+    public record IconItem(String item, Map<String, Object> components) {}
     public record IconEffect(String effect) {}
 
     public record Reward(

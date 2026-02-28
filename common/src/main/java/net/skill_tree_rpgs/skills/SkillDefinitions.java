@@ -18,15 +18,18 @@ import java.util.List;
 
 public class SkillDefinitions {
     public static final Identifier CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "skill_tree_rpgs");
-    public record Icon(IconType type, String value) {
+    public record Icon(IconType type, String value, String modelId) {
         public static Icon texture(String texture) {
-            return new Icon(IconType.TEXTURE, texture);
+            return new Icon(IconType.TEXTURE, texture, null);
         }
         public static Icon item(String item) {
-            return new Icon(IconType.ITEM, item);
+            return new Icon(IconType.ITEM, item, null);
+        }
+        public static Icon itemWithModel(String item, String modelId) {
+            return new Icon(IconType.ITEM, item, modelId);
         }
         public static Icon effect(String effect) {
-            return new Icon(IconType.EFFECT, effect);
+            return new Icon(IconType.EFFECT, effect, null);
         }
         public static Icon spell(Identifier spellId) {
             return texture(spellId.getNamespace() + ":textures/spell/" + spellId.getPath() + ".png");
@@ -107,7 +110,7 @@ public class SkillDefinitions {
             Entry.attribute("arcane_root",
                     "Path of Arcane",
                     null,
-                    Icon.item("wizards:arcane_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "wizards:item/spell_book/arcane"),
                     SpellSchools.ARCANE.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -142,7 +145,7 @@ public class SkillDefinitions {
             Entry.attribute("fire_root",
                     "Path of Fire",
                     null,
-                    Icon.item("wizards:fire_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "wizards:item/spell_book/fire"),
                     SpellSchools.FIRE.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -177,7 +180,7 @@ public class SkillDefinitions {
             Entry.attribute("frost_root",
                     "Path of Frost",
                     null,
-                    Icon.item("wizards:frost_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "wizards:item/spell_book/frost"),
                     SpellSchools.FROST.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -213,7 +216,7 @@ public class SkillDefinitions {
             Entry.attribute("priest_root",
                     "Path of the Light",
                     null,
-                    Icon.item("paladins:priest_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "paladins:item/spell_book/priest"),
                     SpellSchools.HEALING.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -249,7 +252,7 @@ public class SkillDefinitions {
             Entry.attribute("paladin_root",
                     "Path of the Paladin",
                     null,
-                    Icon.item("paladins:paladin_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "paladins:item/spell_book/paladin"),
                     SpellSchools.HEALING.attributeEntry,
                     0.2,
                     EntityAttributeModifier.Operation.ADD_VALUE
@@ -282,7 +285,7 @@ public class SkillDefinitions {
             Entry.attribute("archer_root",
                     "Path of the Archer",
                     null,
-                    Icon.item("archers:archer_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "archers:item/spell_book/archer"),
                     EntityAttributes_RangedWeapon.DAMAGE.entry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -317,7 +320,7 @@ public class SkillDefinitions {
             Entry.attribute("rogue_root",
                     "Path of the Rogue",
                     null,
-                    Icon.item("rogues:rogue_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "rogues:item/spell_book/rogue"),
                     EntityAttributes.GENERIC_ATTACK_SPEED,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -353,7 +356,7 @@ public class SkillDefinitions {
             Entry.attribute("warrior_root",
                     "Path of the Warrior",
                     null,
-                    Icon.item("rogues:warrior_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "rogues:item/spell_book/warrior"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
