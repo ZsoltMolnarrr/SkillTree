@@ -1,3 +1,12 @@
+# 1.4.0
+
+DISCLAIMER: Reworked skill ID, and node IDs!
+
+- New ID formulas
+  - Spell modifiers: `class_tier_{tier}_spell_{choice}_modifier_{modifier}` - for example `archer_tier_3_spell_1_modifier_2`
+  - Passive spells: `class_tier_{tier}_passive_{choice}` - for example `archer_tier_3_passive_1`
+  - Also applies to skill tree node IDs
+
 # 1.3.0
 
 DISCLAIMER: All spell books and spell scrolls will be reset, due to major API changes. Some (looted) weapons with custom spell containers become non-functional, and need to be re-obtained. Apologies for the inconvenience.
