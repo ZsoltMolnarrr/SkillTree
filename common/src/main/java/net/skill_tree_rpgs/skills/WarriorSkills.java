@@ -334,7 +334,7 @@ public class WarriorSkills {
                         ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
                         10, 0.3F, 0.3F)
         };
-        areaImpact.sound = new Sound(SkillTreeSounds.warrior_stomp.id());
+        areaImpact.sound = new Sound(SkillSounds.warrior_stomp.id());
         spell.area_impact = areaImpact;
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
@@ -385,7 +385,7 @@ public class WarriorSkills {
         };
 
         spell.release.particles = activateParticles;
-        spell.release.sound = new Sound(SkillTreeSounds.warrior_enrage.id());
+        spell.release.sound = new Sound(SkillSounds.warrior_enrage.id());
 
         SpellBuilder.Deliver.stash(spell, effect.id.toString(), 10F, List.of(
                 SpellBuilder.Triggers.damageTaken()
@@ -445,7 +445,7 @@ public class WarriorSkills {
                         .scale(radius)
                         .color(Color.from(0xa6a6a6).toRGBA())
         };
-        spell.release.sound = new Sound(SkillTreeSounds.warrior_shockwave.id());
+        spell.release.sound = new Sound(SkillSounds.warrior_shockwave.id());
 
         var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
         trigger.aoe_source_override = Spell.Trigger.TargetSelector.CASTER;

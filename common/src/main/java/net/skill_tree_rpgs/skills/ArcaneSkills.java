@@ -269,7 +269,7 @@ public class ArcaneSkills {
                         1, 0, 0)
                         .color(SkillsCommon.ARCANE_COLOR),
         };
-        area_impact.sound = new Sound(SkillTreeSounds.arcane_fissile_impact.id());
+        area_impact.sound = new Sound(SkillSounds.arcane_fissile_impact.id());
         spell.area_impact = area_impact;
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -313,7 +313,7 @@ public class ArcaneSkills {
                         15, 0.2F, 0.25F)
                         .color(SkillsCommon.ARCANE_COLOR)
         };
-        impact.sound = new Sound(SkillTreeSounds.arcane_radiance.id());
+        impact.sound = new Sound(SkillSounds.arcane_radiance.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -353,7 +353,7 @@ public class ArcaneSkills {
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
-                SkillTreeSounds.arcane_trap_activate.id(),
+                SkillSounds.arcane_trap_activate.id(),
                 8,
                 cloudParticles
         );
@@ -418,7 +418,7 @@ public class ArcaneSkills {
 
         var duration = 2F;
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), duration, 0, 0);
-        impact.sound = new Sound(SkillTreeSounds.arcane_phase_shift.id());
+        impact.sound = new Sound(SkillSounds.arcane_phase_shift.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
@@ -504,7 +504,7 @@ public class ArcaneSkills {
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), duration, 0);
         impact.action.status_effect.amplifier_power_multiplier = 0.4F;
         impact.action.apply_to_caster = true;
-        impact.sound = new Sound(SkillTreeSounds.arcane_ward_activate.id());
+        impact.sound = new Sound(SkillSounds.arcane_ward_activate.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);

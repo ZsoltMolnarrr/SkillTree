@@ -147,7 +147,7 @@ public class RogueSkills {
                         .color(ROGUE_SHADOW_COLOR.alpha(0.75F).toRGBA())
         };
         impact.action.apply_to_caster = true;
-        impact.sound = new Sound(SkillTreeSounds.rogue_shadows_activate.id());
+        impact.sound = new Sound(SkillSounds.rogue_shadows_activate.id());
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
@@ -288,7 +288,7 @@ public class RogueSkills {
                         .color(Color.BLOOD.toRGBA())
         };
         var debuff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 6, 1, 1);
-        debuff.sound = new Sound(SkillTreeSounds.rogue_fracture_impact.id());
+        debuff.sound = new Sound(SkillSounds.rogue_fracture_impact.id());
         spell.impacts = List.of(damage, debuff);
 
         SpellBuilder.Cost.cooldown(spell, 6F);
@@ -354,7 +354,7 @@ public class RogueSkills {
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         spell.range = 0;
 
-        spell.release.sound = new Sound(SkillTreeSounds.rogue_sidestep_activate.id());
+        spell.release.sound = new Sound(SkillSounds.rogue_sidestep_activate.id());
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.roll();
@@ -400,7 +400,7 @@ public class RogueSkills {
                         .scale(1.2F)
                         .color(ROGUE_SHADOW_COLOR.alpha(0.5F).toRGBA())
         };
-        buff.sound = new Sound(SkillTreeSounds.rogue_cheat_death.id());
+        buff.sound = new Sound(SkillSounds.rogue_cheat_death.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 60F);

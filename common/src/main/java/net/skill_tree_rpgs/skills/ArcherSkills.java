@@ -220,7 +220,7 @@ public class ArcherSkills {
                         15, 0.1F, 0.4F)
                         .color(Color.NATURE.toRGBA())
         };
-        impact.sound = new Sound(SkillTreeSounds.archer_rhythm_activate.id());
+        impact.sound = new Sound(SkillSounds.archer_rhythm_activate.id());
         return impact;
     }
 
@@ -351,7 +351,7 @@ public class ArcherSkills {
                         15, 0.1F, 0.4F)
                         .color(Color.NATURE.toRGBA())
         };
-        impact.sound = new Sound(SkillTreeSounds.archer_maneuver_activate.id());
+        impact.sound = new Sound(SkillSounds.archer_maneuver_activate.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 10F);
@@ -388,7 +388,7 @@ public class ArcherSkills {
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
                         15, 0.1F, 0.3F).color(SUPERCHARGE_COLOR.toRGBA())
         };
-        spell.release.sound = new Sound(SkillTreeSounds.archer_supercharge_activate.id());
+        spell.release.sound = new Sound(SkillSounds.archer_supercharge_activate.id());
 
         var trigger = SpellBuilder.Triggers.arrowHit();
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
@@ -427,7 +427,7 @@ public class ArcherSkills {
                         5, 0.1F, 0.2F)
                         .color(SUPERCHARGE_COLOR.toRGBA())
         };
-        spell.arrow_perks.launch_sound = new Sound(SkillTreeSounds.archer_supercharge_release.id());
+        spell.arrow_perks.launch_sound = new Sound(SkillSounds.archer_supercharge_release.id());
 
         var impact = SpellBuilder.Impacts.damage(0F, 1.5F);
         impact.particles = new ParticleBatch[]{
@@ -477,7 +477,7 @@ public class ArcherSkills {
         spell.passive.triggers = List.of(trigger);
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 2);
-        buff.sound = new Sound(SkillTreeSounds.archer_deflection_activate.id());
+        buff.sound = new Sound(SkillSounds.archer_deflection_activate.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 45F);

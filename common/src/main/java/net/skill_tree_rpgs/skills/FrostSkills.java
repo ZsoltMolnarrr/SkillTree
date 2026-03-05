@@ -219,7 +219,7 @@ public class FrostSkills {
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
                         25, 0.1F, 0.3F),
         };
-        impact.sound = new Sound(SkillTreeSounds.frost_winters_chill.id());
+        impact.sound = new Sound(SkillSounds.frost_winters_chill.id());
         spell.impacts = List.of(impact);
 
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FROST));
@@ -290,7 +290,7 @@ public class FrostSkills {
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
-                SkillTreeSounds.frost_trap_activate.id(),
+                SkillSounds.frost_trap_activate.id(),
                 8,
                 cloudParticles
         );
@@ -390,7 +390,7 @@ public class FrostSkills {
                         25, 0.2F, 0.2F)
                         .color(Color.FROST.toRGBA())
         };
-        impact.sound = new Sound(SkillTreeSounds.frost_cold_snap.id());
+        impact.sound = new Sound(SkillSounds.frost_cold_snap.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 30F);
@@ -411,7 +411,7 @@ public class FrostSkills {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        spell.release.sound = new Sound(SkillTreeSounds.frost_ward_activate.id());
+        spell.release.sound = new Sound(SkillSounds.frost_ward_activate.id());
 
         var spell_trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.FROST);
         spell_trigger.chance = SkillsCommon.WIZARD_WARD_CHANCE;

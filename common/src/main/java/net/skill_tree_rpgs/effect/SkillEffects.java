@@ -7,7 +7,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.skill_tree_rpgs.skills.SkillTreeSounds;
+import net.skill_tree_rpgs.skills.SkillSounds;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
@@ -673,7 +673,7 @@ public class SkillEffects {
 
         Protection.register(CLOAK_OF_SHADOWS.entry, new Protection.Pop(
                 new ParticleBatch[]{ CLOAK_OF_SHADOWS_POP },
-                SkillTreeSounds.rogue_shadows_impact.soundEvent()
+                SkillSounds.rogue_shadows_impact.soundEvent()
         ));
         Protection.register(DEFLECTION.entry, SpellEngineDamageTypeTags.EVADABLE, new Protection.Pop(
                 new ParticleBatch[]{ new ParticleBatch(
@@ -684,7 +684,7 @@ public class SkillEffects {
                         25, 0.25F, 0.3F)
                         .color(Color.WHITE.toRGBA())
                 },
-                SkillTreeSounds.archer_deflection_impact.soundEvent()
+                SkillSounds.archer_deflection_impact.soundEvent()
         ));
         CombatEvents.PLAYER_MELEE_ATTACK.register((event) -> {
             if (event.player().hasStatusEffect(AMBUSH.entry)) {

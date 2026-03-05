@@ -291,7 +291,7 @@ public class FireSkills {
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
-                SkillTreeSounds.fire_trap_activate.id(),
+                SkillSounds.fire_trap_activate.id(),
                 8,
                 cloudParticles
         );
@@ -437,7 +437,7 @@ public class FireSkills {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        spell.release.sound = new Sound(SkillTreeSounds.fire_ward_activate.id());
+        spell.release.sound = new Sound(SkillSounds.fire_ward_activate.id());
 
         var spell_trigger = SpellBuilder.Triggers.activeSpellCast(SpellSchools.FIRE);
         spell_trigger.chance = SkillsCommon.WIZARD_WARD_CHANCE;

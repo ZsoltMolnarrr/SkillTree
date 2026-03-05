@@ -7,7 +7,7 @@ import net.spell_engine.fx.SpellEngineSounds;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SkillTreeSounds  {
+public class SkillSounds {
     public static final List<SpellEngineSounds.Entry> entries = new ArrayList<>();
     private static SpellEngineSounds.Entry add(SpellEngineSounds.Entry entry) {
         entries.add(entry);

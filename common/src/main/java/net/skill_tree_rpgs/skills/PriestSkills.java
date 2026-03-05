@@ -74,7 +74,7 @@ public class PriestSkills {
                         .color(Color.HOLY.toRGBA())
                         .scale(radius - 0.5F),
         };
-        area_impact.sound = new Sound(SkillTreeSounds.priest_holy_blast.id());
+        area_impact.sound = new Sound(SkillSounds.priest_holy_blast.id());
         modifier.replacing_area_impact = area_impact;
 
         spell.modifiers = List.of(modifier);
@@ -233,7 +233,7 @@ public class PriestSkills {
                         10, 0.4F, 0.4F)
                         .color(SkillsCommon.HOLY_COLOR),
         };
-        impact.sound = new Sound(SkillTreeSounds.priest_consecration_impact.id());
+        impact.sound = new Sound(SkillSounds.priest_consecration_impact.id());
         spell.impacts = List.of(impact);
     }
 
@@ -302,7 +302,7 @@ public class PriestSkills {
                         .maxAge(0.8F)
                         .color(Color.HOLY.toRGBA()),
         };
-        impact.sound = new Sound(SkillTreeSounds.priest_healing_focus.id());
+        impact.sound = new Sound(SkillSounds.priest_healing_focus.id());
         spell.impacts = List.of(impact);
 
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
@@ -339,7 +339,7 @@ public class PriestSkills {
                         10, 0.15F, 0.3F)
                         .color(SkillsCommon.HOLY_COLOR)
         };
-        impact.sound = new Sound(SkillTreeSounds.priest_incanter_cadence.id());
+        impact.sound = new Sound(SkillSounds.priest_incanter_cadence.id());
         spell.impacts = List.of(impact);
 
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
@@ -369,7 +369,7 @@ public class PriestSkills {
                         10, 0.2F, 0.2F)
                         .color(Color.HOLY.toRGBA())
         };
-        impact.sound = new Sound(SkillTreeSounds.priest_fade.id());
+        impact.sound = new Sound(SkillSounds.priest_fade.id());
         spell.impacts = List.of(impact);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
@@ -449,7 +449,7 @@ public class PriestSkills {
                         15, 0.2F, 0.2F)
                         .color(SkillsCommon.HOLY_COLOR)
         };
-        impact.sound = new Sound(SkillTreeSounds.priest_pain_suppression.id());
+        impact.sound = new Sound(SkillSounds.priest_pain_suppression.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 30F);
@@ -469,7 +469,7 @@ public class PriestSkills {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        spell.release.sound = new Sound(SkillTreeSounds.priest_orbs_activate.id());
+        spell.release.sound = new Sound(SkillSounds.priest_orbs_activate.id());
 
         var trigger = SpellBuilder.Triggers.activeSpellCrit();
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
@@ -488,7 +488,7 @@ public class PriestSkills {
                         25, 0.6F, 0.8F)
                         .color(SkillsCommon.HOLY_COLOR)
         };
-        impact.sound = new Sound(SkillTreeSounds.priest_holy_blast.id());
+        impact.sound = new Sound(SkillSounds.priest_holy_blast.id());
         spell.impacts = List.of(impact);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));

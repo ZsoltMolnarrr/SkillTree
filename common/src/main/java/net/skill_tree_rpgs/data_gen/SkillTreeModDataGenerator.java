@@ -7,7 +7,7 @@ import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.skills.NodeTypes;
 import net.skill_tree_rpgs.effect.SkillEffects;
-import net.skill_tree_rpgs.skills.SkillTreeSounds;
+import net.skill_tree_rpgs.skills.SkillSounds;
 import net.skill_tree_rpgs.skills.Skills;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -86,7 +86,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
         @Override
         public void generateSounds(Builder builder) {
             builder.entries.add(new Entry(SkillTreeMod.NAMESPACE,
-                        SkillTreeSounds.entries.stream()
+                        SkillSounds.entries.stream()
                                     .map(entry -> SoundEntry.withVariants(entry.id().getPath(), entry.variants()))
                                     .toList()
                     )

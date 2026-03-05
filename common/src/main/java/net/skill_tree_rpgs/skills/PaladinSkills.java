@@ -252,7 +252,7 @@ public class PaladinSkills {
                         15, 0.5F, 0.8F)
                         .color(SkillsCommon.HOLY_COLOR)
         };
-        impact.sound = new Sound(SkillTreeSounds.paladin_seal_impact.id());
+        impact.sound = new Sound(SkillSounds.paladin_seal_impact.id());
         spell.impacts = List.of(impact);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
@@ -290,7 +290,7 @@ public class PaladinSkills {
                         20, 0.2F, 0.3F)
                         .color(SkillsCommon.MIGHT_COLOR.toRGBA())
         };
-        impact.sound = new Sound(SkillTreeSounds.paladin_redoubt.id());
+        impact.sound = new Sound(SkillSounds.paladin_redoubt.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -314,7 +314,7 @@ public class PaladinSkills {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        spell.release.sound = new Sound(SkillTreeSounds.paladin_crusader_activate.id());
+        spell.release.sound = new Sound(SkillSounds.paladin_crusader_activate.id());
 
         // Roll to stash
 
@@ -345,7 +345,7 @@ public class PaladinSkills {
                         25, 0.7F, 0.8F)
                         .color(SkillsCommon.HOLY_COLOR)
         };
-        debuff.sound = new Sound(SkillTreeSounds.paladin_crusader_impact.id());
+        debuff.sound = new Sound(SkillSounds.paladin_crusader_impact.id());
         spell.impacts = List.of(debuff);
 
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
@@ -433,7 +433,7 @@ public class PaladinSkills {
                         15, 0.6F, 0.8F)
                         .color(SkillsCommon.HOLY_COLOR)
         };
-        impact.sound = new Sound(SkillTreeSounds.paladin_divine_hammer_impact.id());
+        impact.sound = new Sound(SkillSounds.paladin_divine_hammer_impact.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 5F);
@@ -501,7 +501,7 @@ public class PaladinSkills {
                         .scale(1.5F)
                         .color(Color.HOLY.toRGBA())
         };
-        buff.sound = new Sound(SkillTreeSounds.paladin_ardent_defender.id());
+        buff.sound = new Sound(SkillSounds.paladin_ardent_defender.id());
         var heal = SpellBuilder.Impacts.heal(0.5F);
         spell.impacts = List.of(buff, heal);
 

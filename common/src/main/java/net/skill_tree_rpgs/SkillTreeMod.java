@@ -3,7 +3,7 @@ package net.skill_tree_rpgs;
 import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.effect.SkillEffects;
-import net.skill_tree_rpgs.skills.SkillTreeSounds;
+import net.skill_tree_rpgs.skills.SkillSounds;
 import net.spell_engine.api.config.ConfigFile;
 import net.tiny_config.ConfigManager;
 
@@ -24,7 +24,7 @@ public class SkillTreeMod {
     }
 
     public static void registerSounds() {
-        SkillTreeSounds.register();
+        SkillSounds.register();
     }
 
     public static void registerItems() {
