@@ -467,7 +467,7 @@ public class FireSkills {
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
     }
 
 }

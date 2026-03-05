@@ -123,7 +123,7 @@ public class RogueSkills {
 
         FireSkills.explosionImpact(spell, 0.6F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_spec_a_modifier_3 = add(rogue_spec_a_modifier_3());
