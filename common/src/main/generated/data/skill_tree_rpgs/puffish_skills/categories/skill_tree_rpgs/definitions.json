@@ -4716,7 +4716,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_cleave_modifier_1.title"
+    }
   },
   "weapon_cleave_modifier_2": {
     "description": {
@@ -4747,7 +4750,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_cleave_modifier_2.title"
+    }
   },
   "weapon_dagger_root": {
     "description": {
@@ -4835,7 +4841,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_fan_of_knives_modifier_1.title"
+    }
   },
   "weapon_fan_of_knives_modifier_2": {
     "description": {
@@ -4869,7 +4878,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_fan_of_knives_modifier_2.title"
+    }
   },
   "weapon_flurry_modifier_1": {
     "description": {
@@ -4903,7 +4915,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_flurry_modifier_1.title"
+    }
   },
   "weapon_flurry_modifier_2": {
     "description": {
@@ -4937,7 +4952,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_flurry_modifier_2.title"
+    }
   },
   "weapon_glaive_root": {
     "description": {
@@ -4998,7 +5016,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_ground_slam_modifier_1.title"
+    }
   },
   "weapon_ground_slam_modifier_2": {
     "description": {
@@ -5032,7 +5053,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_ground_slam_modifier_2.title"
+    }
   },
   "weapon_hammer_root": {
     "description": {
@@ -5093,7 +5117,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_impale_modifier_1.title"
+    }
   },
   "weapon_impale_modifier_2": {
     "description": {
@@ -5127,7 +5154,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_impale_modifier_2.title"
+    }
   },
   "weapon_mace_root": {
     "description": {
@@ -5215,7 +5245,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_smash_modifier_1.title"
+    }
   },
   "weapon_smash_modifier_2": {
     "description": {
@@ -5249,7 +5282,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_smash_modifier_2.title"
+    }
   },
   "weapon_spear_root": {
     "description": {
@@ -5307,7 +5343,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_swift_strikes_modifier_1.title"
+    }
   },
   "weapon_swift_strikes_modifier_2": {
     "description": {
@@ -5338,7 +5377,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_swift_strikes_modifier_2.title"
+    }
   },
   "weapon_swipe_modifier_1": {
     "description": {
@@ -5372,7 +5414,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_swipe_modifier_1.title"
+    }
   },
   "weapon_swipe_modifier_2": {
     "description": {
@@ -5406,7 +5451,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_swipe_modifier_2.title"
+    }
   },
   "weapon_sword_root": {
     "description": {
@@ -5464,7 +5512,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_thrust_modifier_1.title"
+    }
   },
   "weapon_thrust_modifier_2": {
     "description": {
@@ -5498,7 +5549,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_thrust_modifier_2.title"
+    }
   },
   "weapon_whirlwind_modifier_1": {
     "description": {
@@ -5532,7 +5586,10 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_whirlwind_modifier_1.title"
+    }
   },
   "weapon_whirlwind_modifier_2": {
     "description": {
@@ -5566,6 +5623,9 @@
           ]
         }
       }
-    ]
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_whirlwind_modifier_2.title"
+    }
   }
 }

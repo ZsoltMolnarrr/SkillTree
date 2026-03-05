@@ -37,7 +37,6 @@ public class Skills {
         ENTRIES.addAll(PaladinSkills.ENTRIES);
         ENTRIES.addAll(RogueSkills.ENTRIES);
         ENTRIES.addAll(WarriorSkills.ENTRIES);
-        ENTRIES.addAll(WeaponSkills.ENTRIES);
         ENTRIES.addAll(WeaponSkillModifiers.ENTRIES);
     }
 }
