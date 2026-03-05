@@ -29,9 +29,9 @@ public class ArcherSkills {
         return entry;
     }
 
-    public static final Skills.Entry archer_spec_a_modifier_1 = add(archer_spec_a_modifier_1());
-    private static Skills.Entry archer_spec_a_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_a_modifier_1");
+    public static final Skills.Entry archer_tier_1_spell_1_modifier_1 = add(archer_tier_1_spell_1_modifier_1());
+    private static Skills.Entry archer_tier_1_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_1_spell_1_modifier_1");
         var title = "Improved Hunter's Mark";
         var description = "Power Shot applies {stash_amplifier_add} additional Hunter's Mark stack.";
         var spell = SpellBuilder.createSpellModifier();
@@ -46,9 +46,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_b_modifier_1 = add(archer_spec_b_modifier_1());
-    private static Skills.Entry archer_spec_b_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_b_modifier_1");
+    public static final Skills.Entry archer_tier_1_spell_1_modifier_2 = add(archer_tier_1_spell_1_modifier_2());
+    private static Skills.Entry archer_tier_1_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_1_spell_1_modifier_2");
         var title = "Charged Shot";
         var description = "Power Shot deals {damage} damage around the target hit.";
         var spell = SpellBuilder.createSpellModifier();
@@ -89,9 +89,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_a_modifier_2 = add(archer_spec_a_modifier_2());
-    private static Skills.Entry archer_spec_a_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_a_modifier_2");
+    public static final Skills.Entry archer_tier_2_spell_1_modifier_1 = add(archer_tier_2_spell_1_modifier_1());
+    private static Skills.Entry archer_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_2_spell_1_modifier_1");
         var title = "Nettle Sprouts";
         var description = "Entangling Roots has {impact_chance} chance to apply stacking poison, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -113,9 +113,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_b_modifier_2 = add(archer_spec_b_modifier_2());
-    private static Skills.Entry archer_spec_b_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_b_modifier_2");
+    public static final Skills.Entry archer_tier_2_spell_1_modifier_2 = add(archer_tier_2_spell_1_modifier_2());
+    private static Skills.Entry archer_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_2_spell_1_modifier_2");
         var title = "Nature's Grasp";
         var description = "Entangling Roots has {impact_chance} chance to immobilize the target for {effect_duration} sec.";
         var effect = SkillEffects.NATURES_GRASP;
@@ -134,9 +134,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_a_modifier_3 = add(archer_spec_a_modifier_3());
-    private static Skills.Entry archer_spec_a_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_a_modifier_3");
+    public static final Skills.Entry archer_tier_3_spell_1_modifier_1 = add(archer_tier_3_spell_1_modifier_1());
+    private static Skills.Entry archer_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_3_spell_1_modifier_1");
         var title = "Extensive Barrage";
         var description = "Barrage fires {extra_launch} extra arrow.";
         var spell = SpellBuilder.createSpellModifier();
@@ -151,9 +151,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_b_modifier_3 = add(archer_spec_b_modifier_3());
-    private static Skills.Entry archer_spec_b_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_b_modifier_3");
+    public static final Skills.Entry archer_tier_3_spell_1_modifier_2 = add(archer_tier_3_spell_1_modifier_2());
+    private static Skills.Entry archer_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_3_spell_1_modifier_2");
         var title = "Blood Barrage";
         var description = "Barrage arrow hits heal you by {heal}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -172,9 +172,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_a_modifier_4 = add(archer_spec_a_modifier_4());
-    private static Skills.Entry archer_spec_a_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_a_modifier_4");
+    public static final Skills.Entry archer_tier_4_spell_1_modifier_1 = add(archer_tier_4_spell_1_modifier_1());
+    private static Skills.Entry archer_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_4_spell_1_modifier_1");
         var title = "Conjured Arrow";
         var description = "Magic Arrow has {trigger_chance} chance to reset its own cooldown.";
         var spell = SkillsCommon.createModifierAlikePassiveSpell();
@@ -191,9 +191,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_b_modifier_4 = add(archer_spec_b_modifier_4());
-    private static Skills.Entry archer_spec_b_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_b_modifier_4");
+    public static final Skills.Entry archer_tier_4_spell_1_modifier_2 = add(archer_tier_4_spell_1_modifier_2());
+    private static Skills.Entry archer_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_4_spell_1_modifier_2");
         var title = "Magic Punch";
         var description = "Magic Arrow deals extra {knockback_multiply_base} knockback.";
         var spell = SpellBuilder.createSpellModifier();
@@ -225,9 +225,9 @@ public class ArcherSkills {
     }
 
     private static SpellEntityPredicates.Entry HAS_HUNTERS_MARK = SpellEntityPredicates.hasEffectOptimized(Identifier.of("archers", "hunters_mark"));
-    public static final Skills.Entry archer_spec_a_passive_1 = add(archer_spec_a_passive_1());
-    private static Skills.Entry archer_spec_a_passive_1() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_a_passive_1");
+    public static final Skills.Entry archer_tier_1_passive_1 = add(archer_tier_1_passive_1());
+    private static Skills.Entry archer_tier_1_passive_1() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_1_passive_1");
         var title = "Rhythm";
         var description = "Hitting Marked target increasing ranged attack speed by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var effect = SkillEffects.RHYTHM;
@@ -254,9 +254,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_b_passive_1 = add(archer_spec_b_passive_1());
-    private static Skills.Entry archer_spec_b_passive_1() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_1");
+    public static final Skills.Entry archer_tier_1_passive_2 = add(archer_tier_1_passive_2());
+    private static Skills.Entry archer_tier_1_passive_2() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_1_passive_2");
         var title = "Concussive Shot";
         var description = "Arrows have {trigger_chance} chance, to stun the target for {effect_duration} sec.";
         var effect = SpellEngineEffects.STUN;
@@ -285,9 +285,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_a_passive_2 = add(archer_spec_a_passive_2()); // Momentum (additional stack of Rhythm on roll)
-    private static Skills.Entry archer_spec_a_passive_2() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_a_passive_2");
+    public static final Skills.Entry archer_tier_2_passive_1 = add(archer_tier_2_passive_1()); // Momentum (additional stack of Rhythm on roll)
+    private static Skills.Entry archer_tier_2_passive_1() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_2_passive_1");
         var title = "Momentum";
         var effect = SkillEffects.RHYTHM;
         var description = "Rolling grants you an additional stack of " + effect.title + ".";
@@ -309,9 +309,9 @@ public class ArcherSkills {
 
     public static final Color ROLL_COLOR = Color.from(0x3399ff);
 
-    public static final Skills.Entry archer_spec_b_passive_2 = add(archer_spec_b_passive_2()); // Tactical Maneuver (effect on roll)
-    private static Skills.Entry archer_spec_b_passive_2() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_2");
+    public static final Skills.Entry archer_tier_2_passive_2 = add(archer_tier_2_passive_2()); // Tactical Maneuver (effect on roll)
+    private static Skills.Entry archer_tier_2_passive_2() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_2_passive_2");
         var title = "Tactical Maneuver";
         var description = "Rolling has {trigger_chance} chance to increase your roll recharge speed by {bonus}, for {effect_duration} sec.";
         var effect = SkillEffects.TACTICAL_MANEUVER;
@@ -361,9 +361,9 @@ public class ArcherSkills {
 
     public static final Color SUPERCHARGE_COLOR = Color.NATURE.blend(Color.WHITE, 0.5F);
 
-    public static final Skills.Entry archer_spec_a_passive_3 = add(archer_spec_a_passive_3()); // Supercharge on arrow hit
-    private static Skills.Entry archer_spec_a_passive_3() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_a_passive_3");
+    public static final Skills.Entry archer_tier_3_passive_1 = add(archer_tier_3_passive_1()); // Supercharge on arrow hit
+    private static Skills.Entry archer_tier_3_passive_1() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_3_passive_1");
         var title = "Supercharge";
         var effect = SkillEffects.SUPERCHARGE;
         var damageMultiplier = 2F;
@@ -453,9 +453,9 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_spec_b_passive_3 = add(archer_spec_b_passive_3()); // Deflection (protective effect on low HP)
-    private static Skills.Entry archer_spec_b_passive_3() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_3");
+    public static final Skills.Entry archer_tier_3_passive_2 = add(archer_tier_3_passive_2()); // Deflection (protective effect on low HP)
+    private static Skills.Entry archer_tier_3_passive_2() {
+        var id = Identifier.of(NAMESPACE, "archer_tier_3_passive_2");
         var title = "Deflection";
         final var healthThreshold = 0.5F;
         var description = "Upon taking damage below {threshold} health you gain Deflection effect, parrying the next {effect_amplifier} incoming melee attack, lasting {effect_duration} sec.";

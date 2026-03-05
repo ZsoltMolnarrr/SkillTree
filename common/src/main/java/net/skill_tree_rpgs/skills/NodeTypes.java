@@ -122,23 +122,23 @@ public class NodeTypes {
                     Icon.item("wizards:wand_arcane"),
                     ARCANE_ROOT.attributeReward()).require(WIZARDS)
     );
-    public static final Entry ARCANE_SPEC_A_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_spec_a_modifier_1).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_B_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_spec_b_modifier_1).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_A_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_spec_a_modifier_2).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_B_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_spec_b_modifier_2).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_A_MODIFIER_3 = add(modifierSpell(ArcaneSkills.arcane_spec_a_modifier_3).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_B_MODIFIER_3 = add(modifierSpell(ArcaneSkills.arcane_spec_b_modifier_3).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_A_MODIFIER_4 = add(passiveSpell(ArcaneSkills.arcane_spec_a_modifier_4)
+    public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_1).require(WIZARDS));
+    public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_2).require(WIZARDS));
+    public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_1).require(WIZARDS));
+    public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_2).require(WIZARDS));
+    public static final Entry ARCANE_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_3_spell_1_modifier_1).require(WIZARDS));
+    public static final Entry ARCANE_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_3_spell_1_modifier_2).require(WIZARDS));
+    public static final Entry ARCANE_TIER_4_SPELL_1_MODIFIER_1 = add(passiveSpell(ArcaneSkills.arcane_tier_4_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("wizards", "arcane_blink")))
             .require(WIZARDS)
     );
-    public static final Entry ARCANE_SPEC_B_MODIFIER_4 = add(modifierSpell(ArcaneSkills.arcane_spec_b_modifier_4).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_A_PASSIVE_1 = add(passiveSpell(ArcaneSkills.arcane_spec_a_passive_1).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_B_PASSIVE_1 = add(passiveSpell(ArcaneSkills.arcane_spec_b_passive_1).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_A_PASSIVE_2 = add(passiveSpell(ArcaneSkills.arcane_spec_a_passive_2).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_B_PASSIVE_2 = add(passiveSpell(ArcaneSkills.arcane_spec_b_passive_2).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_A_PASSIVE_3 = add(passiveSpell(ArcaneSkills.arcane_spec_a_passive_3).require(WIZARDS));
-    public static final Entry ARCANE_SPEC_B_PASSIVE_3 = add(passiveSpell(ArcaneSkills.arcane_spec_b_passive_3).require(WIZARDS));
+    public static final Entry ARCANE_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_4_spell_1_modifier_2).require(WIZARDS));
+    public static final Entry ARCANE_TIER_1_PASSIVE_1 = add(passiveSpell(ArcaneSkills.arcane_tier_1_passive_1).require(WIZARDS));
+    public static final Entry ARCANE_TIER_1_PASSIVE_2 = add(passiveSpell(ArcaneSkills.arcane_tier_1_passive_2).require(WIZARDS));
+    public static final Entry ARCANE_TIER_2_PASSIVE_1 = add(passiveSpell(ArcaneSkills.arcane_tier_2_passive_1).require(WIZARDS));
+    public static final Entry ARCANE_TIER_2_PASSIVE_2 = add(passiveSpell(ArcaneSkills.arcane_tier_2_passive_2).require(WIZARDS));
+    public static final Entry ARCANE_TIER_3_PASSIVE_1 = add(passiveSpell(ArcaneSkills.arcane_tier_3_passive_1).require(WIZARDS));
+    public static final Entry ARCANE_TIER_3_PASSIVE_2 = add(passiveSpell(ArcaneSkills.arcane_tier_3_passive_2).require(WIZARDS));
 
     public static final Entry FIRE_ROOT = add(
             Entry.attribute("fire_root",
@@ -157,23 +157,23 @@ public class NodeTypes {
                     Icon.item("wizards:wand_fire"),
                     FIRE_ROOT.attributeReward()).require(WIZARDS)
     );
-    public static final Entry FIRE_SPEC_A_MODIFIER_1 = add(modifierSpell(FireSkills.fire_spec_a_modifier_1).require(WIZARDS));
-    public static final Entry FIRE_SPEC_B_MODIFIER_1 = add(modifierSpell(FireSkills.fire_spec_b_modifier_1).require(WIZARDS));
-    public static final Entry FIRE_SPEC_A_MODIFIER_2 = add(passiveSpell(FireSkills.fire_spec_a_modifier_2)
+    public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_1).require(WIZARDS));
+    public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_2).require(WIZARDS));
+    public static final Entry FIRE_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(FireSkills.fire_tier_2_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("wizards", "fire_breath"))).require(WIZARDS));
-    public static final Entry FIRE_SPEC_B_MODIFIER_2 = add(modifierSpell(FireSkills.fire_spec_b_modifier_2).require(WIZARDS));
-    public static final Entry FIRE_SPEC_A_MODIFIER_3 = add(modifierSpell(FireSkills.fire_spec_a_modifier_3).require(WIZARDS));
-    public static final Entry FIRE_SPEC_B_MODIFIER_3 = add(passiveSpell(FireSkills.fire_spec_b_modifier_3)
+    public static final Entry FIRE_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_2_spell_1_modifier_2).require(WIZARDS));
+    public static final Entry FIRE_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(FireSkills.fire_tier_3_spell_1_modifier_1).require(WIZARDS));
+    public static final Entry FIRE_TIER_3_SPELL_1_MODIFIER_2 = add(passiveSpell(FireSkills.fire_tier_3_spell_1_modifier_2)
             .withIcon(Icon.spell(Identifier.of("wizards", "fire_meteor"))).require(WIZARDS));
-    public static final Entry FIRE_SPEC_A_MODIFIER_4 = add(modifierSpell(FireSkills.fire_spec_a_modifier_4).require(WIZARDS));
-    public static final Entry FIRE_SPEC_B_MODIFIER_4 = add(modifierSpell(FireSkills.fire_spec_b_modifier_4).require(WIZARDS));
+    public static final Entry FIRE_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell(FireSkills.fire_tier_4_spell_1_modifier_1).require(WIZARDS));
+    public static final Entry FIRE_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_4_spell_1_modifier_2).require(WIZARDS));
 
-    public static final Entry FIRE_SPEC_A_PASSIVE_1 = add(passiveSpell(FireSkills.fire_spec_a_passive_1).require(WIZARDS));
-    public static final Entry FIRE_SPEC_B_PASSIVE_1 = add(passiveSpell(FireSkills.fire_spec_b_passive_1).require(WIZARDS));
-    public static final Entry FIRE_SPEC_A_PASSIVE_2 = add(passiveSpell(FireSkills.fire_spec_a_passive_2).require(WIZARDS));
-    public static final Entry FIRE_SPEC_B_PASSIVE_2 = add(passiveSpell(FireSkills.fire_spec_b_passive_2).require(WIZARDS));
-    public static final Entry FIRE_SPEC_A_PASSIVE_3 = add(passiveSpell(FireSkills.fire_spec_a_passive_3).require(WIZARDS));
-    public static final Entry FIRE_SPEC_B_PASSIVE_3 = add(passiveSpell(FireSkills.fire_spec_b_passive_3).require(WIZARDS));
+    public static final Entry FIRE_TIER_1_PASSIVE_1 = add(passiveSpell(FireSkills.fire_tier_1_passive_1).require(WIZARDS));
+    public static final Entry FIRE_TIER_1_PASSIVE_2 = add(passiveSpell(FireSkills.fire_tier_1_passive_2).require(WIZARDS));
+    public static final Entry FIRE_TIER_2_PASSIVE_1 = add(passiveSpell(FireSkills.fire_tier_2_passive_1).require(WIZARDS));
+    public static final Entry FIRE_TIER_2_PASSIVE_2 = add(passiveSpell(FireSkills.fire_tier_2_passive_2).require(WIZARDS));
+    public static final Entry FIRE_TIER_3_PASSIVE_1 = add(passiveSpell(FireSkills.fire_tier_3_passive_1).require(WIZARDS));
+    public static final Entry FIRE_TIER_3_PASSIVE_2 = add(passiveSpell(FireSkills.fire_tier_3_passive_2).require(WIZARDS));
 
     public static final Entry FROST_ROOT = add(
             Entry.attribute("frost_root",
@@ -192,24 +192,24 @@ public class NodeTypes {
                     Icon.item("wizards:wand_frost"),
                     FROST_ROOT.attributeReward()).require(WIZARDS)
     );
-    public static final Entry FROST_SPEC_A_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_spec_a_modifier_1).require(WIZARDS));
-    public static final Entry FROST_SPEC_B_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_spec_b_modifier_1).require(WIZARDS));
-    public static final Entry FROST_SPEC_A_MODIFIER_2 = add(passiveSpell(FrostSkills.frost_spec_a_modifier_2)
+    public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_1).require(WIZARDS));
+    public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_2).require(WIZARDS));
+    public static final Entry FROST_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(FrostSkills.frost_tier_2_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("wizards", "frost_nova")))
             .require(WIZARDS)
     );
-    public static final Entry FROST_SPEC_B_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_spec_b_modifier_2).require(WIZARDS));
-    public static final Entry FROST_SPEC_A_MODIFIER_3 = add(modifierSpell(FrostSkills.frost_spec_a_modifier_3).require(WIZARDS));
-    public static final Entry FROST_SPEC_B_MODIFIER_3 = add(modifierSpell(FrostSkills.frost_spec_b_modifier_3).require(WIZARDS));
-    public static final Entry FROST_SPEC_A_MODIFIER_4 = add(modifierSpell(FrostSkills.frost_spec_a_modifier_4).require(WIZARDS));
-    public static final Entry FROST_SPEC_B_MODIFIER_4 = add(modifierSpell(FrostSkills.frost_spec_b_modifier_4).require(WIZARDS));
+    public static final Entry FROST_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_tier_2_spell_1_modifier_2).require(WIZARDS));
+    public static final Entry FROST_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_tier_3_spell_1_modifier_1).require(WIZARDS));
+    public static final Entry FROST_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_tier_3_spell_1_modifier_2).require(WIZARDS));
+    public static final Entry FROST_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_tier_4_spell_1_modifier_1).require(WIZARDS));
+    public static final Entry FROST_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_tier_4_spell_1_modifier_2).require(WIZARDS));
 
-    public static final Entry FROST_SPEC_A_PASSIVE_1 = add(passiveSpell(FrostSkills.frost_spec_a_passive_1).require(WIZARDS));
-    public static final Entry FROST_SPEC_B_PASSIVE_1 = add(passiveSpell(FrostSkills.frost_spec_b_passive_1).require(WIZARDS));
-    public static final Entry FROST_SPEC_A_PASSIVE_2 = add(passiveSpell(FrostSkills.frost_spec_a_passive_2).require(WIZARDS));
-    public static final Entry FROST_SPEC_B_PASSIVE_2 = add(passiveSpell(FrostSkills.frost_spec_b_passive_2).require(WIZARDS));
-    public static final Entry FROST_SPEC_A_PASSIVE_3 = add(passiveSpell(FrostSkills.frost_spec_a_passive_3).require(WIZARDS));
-    public static final Entry FROST_SPEC_B_PASSIVE_3 = add(passiveSpell(FrostSkills.frost_spec_b_passive_3).require(WIZARDS));
+    public static final Entry FROST_TIER_1_PASSIVE_1 = add(passiveSpell(FrostSkills.frost_tier_1_passive_1).require(WIZARDS));
+    public static final Entry FROST_TIER_1_PASSIVE_2 = add(passiveSpell(FrostSkills.frost_tier_1_passive_2).require(WIZARDS));
+    public static final Entry FROST_TIER_2_PASSIVE_1 = add(passiveSpell(FrostSkills.frost_tier_2_passive_1).require(WIZARDS));
+    public static final Entry FROST_TIER_2_PASSIVE_2 = add(passiveSpell(FrostSkills.frost_tier_2_passive_2).require(WIZARDS));
+    public static final Entry FROST_TIER_3_PASSIVE_1 = add(passiveSpell(FrostSkills.frost_tier_3_passive_1).require(WIZARDS));
+    public static final Entry FROST_TIER_3_PASSIVE_2 = add(passiveSpell(FrostSkills.frost_tier_3_passive_2).require(WIZARDS));
 
     public static final Entry PRIEST_ROOT = add(
             Entry.attribute("priest_root",
@@ -228,24 +228,24 @@ public class NodeTypes {
                     Icon.item("paladins:holy_wand"),
                     PRIEST_ROOT.attributeReward()).require(PALADINS)
     );
-    public static final Entry PRIEST_SPEC_A_MODIFIER_1 = add(modifierSpell(PriestSkills.priest_spec_a_modifier_1).require(PALADINS));
-    public static final Entry PRIEST_SPEC_B_MODIFIER_1 = add(modifierSpell(PriestSkills.priest_spec_b_modifier_1).require(PALADINS));
-    public static final Entry PRIEST_SPEC_A_MODIFIER_2 = add(modifierSpell(PriestSkills.priest_spec_a_modifier_2).require(PALADINS));
-    public static final Entry PRIEST_SPEC_B_MODIFIER_2 = add(modifierSpell(PriestSkills.priest_spec_b_modifier_2).require(PALADINS));
-    public static final Entry PRIEST_SPEC_A_MODIFIER_3 = add(modifierSpell(PriestSkills.priest_spec_a_modifier_3).require(PALADINS));
-    public static final Entry PRIEST_SPEC_B_MODIFIER_3 = add(passiveSpell(PriestSkills.priest_spec_b_modifier_3)
+    public static final Entry PRIEST_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(PriestSkills.priest_tier_1_spell_1_modifier_1).require(PALADINS));
+    public static final Entry PRIEST_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(PriestSkills.priest_tier_1_spell_1_modifier_2).require(PALADINS));
+    public static final Entry PRIEST_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(PriestSkills.priest_tier_2_spell_1_modifier_1).require(PALADINS));
+    public static final Entry PRIEST_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(PriestSkills.priest_tier_2_spell_1_modifier_2).require(PALADINS));
+    public static final Entry PRIEST_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(PriestSkills.priest_tier_3_spell_1_modifier_1).require(PALADINS));
+    public static final Entry PRIEST_TIER_3_SPELL_1_MODIFIER_2 = add(passiveSpell(PriestSkills.priest_tier_3_spell_1_modifier_2)
             .withIcon(Icon.spell(Identifier.of("paladins", "circle_of_healing")))
             .require(PALADINS)
     );
-    public static final Entry PRIEST_SPEC_A_MODIFIER_4 = add(modifierSpell(PriestSkills.priest_spec_a_modifier_4).require(PALADINS));
-    public static final Entry PRIEST_SPEC_B_MODIFIER_4 = add(modifierSpell(PriestSkills.priest_spec_b_modifier_4).require(PALADINS));
+    public static final Entry PRIEST_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell(PriestSkills.priest_tier_4_spell_1_modifier_1).require(PALADINS));
+    public static final Entry PRIEST_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(PriestSkills.priest_tier_4_spell_1_modifier_2).require(PALADINS));
 
-    public static final Entry PRIEST_SPEC_A_PASSIVE_1 = add(passiveSpell(PriestSkills.priest_spec_a_passive_1).require(PALADINS));
-    public static final Entry PRIEST_SPEC_B_PASSIVE_1 = add(passiveSpell(PriestSkills.priest_spec_b_passive_1).require(PALADINS));
-    public static final Entry PRIEST_SPEC_A_PASSIVE_2 = add(passiveSpell(PriestSkills.priest_spec_a_passive_2).require(PALADINS));
-    public static final Entry PRIEST_SPEC_B_PASSIVE_2 = add(passiveSpell(PriestSkills.priest_spec_b_passive_2).require(PALADINS));
-    public static final Entry PRIEST_SPEC_A_PASSIVE_3 = add(passiveSpell(PriestSkills.priest_spec_a_passive_3).require(PALADINS));
-    public static final Entry PRIEST_SPEC_B_PASSIVE_3 = add(passiveSpell(PriestSkills.priest_spec_b_passive_3).require(PALADINS));
+    public static final Entry PRIEST_TIER_1_PASSIVE_1 = add(passiveSpell(PriestSkills.priest_tier_1_passive_1).require(PALADINS));
+    public static final Entry PRIEST_TIER_1_PASSIVE_2 = add(passiveSpell(PriestSkills.priest_tier_1_passive_2).require(PALADINS));
+    public static final Entry PRIEST_TIER_2_PASSIVE_1 = add(passiveSpell(PriestSkills.priest_tier_2_passive_1).require(PALADINS));
+    public static final Entry PRIEST_TIER_2_PASSIVE_2 = add(passiveSpell(PriestSkills.priest_tier_2_passive_2).require(PALADINS));
+    public static final Entry PRIEST_TIER_3_PASSIVE_1 = add(passiveSpell(PriestSkills.priest_tier_3_passive_1).require(PALADINS));
+    public static final Entry PRIEST_TIER_3_PASSIVE_2 = add(passiveSpell(PriestSkills.priest_tier_3_passive_2).require(PALADINS));
 
     public static final Entry PALADIN_ROOT = add(
             Entry.attribute("paladin_root",
@@ -264,21 +264,21 @@ public class NodeTypes {
                     Icon.item("paladins:iron_mace"),
                     PALADIN_ROOT.attributeReward()).require(PALADINS)
     );
-    public static final Entry PALADIN_SPEC_A_MODIFIER_1 = add(modifierSpell(PaladinSkills.paladin_spec_a_modifier_1).require(PALADINS));
-    public static final Entry PALADIN_SPEC_B_MODIFIER_1 = add(modifierSpell(PaladinSkills.paladin_spec_b_modifier_1).require(PALADINS));
-    public static final Entry PALADIN_SPEC_A_MODIFIER_2 = add(modifierSpell(PaladinSkills.paladin_spec_a_modifier_2).require(PALADINS));
-    public static final Entry PALADIN_SPEC_B_MODIFIER_2 = add(modifierSpell(PaladinSkills.paladin_spec_b_modifier_2).require(PALADINS));
-    public static final Entry PALADIN_SPEC_A_MODIFIER_3 = add(modifierSpell(PaladinSkills.paladin_spec_a_modifier_3).require(PALADINS));
-    public static final Entry PALADIN_SPEC_B_MODIFIER_3 = add(modifierSpell(PaladinSkills.paladin_spec_b_modifier_3).require(PALADINS));
-    public static final Entry PALADIN_SPEC_A_MODIFIER_4 = add(modifierSpell(PaladinSkills.paladin_spec_a_modifier_4).require(PALADINS));
-    public static final Entry PALADIN_SPEC_B_MODIFIER_4 = add(modifierSpell(PaladinSkills.paladin_spec_b_modifier_4).require(PALADINS));
+    public static final Entry PALADIN_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(PaladinSkills.paladin_tier_1_spell_1_modifier_1).require(PALADINS));
+    public static final Entry PALADIN_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(PaladinSkills.paladin_tier_1_spell_1_modifier_2).require(PALADINS));
+    public static final Entry PALADIN_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(PaladinSkills.paladin_tier_2_spell_1_modifier_1).require(PALADINS));
+    public static final Entry PALADIN_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(PaladinSkills.paladin_tier_2_spell_1_modifier_2).require(PALADINS));
+    public static final Entry PALADIN_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(PaladinSkills.paladin_tier_3_spell_1_modifier_1).require(PALADINS));
+    public static final Entry PALADIN_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell(PaladinSkills.paladin_tier_3_spell_1_modifier_2).require(PALADINS));
+    public static final Entry PALADIN_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell(PaladinSkills.paladin_tier_4_spell_1_modifier_1).require(PALADINS));
+    public static final Entry PALADIN_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(PaladinSkills.paladin_tier_4_spell_1_modifier_2).require(PALADINS));
 
-    public static final Entry PALADIN_SPEC_A_PASSIVE_1 = add(passiveSpell(PaladinSkills.paladin_spec_a_passive_1).require(PALADINS));
-    public static final Entry PALADIN_SPEC_B_PASSIVE_1 = add(passiveSpell(PaladinSkills.paladin_spec_b_passive_1).require(PALADINS));
-    public static final Entry PALADIN_SPEC_A_PASSIVE_2 = add(passiveSpell(PaladinSkills.paladin_spec_a_passive_2).require(PALADINS));
-    public static final Entry PALADIN_SPEC_B_PASSIVE_2 = add(passiveSpell(PaladinSkills.paladin_spec_b_passive_2).require(PALADINS));
-    public static final Entry PALADIN_SPEC_A_PASSIVE_3 = add(passiveSpell(PaladinSkills.paladin_spec_a_passive_3).require(PALADINS));
-    public static final Entry PALADIN_SPEC_B_PASSIVE_3 = add(passiveSpell(PaladinSkills.paladin_spec_b_passive_3).require(PALADINS));
+    public static final Entry PALADIN_TIER_1_PASSIVE_1 = add(passiveSpell(PaladinSkills.paladin_tier_1_passive_1).require(PALADINS));
+    public static final Entry PALADIN_TIER_1_PASSIVE_2 = add(passiveSpell(PaladinSkills.paladin_tier_1_passive_2).require(PALADINS));
+    public static final Entry PALADIN_TIER_2_PASSIVE_1 = add(passiveSpell(PaladinSkills.paladin_tier_2_passive_1).require(PALADINS));
+    public static final Entry PALADIN_TIER_2_PASSIVE_2 = add(passiveSpell(PaladinSkills.paladin_tier_2_passive_2).require(PALADINS));
+    public static final Entry PALADIN_TIER_3_PASSIVE_1 = add(passiveSpell(PaladinSkills.paladin_tier_3_passive_1).require(PALADINS));
+    public static final Entry PALADIN_TIER_3_PASSIVE_2 = add(passiveSpell(PaladinSkills.paladin_tier_3_passive_2).require(PALADINS));
 
     public static final Entry ARCHER_ROOT = add(
             Entry.attribute("archer_root",
@@ -298,22 +298,22 @@ public class NodeTypes {
                     ARCHER_ROOT.attributeReward()).require(ARCHERS)
     );
     
-    public static final Entry ARCHER_SPEC_A_MODIFIER_1 = add(modifierSpell(ArcherSkills.archer_spec_a_modifier_1).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_B_MODIFIER_1 = add(modifierSpell(ArcherSkills.archer_spec_b_modifier_1).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_A_MODIFIER_2 = add(modifierSpell(ArcherSkills.archer_spec_a_modifier_2).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_B_MODIFIER_2 = add(modifierSpell(ArcherSkills.archer_spec_b_modifier_2).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_A_MODIFIER_3 = add(modifierSpell(ArcherSkills.archer_spec_a_modifier_3).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_B_MODIFIER_3 = add(modifierSpell(ArcherSkills.archer_spec_b_modifier_3).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_A_MODIFIER_4 = add(passiveSpell(ArcherSkills.archer_spec_a_modifier_4)
+    public static final Entry ARCHER_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcherSkills.archer_tier_1_spell_1_modifier_1).require(ARCHERS));
+    public static final Entry ARCHER_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcherSkills.archer_tier_1_spell_1_modifier_2).require(ARCHERS));
+    public static final Entry ARCHER_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcherSkills.archer_tier_2_spell_1_modifier_1).require(ARCHERS));
+    public static final Entry ARCHER_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcherSkills.archer_tier_2_spell_1_modifier_2).require(ARCHERS));
+    public static final Entry ARCHER_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcherSkills.archer_tier_3_spell_1_modifier_1).require(ARCHERS));
+    public static final Entry ARCHER_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcherSkills.archer_tier_3_spell_1_modifier_2).require(ARCHERS));
+    public static final Entry ARCHER_TIER_4_SPELL_1_MODIFIER_1 = add(passiveSpell(ArcherSkills.archer_tier_4_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("archers", "magic_arrow"))).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_B_MODIFIER_4 = add(modifierSpell(ArcherSkills.archer_spec_b_modifier_4).require(ARCHERS));
+    public static final Entry ARCHER_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcherSkills.archer_tier_4_spell_1_modifier_2).require(ARCHERS));
 
-    public static final Entry ARCHER_SPEC_A_PASSIVE_1 = add(passiveSpell(ArcherSkills.archer_spec_a_passive_1).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_B_PASSIVE_1 = add(passiveSpell(ArcherSkills.archer_spec_b_passive_1).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_A_PASSIVE_2 = add(passiveSpell(ArcherSkills.archer_spec_a_passive_2).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_B_PASSIVE_2 = add(passiveSpell(ArcherSkills.archer_spec_b_passive_2).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_A_PASSIVE_3 = add(passiveSpell(ArcherSkills.archer_spec_a_passive_3).require(ARCHERS));
-    public static final Entry ARCHER_SPEC_B_PASSIVE_3 = add(passiveSpell(ArcherSkills.archer_spec_b_passive_3).require(ARCHERS));
+    public static final Entry ARCHER_TIER_1_PASSIVE_1 = add(passiveSpell(ArcherSkills.archer_tier_1_passive_1).require(ARCHERS));
+    public static final Entry ARCHER_TIER_1_PASSIVE_2 = add(passiveSpell(ArcherSkills.archer_tier_1_passive_2).require(ARCHERS));
+    public static final Entry ARCHER_TIER_2_PASSIVE_1 = add(passiveSpell(ArcherSkills.archer_tier_2_passive_1).require(ARCHERS));
+    public static final Entry ARCHER_TIER_2_PASSIVE_2 = add(passiveSpell(ArcherSkills.archer_tier_2_passive_2).require(ARCHERS));
+    public static final Entry ARCHER_TIER_3_PASSIVE_1 = add(passiveSpell(ArcherSkills.archer_tier_3_passive_1).require(ARCHERS));
+    public static final Entry ARCHER_TIER_3_PASSIVE_2 = add(passiveSpell(ArcherSkills.archer_tier_3_passive_2).require(ARCHERS));
 
     public static final Entry ROGUE_ROOT = add(
             Entry.attribute("rogue_root",
@@ -332,24 +332,24 @@ public class NodeTypes {
                     Icon.item("rogues:iron_sickle"),
                     ROGUE_ROOT.attributeReward()).require(ROGUES)
     );
-    public static final Entry ROGUE_SPEC_A_MODIFIER_1 = add(modifierSpell(RogueSkills.rogue_spec_a_modifier_1).require(ROGUES));
-    public static final Entry ROGUE_SPEC_B_MODIFIER_1 = add(modifierSpell(RogueSkills.rogue_spec_b_modifier_1).require(ROGUES));
-    public static final Entry ROGUE_SPEC_A_MODIFIER_2 = add(modifierSpell(RogueSkills.rogue_spec_a_modifier_2).require(ROGUES));
-    public static final Entry ROGUE_SPEC_B_MODIFIER_2 = add(passiveSpell(RogueSkills.rogue_spec_b_modifier_2)
+    public static final Entry ROGUE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(RogueSkills.rogue_tier_1_spell_1_modifier_1).require(ROGUES));
+    public static final Entry ROGUE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(RogueSkills.rogue_tier_1_spell_1_modifier_2).require(ROGUES));
+    public static final Entry ROGUE_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(RogueSkills.rogue_tier_2_spell_1_modifier_1).require(ROGUES));
+    public static final Entry ROGUE_TIER_2_SPELL_1_MODIFIER_2 = add(passiveSpell(RogueSkills.rogue_tier_2_spell_1_modifier_2)
             .withIcon(Icon.spell(Identifier.of("rogues:shock_powder")))
             .require(ROGUES)
     );
-    public static final Entry ROGUE_SPEC_A_MODIFIER_3 = add(modifierSpell(RogueSkills.rogue_spec_a_modifier_3).require(ROGUES));
-    public static final Entry ROGUE_SPEC_B_MODIFIER_3 = add(modifierSpell(RogueSkills.rogue_spec_b_modifier_3).require(ROGUES));
-    public static final Entry ROGUE_SPEC_A_MODIFIER_4 = add(modifierSpell(RogueSkills.rogue_spec_a_modifier_4).require(ROGUES));
-    public static final Entry ROGUE_SPEC_B_MODIFIER_4 = add(modifierSpell(RogueSkills.rogue_spec_b_modifier_4).require(ROGUES));
+    public static final Entry ROGUE_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(RogueSkills.rogue_tier_3_spell_1_modifier_1).require(ROGUES));
+    public static final Entry ROGUE_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell(RogueSkills.rogue_tier_3_spell_1_modifier_2).require(ROGUES));
+    public static final Entry ROGUE_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell(RogueSkills.rogue_tier_4_spell_1_modifier_1).require(ROGUES));
+    public static final Entry ROGUE_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(RogueSkills.rogue_tier_4_spell_1_modifier_2).require(ROGUES));
 
-    public static final Entry ROGUE_SPEC_A_PASSIVE_1 = add(passiveSpell(RogueSkills.rogue_spec_a_passive_1).require(ROGUES));
-    public static final Entry ROGUE_SPEC_B_PASSIVE_1 = add(passiveSpell(RogueSkills.rogue_spec_b_passive_1).require(ROGUES));
-    public static final Entry ROGUE_SPEC_A_PASSIVE_2 = add(passiveSpell(RogueSkills.rogue_spec_a_passive_2).require(ROGUES));
-    public static final Entry ROGUE_SPEC_B_PASSIVE_2 = add(passiveSpell(RogueSkills.rogue_spec_b_passive_2).require(ROGUES));
-    public static final Entry ROGUE_SPEC_A_PASSIVE_3 = add(passiveSpell(RogueSkills.rogue_spec_a_passive_3).require(ROGUES));
-    public static final Entry ROGUE_SPEC_B_PASSIVE_3 = add(passiveSpell(RogueSkills.rogue_spec_b_passive_3).require(ROGUES));
+    public static final Entry ROGUE_TIER_1_PASSIVE_1 = add(passiveSpell(RogueSkills.rogue_tier_1_passive_1).require(ROGUES));
+    public static final Entry ROGUE_TIER_1_PASSIVE_2 = add(passiveSpell(RogueSkills.rogue_tier_1_passive_2).require(ROGUES));
+    public static final Entry ROGUE_TIER_2_PASSIVE_1 = add(passiveSpell(RogueSkills.rogue_tier_2_passive_1).require(ROGUES));
+    public static final Entry ROGUE_TIER_2_PASSIVE_2 = add(passiveSpell(RogueSkills.rogue_tier_2_passive_2).require(ROGUES));
+    public static final Entry ROGUE_TIER_3_PASSIVE_1 = add(passiveSpell(RogueSkills.rogue_tier_3_passive_1).require(ROGUES));
+    public static final Entry ROGUE_TIER_3_PASSIVE_2 = add(passiveSpell(RogueSkills.rogue_tier_3_passive_2).require(ROGUES));
 
     public static final Entry WARRIOR_ROOT = add(
             Entry.attribute("warrior_root",
@@ -368,27 +368,27 @@ public class NodeTypes {
                     Icon.item("rogues:iron_double_axe"),
                     WARRIOR_ROOT.attributeReward()).require(ROGUES)
     );
-    public static final Entry WARRIOR_SPEC_A_MODIFIER_1 = add(modifierSpell(WarriorSkills.warrior_spec_a_modifier_1).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_B_MODIFIER_1 = add(modifierSpell(WarriorSkills.warrior_spec_b_modifier_1).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_A_MODIFIER_2 = add(passiveSpell(WarriorSkills.warrior_spec_a_modifier_2)
+    public static final Entry WARRIOR_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(WarriorSkills.warrior_tier_1_spell_1_modifier_1).require(ROGUES));
+    public static final Entry WARRIOR_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(WarriorSkills.warrior_tier_1_spell_1_modifier_2).require(ROGUES));
+    public static final Entry WARRIOR_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(WarriorSkills.warrior_tier_2_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("rogues", "shout")))
             .require(ROGUES)
     );
-    public static final Entry WARRIOR_SPEC_B_MODIFIER_2 = add(modifierSpell(WarriorSkills.warrior_spec_b_modifier_2).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_A_MODIFIER_3 = add(modifierSpell(WarriorSkills.warrior_spec_a_modifier_3).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_B_MODIFIER_3 = add(passiveSpell(WarriorSkills.warrior_spec_b_modifier_3)
+    public static final Entry WARRIOR_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(WarriorSkills.warrior_tier_2_spell_1_modifier_2).require(ROGUES));
+    public static final Entry WARRIOR_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(WarriorSkills.warrior_tier_3_spell_1_modifier_1).require(ROGUES));
+    public static final Entry WARRIOR_TIER_3_SPELL_1_MODIFIER_2 = add(passiveSpell(WarriorSkills.warrior_tier_3_spell_1_modifier_2)
             .withIcon(Icon.spell(Identifier.of("rogues", "charge")))
             .require(ROGUES)
     );
-    public static final Entry WARRIOR_SPEC_A_MODIFIER_4 = add(modifierSpell(WarriorSkills.warrior_spec_a_modifier_4).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_B_MODIFIER_4 = add(modifierSpell(WarriorSkills.warrior_spec_b_modifier_4).require(ROGUES));
+    public static final Entry WARRIOR_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell(WarriorSkills.warrior_tier_4_spell_1_modifier_1).require(ROGUES));
+    public static final Entry WARRIOR_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(WarriorSkills.warrior_tier_4_spell_1_modifier_2).require(ROGUES));
 
-    public static final Entry WARRIOR_SPEC_A_PASSIVE_1 = add(passiveSpell(WarriorSkills.warrior_spec_a_passive_1).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_B_PASSIVE_1 = add(passiveSpell(WarriorSkills.warrior_spec_b_passive_1).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_A_PASSIVE_2 = add(passiveSpell(WarriorSkills.warrior_spec_a_passive_2).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_B_PASSIVE_2 = add(passiveSpell(WarriorSkills.warrior_spec_b_passive_2).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_A_PASSIVE_3 = add(passiveSpell(WarriorSkills.warrior_spec_a_passive_3).require(ROGUES));
-    public static final Entry WARRIOR_SPEC_B_PASSIVE_3 = add(passiveSpell(WarriorSkills.warrior_spec_b_passive_3).require(ROGUES));
+    public static final Entry WARRIOR_TIER_1_PASSIVE_1 = add(passiveSpell(WarriorSkills.warrior_tier_1_passive_1).require(ROGUES));
+    public static final Entry WARRIOR_TIER_1_PASSIVE_2 = add(passiveSpell(WarriorSkills.warrior_tier_1_passive_2).require(ROGUES));
+    public static final Entry WARRIOR_TIER_2_PASSIVE_1 = add(passiveSpell(WarriorSkills.warrior_tier_2_passive_1).require(ROGUES));
+    public static final Entry WARRIOR_TIER_2_PASSIVE_2 = add(passiveSpell(WarriorSkills.warrior_tier_2_passive_2).require(ROGUES));
+    public static final Entry WARRIOR_TIER_3_PASSIVE_1 = add(passiveSpell(WarriorSkills.warrior_tier_3_passive_1).require(ROGUES));
+    public static final Entry WARRIOR_TIER_3_PASSIVE_2 = add(passiveSpell(WarriorSkills.warrior_tier_3_passive_2).require(ROGUES));
 
     public static final Entry FIREBALL = add(
             Entry.spell("fireball",

@@ -28,11 +28,11 @@ public class PaladinSkills {
         return entry;
     }
 
-    public static final Skills.Entry paladin_spec_a_modifier_1 = add(paladin_spec_a_modifier_1());
-    private static Skills.Entry paladin_spec_a_modifier_1() {
+    public static final Skills.Entry paladin_tier_1_spell_1_modifier_1 = add(paladin_tier_1_spell_1_modifier_1());
+    private static Skills.Entry paladin_tier_1_spell_1_modifier_1() {
         var effect = SkillEffects.DIVINE_STRENGTH;
 
-        var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_1");
+        var id = Identifier.of(NAMESPACE, "paladin_tier_1_spell_1_modifier_1");
         var title = "Divine Strength";
         var description = "Flash Heal increases Attack Damage by {bonus} for {effect_duration} sec.";
 
@@ -67,9 +67,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_b_modifier_1 = add(paladin_spec_b_modifier_1());
-    private static Skills.Entry paladin_spec_b_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_b_modifier_1");
+    public static final Skills.Entry paladin_tier_1_spell_1_modifier_2 = add(paladin_tier_1_spell_1_modifier_2());
+    private static Skills.Entry paladin_tier_1_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_1_spell_1_modifier_2");
         var title = "Cleanse";
         var cleanseCount = 1;
         var description = "Flash Heal attempts to cure the target, by reducing the strength of a harmful effect.";
@@ -95,9 +95,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_a_modifier_2 = add(paladin_spec_a_modifier_2());
-    private static Skills.Entry paladin_spec_a_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_2");
+    public static final Skills.Entry paladin_tier_2_spell_1_modifier_1 = add(paladin_tier_2_spell_1_modifier_1());
+    private static Skills.Entry paladin_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_1_modifier_1");
         var title = "Pursuit of Justice";
         var description = "Divine Protection also increases your movement speed by {bonus}, for {effect_duration} sec.";
         var effect = SkillEffects.PURSUIT_OF_JUSTICE;
@@ -121,9 +121,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_b_modifier_2 = add(paladin_spec_b_modifier_2());
-    private static Skills.Entry paladin_spec_b_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_b_modifier_2");
+    public static final Skills.Entry paladin_tier_2_spell_1_modifier_2 = add(paladin_tier_2_spell_1_modifier_2());
+    private static Skills.Entry paladin_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_1_modifier_2");
         var title = "Blessed Protection";
         var description = "Divine Protection provides {effect_amplifier_add} extra effect stack.";
         var spell = SpellBuilder.createSpellModifier();
@@ -138,9 +138,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_a_modifier_3 = add(paladin_spec_a_modifier_3());
-    private static Skills.Entry paladin_spec_a_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_3");
+    public static final Skills.Entry paladin_tier_3_spell_1_modifier_1 = add(paladin_tier_3_spell_1_modifier_1());
+    private static Skills.Entry paladin_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_3_spell_1_modifier_1");
         var title = "Empowered Judgement";
         var description = "Increases the damage of Judgement by {power_multiplier}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -155,9 +155,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_b_modifier_3 = add(paladin_spec_b_modifier_3());
-    private static Skills.Entry paladin_spec_b_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_b_modifier_3");
+    public static final Skills.Entry paladin_tier_3_spell_1_modifier_2 = add(paladin_tier_3_spell_1_modifier_2());
+    private static Skills.Entry paladin_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_3_spell_1_modifier_2");
         var title = "Judgement of Command";
         var description = "Judgement taunts enemies hit, forcing them to attack you.";
         var spell = SpellBuilder.createSpellModifier();
@@ -177,9 +177,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_a_modifier_4 = add(paladin_spec_a_modifier_4());
-    private static Skills.Entry paladin_spec_a_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_a_modifier_4");
+    public static final Skills.Entry paladin_tier_4_spell_1_modifier_1 = add(paladin_tier_4_spell_1_modifier_1());
+    private static Skills.Entry paladin_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_4_spell_1_modifier_1");
         var title = "Persistent Banner";
         var description = "Increases the duration of Battle Banner by {spawn_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -193,9 +193,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_b_modifier_4 = add(paladin_spec_b_modifier_4());
-    private static Skills.Entry paladin_spec_b_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_b_modifier_4");
+    public static final Skills.Entry paladin_tier_4_spell_1_modifier_2 = add(paladin_tier_4_spell_1_modifier_2());
+    private static Skills.Entry paladin_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_4_spell_1_modifier_2");
         var title = "Protective Banner";
         var description = "Battle Banner also reduces damage taken by {bonus}.";
         var effect = SkillEffects.BANNER_PROTECTION;
@@ -217,9 +217,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_a_passive_1 = add(paladin_spec_a_passive_1());
-    private static Skills.Entry paladin_spec_a_passive_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_a_passive_1");
+    public static final Skills.Entry paladin_tier_1_passive_1 = add(paladin_tier_1_passive_1());
+    private static Skills.Entry paladin_tier_1_passive_1() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_1_passive_1");
         var title = "Seal of Righteousness";
         var description = "Melee attacks have {trigger_chance_1} chance, to deal additional {damage} damage based on Healing Power.";
 
@@ -258,9 +258,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_b_passive_1 = add(paladin_spec_b_passive_1());
-    private static Skills.Entry paladin_spec_b_passive_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_b_passive_1");
+    public static final Skills.Entry paladin_tier_1_passive_2 = add(paladin_tier_1_passive_2());
+    private static Skills.Entry paladin_tier_1_passive_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_1_passive_2");
         var title = "Redoubt";
         var description = "Blocking with shield grants {bonus} armor, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
@@ -298,9 +298,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_a_passive_2 = add(paladin_spec_a_passive_2()); // Crusader Strike
-    private static Skills.Entry paladin_spec_a_passive_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_a_passive_2");
+    public static final Skills.Entry paladin_tier_2_passive_1 = add(paladin_tier_2_passive_1()); // Crusader Strike
+    private static Skills.Entry paladin_tier_2_passive_1() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_2_passive_1");
         var title = "Crusader Strike";
         var debuffEffect = SkillEffects.CRUSADERS_MARK;
         var description = "Upon rolling, you have {trigger_chance_1} chance for your next melee attack to apply " + debuffEffect.title + ", increasing damage taken by {bonus}, for {effect_duration} sec.";
@@ -351,9 +351,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_b_passive_2 = add(paladin_spec_b_passive_2()); // Conviction (rolling resets Flash Heal cooldown)
-    private static Skills.Entry paladin_spec_b_passive_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_b_passive_2");
+    public static final Skills.Entry paladin_tier_2_passive_2 = add(paladin_tier_2_passive_2()); // Conviction (rolling resets Flash Heal cooldown)
+    private static Skills.Entry paladin_tier_2_passive_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_2_passive_2");
         var title = "Conviction";
         var description = "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Flash Heal.";
 
@@ -384,9 +384,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_a_passive_3 = add(paladin_spec_a_passive_3()); // Divine Hammer
-    private static Skills.Entry paladin_spec_a_passive_3() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_a_passive_3");
+    public static final Skills.Entry paladin_tier_3_passive_1 = add(paladin_tier_3_passive_1()); // Divine Hammer
+    private static Skills.Entry paladin_tier_3_passive_1() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_3_passive_1");
         var title = "Divine Hammer";
         var description = "Melee attacks throw a hammer at the target, dealing {damage} damage, ricocheting {ricochet} to nearby enemies.";
 
@@ -441,9 +441,9 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_spec_b_passive_3 = add(paladin_spec_b_passive_3()); // Ardent Defender (hp boost on low HP)
-    private static Skills.Entry paladin_spec_b_passive_3() {
-        var id = Identifier.of(NAMESPACE, "paladin_spec_b_passive_3");
+    public static final Skills.Entry paladin_tier_3_passive_2 = add(paladin_tier_3_passive_2()); // Ardent Defender (hp boost on low HP)
+    private static Skills.Entry paladin_tier_3_passive_2() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_3_passive_2");
         var effect = SkillEffects.ARDENT_DEFENDER;
         var title = "Ardent Defender";
         var healthThreshold = 0.3F;

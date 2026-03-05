@@ -28,9 +28,9 @@ public class FireSkills {
 
     public static final Color FIRE_MAGIC_COLOR = Color.from(0xff6600);
 
-    public static final Skills.Entry fire_spec_a_modifier_1 = add(fire_spec_a_modifier_1());
-    private static Skills.Entry fire_spec_a_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_a_modifier_1");
+    public static final Skills.Entry fire_tier_1_spell_1_modifier_1 = add(fire_tier_1_spell_1_modifier_1());
+    private static Skills.Entry fire_tier_1_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_1_spell_1_modifier_1");
         var title = "Blast Radius";
 
         var bonus = 0.5F;
@@ -57,9 +57,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_b_modifier_1 = add(fire_spec_b_modifier_1());
-    private static Skills.Entry fire_spec_b_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_b_modifier_1");
+    public static final Skills.Entry fire_tier_1_spell_1_modifier_2 = add(fire_tier_1_spell_1_modifier_2());
+    private static Skills.Entry fire_tier_1_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_1_spell_1_modifier_2");
         var title = "Blast Punch";
         var description = "Increases the knockback of Pyroblast by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -75,9 +75,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_a_modifier_2 = add(fire_spec_a_modifier_2());
-    private static Skills.Entry fire_spec_a_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_a_modifier_2");
+    public static final Skills.Entry fire_tier_2_spell_1_modifier_1 = add(fire_tier_2_spell_1_modifier_1());
+    private static Skills.Entry fire_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_2_spell_1_modifier_1");
         var title = "Explosive Breath";
         var description = "Fire Breath hits have {trigger_chance} chance to explode a target, dealing {damage} damage to nearby enemies.";
         var spell = SkillsCommon.createModifierAlikePassiveSpell();
@@ -103,9 +103,9 @@ public class FireSkills {
         spell.impacts = List.of(impact);
     }
 
-    public static final Skills.Entry fire_spec_b_modifier_2 = add(fire_spec_b_modifier_2());
-    private static Skills.Entry fire_spec_b_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_b_modifier_2");
+    public static final Skills.Entry fire_tier_2_spell_1_modifier_2 = add(fire_tier_2_spell_1_modifier_2());
+    private static Skills.Entry fire_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_2_spell_1_modifier_2");
         var title = "Flame Throwing";
         var description = "Increased the range of Fire Breath by {range_add}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -119,9 +119,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_a_modifier_3 = add(fire_spec_a_modifier_3());
-    private static Skills.Entry fire_spec_a_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_a_modifier_3");
+    public static final Skills.Entry fire_tier_3_spell_1_modifier_1 = add(fire_tier_3_spell_1_modifier_1());
+    private static Skills.Entry fire_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_3_spell_1_modifier_1");
         var title = "Meteor Shower";
         var description = "Meteor launches {extra_launch} extra projectile.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
@@ -140,9 +140,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_b_modifier_3 = add(fire_spec_b_modifier_3());
-    private static Skills.Entry fire_spec_b_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_b_modifier_3");
+    public static final Skills.Entry fire_tier_3_spell_1_modifier_2 = add(fire_tier_3_spell_1_modifier_2());
+    private static Skills.Entry fire_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_3_spell_1_modifier_2");
         var title = "Meteor Splash";
         var description = "Meteor impacts leave a fiery area behind, lasting {cloud_duration} sec.";
 
@@ -160,9 +160,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_a_modifier_4 = add(fire_spec_a_modifier_4());
-    private static Skills.Entry fire_spec_a_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_a_modifier_4");
+    public static final Skills.Entry fire_tier_4_spell_1_modifier_1 = add(fire_tier_4_spell_1_modifier_1());
+    private static Skills.Entry fire_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_4_spell_1_modifier_1");
         var title = "Great Wall";
         var description = "Wall of Flames spawns 2 additional columns.";
 
@@ -181,9 +181,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_b_modifier_4 = add(fire_spec_b_modifier_4());
-    private static Skills.Entry fire_spec_b_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_b_modifier_4");
+    public static final Skills.Entry fire_tier_4_spell_1_modifier_2 = add(fire_tier_4_spell_1_modifier_2());
+    private static Skills.Entry fire_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_4_spell_1_modifier_2");
         var title = "Healing Flames";
         var description = "Wall of Flames heals you and allies for {heal}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -203,9 +203,9 @@ public class FireSkills {
 
     public static final int FIRE_VULNERABILITY_DURATION = 8; // seconds
 
-    public static final Skills.Entry fire_spec_a_passive_1 = add(fire_spec_a_passive_1());
-    private static Skills.Entry fire_spec_a_passive_1() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_a_passive_1");
+    public static final Skills.Entry fire_tier_1_passive_1 = add(fire_tier_1_passive_1());
+    private static Skills.Entry fire_tier_1_passive_1() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_1_passive_1");
         var effect = SkillEffects.FIRE_VULNERABILITY;
         var title = "Scorching Flames";
         var description = "Fire spell impacts have {trigger_chance} chance to apply Fire Vulnerability. Increasing damage taken from fire spells by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -239,9 +239,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_b_passive_1 = add(fire_spec_b_passive_1());
-    private static Skills.Entry fire_spec_b_passive_1() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_b_passive_1");
+    public static final Skills.Entry fire_tier_1_passive_2 = add(fire_tier_1_passive_2());
+    private static Skills.Entry fire_tier_1_passive_2() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_1_passive_2");
         var title = "Hot Impact";
         var description = "Fire spell impacts have {trigger_chance} chance to stun the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -261,9 +261,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_a_passive_2 = add(fire_spec_a_passive_2()); // Fire trap
-    private static Skills.Entry fire_spec_a_passive_2() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_a_passive_2");
+    public static final Skills.Entry fire_tier_2_passive_1 = add(fire_tier_2_passive_1()); // Fire trap
+    private static Skills.Entry fire_tier_2_passive_1() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_2_passive_1");
         var title = "Flame Trap";
         var description = "Upon rolling, you leave behind a Flame Trap, lasting {cloud_duration} sec, dealing {damage} damage and applying Fire Vulnerability to entering enemies.";
 
@@ -333,9 +333,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_b_passive_2 = add(fire_spec_b_passive_2()); // Blazing Speed
-    private static Skills.Entry fire_spec_b_passive_2() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_b_passive_2");
+    public static final Skills.Entry fire_tier_2_passive_2 = add(fire_tier_2_passive_2()); // Blazing Speed
+    private static Skills.Entry fire_tier_2_passive_2() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_2_passive_2");
         var title = "Blazing Speed";
         var description = "Upon rolling, you have {trigger_chance} chance to gain {bonus} movement speed for {effect_duration} sec.";
         var effect = SkillEffects.BLAZING_SPEED;
@@ -370,9 +370,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_a_passive_3 = add(fire_spec_a_passive_3());
-    private static Skills.Entry fire_spec_a_passive_3() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_a_passive_3");
+    public static final Skills.Entry fire_tier_3_passive_1 = add(fire_tier_3_passive_1());
+    private static Skills.Entry fire_tier_3_passive_1() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_3_passive_1");
         var title = "Eruption";
         var description = "Taking damage has {trigger_chance} chance to cause a strong explosion, dealing {damage} damage to nearby enemies.";
         var radius = 5F;
@@ -424,9 +424,9 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
     }
 
-    public static final Skills.Entry fire_spec_b_passive_3 = add(fire_spec_b_passive_3()); // Flame Shield
-    private static Skills.Entry fire_spec_b_passive_3() {
-        var id = Identifier.of(NAMESPACE, "fire_spec_b_passive_3");
+    public static final Skills.Entry fire_tier_3_passive_2 = add(fire_tier_3_passive_2()); // Flame Shield
+    private static Skills.Entry fire_tier_3_passive_2() {
+        var id = Identifier.of(NAMESPACE, "fire_tier_3_passive_2");
         var effect = SkillEffects.FIRE_WARD;
         var title = effect.title;
         var description = "Fire spells have {trigger_chance_1} chance, to grant you " + effect.title + ", absorbing damage and dealing {damage} damage to attackers, lasts {stash_duration} sec.";

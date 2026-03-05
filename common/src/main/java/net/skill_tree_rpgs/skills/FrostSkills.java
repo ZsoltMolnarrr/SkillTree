@@ -26,9 +26,9 @@ public class FrostSkills {
         return entry;
     }
 
-    public static final Skills.Entry frost_spec_a_modifier_1 = add(frost_spec_a_modifier_1());
-    private static Skills.Entry frost_spec_a_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_a_modifier_1");
+    public static final Skills.Entry frost_tier_1_spell_1_modifier_1 = add(frost_tier_1_spell_1_modifier_1());
+    private static Skills.Entry frost_tier_1_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_1_spell_1_modifier_1");
         var title = "Frost Bounce";
         var description = "Frostbolt ricochets to {ricochet} additional target.";
         var spell = SpellBuilder.createSpellModifier();
@@ -43,9 +43,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_b_modifier_1 = add(frost_spec_b_modifier_1());
-    private static Skills.Entry frost_spec_b_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_b_modifier_1");
+    public static final Skills.Entry frost_tier_1_spell_1_modifier_2 = add(frost_tier_1_spell_1_modifier_2());
+    private static Skills.Entry frost_tier_1_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_1_spell_1_modifier_2");
         var title = "Lingering Chill";
         var description = "Frostbolt slow effect lasts {effect_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
@@ -59,9 +59,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_a_modifier_2 = add(frost_spec_a_modifier_2());
-    private static Skills.Entry frost_spec_a_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_a_modifier_2");
+    public static final Skills.Entry frost_tier_2_spell_1_modifier_1 = add(frost_tier_2_spell_1_modifier_1());
+    private static Skills.Entry frost_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_2_spell_1_modifier_1");
         var title = "Frost Splinters";
         var description = "Frost Nova causes secondary explosions, dealing {damage} damage to nearby enemies.";
         var spell = SpellBuilder.createSpellPassive();
@@ -100,9 +100,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_b_modifier_2 = add(frost_spec_b_modifier_2());
-    private static Skills.Entry frost_spec_b_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_b_modifier_2");
+    public static final Skills.Entry frost_tier_2_spell_1_modifier_2 = add(frost_tier_2_spell_1_modifier_2());
+    private static Skills.Entry frost_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_2_spell_1_modifier_2");
         var title = "Deep Freeze";
         var description = "Frost Nova applies {effect_amplifier_add} more stack of Freeze effect.";
         var spell = SpellBuilder.createSpellModifier();
@@ -116,9 +116,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_a_modifier_3 = add(frost_spec_a_modifier_3());
-    private static Skills.Entry frost_spec_a_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_a_modifier_3");
+    public static final Skills.Entry frost_tier_3_spell_1_modifier_1 = add(frost_tier_3_spell_1_modifier_1());
+    private static Skills.Entry frost_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_3_spell_1_modifier_1");
         var title = "Nimble Shield";
         var description = "Allows normal movement speed during the effect of Frost Shield.";
         var effect = SkillEffects.FROST_SHIELD_SPEED;
@@ -137,9 +137,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_b_modifier_3 = add(frost_spec_b_modifier_3());
-    private static Skills.Entry frost_spec_b_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_b_modifier_3");
+    public static final Skills.Entry frost_tier_3_spell_1_modifier_2 = add(frost_tier_3_spell_1_modifier_2());
+    private static Skills.Entry frost_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_3_spell_1_modifier_2");
         var title = "Durable Shield";
         var description = "Increases the duration of Frost Shield by {effect_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -153,9 +153,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_a_modifier_4 = add(frost_spec_a_modifier_4());
-    private static Skills.Entry frost_spec_a_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_a_modifier_4");
+    public static final Skills.Entry frost_tier_4_spell_1_modifier_1 = add(frost_tier_4_spell_1_modifier_1());
+    private static Skills.Entry frost_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_4_spell_1_modifier_1");
         var title = "Hail Storm";
         var description = "Blizzard damage increased by {power_multiplier}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -171,9 +171,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_b_modifier_4 = add(frost_spec_b_modifier_4());
-    private static Skills.Entry frost_spec_b_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_b_modifier_4");
+    public static final Skills.Entry frost_tier_4_spell_1_modifier_2 = add(frost_tier_4_spell_1_modifier_2());
+    private static Skills.Entry frost_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_4_spell_1_modifier_2");
         var title = "Snow Storm";
         var description = "Blizzard applies Slowness for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
 
@@ -194,9 +194,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_a_passive_1 = add(frost_spec_a_passive_1());
-    private static Skills.Entry frost_spec_a_passive_1() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_a_passive_1");
+    public static final Skills.Entry frost_tier_1_passive_1 = add(frost_tier_1_passive_1());
+    private static Skills.Entry frost_tier_1_passive_1() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_1_passive_1");
         var effect = SkillEffects.FROST_VULNERABILITY;
         var title = "Winter's Chill";
         var description = "Frost spell impacts have {trigger_chance} chance to apply Winter's Chill effect."
@@ -227,9 +227,9 @@ public class FrostSkills {
 
     public static final String WIZARDS_FREEZE_EFFECT = "wizards:frozen";
 
-    public static final Skills.Entry frost_spec_b_passive_1 = add(frost_spec_b_passive_1());
-    private static Skills.Entry frost_spec_b_passive_1() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_b_passive_1");
+    public static final Skills.Entry frost_tier_1_passive_2 = add(frost_tier_1_passive_2());
+    private static Skills.Entry frost_tier_1_passive_2() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_1_passive_2");
         var title = "Frostbite";
         var description = "Frost spell impacts have {trigger_chance} chance, to freeze the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -259,9 +259,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_a_passive_2 = add(frost_spec_a_passive_2()); // Frost Trap
-    private static Skills.Entry frost_spec_a_passive_2() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_a_passive_2");
+    public static final Skills.Entry frost_tier_2_passive_1 = add(frost_tier_2_passive_1()); // Frost Trap
+    private static Skills.Entry frost_tier_2_passive_1() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_2_passive_1");
         var title = "Frost Trap";
         var description = "Upon rolling, you leave behind a Frost Trap, lasting {cloud_duration} sec, applying Freeze effect to entering enemies.";
 
@@ -323,9 +323,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_b_passive_2 = add(frost_spec_b_passive_2());
-    private static Skills.Entry frost_spec_b_passive_2() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_b_passive_2");
+    public static final Skills.Entry frost_tier_2_passive_2 = add(frost_tier_2_passive_2());
+    private static Skills.Entry frost_tier_2_passive_2() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_2_passive_2");
         var title = "Arctic Reflex";
         var description = "Upon rolling, you have {trigger_chance_1} chance to instantly cast a spell, within the next {stash_duration} sec.";
         var effect = SkillEffects.ARCTIC_REFLEX;
@@ -363,9 +363,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_a_passive_3 = add(frost_spec_a_passive_3());
-    private static Skills.Entry frost_spec_a_passive_3() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_a_passive_3");
+    public static final Skills.Entry frost_tier_3_passive_1 = add(frost_tier_3_passive_1());
+    private static Skills.Entry frost_tier_3_passive_1() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_3_passive_1");
         var title = "Cold Snap";
         var description = "Taking damage has {trigger_chance} chance to reset cooldowns of Frost spells.";
         var spell = SpellBuilder.createSpellPassive();
@@ -398,9 +398,9 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
-    public static final Skills.Entry frost_spec_b_passive_3 = add(frost_spec_b_passive_3()); // Frost Shield
-    private static Skills.Entry frost_spec_b_passive_3() {
-        var id = Identifier.of(NAMESPACE, "frost_spec_b_passive_3");
+    public static final Skills.Entry frost_tier_3_passive_2 = add(frost_tier_3_passive_2()); // Frost Shield
+    private static Skills.Entry frost_tier_3_passive_2() {
+        var id = Identifier.of(NAMESPACE, "frost_tier_3_passive_2");
         var effect = SkillEffects.FROST_WARD;
         var title = effect.title;
         var description = "Frost spells have {trigger_chance_1} chance, to grant you " + effect.title + ", absorbing damage and slowing attackers, lasts {stash_duration} sec.";

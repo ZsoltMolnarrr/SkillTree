@@ -30,9 +30,9 @@ public class RogueSkills {
 
     public static final Color ROGUE_SHADOW_COLOR = Color.from(0x6600FF);
 
-    public static final Skills.Entry rogue_spec_a_modifier_1 = add(rogue_spec_a_modifier_1());
-    private static Skills.Entry rogue_spec_a_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_1");
+    public static final Skills.Entry rogue_tier_1_spell_1_modifier_1 = add(rogue_tier_1_spell_1_modifier_1());
+    private static Skills.Entry rogue_tier_1_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_1_spell_1_modifier_1");
         var title = "Fleet Footed";
         var effect = SkillEffects.FLEET_FOOTED;
         var description = "Slice and Dice attacks increases movement speed by {bonus}, stacking up to {effect_amplifier_cap}, lasting {effect_duration} sec.";
@@ -56,9 +56,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_b_modifier_1 = add(rogue_spec_b_modifier_1());
-    private static Skills.Entry rogue_spec_b_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_b_modifier_1");
+    public static final Skills.Entry rogue_tier_1_spell_1_modifier_2 = add(rogue_tier_1_spell_1_modifier_2());
+    private static Skills.Entry rogue_tier_1_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_1_spell_1_modifier_2");
         var title = "Blade Fury";
         var description = "Increases the maximum number of Slice and Dice stacks by {effect_amplifier_cap_add}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -72,9 +72,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_a_modifier_2 = add(rogue_spec_a_modifier_2());
-    private static Skills.Entry rogue_spec_a_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_2");
+    public static final Skills.Entry rogue_tier_2_spell_1_modifier_1 = add(rogue_tier_2_spell_1_modifier_1());
+    private static Skills.Entry rogue_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_1_modifier_1");
         var title = "Toxic Shock";
         var description = "Shock Powder deals extra {damage} damage to poisoned targets.";
 
@@ -105,9 +105,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_b_modifier_2 = add(rogue_spec_b_modifier_2());
-    private static Skills.Entry rogue_spec_b_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_b_modifier_2");
+    public static final Skills.Entry rogue_tier_2_spell_1_modifier_2 = add(rogue_tier_2_spell_1_modifier_2());
+    private static Skills.Entry rogue_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_1_modifier_2");
         var title = "Explosive Powder";
         var description = "Shock Powder has {trigger_chance} chance to create secondary explosions, dealing {damage} damage.";
         var spell = SkillsCommon.createModifierAlikePassiveSpell();
@@ -126,9 +126,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_a_modifier_3 = add(rogue_spec_a_modifier_3());
-    private static Skills.Entry rogue_spec_a_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_3");
+    public static final Skills.Entry rogue_tier_3_spell_1_modifier_1 = add(rogue_tier_3_spell_1_modifier_1());
+    private static Skills.Entry rogue_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_3_spell_1_modifier_1");
         var title = "Cloak of Shadows";
         var description = "Shadowstep grants you Cloak of Shadows effect, protecting your from {effect_amplifier} incoming attack for {effect_duration} sec.";
 
@@ -157,9 +157,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_b_modifier_3 = add(rogue_spec_b_modifier_3());
-    private static Skills.Entry rogue_spec_b_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_b_modifier_3");
+    public static final Skills.Entry rogue_tier_3_spell_1_modifier_2 = add(rogue_tier_3_spell_1_modifier_2());
+    private static Skills.Entry rogue_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_3_spell_1_modifier_2");
         var title = "Ambush";
         var description = "Next attack after Shadowstep, within {effect_duration} sec, deals {bonus} extra damage.";
 
@@ -186,9 +186,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_a_modifier_4 = add(rogue_spec_a_modifier_4());
-    private static Skills.Entry rogue_spec_a_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_a_modifier_4");
+    public static final Skills.Entry rogue_tier_4_spell_1_modifier_1 = add(rogue_tier_4_spell_1_modifier_1());
+    private static Skills.Entry rogue_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_4_spell_1_modifier_1");
         var title = "Stealth Speed";
         var description = "Stealth no longer slows you down.";
 
@@ -208,9 +208,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_b_modifier_4 = add(rogue_spec_b_modifier_4());
-    private static Skills.Entry rogue_spec_b_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_b_modifier_4");
+    public static final Skills.Entry rogue_tier_4_spell_1_modifier_2 = add(rogue_tier_4_spell_1_modifier_2());
+    private static Skills.Entry rogue_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_4_spell_1_modifier_2");
         var title = "Deep Stealth";
         var description = "Increases the duration of Stealth by {effect_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -224,9 +224,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_a_passive_1 = add(rogue_spec_a_passive_1());
-    private static Skills.Entry rogue_spec_a_passive_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_1");
+    public static final Skills.Entry rogue_tier_1_passive_1 = add(rogue_tier_1_passive_1());
+    private static Skills.Entry rogue_tier_1_passive_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_1_passive_1");
         var title = "Coated Blades";
         var description = "Melee attacks have {trigger_chance_1} chance, to apply poison effect lasting {effect_duration} sec, stacking up based on your attack damage.";
         var spell = SpellBuilder.createSpellPassive();
@@ -250,9 +250,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_b_passive_1 = add(rogue_spec_b_passive_1());
-    private static Skills.Entry rogue_spec_b_passive_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_1");
+    public static final Skills.Entry rogue_tier_1_passive_2 = add(rogue_tier_1_passive_2());
+    private static Skills.Entry rogue_tier_1_passive_2() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_1_passive_2");
         var effect = SkillEffects.FRACTURE;
         var title = effect.title;
         var description = "Melee attacks have {trigger_chance_1} chance to wound the enemy, dealing {damage} damage and reducing its armor by {bonus}, for {effect_duration} sec.";
@@ -296,9 +296,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_b_passive_2 = add(rogue_spec_b_passive_2()); // Leeching Strike (upon roll, next attack life steal)
-    private static Skills.Entry rogue_spec_b_passive_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_2");
+    public static final Skills.Entry rogue_tier_2_passive_2 = add(rogue_tier_2_passive_2()); // Leeching Strike (upon roll, next attack life steal)
+    private static Skills.Entry rogue_tier_2_passive_2() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_2_passive_2");
         var effect = SkillEffects.LEECHING_STRIKE;
         var title = effect.title;
         var description = "Upon rolling, you have {trigger_chance_1} chance for your next melee attack to heal you by {heal}.";
@@ -338,9 +338,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_a_passive_2 = add(rogue_spec_a_passive_2());
-    private static Skills.Entry rogue_spec_a_passive_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_2");
+    public static final Skills.Entry rogue_tier_2_passive_1 = add(rogue_tier_2_passive_1());
+    private static Skills.Entry rogue_tier_2_passive_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_2_passive_1");
         var effect = SkillEffects.SIDE_STEP;
         var title = effect.title;
         var description = "Upon rolling, you gain a stack of Sidestep, increasing your Evasion Chance by {bonus}, stacking up to {stash_amplifier} times. Removed when taking damage.";
@@ -376,9 +376,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_a_passive_3 = add(rogue_spec_a_passive_3()); // Cheat Death
-    private static Skills.Entry rogue_spec_a_passive_3() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_a_passive_3");
+    public static final Skills.Entry rogue_tier_3_passive_1 = add(rogue_tier_3_passive_1()); // Cheat Death
+    private static Skills.Entry rogue_tier_3_passive_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_3_passive_1");
         var effect = SkillEffects.CHEAT_DEATH;
         var title = effect.title;
         var description = "When taking damage that would be fatal, you become invulnerable for {effect_duration} sec.";
@@ -408,9 +408,9 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_spec_b_passive_3 = add(rogue_spec_b_passive_3()); // Preparation (reset all cooldowns on evade)
-    private static Skills.Entry rogue_spec_b_passive_3() {
-        var id = Identifier.of(NAMESPACE, "rogue_spec_b_passive_3");
+    public static final Skills.Entry rogue_tier_3_passive_2 = add(rogue_tier_3_passive_2()); // Preparation (reset all cooldowns on evade)
+    private static Skills.Entry rogue_tier_3_passive_2() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_3_passive_2");
         var title = "Preparation";
         var description = "Upon evading an attack, you have {trigger_chance} chance for all your cooldowns to reset.";
 

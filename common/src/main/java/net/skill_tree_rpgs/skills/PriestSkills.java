@@ -26,9 +26,9 @@ public class PriestSkills {
         return entry;
     }
 
-    public static final Skills.Entry priest_spec_a_modifier_1 = add(priest_spec_a_modifier_1());
-    private static Skills.Entry priest_spec_a_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_a_modifier_1");
+    public static final Skills.Entry priest_tier_1_spell_1_modifier_1 = add(priest_tier_1_spell_1_modifier_1());
+    private static Skills.Entry priest_tier_1_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_1_spell_1_modifier_1");
         var title = "Improved Healing";
         var description = "Holy Shock heals for {power_multiplier} more.";
         var spell = SpellBuilder.createSpellModifier();
@@ -45,9 +45,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_b_modifier_1 = add(priest_spec_b_modifier_1());
-    private static Skills.Entry priest_spec_b_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_b_modifier_1");
+    public static final Skills.Entry priest_tier_1_spell_1_modifier_2 = add(priest_tier_1_spell_1_modifier_2());
+    private static Skills.Entry priest_tier_1_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_1_spell_1_modifier_2");
         var title = "Holy Blast";
         var description = "Damaging with Holy Shock causes small explosion, hitting enemies within {impact_range} blocks radius.";
         var spell = SpellBuilder.createSpellModifier();
@@ -82,9 +82,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_a_modifier_2 = add(priest_spec_a_modifier_2());
-    private static Skills.Entry priest_spec_a_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_a_modifier_2");
+    public static final Skills.Entry priest_tier_2_spell_1_modifier_1 = add(priest_tier_2_spell_1_modifier_1());
+    private static Skills.Entry priest_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_2_spell_1_modifier_1");
         var title = "Graceful Channeling";
         var description = "Reduces the cooldown of Holy Light by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -98,9 +98,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_b_modifier_2 = add(priest_spec_b_modifier_2());
-    private static Skills.Entry priest_spec_b_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_b_modifier_2");
+    public static final Skills.Entry priest_tier_2_spell_1_modifier_2 = add(priest_tier_2_spell_1_modifier_2());
+    private static Skills.Entry priest_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_2_spell_1_modifier_2");
         var title = "Searing Light";
         var description = "Holy Light deals {power_multiplier} more damage, and lights enemies on fire.";
         var spell = SpellBuilder.createSpellModifier();
@@ -131,9 +131,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_a_modifier_3 = add(priest_spec_a_modifier_3());
-    private static Skills.Entry priest_spec_a_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_a_modifier_3");
+    public static final Skills.Entry priest_tier_3_spell_1_modifier_1 = add(priest_tier_3_spell_1_modifier_1());
+    private static Skills.Entry priest_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_3_spell_1_modifier_1");
         var title = "Mass Dispel";
         var description = "Circle of Healing removes {effect_amplifier} negative effect from allies.";
         var spell = SpellBuilder.createSpellModifier();
@@ -168,9 +168,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_b_modifier_3 = add(priest_spec_b_modifier_3());
-    private static Skills.Entry priest_spec_b_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_b_modifier_3");
+    public static final Skills.Entry priest_tier_3_spell_1_modifier_2 = add(priest_tier_3_spell_1_modifier_2());
+    private static Skills.Entry priest_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_3_spell_1_modifier_2");
         var title = "Consecration";
         var description = "Circle of Healing leaves a consecrated area behind, dealing {damage} damage to enemies, for {cloud_duration} sec.";
 
@@ -237,9 +237,9 @@ public class PriestSkills {
         spell.impacts = List.of(impact);
     }
 
-    public static final Skills.Entry priest_spec_a_modifier_4 = add(priest_spec_a_modifier_4());
-    private static Skills.Entry priest_spec_a_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_a_modifier_4");
+    public static final Skills.Entry priest_tier_4_spell_1_modifier_1 = add(priest_tier_4_spell_1_modifier_1());
+    private static Skills.Entry priest_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_4_spell_1_modifier_1");
         var title = "Barrier Recovery";
         var description = "Reduces the cooldown of Barrier by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -254,9 +254,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_b_modifier_4 = add(priest_spec_b_modifier_4());
-    private static Skills.Entry priest_spec_b_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_b_modifier_4");
+    public static final Skills.Entry priest_tier_4_spell_1_modifier_2 = add(priest_tier_4_spell_1_modifier_2());
+    private static Skills.Entry priest_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_4_spell_1_modifier_2");
         var title = "Barrier Duration";
         var description = "Increases the duration of Barrier by {spawn_duration_add} sec.";
 
@@ -271,9 +271,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_a_passive_1 = add(priest_spec_a_passive_1());
-    private static Skills.Entry priest_spec_a_passive_1() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_a_passive_1");
+    public static final Skills.Entry priest_tier_1_passive_1 = add(priest_tier_1_passive_1());
+    private static Skills.Entry priest_tier_1_passive_1() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_1_passive_1");
         var effect = SkillEffects.HEALING_FOCUS;
         var title = "Healing Focus";
         var description = "Healing spells apply Healing Focus effect. Increasing healing received by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -308,9 +308,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_b_passive_1 = add(priest_spec_b_passive_1());
-    private static Skills.Entry priest_spec_b_passive_1() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_b_passive_1");
+    public static final Skills.Entry priest_tier_1_passive_2 = add(priest_tier_1_passive_2());
+    private static Skills.Entry priest_tier_1_passive_2() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_1_passive_2");
         var effect = SkillEffects.INCANTER_CADENCE;
         var title = "Incanters' Cadence";
         var description = "Spell hits have {trigger_chance} chance to increase spell haste by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -345,9 +345,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_a_passive_2 = add(priest_spec_a_passive_2()); // Fade
-    private static Skills.Entry priest_spec_a_passive_2() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_a_passive_2");
+    public static final Skills.Entry priest_tier_2_passive_1 = add(priest_tier_2_passive_1()); // Fade
+    private static Skills.Entry priest_tier_2_passive_1() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_2_passive_1");
         var title = "Fade";
         var description = "Upon rolling, nearby mobs stop attacking you, allowing them to target your allies.";
 
@@ -375,9 +375,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_b_passive_2 = add(priest_spec_b_passive_2()); // Divine Favor
-    private static Skills.Entry priest_spec_b_passive_2() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_b_passive_2");
+    public static final Skills.Entry priest_tier_2_passive_2 = add(priest_tier_2_passive_2()); // Divine Favor
+    private static Skills.Entry priest_tier_2_passive_2() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_2_passive_2");
         var effect = SkillEffects.DIVINE_FAVOR;
         var title = effect.title;
         var description = "Upon rolling, you have {trigger_chance_1} chance to guarantee critical strike for your next spell cast.";
@@ -414,9 +414,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_a_passive_3 = add(priest_spec_a_passive_3()); // Pain Suppression
-    private static Skills.Entry priest_spec_a_passive_3() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_a_passive_3");
+    public static final Skills.Entry priest_tier_3_passive_1 = add(priest_tier_3_passive_1()); // Pain Suppression
+    private static Skills.Entry priest_tier_3_passive_1() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_3_passive_1");
         var effect = SkillEffects.PAIN_SUPPRESSION;
         var title = effect.title;
         var healthThreshold = 0.3F;
@@ -457,9 +457,9 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
     }
 
-    public static final Skills.Entry priest_spec_b_passive_3 = add(priest_spec_b_passive_3()); // Celestial Orbs
-    private static Skills.Entry priest_spec_b_passive_3() {
-        var id = Identifier.of(NAMESPACE, "priest_spec_b_passive_3");
+    public static final Skills.Entry priest_tier_3_passive_2 = add(priest_tier_3_passive_2()); // Celestial Orbs
+    private static Skills.Entry priest_tier_3_passive_2() {
+        var id = Identifier.of(NAMESPACE, "priest_tier_3_passive_2");
         var effect = SkillEffects.CELESTIAL_ORB;
         var title = "Celestial Orbs";
         var description = "Spell critical strikes and heals grant you {stash_amplifier} Celestial Orbs. Orbs damage enemies attacking you, dealing {damage} spell damage.";
