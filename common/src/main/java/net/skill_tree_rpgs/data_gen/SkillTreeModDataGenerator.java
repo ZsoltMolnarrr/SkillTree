@@ -5,10 +5,10 @@ import net.minecraft.text.Text;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.node.SpellContainerReward;
-import net.skill_tree_rpgs.skills.SkillDefinitions;
+import net.skill_tree_rpgs.skills.NodeTypes;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.skill_tree_rpgs.skills.SkillTreeSounds;
-import net.skill_tree_rpgs.skills.Spells;
+import net.skill_tree_rpgs.skills.Skills;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -59,7 +59,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                     translationBuilder.add(lore.translationKey(), lore.line().text());
                 }
             }
-            for (var skill: SkillDefinitions.ENTRIES) {
+            for (var skill: NodeTypes.ENTRIES) {
                 if (skill.title() != null && !skill.title().isEmpty()) {
                     translationBuilder.add(skill.titleTranslationKey(), skill.title());
                 }
@@ -67,7 +67,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                     translationBuilder.add(skill.descriptionTranslationKey(), skill.description());
                 }
             }
-            for (var entry: Spells.all) {
+            for (var entry: Skills.ENTRIES) {
                 translationBuilder.add(SpellTooltip.spellTranslationKey(entry.id()), entry.title());
                 translationBuilder.add(SpellTooltip.spellDescriptionTranslationKey(entry.id()), entry.description());
             }
@@ -137,7 +137,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
         @Override
         public void generate(Builder builder) {
             LinkedHashMap<String, Format> skillDefinitions = new LinkedHashMap<>();
-            for (var skill : SkillDefinitions.ENTRIES) {
+            for (var skill : NodeTypes.ENTRIES) {
                 Translatable title = null;
                 if (skill.title() != null && !skill.title().isEmpty()) {
                     title = new Translatable(skill.titleTranslationKey());
@@ -168,7 +168,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 var format = new Format(title, description, icon, rewards, skill.required_mods());
                 skillDefinitions.put(skill.id(), format);
             }
-            builder.entries.add(new Entry(SkillDefinitions.CATEGORY_ID, skillDefinitions));
+            builder.entries.add(new Entry(NodeTypes.CATEGORY_ID, skillDefinitions));
         }
     }
 
@@ -179,7 +179,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
 
         @Override
         public void generateSpells(Builder builder) {
-            for (var entry : Spells.all) {
+            for (var entry : Skills.ENTRIES) {
                 builder.add(entry.id(), entry.spell());
             }
         }

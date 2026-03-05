@@ -1,6 +1,6 @@
 package net.skill_tree_rpgs.utils;
 
-import net.skill_tree_rpgs.skills.SkillDefinitions;
+import net.skill_tree_rpgs.skills.NodeTypes;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -35,7 +35,7 @@ public class TranslationUtil {
         return SpellTooltip.spellDescriptionWithDetails(spellId, player, ItemStack.EMPTY, 0);
     }
 
-    public static List<Text> resolveAttributeModifierTooltip(SkillDefinitions.EntityAttributeReward attributeReward) {
+    public static List<Text> resolveAttributeModifierTooltip(NodeTypes.EntityAttributeReward attributeReward) {
         var player = MinecraftClient.getInstance().player;
         if (player == null) {
             return List.of();

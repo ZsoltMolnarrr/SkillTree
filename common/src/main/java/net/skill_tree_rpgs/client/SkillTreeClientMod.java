@@ -2,31 +2,30 @@ package net.skill_tree_rpgs.client;
 
 import net.skill_tree_rpgs.client.effect.DeflectionEffectRenderer;
 import net.skill_tree_rpgs.client.effect.HolyChargeEffectRenderer;
-import net.skill_tree_rpgs.skills.SkillDefinitions;
+import net.skill_tree_rpgs.skills.RogueSkills;
+import net.skill_tree_rpgs.skills.SkillsCommon;
+import net.skill_tree_rpgs.skills.NodeTypes;
 import net.skill_tree_rpgs.effect.SkillEffects;
-import net.skill_tree_rpgs.skills.Spells;
+import net.skill_tree_rpgs.skills.Skills;
 import net.skill_tree_rpgs.utils.TranslationUtil;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
 import net.spell_engine.api.render.BuffParticleSpawner;
-import net.spell_engine.api.render.CustomModels;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 
-import java.util.List;
-
 public class SkillTreeClientMod {
     public static void init() {
-        for (var spell: Spells.all) {
+        for (var spell: Skills.ENTRIES) {
             if (spell.mutator() != null) {
                 SpellTooltip.addDescriptionMutator(spell.id(), spell.mutator());
             }
         }
-        for (var entry: SkillDefinitions.ENTRIES) {
+        for (var entry: NodeTypes.ENTRIES) {
             var skillId = entry.id();
             if (entry.spellReward() != null) {
                 var container = entry.spellReward().get(0);
@@ -53,7 +52,7 @@ public class SkillTreeClientMod {
         CustomParticleStatusEffect.register(
                 SkillEffects.ARCANE_SLOWNESS.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ magicSnareParticles
-                        .copy().color(Spells.ARCANE_COLOR) })
+                        .copy().color(SkillsCommon.ARCANE_COLOR) })
         );
         CustomParticleStatusEffect.register(
                 SkillEffects.HAMSTRING.effect,
@@ -85,7 +84,7 @@ public class SkillTreeClientMod {
                         SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
                 ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
                 0.2F, 0.15F, 0.35F)
-                .color(Spells.HOLY_COLOR);
+                .color(SkillsCommon.HOLY_COLOR);
         CustomParticleStatusEffect.register(
                 SkillEffects.HEALING_FOCUS.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ healingFocus })
@@ -98,7 +97,7 @@ public class SkillTreeClientMod {
                 ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                 0.4F, 0.15F, 0.15F)
                 .preSpawnTravel(2)
-                .color(Spells.HOLY_COLOR);
+                .color(SkillsCommon.HOLY_COLOR);
         CustomParticleStatusEffect.register(
                 SkillEffects.INCANTER_CADENCE.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ incanterParticles })
@@ -142,14 +141,14 @@ public class SkillTreeClientMod {
                 SkillEffects.PURSUIT_OF_JUSTICE.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{
                         speedParticles.copy()
-                                .color(Spells.HOLY_COLOR)
+                                .color(SkillsCommon.HOLY_COLOR)
                 })
         );
         CustomParticleStatusEffect.register(
                 SkillEffects.ARCANE_SPEED.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{
                         speedParticles.copy()
-                                .color(Spells.ARCANE_COLOR)
+                                .color(SkillsCommon.ARCANE_COLOR)
                         })
         );
 
@@ -273,7 +272,7 @@ public class SkillTreeClientMod {
                         SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
                 ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
                 0.5F, 0F, 0F)
-                .color(Spells.ROGUE_SHADOW_COLOR.toRGBA());
+                .color(RogueSkills.ROGUE_SHADOW_COLOR.toRGBA());
         CustomParticleStatusEffect.register(
                 SkillEffects.CHEAT_DEATH.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ cheatDeathParticles })
