@@ -13,7 +13,7 @@ import java.util.List;
 public class Skills {
     public static final String NAMESPACE = SkillTreeMod.NAMESPACE;
     public enum Category {
-        ARCANE, FIRE, FROST, PRIEST, PALADIN, ROGUE, WARRIOR, ARCHER
+        ARCANE, FIRE, FROST, PRIEST, PALADIN, ROGUE, WARRIOR, ARCHER, WEAPON
     }
 
     public record Entry(Identifier id, Spell spell, String title, String description,
@@ -37,5 +37,7 @@ public class Skills {
         ENTRIES.addAll(PaladinSkills.ENTRIES);
         ENTRIES.addAll(RogueSkills.ENTRIES);
         ENTRIES.addAll(WarriorSkills.ENTRIES);
+        ENTRIES.addAll(WeaponSkills.ENTRIES);
+        ENTRIES.addAll(WeaponSkillModifiers.ENTRIES);
     }
 }
