@@ -26,6 +26,7 @@ public class PriestSkills {
         return entry;
     }
 
+    @Deprecated(forRemoval = true)
     public static final Skills.Entry priest_tier_1_spell_1_modifier_1 = add(priest_tier_1_spell_1_modifier_1());
     private static Skills.Entry priest_tier_1_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "priest_tier_1_spell_1_modifier_1");
@@ -45,6 +46,7 @@ public class PriestSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
 
+    @Deprecated(forRemoval = true)
     public static final Skills.Entry priest_tier_1_spell_1_modifier_2 = add(priest_tier_1_spell_1_modifier_2());
     private static Skills.Entry priest_tier_1_spell_1_modifier_2() {
         var id = Identifier.of(NAMESPACE, "priest_tier_1_spell_1_modifier_2");

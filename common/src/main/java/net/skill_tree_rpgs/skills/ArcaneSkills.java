@@ -26,6 +26,7 @@ public class ArcaneSkills {
         return entry;
     }
 
+    @Deprecated(forRemoval = true)
     public static final Skills.Entry arcane_tier_1_spell_1_modifier_1 = add(arcane_tier_1_spell_1_modifier_1());
     private static Skills.Entry arcane_tier_1_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "arcane_tier_1_spell_1_modifier_1");
@@ -42,6 +43,7 @@ public class ArcaneSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
     }
 
+    @Deprecated(forRemoval = true)
     public static final Skills.Entry arcane_tier_1_spell_1_modifier_2 = add(arcane_tier_1_spell_1_modifier_2());
     private static Skills.Entry arcane_tier_1_spell_1_modifier_2() {
         var id = Identifier.of(NAMESPACE, "arcane_tier_1_spell_1_modifier_2");

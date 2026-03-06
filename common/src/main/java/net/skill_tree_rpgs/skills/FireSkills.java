@@ -28,6 +28,7 @@ public class FireSkills {
 
     public static final Color FIRE_MAGIC_COLOR = Color.from(0xff6600);
 
+    @Deprecated(forRemoval = true)
     public static final Skills.Entry fire_tier_1_spell_1_modifier_1 = add(fire_tier_1_spell_1_modifier_1());
     private static Skills.Entry fire_tier_1_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "fire_tier_1_spell_1_modifier_1");
@@ -57,6 +58,7 @@ public class FireSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FIRE));
     }
 
+    @Deprecated(forRemoval = true)
     public static final Skills.Entry fire_tier_1_spell_1_modifier_2 = add(fire_tier_1_spell_1_modifier_2());
     private static Skills.Entry fire_tier_1_spell_1_modifier_2() {
         var id = Identifier.of(NAMESPACE, "fire_tier_1_spell_1_modifier_2");

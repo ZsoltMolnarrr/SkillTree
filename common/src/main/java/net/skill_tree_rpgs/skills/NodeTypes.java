@@ -123,10 +123,10 @@ public class NodeTypes {
                     ARCANE_ROOT.attributeReward()).require(WIZARDS)
     );
     public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_1).require(WIZARDS));
-    // @Deprecated - moved to WeaponSkillModifiers as weapon_arcane_blast_modifier_2 (for removal)
-    // public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_2).require(WIZARDS));
-    // @Deprecated - moved to WeaponSkillModifiers as weapon_arcane_missile_modifier_1 (for removal)
-    // public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_1).require(WIZARDS));
+    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_arcane_blast_modifier_2 (for removal)
+    public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_2).require(WIZARDS));
+    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_arcane_missile_modifier_1 (for removal)
+    public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_1).require(WIZARDS));
     public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_2).require(WIZARDS));
     public static final Entry ARCANE_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_3_spell_1_modifier_1).require(WIZARDS));
     public static final Entry ARCANE_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_3_spell_1_modifier_2).require(WIZARDS));
@@ -159,10 +159,10 @@ public class NodeTypes {
                     Icon.item("wizards:wand_fire"),
                     FIRE_ROOT.attributeReward()).require(WIZARDS)
     );
-    // @Deprecated - moved to WeaponSkillModifiers as weapon_fire_blast_modifier_1 (for removal)
-    // public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_1).require(WIZARDS));
-    // @Deprecated - moved to WeaponSkillModifiers as weapon_fire_blast_modifier_2 (for removal)
-    // public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_2).require(WIZARDS));
+    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_fire_blast_modifier_1 (for removal)
+    public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_1).require(WIZARDS));
+    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_fire_blast_modifier_2 (for removal)
+    public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_2).require(WIZARDS));
     public static final Entry FIRE_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(FireSkills.fire_tier_2_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("wizards", "fire_breath"))).require(WIZARDS));
     public static final Entry FIRE_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_2_spell_1_modifier_2).require(WIZARDS));
@@ -196,10 +196,10 @@ public class NodeTypes {
                     Icon.item("wizards:wand_frost"),
                     FROST_ROOT.attributeReward()).require(WIZARDS)
     );
-    // @Deprecated - moved to WeaponSkillModifiers as weapon_frostbolt_modifier_1 (for removal)
-    // public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_1).require(WIZARDS));
-    // @Deprecated - moved to WeaponSkillModifiers as weapon_frostbolt_modifier_2 (for removal)
-    // public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_2).require(WIZARDS));
+    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_frostbolt_modifier_1 (for removal)
+    public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_1).require(WIZARDS));
+    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_frostbolt_modifier_2 (for removal)
+    public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_2).require(WIZARDS));
     public static final Entry FROST_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(FrostSkills.frost_tier_2_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("wizards", "frost_nova")))
             .require(WIZARDS)

@@ -26,6 +26,7 @@ public class FrostSkills {
         return entry;
     }
 
+    @Deprecated(forRemoval = true)
     public static final Skills.Entry frost_tier_1_spell_1_modifier_1 = add(frost_tier_1_spell_1_modifier_1());
     private static Skills.Entry frost_tier_1_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "frost_tier_1_spell_1_modifier_1");
@@ -43,6 +44,7 @@ public class FrostSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
     }
 
+    @Deprecated(forRemoval = true)
     public static final Skills.Entry frost_tier_1_spell_1_modifier_2 = add(frost_tier_1_spell_1_modifier_2());
     private static Skills.Entry frost_tier_1_spell_1_modifier_2() {
         var id = Identifier.of(NAMESPACE, "frost_tier_1_spell_1_modifier_2");
