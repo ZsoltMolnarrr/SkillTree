@@ -1,0 +1,30 @@
+{
+  "school": "spell_power:fire",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "wizards:fire_blast",
+      "replacing_area_impact": {
+        "radius": 3.75,
+        "area": {
+          "distance_dropoff": "SQUARED"
+        },
+        "particles": [
+          {
+            "particle_id": "spell_engine:fire_explosion",
+            "origin": "CENTER",
+            "shape": "SPHERE",
+            "count": 1.0,
+            "max_speed": 0.0,
+            "scale": 1.5
+          }
+        ],
+        "sound": {
+          "id": "wizards:fireball_impact"
+        }
+      }
+    }
+  ]
+}

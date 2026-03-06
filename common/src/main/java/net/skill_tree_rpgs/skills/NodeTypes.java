@@ -123,8 +123,10 @@ public class NodeTypes {
                     ARCANE_ROOT.attributeReward()).require(WIZARDS)
     );
     public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_1).require(WIZARDS));
-    public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_2).require(WIZARDS));
-    public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_1).require(WIZARDS));
+    // @Deprecated - moved to WeaponSkillModifiers as weapon_arcane_blast_modifier_2 (for removal)
+    // public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_2).require(WIZARDS));
+    // @Deprecated - moved to WeaponSkillModifiers as weapon_arcane_missile_modifier_1 (for removal)
+    // public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_1).require(WIZARDS));
     public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_2).require(WIZARDS));
     public static final Entry ARCANE_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_3_spell_1_modifier_1).require(WIZARDS));
     public static final Entry ARCANE_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_3_spell_1_modifier_2).require(WIZARDS));
@@ -157,8 +159,10 @@ public class NodeTypes {
                     Icon.item("wizards:wand_fire"),
                     FIRE_ROOT.attributeReward()).require(WIZARDS)
     );
-    public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_1).require(WIZARDS));
-    public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_2).require(WIZARDS));
+    // @Deprecated - moved to WeaponSkillModifiers as weapon_fire_blast_modifier_1 (for removal)
+    // public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_1).require(WIZARDS));
+    // @Deprecated - moved to WeaponSkillModifiers as weapon_fire_blast_modifier_2 (for removal)
+    // public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_2).require(WIZARDS));
     public static final Entry FIRE_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(FireSkills.fire_tier_2_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("wizards", "fire_breath"))).require(WIZARDS));
     public static final Entry FIRE_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_2_spell_1_modifier_2).require(WIZARDS));
@@ -192,8 +196,10 @@ public class NodeTypes {
                     Icon.item("wizards:wand_frost"),
                     FROST_ROOT.attributeReward()).require(WIZARDS)
     );
-    public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_1).require(WIZARDS));
-    public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_2).require(WIZARDS));
+    // @Deprecated - moved to WeaponSkillModifiers as weapon_frostbolt_modifier_1 (for removal)
+    // public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_1).require(WIZARDS));
+    // @Deprecated - moved to WeaponSkillModifiers as weapon_frostbolt_modifier_2 (for removal)
+    // public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_2).require(WIZARDS));
     public static final Entry FROST_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(FrostSkills.frost_tier_2_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("wizards", "frost_nova")))
             .require(WIZARDS)
@@ -391,6 +397,62 @@ public class NodeTypes {
     public static final Entry WARRIOR_TIER_3_PASSIVE_2 = add(passiveSpell(WarriorSkills.warrior_tier_3_passive_2).require(ROGUES));
 
     // ===== WEAPON SKILLS =====
+
+    // Arcane Staff
+    public static final Entry WEAPON_ARCANE_ROOT = add(
+            Entry.attribute("weapon_arcane_root",
+                    "Arcane Staff Specialisation",
+                    null,
+                    Icon.item("wizards:staff_arcane"),
+                    SpellSchools.ARCANE.attributeEntry,
+                    ROOT_MULTIPLIER,
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+            ).require(WIZARDS)
+    );
+    public static final Entry WEAPON_ARCANE_BLAST_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_arcane_blast_modifier_2).require(WIZARDS));
+    public static final Entry WEAPON_ARCANE_MISSILE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_arcane_missile_modifier_1).require(WIZARDS));
+
+    // Fire Staff
+    public static final Entry WEAPON_FIRE_ROOT = add(
+            Entry.attribute("weapon_fire_root",
+                    "Fire Staff Specialisation",
+                    null,
+                    Icon.item("wizards:staff_fire"),
+                    SpellSchools.FIRE.attributeEntry,
+                    ROOT_MULTIPLIER,
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+            ).require(WIZARDS)
+    );
+    public static final Entry WEAPON_FIRE_BLAST_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_fire_blast_modifier_1).require(WIZARDS));
+    public static final Entry WEAPON_FIRE_BLAST_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_fire_blast_modifier_2).require(WIZARDS));
+
+    // Frost Staff
+    public static final Entry WEAPON_FROST_ROOT = add(
+            Entry.attribute("weapon_frost_root",
+                    "Frost Staff Specialisation",
+                    null,
+                    Icon.item("wizards:staff_frost"),
+                    SpellSchools.FROST.attributeEntry,
+                    ROOT_MULTIPLIER,
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+            ).require(WIZARDS)
+    );
+    public static final Entry WEAPON_FROSTBOLT_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_frostbolt_modifier_1).require(WIZARDS));
+    public static final Entry WEAPON_FROSTBOLT_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_frostbolt_modifier_2).require(WIZARDS));
+
+    // Holy Staff
+    public static final Entry WEAPON_HOLY_ROOT = add(
+            Entry.attribute("weapon_holy_root",
+                    "Holy Staff Specialisation",
+                    null,
+                    Icon.item("paladins:holy_staff"),
+                    SpellSchools.HEALING.attributeEntry,
+                    ROOT_MULTIPLIER,
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+            ).require(PALADINS)
+    );
+    public static final Entry WEAPON_HOLY_SHOCK_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_holy_shock_modifier_1).require(PALADINS));
+    public static final Entry WEAPON_HOLY_SHOCK_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_holy_shock_modifier_2).require(PALADINS));
 
     // Sword (Swift Strikes)
     public static final Entry WEAPON_SWORD_ROOT = add(

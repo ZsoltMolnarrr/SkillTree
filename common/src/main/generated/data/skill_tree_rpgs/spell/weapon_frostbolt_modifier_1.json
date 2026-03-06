@@ -1,0 +1,17 @@
+{
+  "school": "spell_power:frost",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "wizards:frostbolt",
+      "projectile_perks": {
+        "ricochet": 1,
+        "ricochet_range": 0.0,
+        "chain_reaction_triggers": 0,
+        "chain_reaction_increment": 0
+      }
+    }
+  ]
+}
