@@ -4,6 +4,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.items.SkillItems;
+import net.skill_tree_rpgs.attributes.ModifierConditions;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.skills.NodeTypes;
 import net.skill_tree_rpgs.effect.SkillEffects;
@@ -67,12 +68,9 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 if (skill.description() != null && !skill.description().isEmpty()) {
                     translationBuilder.add(skill.descriptionTranslationKey(), skill.description());
                 }
-                if (skill.conditionalAttributeReward() != null) {
-                    var condition = skill.conditionalAttributeReward().condition();
-                    if (condition.conditionText() != null) {
-                        translationBuilder.add(condition.translationKey(), condition.conditionText());
-                    }
-                }
+            }
+            for (var entry : ModifierConditions.TRANSLATIONS.entrySet()) {
+                translationBuilder.add(entry.getKey().translationKey(), entry.getValue());
             }
             for (var entry: Skills.ENTRIES) {
                 translationBuilder.add(SpellTooltip.spellTranslationKey(entry.id()), entry.title());

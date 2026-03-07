@@ -249,16 +249,6 @@ public class WeaponSkillModifiers {
         return new Skills.Entry(id, spell, "Swift Strikes II", "", null, Skills.Category.WEAPON);
     }
 
-    // ===== CLAYMORE (Flurry) =====
-
-    public static final Skills.Entry weapon_claymore_root = add(weapon_claymore_root());
-    private static Skills.Entry weapon_claymore_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_claymore_root");
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Claymore Specialisation", "", null, Skills.Category.WEAPON);
-    }
-
     public static final Skills.Entry weapon_flurry_modifier_1 = add(weapon_flurry_modifier_1());
     private static Skills.Entry weapon_flurry_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_flurry_modifier_1");

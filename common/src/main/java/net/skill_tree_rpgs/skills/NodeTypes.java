@@ -3,6 +3,7 @@ package net.skill_tree_rpgs.skills;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.attributes.ConditionalAttributeModifier;
 import net.skill_tree_rpgs.attributes.ModifierCondition;
+import net.skill_tree_rpgs.attributes.ModifierConditions;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -482,19 +483,20 @@ public class NodeTypes {
     public static final Entry WEAPON_SWIFT_STRIKES_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_swift_strikes_modifier_1));
     public static final Entry WEAPON_SWIFT_STRIKES_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_swift_strikes_modifier_2));
 
-    // Claymore (Flurry)
+    // Claymore
     public static final Entry WEAPON_CLAYMORE_ROOT = add(
-            Entry.attribute("weapon_claymore_root",
-                    "Claymore Specialisation",
+            Entry.conditionalAttribute("weapon_claymore_root",
+                    "Claymore Mastery",
                     null,
                     Icon.item("paladins:iron_claymore"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    0.10,
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.CLAYMORE.equipment().slot(),
+                    ModifierConditions.CLAYMORE.equipment().tag(),
+                    ModifierConditions.CLAYMORE.conditionText()
             ).require(PALADINS)
     );
-    public static final Entry WEAPON_FLURRY_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_flurry_modifier_1).require(PALADINS));
-    public static final Entry WEAPON_FLURRY_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_flurry_modifier_2).require(PALADINS));
 
     // Mace (Smash)
     public static final Entry WEAPON_MACE_ROOT = add(
