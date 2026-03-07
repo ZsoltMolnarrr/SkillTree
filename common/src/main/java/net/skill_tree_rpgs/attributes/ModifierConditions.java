@@ -61,4 +61,5 @@ public class ModifierConditions {
     // Vanilla meta types
     public static final ModifierCondition BOW      = create(ItemTags.BOW_ENCHANTABLE,      EquipmentSlot.MAINHAND, "bow",      "While holding a Bow:");
     public static final ModifierCondition CROSSBOW = create(ItemTags.CROSSBOW_ENCHANTABLE, EquipmentSlot.MAINHAND, "crossbow", "While holding a Crossbow:");
+    public static final ModifierCondition AXE      = create(ItemTags.AXES,                 EquipmentSlot.MAINHAND, "axe",      "While holding an Axe:");
 }

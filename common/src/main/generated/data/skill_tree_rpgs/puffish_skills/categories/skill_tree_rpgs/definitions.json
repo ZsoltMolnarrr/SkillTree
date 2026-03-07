@@ -4749,9 +4749,15 @@
     },
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "minecraft:axes"
+            }
+          },
           "operation": "multiply_base",
           "value": 0.009999999776482582
         }
@@ -4877,9 +4883,15 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/dagger"
+            }
+          },
           "operation": "multiply_base",
           "value": 0.009999999776482582
         }
@@ -4904,9 +4916,15 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/double_axe"
+            }
+          },
           "operation": "multiply_base",
           "value": 0.009999999776482582
         }
@@ -5091,6 +5109,80 @@
       "translate": "skill.skill_tree_rpgs.weapon_fire_root.title"
     }
   },
+  "weapon_flurry_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_flurry_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/flurry.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_flurry_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_flurry_modifier_1.title"
+    }
+  },
+  "weapon_flurry_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_flurry_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/flurry.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_flurry_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_flurry_modifier_2.title"
+    }
+  },
   "weapon_frost_root": {
     "description": {
       "skill_definition_id": "weapon_frost_root"
@@ -5207,9 +5299,15 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/glaive"
+            }
+          },
           "operation": "multiply_base",
           "value": 0.009999999776482582
         }
@@ -5308,9 +5406,15 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/hammer"
+            }
+          },
           "operation": "multiply_base",
           "value": 0.009999999776482582
         }
@@ -5510,9 +5614,15 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/mace"
+            }
+          },
           "operation": "multiply_base",
           "value": 0.009999999776482582
         }
@@ -5537,9 +5647,15 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/sickle"
+            }
+          },
           "operation": "multiply_base",
           "value": 0.009999999776482582
         }
@@ -5638,9 +5754,15 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/spear"
+            }
+          },
           "operation": "multiply_base",
           "value": 0.009999999776482582
         }
@@ -5804,9 +5926,15 @@
     },
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/sword"
+            }
+          },
           "operation": "multiply_base",
           "value": 0.009999999776482582
         }

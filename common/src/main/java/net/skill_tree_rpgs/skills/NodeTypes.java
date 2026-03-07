@@ -471,13 +471,16 @@ public class NodeTypes {
 
     // Sword (Swift Strikes)
     public static final Entry WEAPON_SWORD_ROOT = add(
-            Entry.attribute("weapon_sword_root",
+            Entry.conditionalAttribute("weapon_sword_root",
                     "Sword Specialisation",
                     null,
                     Icon.item("minecraft:iron_sword"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.SWORD.equipment().slot(),
+                    ModifierConditions.SWORD.equipment().tag(),
+                    ModifierConditions.SWORD.conditionText()
             )
     );
     public static final Entry WEAPON_SWIFT_STRIKES_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_swift_strikes_modifier_1));
@@ -497,16 +500,21 @@ public class NodeTypes {
                     ModifierConditions.CLAYMORE.conditionText()
             ).require(PALADINS)
     );
+    public static final Entry WEAPON_FLURRY_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_flurry_modifier_1).require(PALADINS));
+    public static final Entry WEAPON_FLURRY_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_flurry_modifier_2).require(PALADINS));
 
     // Mace (Smash)
     public static final Entry WEAPON_MACE_ROOT = add(
-            Entry.attribute("weapon_mace_root",
+            Entry.conditionalAttribute("weapon_mace_root",
                     "Mace Specialisation",
                     null,
                     Icon.item("paladins:iron_mace"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.MACE.equipment().slot(),
+                    ModifierConditions.MACE.equipment().tag(),
+                    ModifierConditions.MACE.conditionText()
             ).require(PALADINS)
     );
     public static final Entry WEAPON_SMASH_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_smash_modifier_1).require(PALADINS));
@@ -514,13 +522,16 @@ public class NodeTypes {
 
     // Hammer (Ground Slam)
     public static final Entry WEAPON_HAMMER_ROOT = add(
-            Entry.attribute("weapon_hammer_root",
+            Entry.conditionalAttribute("weapon_hammer_root",
                     "Hammer Specialisation",
                     null,
                     Icon.item("paladins:iron_great_hammer"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.HAMMER.equipment().slot(),
+                    ModifierConditions.HAMMER.equipment().tag(),
+                    ModifierConditions.HAMMER.conditionText()
             ).require(PALADINS)
     );
     public static final Entry WEAPON_GROUND_SLAM_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_ground_slam_modifier_1).require(PALADINS));
@@ -528,13 +539,16 @@ public class NodeTypes {
 
     // Double Axe (Whirlwind)
     public static final Entry WEAPON_DOUBLE_AXE_ROOT = add(
-            Entry.attribute("weapon_double_axe_root",
+            Entry.conditionalAttribute("weapon_double_axe_root",
                     "Double Axe Specialisation",
                     null,
                     Icon.item("rogues:iron_double_axe"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.DOUBLE_AXE.equipment().slot(),
+                    ModifierConditions.DOUBLE_AXE.equipment().tag(),
+                    ModifierConditions.DOUBLE_AXE.conditionText()
             ).require(ROGUES)
     );
     public static final Entry WEAPON_WHIRLWIND_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_whirlwind_modifier_1).require(ROGUES));
@@ -542,13 +556,16 @@ public class NodeTypes {
 
     // Spear (Impale)
     public static final Entry WEAPON_SPEAR_ROOT = add(
-            Entry.attribute("weapon_spear_root",
+            Entry.conditionalAttribute("weapon_spear_root",
                     "Spear Specialisation",
                     null,
                     Icon.item("archers:iron_spear"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.SPEAR.equipment().slot(),
+                    ModifierConditions.SPEAR.equipment().tag(),
+                    ModifierConditions.SPEAR.conditionText()
             ).require(ARCHERS)
     );
     public static final Entry WEAPON_IMPALE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_impale_modifier_1).require(ARCHERS));
@@ -556,13 +573,16 @@ public class NodeTypes {
 
     // Dagger (Fan of Knives)
     public static final Entry WEAPON_DAGGER_ROOT = add(
-            Entry.attribute("weapon_dagger_root",
+            Entry.conditionalAttribute("weapon_dagger_root",
                     "Dagger Specialisation",
                     null,
                     Icon.item("rogues:iron_dagger"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.DAGGER.equipment().slot(),
+                    ModifierConditions.DAGGER.equipment().tag(),
+                    ModifierConditions.DAGGER.conditionText()
             ).require(ROGUES)
     );
     public static final Entry WEAPON_FAN_OF_KNIVES_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_fan_of_knives_modifier_1).require(ROGUES));
@@ -570,13 +590,16 @@ public class NodeTypes {
 
     // Sickle (Swipe)
     public static final Entry WEAPON_SICKLE_ROOT = add(
-            Entry.attribute("weapon_sickle_root",
+            Entry.conditionalAttribute("weapon_sickle_root",
                     "Sickle Specialisation",
                     null,
                     Icon.item("rogues:iron_sickle"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.SICKLE.equipment().slot(),
+                    ModifierConditions.SICKLE.equipment().tag(),
+                    ModifierConditions.SICKLE.conditionText()
             ).require(ROGUES)
     );
     public static final Entry WEAPON_SWIPE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_swipe_modifier_1).require(ROGUES));
@@ -584,13 +607,16 @@ public class NodeTypes {
 
     // Glaive (Thrust)
     public static final Entry WEAPON_GLAIVE_ROOT = add(
-            Entry.attribute("weapon_glaive_root",
+            Entry.conditionalAttribute("weapon_glaive_root",
                     "Glaive Specialisation",
                     null,
                     Icon.item("rogues:iron_glaive"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.GLAIVE.equipment().slot(),
+                    ModifierConditions.GLAIVE.equipment().tag(),
+                    ModifierConditions.GLAIVE.conditionText()
             ).require(ROGUES)
     );
     public static final Entry WEAPON_THRUST_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_thrust_modifier_1).require(ROGUES));
@@ -598,13 +624,16 @@ public class NodeTypes {
 
     // Axe (Cleave)
     public static final Entry WEAPON_AXE_ROOT = add(
-            Entry.attribute("weapon_axe_root",
+            Entry.conditionalAttribute("weapon_axe_root",
                     "Axe Specialisation",
                     null,
                     Icon.item("minecraft:iron_axe"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.AXE.equipment().slot(),
+                    ModifierConditions.AXE.equipment().tag(),
+                    ModifierConditions.AXE.conditionText()
             )
     );
     public static final Entry WEAPON_CLEAVE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_cleave_modifier_1));
