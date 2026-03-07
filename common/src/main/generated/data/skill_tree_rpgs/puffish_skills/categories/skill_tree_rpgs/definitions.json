@@ -4636,6 +4636,43 @@
       "translate": "skill.skill_tree_rpgs.warrior_tier_4_spell_1_modifier_2.title"
     }
   },
+  "weapon_arcane_blast_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_arcane_blast_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_blast.png"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_arcane_blast_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_arcane_blast_modifier_1.title"
+    }
+  },
   "weapon_arcane_blast_modifier_2": {
     "description": {
       "skill_definition_id": "weapon_arcane_blast_modifier_2"
@@ -4671,43 +4708,6 @@
     ],
     "title": {
       "translate": "skill.skill_tree_rpgs.weapon_arcane_blast_modifier_2.title"
-    }
-  },
-  "weapon_arcane_missile_modifier_1": {
-    "description": {
-      "skill_definition_id": "weapon_arcane_missile_modifier_1"
-    },
-    "icon": {
-      "type": "texture",
-      "data": {
-        "texture": "wizards:textures/spell/arcane_missile.png"
-      }
-    },
-    "required_mods": [
-      "wizards"
-    ],
-    "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "skill_tree_rpgs:weapon_arcane_missile_modifier_1"
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    "title": {
-      "translate": "skill.skill_tree_rpgs.weapon_arcane_missile_modifier_1.title"
     }
   },
   "weapon_arcane_root": {
@@ -4765,6 +4765,104 @@
     ],
     "title": {
       "translate": "skill.skill_tree_rpgs.weapon_axe_root.title"
+    }
+  },
+  "weapon_bow_passive_1": {
+    "description": {
+      "skill_definition_id": "weapon_bow_passive_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:bow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_bow_passive_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_bow_passive_1.title"
+    }
+  },
+  "weapon_bow_passive_2": {
+    "description": {
+      "skill_definition_id": "weapon_bow_passive_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:bow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_bow_passive_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_bow_passive_2.title"
+    }
+  },
+  "weapon_bow_root": {
+    "description": {
+      "skill_definition_id": "weapon_bow_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:bow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "ranged_weapon:damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "minecraft:enchantable/bow"
+            }
+          },
+          "operation": "multiply_base",
+          "value": 0.009999999776482582
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_bow_root.title"
     }
   },
   "weapon_claymore_root": {
@@ -4866,6 +4964,104 @@
     ],
     "title": {
       "translate": "skill.skill_tree_rpgs.weapon_cleave_modifier_2.title"
+    }
+  },
+  "weapon_crossbow_passive_1": {
+    "description": {
+      "skill_definition_id": "weapon_crossbow_passive_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:crossbow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_crossbow_passive_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_crossbow_passive_1.title"
+    }
+  },
+  "weapon_crossbow_passive_2": {
+    "description": {
+      "skill_definition_id": "weapon_crossbow_passive_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:crossbow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_crossbow_passive_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_crossbow_passive_2.title"
+    }
+  },
+  "weapon_crossbow_root": {
+    "description": {
+      "skill_definition_id": "weapon_crossbow_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:crossbow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "ranged_weapon:damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "minecraft:enchantable/crossbow"
+            }
+          },
+          "operation": "multiply_base",
+          "value": 0.009999999776482582
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_crossbow_root.title"
     }
   },
   "weapon_dagger_root": {

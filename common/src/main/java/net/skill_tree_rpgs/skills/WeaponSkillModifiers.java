@@ -1,5 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.spell_engine.api.datagen.SpellBuilder;
@@ -31,6 +32,22 @@ public class WeaponSkillModifiers {
         return new Skills.Entry(id, spell, "Arcane Staff Specialisation", "", null, Skills.Category.WEAPON);
     }
 
+    public static final Skills.Entry weapon_arcane_blast_modifier_1 = add(weapon_arcane_blast_modifier_1());
+    private static Skills.Entry weapon_arcane_blast_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "weapon_arcane_blast_modifier_1");
+        var title = "Conjured Arcane Charge";
+        var description = "Increases the maximum number of Arcane Charges by {effect_amplifier_cap_add}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.ARCANE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:arcane_blast";
+        modifier.effect_amplifier_cap_add = 1;
+        spell.modifiers = List.of(modifier);
+
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+    }
+
     public static final Skills.Entry weapon_arcane_blast_modifier_2 = add(weapon_arcane_blast_modifier_2());
     private static Skills.Entry weapon_arcane_blast_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_arcane_blast_modifier_2");
@@ -44,32 +61,7 @@ public class WeaponSkillModifiers {
         modifier.effect_duration_add = 2;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
-    }
-
-    public static final Skills.Entry weapon_arcane_missile_modifier_1 = add(weapon_arcane_missile_modifier_1());
-    private static Skills.Entry weapon_arcane_missile_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_arcane_missile_modifier_1");
-        var title = "Conjured Missile";
-        var description = "Arcane Missile shoots {extra_launch} additional missile per batch.";
-
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.ARCANE;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "wizards:arcane_missile";
-
-        modifier.projectile_launch = Spell.LaunchProperties.EMPTY();
-        modifier.projectile_launch.extra_launch_count = 1;
-        modifier.projectile_launch.extra_launch_delay = 2;
-        modifier.projectile_launch.extra_launch_mod = 3;
-        modifier.power_modifier = new Spell.Impact.Modifier();
-//        modifier.power_modifier.power_multiplier = -0.3F;
-//        modifier.knockback_multiply_base = -0.1F;
-
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===== FIRE =====
@@ -493,6 +485,117 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = "rpg_series:thrust";
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Thrust II", "", null, Skills.Category.WEAPON);
+    }
+
+    // ===== BOW =====
+
+    public static final Skills.Entry weapon_bow_root = add(weapon_bow_root());
+    private static Skills.Entry weapon_bow_root() {
+        var id = Identifier.of(NAMESPACE, "weapon_bow_root");
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        return new Skills.Entry(id, spell, "Bow Specialisation", "", null, Skills.Category.WEAPON);
+    }
+
+    public static final Skills.Entry weapon_bow_passive_1 = add(weapon_bow_passive_1());
+    private static Skills.Entry weapon_bow_passive_1() {
+        var id = Identifier.of(NAMESPACE, "weapon_bow_passive_1");
+        var title = "Leeching Shot";
+        var description = "Arrow hits have {trigger_chance} chance to heal you.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        trigger.chance = 0.25F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.heal(0.15F);
+        impact.particles = SkillsCommon.leechImpactParticles();
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+    }
+
+    public static final Skills.Entry weapon_bow_passive_2 = add(weapon_bow_passive_2());
+    private static Skills.Entry weapon_bow_passive_2() {
+        var id = Identifier.of(NAMESPACE, "weapon_bow_passive_2");
+        var title = "Poison Arrow";
+        var description = "Arrow hits have {trigger_chance} chance to apply Poison for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.chance = 0.25F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 4F, 0, 1);
+        impact.particles = SkillsCommon.poisonImpactParticles();
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 6F);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+    }
+
+    // ===== CROSSBOW =====
+
+    public static final Skills.Entry weapon_crossbow_root = add(weapon_crossbow_root());
+    private static Skills.Entry weapon_crossbow_root() {
+        var id = Identifier.of(NAMESPACE, "weapon_crossbow_root");
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        return new Skills.Entry(id, spell, "Crossbow Specialisation", "", null, Skills.Category.WEAPON);
+    }
+
+    public static final Skills.Entry weapon_crossbow_passive_1 = add(weapon_crossbow_passive_1());
+    private static Skills.Entry weapon_crossbow_passive_1() {
+        var id = Identifier.of(NAMESPACE, "weapon_crossbow_passive_1");
+        var title = "Impact Bolt";
+        var description = "Crossbow bolts have {trigger_chance} chance to slow the target for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.chance = 0.3F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectSet(StatusEffects.SLOWNESS.getIdAsString(), 3F, 1);
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 8F);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+    }
+
+    public static final Skills.Entry weapon_crossbow_passive_2 = add(weapon_crossbow_passive_2());
+    private static Skills.Entry weapon_crossbow_passive_2() {
+        var id = Identifier.of(NAMESPACE, "weapon_crossbow_passive_2");
+        var title = "Disarming Bolt";
+        var description = "Crossbow bolts have {trigger_chance} chance to apply Weakness to the target for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectSet(StatusEffects.WEAKNESS.getIdAsString(), 4F, 0);
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 10F);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 
     // ===== AXE (Cleave) =====

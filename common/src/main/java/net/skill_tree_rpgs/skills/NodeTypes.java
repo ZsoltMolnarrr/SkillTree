@@ -424,8 +424,8 @@ public class NodeTypes {
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             ).require(WIZARDS)
     );
+    public static final Entry WEAPON_ARCANE_BLAST_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_arcane_blast_modifier_1).require(WIZARDS));
     public static final Entry WEAPON_ARCANE_BLAST_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_arcane_blast_modifier_2).require(WIZARDS));
-    public static final Entry WEAPON_ARCANE_MISSILE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_arcane_missile_modifier_1).require(WIZARDS));
 
     // Fire Staff
     public static final Entry WEAPON_FIRE_ROOT = add(
@@ -638,6 +638,44 @@ public class NodeTypes {
     );
     public static final Entry WEAPON_CLEAVE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_cleave_modifier_1));
     public static final Entry WEAPON_CLEAVE_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_cleave_modifier_2));
+
+    // Bow
+    public static final Entry WEAPON_BOW_ROOT = add(
+            Entry.conditionalAttribute("weapon_bow_root",
+                    "Bow Specialisation",
+                    null,
+                    Icon.item("minecraft:bow"),
+                    EntityAttributes_RangedWeapon.DAMAGE.entry,
+                    ROOT_MULTIPLIER,
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.BOW.equipment().slot(),
+                    ModifierConditions.BOW.equipment().tag(),
+                    ModifierConditions.BOW.conditionText()
+            )
+    );
+    public static final Entry WEAPON_BOW_PASSIVE_1 = add(passiveSpell(WeaponSkillModifiers.weapon_bow_passive_1)
+            .withIcon(Icon.item("minecraft:bow")));
+    public static final Entry WEAPON_BOW_PASSIVE_2 = add(passiveSpell(WeaponSkillModifiers.weapon_bow_passive_2)
+            .withIcon(Icon.item("minecraft:bow")));
+
+    // Crossbow
+    public static final Entry WEAPON_CROSSBOW_ROOT = add(
+            Entry.conditionalAttribute("weapon_crossbow_root",
+                    "Crossbow Specialisation",
+                    null,
+                    Icon.item("minecraft:crossbow"),
+                    EntityAttributes_RangedWeapon.DAMAGE.entry,
+                    ROOT_MULTIPLIER,
+                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    ModifierConditions.CROSSBOW.equipment().slot(),
+                    ModifierConditions.CROSSBOW.equipment().tag(),
+                    ModifierConditions.CROSSBOW.conditionText()
+            )
+    );
+    public static final Entry WEAPON_CROSSBOW_PASSIVE_1 = add(passiveSpell(WeaponSkillModifiers.weapon_crossbow_passive_1)
+            .withIcon(Icon.item("minecraft:crossbow")));
+    public static final Entry WEAPON_CROSSBOW_PASSIVE_2 = add(passiveSpell(WeaponSkillModifiers.weapon_crossbow_passive_2)
+            .withIcon(Icon.item("minecraft:crossbow")));
 
     public static final Entry FIREBALL = add(
             Entry.spell("fireball",
