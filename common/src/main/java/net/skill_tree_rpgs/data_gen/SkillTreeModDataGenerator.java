@@ -24,6 +24,7 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.puffish.skillsmod.reward.builtin.AttributeReward;
+import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.skill_tree_rpgs.utils.ResolvableTextContent;
 import net.spell_engine.api.datagen.SimpleSoundGeneratorV2;
 import net.spell_engine.api.datagen.SpellGenerator;
@@ -161,6 +162,9 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 if (skill.attributeReward() != null) {
                     var attribute = skill.attributeReward();
                     rewards.add(new Reward(AttributeReward.ID.toString(), RewardAttribute.from(attribute.attribute(),  attribute.modifier())));
+                }
+                if (skill.conditionalAttributeReward() != null) {
+                    rewards.add(new Reward(ConditionalAttributeReward.ID.toString(), RewardConditionalAttribute.from(skill.conditionalAttributeReward())));
                 }
                 if(skill.spellReward() != null) {
                     rewards.add(new Reward(SpellContainerReward.ID.toString(), new SpellContainerReward.DataStructure(skill.spellReward())));

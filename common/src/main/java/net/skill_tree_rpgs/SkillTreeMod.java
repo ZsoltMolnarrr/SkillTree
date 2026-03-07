@@ -1,6 +1,7 @@
 package net.skill_tree_rpgs;
 
 import net.skill_tree_rpgs.items.SkillItems;
+import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.skill_tree_rpgs.skills.SkillSounds;
@@ -20,6 +21,7 @@ public class SkillTreeMod {
     public static void init() {
         effectConfig.refresh();
         SpellContainerReward.register();
+        ConditionalAttributeReward.register();
         effectConfig.save();
     }
 

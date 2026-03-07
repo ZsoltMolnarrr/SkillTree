@@ -6,6 +6,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.puffish.skillsmod.api.SkillsAPI;
+import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,5 +19,6 @@ public class ServerPlayerEntityMixin {
     private void init_TAIL_SkillTreeRPGs(MinecraftServer server, ServerWorld world, GameProfile profile, SyncedClientOptions clientOptions, CallbackInfo ci) {
         var serverPlayer = (ServerPlayerEntity) (Object) this;
         SkillsAPI.updateRewards(serverPlayer, SpellContainerReward.ID);
+        SkillsAPI.updateRewards(serverPlayer, ConditionalAttributeReward.ID);
     }
 }

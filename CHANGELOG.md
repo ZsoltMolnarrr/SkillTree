@@ -6,6 +6,7 @@ DISCLAIMER: Reworked skill ID, and node IDs!
   - Spell modifiers: `class_tier_{tier}_spell_{choice}_modifier_{modifier}` - for example `archer_tier_3_spell_1_modifier_2`
   - Passive spells: `class_tier_{tier}_passive_{choice}` - for example `archer_tier_3_passive_1`
   - Also applies to skill tree node IDs
+- Add conditional attributes feature
 
 # 1.3.0
 

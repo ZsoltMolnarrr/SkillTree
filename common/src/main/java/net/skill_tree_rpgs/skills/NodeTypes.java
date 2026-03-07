@@ -1,11 +1,16 @@
 package net.skill_tree_rpgs.skills;
 
 import net.skill_tree_rpgs.SkillTreeMod;
+import net.skill_tree_rpgs.attributes.ConditionalAttributeModifier;
+import net.skill_tree_rpgs.attributes.ModifierCondition;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.item.Item;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.puffish.skillsmod.common.IconType;
 import net.spell_engine.api.spell.container.SpellContainer;
@@ -39,16 +44,25 @@ public class NodeTypes {
             return new EntityAttributeReward(attribute, new EntityAttributeModifier(Identifier.of(SkillTreeMod.NAMESPACE + ":attribute_reward"), value, operation));
         }
     }
-    public record Entry(String id, String title, String description, Icon icon, List<SpellContainer> spellReward, EntityAttributeReward attributeReward, List<String> required_mods) {
+    public record Entry(String id, String title, String description, Icon icon, List<SpellContainer> spellReward, EntityAttributeReward attributeReward, ConditionalAttributeModifier conditionalAttributeReward, List<String> required_mods) {
         public static Entry spell(String id, String title, String description, Icon icon, List<SpellContainer> spellReward) {
-            return new Entry(id, title, description, icon, spellReward, null, null);
+            return new Entry(id, title, description, icon, spellReward, null, null, null);
         }
         public static Entry attribute(String id, String title, String description, Icon icon,
                                       RegistryEntry<EntityAttribute> attribute, double value, EntityAttributeModifier.Operation operation) {
             return attribute(id, title, description, icon, EntityAttributeReward.of(attribute, value, operation));
         }
         public static Entry attribute(String id, String title, String description, Icon icon, EntityAttributeReward attributeReward) {
-            return new Entry(id, title, description, icon, null, attributeReward, null);
+            return new Entry(id, title, description, icon, null, attributeReward, null, null);
+        }
+        public static Entry conditionalAttribute(String id, String title, String description, Icon icon,
+                                                 RegistryEntry<EntityAttribute> attribute, double value,
+                                                 EntityAttributeModifier.Operation operation,
+                                                 EquipmentSlot slot, TagKey<Item> tag) {
+            var modifierId = Identifier.of(SkillTreeMod.NAMESPACE, id);
+            var modifier = new EntityAttributeModifier(modifierId, value, operation);
+            var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag));
+            return new Entry(id, title, description, icon, null, null, new ConditionalAttributeModifier(modifierId, attribute, modifier, condition), null);
         }
         public String titleTranslationKey() {
             return "skill." + SkillTreeMod.NAMESPACE + "." + id + ".title";
@@ -57,10 +71,10 @@ public class NodeTypes {
             return "skill." + SkillTreeMod.NAMESPACE + "." + id + ".description";
         }
         public Entry withIcon(Icon icon) {
-            return new Entry(id, title, description, icon, spellReward, attributeReward, required_mods);
+            return new Entry(id, title, description, icon, spellReward, attributeReward, conditionalAttributeReward, required_mods);
         }
         public Entry require(String modId) {
-            return new Entry(id, title, description, icon, spellReward, attributeReward, List.of(modId));
+            return new Entry(id, title, description, icon, spellReward, attributeReward, conditionalAttributeReward, List.of(modId));
         }
     }
     public static final ArrayList<Entry> ENTRIES = new ArrayList<>();
