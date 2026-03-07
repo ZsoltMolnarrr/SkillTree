@@ -60,7 +60,7 @@ public class ConditionalAttributeReward implements Reward {
 
             var modifierId = Identifier.of(SkillTreeMod.NAMESPACE, UUID.randomUUID().toString().replace("-", ""));
             var modifier = new EntityAttributeModifier(modifierId, parsed.value(), operation);
-            var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag));
+            var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag), null);
 
             reward.conditionalModifier = new ConditionalAttributeModifier(modifierId, attributeEntry, modifier, condition);
         } catch (Exception e) {

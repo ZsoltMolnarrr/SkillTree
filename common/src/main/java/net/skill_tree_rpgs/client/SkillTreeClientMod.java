@@ -36,6 +36,10 @@ public class SkillTreeClientMod {
                 var attribute = entry.attributeReward();
                 TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveAttributeModifierTooltip(attribute));
             }
+            else if (entry.conditionalAttributeReward() != null) {
+                var conditional = entry.conditionalAttributeReward();
+                TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveConditionalAttributeTooltip(conditional));
+            }
         }
         registerEffectRenderers();
     }

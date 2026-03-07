@@ -4,8 +4,16 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
+import net.skill_tree_rpgs.SkillTreeMod;
 
-public record ModifierCondition(Equipment equipment) {
+import java.util.Locale;
+
+public record ModifierCondition(Equipment equipment, String conditionText) {
+    public String translationKey() {
+        return "condition." + SkillTreeMod.NAMESPACE + "."
+                + conditionText;
+    }
+
     public record Equipment(EquipmentSlot slot, TagKey<Item> tag) {
         public boolean test(LivingEntity entity) {
             var stack = entity.getEquippedStack(slot);

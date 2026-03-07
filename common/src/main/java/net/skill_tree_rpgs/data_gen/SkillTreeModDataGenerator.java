@@ -67,6 +67,12 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 if (skill.description() != null && !skill.description().isEmpty()) {
                     translationBuilder.add(skill.descriptionTranslationKey(), skill.description());
                 }
+                if (skill.conditionalAttributeReward() != null) {
+                    var condition = skill.conditionalAttributeReward().condition();
+                    if (condition.conditionText() != null) {
+                        translationBuilder.add(condition.translationKey(), condition.conditionText());
+                    }
+                }
             }
             for (var entry: Skills.ENTRIES) {
                 translationBuilder.add(SpellTooltip.spellTranslationKey(entry.id()), entry.title());

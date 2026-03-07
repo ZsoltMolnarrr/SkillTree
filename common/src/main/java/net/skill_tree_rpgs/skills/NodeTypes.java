@@ -58,10 +58,10 @@ public class NodeTypes {
         public static Entry conditionalAttribute(String id, String title, String description, Icon icon,
                                                  RegistryEntry<EntityAttribute> attribute, double value,
                                                  EntityAttributeModifier.Operation operation,
-                                                 EquipmentSlot slot, TagKey<Item> tag) {
+                                                 EquipmentSlot slot, TagKey<Item> tag, String conditionText) {
             var modifierId = Identifier.of(SkillTreeMod.NAMESPACE, id);
             var modifier = new EntityAttributeModifier(modifierId, value, operation);
-            var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag));
+            var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag), conditionText);
             return new Entry(id, title, description, icon, null, null, new ConditionalAttributeModifier(modifierId, attribute, modifier, condition), null);
         }
         public String titleTranslationKey() {
