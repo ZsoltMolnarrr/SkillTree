@@ -89,7 +89,7 @@ public class NodeTypes {
     public static final String ARCHERS = "archers";
     public static final String ROGUES = "rogues";
 
-    public static final float ROOT_MULTIPLIER = 0.01f;
+
     public static final float BOOST_MULTIPLIER = 0.01f;
 
 //    private static List<Text> attributeModifierText(EntityAttributeReward reward) {
@@ -413,6 +413,8 @@ public class NodeTypes {
 
     // ===== WEAPON SKILLS =====
 
+    public static final float WEAPON_ROOT_MULTIPLIER = 0.1f;
+
     // Arcane Staff
     public static final Entry WEAPON_ARCANE_ROOT = add(
             Entry.attribute("weapon_arcane_root",
@@ -420,7 +422,7 @@ public class NodeTypes {
                     null,
                     Icon.item("wizards:staff_arcane"),
                     SpellSchools.ARCANE.attributeEntry,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             ).require(WIZARDS)
     );
@@ -434,7 +436,7 @@ public class NodeTypes {
                     null,
                     Icon.item("wizards:staff_fire"),
                     SpellSchools.FIRE.attributeEntry,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             ).require(WIZARDS)
     );
@@ -448,7 +450,7 @@ public class NodeTypes {
                     null,
                     Icon.item("wizards:staff_frost"),
                     SpellSchools.FROST.attributeEntry,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             ).require(WIZARDS)
     );
@@ -456,16 +458,7 @@ public class NodeTypes {
     public static final Entry WEAPON_FROSTBOLT_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_frostbolt_modifier_2).require(WIZARDS));
 
     // Holy Staff
-    public static final Entry WEAPON_HOLY_ROOT = add(
-            Entry.attribute("weapon_holy_root",
-                    "Holy Staff Specialisation",
-                    null,
-                    Icon.item("paladins:holy_staff"),
-                    SpellSchools.HEALING.attributeEntry,
-                    ROOT_MULTIPLIER,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-            ).require(PALADINS)
-    );
+    public static final Entry WEAPON_HOLY_ROOT = add(modifierSpell(WeaponSkillModifiers.weapon_holy_root).require(PALADINS));
     public static final Entry WEAPON_HOLY_SHOCK_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_holy_shock_modifier_1).require(PALADINS));
     public static final Entry WEAPON_HOLY_SHOCK_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_holy_shock_modifier_2).require(PALADINS));
 
@@ -476,7 +469,7 @@ public class NodeTypes {
                     null,
                     Icon.item("minecraft:iron_sword"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.SWORD.equipment().slot(),
                     ModifierConditions.SWORD.equipment().tag(),
@@ -493,7 +486,7 @@ public class NodeTypes {
                     null,
                     Icon.item("paladins:iron_claymore"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    0.10,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.CLAYMORE.equipment().slot(),
                     ModifierConditions.CLAYMORE.equipment().tag(),
@@ -510,7 +503,7 @@ public class NodeTypes {
                     null,
                     Icon.item("paladins:iron_mace"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.MACE.equipment().slot(),
                     ModifierConditions.MACE.equipment().tag(),
@@ -527,7 +520,7 @@ public class NodeTypes {
                     null,
                     Icon.item("paladins:iron_great_hammer"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.HAMMER.equipment().slot(),
                     ModifierConditions.HAMMER.equipment().tag(),
@@ -544,7 +537,7 @@ public class NodeTypes {
                     null,
                     Icon.item("rogues:iron_double_axe"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.DOUBLE_AXE.equipment().slot(),
                     ModifierConditions.DOUBLE_AXE.equipment().tag(),
@@ -561,7 +554,7 @@ public class NodeTypes {
                     null,
                     Icon.item("archers:iron_spear"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.SPEAR.equipment().slot(),
                     ModifierConditions.SPEAR.equipment().tag(),
@@ -578,7 +571,7 @@ public class NodeTypes {
                     null,
                     Icon.item("rogues:iron_dagger"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.DAGGER.equipment().slot(),
                     ModifierConditions.DAGGER.equipment().tag(),
@@ -595,7 +588,7 @@ public class NodeTypes {
                     null,
                     Icon.item("rogues:iron_sickle"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.SICKLE.equipment().slot(),
                     ModifierConditions.SICKLE.equipment().tag(),
@@ -612,7 +605,7 @@ public class NodeTypes {
                     null,
                     Icon.item("rogues:iron_glaive"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.GLAIVE.equipment().slot(),
                     ModifierConditions.GLAIVE.equipment().tag(),
@@ -629,7 +622,7 @@ public class NodeTypes {
                     null,
                     Icon.item("minecraft:iron_axe"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.AXE.equipment().slot(),
                     ModifierConditions.AXE.equipment().tag(),
@@ -646,7 +639,7 @@ public class NodeTypes {
                     null,
                     Icon.item("minecraft:bow"),
                     EntityAttributes_RangedWeapon.DAMAGE.entry,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.BOW.equipment().slot(),
                     ModifierConditions.BOW.equipment().tag(),
@@ -665,7 +658,7 @@ public class NodeTypes {
                     null,
                     Icon.item("minecraft:crossbow"),
                     EntityAttributes_RangedWeapon.DAMAGE.entry,
-                    ROOT_MULTIPLIER,
+                    WEAPON_ROOT_MULTIPLIER,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.CROSSBOW.equipment().slot(),
                     ModifierConditions.CROSSBOW.equipment().tag(),

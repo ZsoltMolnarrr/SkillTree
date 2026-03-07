@@ -2,5 +2,11 @@
   "school": "spell_power:healing",
   "range": 0.0,
   "tier": 1,
-  "type": "MODIFIER"
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "paladins:holy_shock",
+      "cooldown_duration_deduct": 2.0
+    }
+  ]
 }

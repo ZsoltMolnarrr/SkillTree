@@ -6,8 +6,11 @@ import net.skill_tree_rpgs.SkillTreeMod;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
+import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.client.util.Color;
+import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
@@ -169,14 +172,6 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_holy_root = add(weapon_holy_root());
     private static Skills.Entry weapon_holy_root() {
         var id = Identifier.of(NAMESPACE, "weapon_holy_root");
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.HEALING;
-        return new Skills.Entry(id, spell, "Holy Staff Specialisation", "", null, Skills.Category.WEAPON);
-    }
-
-    public static final Skills.Entry weapon_holy_shock_modifier_1 = add(weapon_holy_shock_modifier_1());
-    private static Skills.Entry weapon_holy_shock_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_holy_shock_modifier_1");
         var title = "Holy Swiftness";
         var description = "Reduces the cooldown of Holy Shock by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -190,11 +185,11 @@ public class WeaponSkillModifiers {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
     }
 
-    public static final Skills.Entry weapon_holy_shock_modifier_2 = add(weapon_holy_shock_modifier_2());
-    private static Skills.Entry weapon_holy_shock_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_holy_shock_modifier_2");
-        var title = "Holy Empowerment";
-        var description = "Holy Shock heals and damages for {power_multiplier} more.";
+    public static final Skills.Entry weapon_holy_shock_modifier_1 = add(weapon_holy_shock_modifier_1());
+    private static Skills.Entry weapon_holy_shock_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "weapon_holy_shock_modifier_1");
+        var title = "Improved Healing";
+        var description = "Holy Shock heals for {power_multiplier} more.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.HEALING;
 
@@ -206,8 +201,46 @@ public class WeaponSkillModifiers {
         modifier.power_modifier.power_multiplier = bonus;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
     }
+
+    public static final Skills.Entry weapon_holy_shock_modifier_2 = add(weapon_holy_shock_modifier_2());
+    private static Skills.Entry weapon_holy_shock_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "weapon_holy_shock_modifier_2");
+        var title = "Holy Blast";
+        var description = "Damaging with Holy Shock causes small explosion, hitting enemies within {impact_range} blocks radius.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.HEALING;
+        var radius = 2.5F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "paladins:holy_shock";
+        var area_impact = new Spell.AreaImpact();
+        area_impact.triggering_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.radius = radius;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SkillsCommon.HOLY_DECELERATE.toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        40, 0.5F, 0.5F)
+                        .color(Color.HOLY.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.aura_effect_649.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        1, 0, 0)
+                        .color(Color.HOLY.toRGBA())
+                        .scale(radius - 0.5F),
+        };
+        area_impact.sound = new Sound(SkillSounds.priest_holy_blast.id());
+        modifier.replacing_area_impact = area_impact;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+    }
+
 
     // ===== SWORD (Swift Strikes) =====
 
