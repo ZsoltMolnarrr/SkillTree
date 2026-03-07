@@ -159,6 +159,8 @@ public class WarriorSkills {
         var impact = SpellBuilder.Impacts.stun(2F);
         spell.impacts = List.of(impact);
 
+        SpellBuilder.Cost.cooldown(spell, 10F);
+
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
@@ -459,6 +461,8 @@ public class WarriorSkills {
                         20, 0.2F, 0.3F)
         };
         spell.impacts = List.of(stun);
+
+        SpellBuilder.Cost.cooldown(spell, 30F);
 
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
     }
