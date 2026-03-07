@@ -5625,9 +5625,9 @@
       "skill_definition_id": "weapon_holy_root"
     },
     "icon": {
-      "type": "texture",
+      "type": "item",
       "data": {
-        "texture": "paladins:textures/spell/holy_shock.png"
+        "item": "paladins:holy_staff"
       }
     },
     "required_mods": [
