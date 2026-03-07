@@ -2,6 +2,7 @@ package net.skill_tree_rpgs.attributes;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.spell_engine.rpg_series.item.Equipment;
 import net.spell_engine.rpg_series.tags.RPGSeriesItemTags;
@@ -20,6 +21,10 @@ public class ModifierConditions {
     private static ModifierCondition weapon(Equipment.WeaponType type, EquipmentSlot slot, String displayText) {
         TagKey<Item> tag = RPGSeriesItemTags.WeaponType.get(type);
         String translationKey = type.toString().toLowerCase(Locale.ROOT);
+        return create(tag, slot, translationKey, displayText);
+    }
+
+    private static ModifierCondition create(TagKey<Item> tag, EquipmentSlot slot, String translationKey, String displayText) {
         var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag), translationKey);
         TRANSLATIONS.put(condition, displayText);
         return condition;
@@ -52,4 +57,8 @@ public class ModifierConditions {
 
     // Defense
     public static final ModifierCondition SHIELD         = weapon(Equipment.WeaponType.SHIELD, EquipmentSlot.OFFHAND, "While holding a Shield");
+
+    // Vanilla meta types
+    public static final ModifierCondition BOW      = create(ItemTags.BOW_ENCHANTABLE,      EquipmentSlot.MAINHAND, "bow",      "While holding a Bow:");
+    public static final ModifierCondition CROSSBOW = create(ItemTags.CROSSBOW_ENCHANTABLE, EquipmentSlot.MAINHAND, "crossbow", "While holding a Crossbow:");
 }

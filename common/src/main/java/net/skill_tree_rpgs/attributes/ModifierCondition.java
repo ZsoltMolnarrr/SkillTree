@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public record ModifierCondition(Equipment equipment, String conditionText) {
     public String translationKey() {
-        return "condition." + SkillTreeMod.NAMESPACE + "."
+        return "modifier_condition." + SkillTreeMod.NAMESPACE + "."
                 + conditionText;
     }
 
