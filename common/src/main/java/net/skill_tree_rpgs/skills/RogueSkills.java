@@ -30,35 +30,35 @@ public class RogueSkills {
 
     public static final Color ROGUE_SHADOW_COLOR = Color.from(0x6600FF);
 
-    public static final Skills.Entry rogue_tier_1_spell_1_modifier_1 = add(rogue_tier_1_spell_1_modifier_1());
-    private static Skills.Entry rogue_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_1_spell_1_modifier_1");
-        var title = "Fleet Footed";
-        var effect = SkillEffects.FLEET_FOOTED;
-        var description = "Slice and Dice attacks increases movement speed by {bonus}, stacking up to {effect_amplifier_cap}, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", bonus);
-        };
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+//    public static final Skills.Entry rogue_tier_1_spell_1_modifier_1 = add(rogue_tier_1_spell_1_modifier_1());
+//    private static Skills.Entry rogue_tier_1_spell_1_modifier_1() {
+//        var id = Identifier.of(NAMESPACE, "rogue_tier_1_spell_1_modifier_1");
+//        var title = "Fleet Footed";
+//        var effect = SkillEffects.FLEET_FOOTED;
+//        var description = "Slice and Dice attacks increases movement speed by {bonus}, stacking up to {effect_amplifier_cap}, lasting {effect_duration} sec.";
+//        SpellTooltip.DescriptionMutator mutator = (args) -> {
+//            var modifier = effect.config().firstModifier();
+//            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+//            return args.description().replace("{bonus}", bonus);
+//        };
+//        var spell = SpellBuilder.createSpellModifier();
+//        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+//
+//        var modifier = new Spell.Modifier();
+//        modifier.spell_pattern = "rogues:slice_and_dice";
+//
+//        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 4, 1, 4);
+//        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+//        modifier.impacts = List.of(impact);
+//
+//        spell.modifiers = List.of(modifier);
+//
+//        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
+//    }
 
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rogues:slice_and_dice";
-
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 4, 1, 4);
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
-    }
-
-    public static final Skills.Entry rogue_tier_1_spell_1_modifier_2 = add(rogue_tier_1_spell_1_modifier_2());
-    private static Skills.Entry rogue_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_1_spell_1_modifier_2");
+    public static final Skills.Entry rogue_tier_2_spell_1_modifier_1 = add(rogue_tier_2_spell_1_modifier_1());
+    private static Skills.Entry rogue_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_1_modifier_1");
         var title = "Blade Fury";
         var description = "Increases the maximum number of Slice and Dice stacks by {effect_amplifier_cap_add}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -72,38 +72,38 @@ public class RogueSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }
 
-    public static final Skills.Entry rogue_tier_2_spell_1_modifier_1 = add(rogue_tier_2_spell_1_modifier_1());
-    private static Skills.Entry rogue_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_1_modifier_1");
-        var title = "Toxic Shock";
-        var description = "Shock Powder deals extra {damage} damage to poisoned targets.";
-
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rogues:shock_powder";
-
-        var impact = SpellBuilder.Impacts.damage(0.6F, 0F);
-        SpellBuilder.configureImpactEnableCondition(impact,
-                SpellBuilder.TargetConditions.ofPredicate(SpellEntityPredicates.IS_POISONED));
-        impact.particles = new ParticleBatch[] {
-                new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        5, 0.01F, 0.05F)
-                        .color(Color.POISON_LIGHT.toRGBA()),
-                new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        5, 0.01F, 0.05F)
-                        .color(Color.POISON_MID.toRGBA()),
-        };
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
-    }
+//    public static final Skills.Entry rogue_tier_2_spell_1_modifier_1 = add(rogue_tier_2_spell_1_modifier_1());
+//    private static Skills.Entry rogue_tier_2_spell_1_modifier_1() {
+//        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_1_modifier_1");
+//        var title = "Toxic Shock";
+//        var description = "Shock Powder deals extra {damage} damage to poisoned targets.";
+//
+//        var spell = SpellBuilder.createSpellModifier();
+//        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+//
+//        var modifier = new Spell.Modifier();
+//        modifier.spell_pattern = "rogues:shock_powder";
+//
+//        var impact = SpellBuilder.Impacts.damage(0.6F, 0F);
+//        SpellBuilder.configureImpactEnableCondition(impact,
+//                SpellBuilder.TargetConditions.ofPredicate(SpellEntityPredicates.IS_POISONED));
+//        impact.particles = new ParticleBatch[] {
+//                new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(),
+//                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+//                        5, 0.01F, 0.05F)
+//                        .color(Color.POISON_LIGHT.toRGBA()),
+//                new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(),
+//                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+//                        5, 0.01F, 0.05F)
+//                        .color(Color.POISON_MID.toRGBA()),
+//        };
+//        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+//        modifier.impacts = List.of(impact);
+//
+//        spell.modifiers = List.of(modifier);
+//
+//        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+//    }
 
     public static final Skills.Entry rogue_tier_2_spell_1_modifier_2 = add(rogue_tier_2_spell_1_modifier_2());
     private static Skills.Entry rogue_tier_2_spell_1_modifier_2() {

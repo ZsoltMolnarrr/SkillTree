@@ -28,48 +28,48 @@ public class PaladinSkills {
         return entry;
     }
 
-    public static final Skills.Entry paladin_tier_1_spell_1_modifier_1 = add(paladin_tier_1_spell_1_modifier_1());
-    private static Skills.Entry paladin_tier_1_spell_1_modifier_1() {
-        var effect = SkillEffects.DIVINE_STRENGTH;
+//    public static final Skills.Entry paladin_tier_1_spell_1_modifier_1 = add(paladin_tier_1_spell_1_modifier_1());
+//    private static Skills.Entry paladin_tier_1_spell_1_modifier_1() {
+//        var effect = SkillEffects.DIVINE_STRENGTH;
+//
+//        var id = Identifier.of(NAMESPACE, "paladin_tier_1_spell_1_modifier_1");
+//        var title = "Divine Strength";
+//        var description = "Flash Heal increases Attack Damage by {bonus} for {effect_duration} sec.";
+//
+//        SpellTooltip.DescriptionMutator mutator = (args) -> {
+//            var modifier = effect.config().firstModifier();
+//            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+//            return args.description().replace("{bonus}", bonus);
+//        };
+//
+//        var spell = SpellBuilder.createSpellModifier();
+//        spell.school = SpellSchools.HEALING;
+//
+//        var modifier = new Spell.Modifier();
+//        modifier.spell_pattern = "paladins:flash_heal";
+//
+//        var impact = SpellBuilder.Impacts.effectSet(SkillEffects.DIVINE_STRENGTH.id.toString(), 8, 0);
+//        impact.particles = new ParticleBatch[]{
+//                new ParticleBatch(
+//                        SpellEngineParticles.MagicParticles.get(
+//                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+//                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+//                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+//                        20, 0.05F, 0.1F)
+//                        .color(SkillsCommon.MIGHT_COLOR.toRGBA()),
+//                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), SkillsCommon.MIGHT_COLOR)
+//        };
+//        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+//        modifier.impacts = List.of(impact);
+//
+//        spell.modifiers = List.of(modifier);
+//
+//        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
+//    }
 
-        var id = Identifier.of(NAMESPACE, "paladin_tier_1_spell_1_modifier_1");
-        var title = "Divine Strength";
-        var description = "Flash Heal increases Attack Damage by {bonus} for {effect_duration} sec.";
-
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", bonus);
-        };
-
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.HEALING;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "paladins:flash_heal";
-
-        var impact = SpellBuilder.Impacts.effectSet(SkillEffects.DIVINE_STRENGTH.id.toString(), 8, 0);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.05F, 0.1F)
-                        .color(SkillsCommon.MIGHT_COLOR.toRGBA()),
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), SkillsCommon.MIGHT_COLOR)
-        };
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
-    }
-
-    public static final Skills.Entry paladin_tier_1_spell_1_modifier_2 = add(paladin_tier_1_spell_1_modifier_2());
-    private static Skills.Entry paladin_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_1_spell_1_modifier_2");
+    public static final Skills.Entry paladin_tier_2_spell_1_modifier_1 = add(paladin_tier_2_spell_1_modifier_1());
+    private static Skills.Entry paladin_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_1_modifier_1");
         var title = "Cleanse";
         var cleanseCount = 1;
         var description = "Flash Heal attempts to cure the target, by reducing the strength of a harmful effect.";
@@ -95,31 +95,31 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_tier_2_spell_1_modifier_1 = add(paladin_tier_2_spell_1_modifier_1());
-    private static Skills.Entry paladin_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_1_modifier_1");
-        var title = "Pursuit of Justice";
-        var description = "Divine Protection also increases your movement speed by {bonus}, for {effect_duration} sec.";
-        var effect = SkillEffects.PURSUIT_OF_JUSTICE;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
-
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.HEALING;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "paladins:divine_protection";
-
-        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 4, 0);
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
-    }
+//    public static final Skills.Entry paladin_tier_2_spell_1_modifier_1 = add(paladin_tier_2_spell_1_modifier_1());
+//    private static Skills.Entry paladin_tier_2_spell_1_modifier_1() {
+//        var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_1_modifier_1");
+//        var title = "Pursuit of Justice";
+//        var description = "Divine Protection also increases your movement speed by {bonus}, for {effect_duration} sec.";
+//        var effect = SkillEffects.PURSUIT_OF_JUSTICE;
+//        SpellTooltip.DescriptionMutator mutator = (args) -> {
+//            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+//            return args.description().replace("{bonus}", bonus);
+//        };
+//
+//        var spell = SpellBuilder.createSpellModifier();
+//        spell.school = SpellSchools.HEALING;
+//
+//        var modifier = new Spell.Modifier();
+//        modifier.spell_pattern = "paladins:divine_protection";
+//
+//        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 4, 0);
+//        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+//        modifier.impacts = List.of(impact);
+//
+//        spell.modifiers = List.of(modifier);
+//
+//        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
+//    }
 
     public static final Skills.Entry paladin_tier_2_spell_1_modifier_2 = add(paladin_tier_2_spell_1_modifier_2());
     private static Skills.Entry paladin_tier_2_spell_1_modifier_2() {

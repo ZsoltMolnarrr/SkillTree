@@ -27,9 +27,9 @@ public class WarriorSkills {
         return entry;
     }
 
-    public static final Skills.Entry warrior_tier_1_spell_1_modifier_1 = add(warrior_tier_1_spell_1_modifier_1());
-    private static Skills.Entry warrior_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_1_spell_1_modifier_1");
+    public static final Skills.Entry warrior_tier_2_spell_1_modifier_1 = add(warrior_tier_2_spell_1_modifier_1());
+    private static Skills.Entry warrior_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "warrior_tier_2_spell_1_modifier_1");
         var title = "Bouncing Throw";
         var description = "Shattering Throw ricochets to {ricochet} additional target.";
         var spell = SpellBuilder.createSpellModifier();
@@ -44,9 +44,9 @@ public class WarriorSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
-    public static final Skills.Entry warrior_tier_1_spell_1_modifier_2 = add(warrior_tier_1_spell_1_modifier_2());
-    private static Skills.Entry warrior_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_1_spell_1_modifier_2");
+    public static final Skills.Entry warrior_tier_2_spell_1_modifier_2 = add(warrior_tier_2_spell_1_modifier_2());
+    private static Skills.Entry warrior_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "warrior_tier_2_spell_1_modifier_2");
         var title = "Punching Throw";
         var description = "Shattering Throw deals {knockback_multiply_base} more knockback.";
         var spell = SpellBuilder.createSpellModifier();
@@ -62,9 +62,9 @@ public class WarriorSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
-    public static final Skills.Entry warrior_tier_2_spell_1_modifier_1 = add(warrior_tier_2_spell_1_modifier_1());
-    private static Skills.Entry warrior_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_2_spell_1_modifier_1");
+    public static final Skills.Entry warrior_tier_3_spell_1_modifier_1 = add(warrior_tier_3_spell_1_modifier_1());
+    private static Skills.Entry warrior_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_1_modifier_1");
         var title = "Battle Shout";
         var description = "Shout increases Attack Damage of allies by {bonus}, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -97,9 +97,9 @@ public class WarriorSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
     }
 
-    public static final Skills.Entry warrior_tier_2_spell_1_modifier_2 = add(warrior_tier_2_spell_1_modifier_2());
-    private static Skills.Entry warrior_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_2_spell_1_modifier_2");
+    public static final Skills.Entry warrior_tier_3_spell_1_modifier_2 = add(warrior_tier_3_spell_1_modifier_2());
+    private static Skills.Entry warrior_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_1_modifier_2");
         var title = "Challenging Shout";
         var description = "Shout taunts all affected enemies.";
         var spell = SpellBuilder.createSpellModifier();
@@ -119,9 +119,9 @@ public class WarriorSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
-    public static final Skills.Entry warrior_tier_3_spell_1_modifier_1 = add(warrior_tier_3_spell_1_modifier_1());
-    private static Skills.Entry warrior_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_1_modifier_1");
+    public static final Skills.Entry warrior_tier_4_spell_1_modifier_1 = add(warrior_tier_4_spell_1_modifier_1());
+    private static Skills.Entry warrior_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_1_modifier_1");
         var title = "Endurance";
         var description = "Charge lasts {effect_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
@@ -135,9 +135,9 @@ public class WarriorSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
-    public static final Skills.Entry warrior_tier_3_spell_1_modifier_2 = add(warrior_tier_3_spell_1_modifier_2());
-    private static Skills.Entry warrior_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_1_modifier_2");
+    public static final Skills.Entry warrior_tier_4_spell_1_modifier_2 = add(warrior_tier_4_spell_1_modifier_2());
+    private static Skills.Entry warrior_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_1_modifier_2");
         var title = "Concussion Blow";
         var description = "Next attack after using Charge, stuns the target for {effect_duration} sec.";
         var stashEffect = SkillEffects.CONCUSSION_BLOW;
@@ -160,47 +160,6 @@ public class WarriorSkills {
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 10F);
-
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
-    }
-
-    public static final Skills.Entry warrior_tier_4_spell_1_modifier_1 = add(warrior_tier_4_spell_1_modifier_1());
-    private static Skills.Entry warrior_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_1_modifier_1");
-        var title = "Whirlwind Mastery";
-        var description = "Whirlwind deals {power_multiplier} more damage.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:whirlwind";
-        modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.power_multiplier = 0.3F;
-
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
-    }
-
-    public static final Skills.Entry warrior_tier_4_spell_1_modifier_2 = add(warrior_tier_4_spell_1_modifier_2());
-    private static Skills.Entry warrior_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_1_modifier_2");
-        var title = "Hamstring";
-        var description = "Whirlwind has {impact_chance} chance to immobilize the target for {effect_duration} sec.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-
-        var effect = SkillEffects.HAMSTRING;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:whirlwind";
-
-        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
-        impact.chance = 0.3F;
-
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-        spell.modifiers = List.of(modifier);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }

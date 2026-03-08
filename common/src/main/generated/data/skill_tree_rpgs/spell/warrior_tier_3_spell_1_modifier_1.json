@@ -1,12 +1,53 @@
 {
   "school": "spell_power:physical_melee",
-  "range": 0.0,
+  "range": 12.0,
   "tier": 1,
-  "type": "MODIFIER",
-  "modifiers": [
-    {
-      "spell_pattern": "rogues:charge",
-      "effect_duration_add": 1.0
+  "tooltip": {
+    "show_activation": false,
+    "show_range": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_CAST",
+        "spell": {
+          "id": "rogues:shout"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "AREA",
+    "area": {
+      "include_caster": true
     }
-  ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "skill_tree_rpgs:battle_shout",
+          "duration": 6.0
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:sign_fist",
+          "origin": "CENTER",
+          "shape": "LINE_VERTICAL",
+          "count": 1.0,
+          "min_speed": 0.8,
+          "max_speed": 0.8,
+          "color_rgba": 3208659199,
+          "scale": 0.8,
+          "follow_entity": true
+        }
+      ]
+    }
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

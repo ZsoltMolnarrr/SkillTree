@@ -5,10 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:whirlwind",
-      "power_modifier": {
-        "power_multiplier": 0.3
-      }
+      "spell_pattern": "rogues:charge",
+      "effect_duration_add": 1.0
     }
   ]
 }

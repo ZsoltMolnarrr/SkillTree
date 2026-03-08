@@ -29,7 +29,7 @@ public class ArcherSkills {
         return entry;
     }
 
-    public static final Skills.Entry archer_tier_1_spell_1_modifier_1 = add(archer_tier_1_spell_1_modifier_1());
+    // public static final Skills.Entry archer_tier_1_spell_1_modifier_1 = add(archer_tier_1_spell_1_modifier_1());
     private static Skills.Entry archer_tier_1_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "archer_tier_1_spell_1_modifier_1");
         var title = "Improved Hunter's Mark";
@@ -46,68 +46,85 @@ public class ArcherSkills {
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
     }
 
-    public static final Skills.Entry archer_tier_1_spell_1_modifier_2 = add(archer_tier_1_spell_1_modifier_2());
-    private static Skills.Entry archer_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_1_spell_1_modifier_2");
-        var title = "Charged Shot";
-        var description = "Power Shot deals {damage} damage around the target hit.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+//    public static final Skills.Entry archer_tier_1_spell_1_modifier_2 = add(archer_tier_1_spell_1_modifier_2());
+//    private static Skills.Entry archer_tier_1_spell_1_modifier_2() {
+//        var id = Identifier.of(NAMESPACE, "archer_tier_1_spell_1_modifier_2");
+//        var title = "Charged Shot";
+//        var description = "Power Shot deals {damage} damage around the target hit.";
+//        var spell = SpellBuilder.createSpellModifier();
+//        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+//
+//        var radius = 3F;
+//
+//        var modifier = new Spell.Modifier();
+//        modifier.spell_pattern = "archers:power_shot";
+//
+//        var impact = SpellBuilder.Impacts.damage(0.5F, 0);
+//        impact.action.allow_on_center_target = false;
+//
+//        var area_impact = new Spell.AreaImpact();
+//        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
+//        area_impact.radius = radius;
+//        area_impact.area = new Spell.Target.Area();
+//        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+//        area_impact.particles = new ParticleBatch[]{
+//                new ParticleBatch(
+//                        SkillsCommon.SPARK_DECELERATE.toString(),
+//                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+//                        20, 0.35F, 0.35F
+//                ).color(Color.RED.toRGBA()),
+//                new ParticleBatch(
+//                        "firework",
+//                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+//                        20, 0.15F, 0.15F
+//                )
+//        };
+//
+//        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+//        modifier.impacts = List.of(impact);
+//        modifier.replacing_area_impact = area_impact;
+//
+//        spell.modifiers = List.of(modifier);
+//
+//        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+//    }
 
-        var radius = 3F;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "archers:power_shot";
-
-        var impact = SpellBuilder.Impacts.damage(0.5F, 0);
-        impact.action.allow_on_center_target = false;
-
-        var area_impact = new Spell.AreaImpact();
-        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
-        area_impact.radius = radius;
-        area_impact.area = new Spell.Target.Area();
-        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.SPARK_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.35F, 0.35F
-                ).color(Color.RED.toRGBA()),
-                new ParticleBatch(
-                        "firework",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.15F, 0.15F
-                )
-        };
-
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-        modifier.replacing_area_impact = area_impact;
-
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
-    }
+//    public static final Skills.Entry archer_tier_2_spell_1_modifier_1 = add(archer_tier_2_spell_1_modifier_1());
+//    private static Skills.Entry archer_tier_2_spell_1_modifier_1() {
+//        var id = Identifier.of(NAMESPACE, "archer_tier_2_spell_1_modifier_1");
+//        var title = "Nettle Sprouts";
+//        var description = "Entangling Roots has {impact_chance} chance to apply stacking poison, lasting {effect_duration} sec.";
+//        var spell = SpellBuilder.createSpellModifier();
+//        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+//
+//        var modifier = new Spell.Modifier();
+//        modifier.spell_pattern = "archers:entangling_roots";
+//
+//        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 5, 1, 1);
+//        impact.chance = 0.5F;
+//        impact.action.status_effect.amplifier_cap_power_multiplier = 0.2F;
+//        impact.particles = SkillsCommon.poisonImpactParticles();
+//
+//        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+//        modifier.impacts = List.of(impact);
+//
+//        spell.modifiers = List.of(modifier);
+//
+//        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+//    }
 
     public static final Skills.Entry archer_tier_2_spell_1_modifier_1 = add(archer_tier_2_spell_1_modifier_1());
     private static Skills.Entry archer_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "archer_tier_2_spell_1_modifier_1");
-        var title = "Nettle Sprouts";
-        var description = "Entangling Roots has {impact_chance} chance to apply stacking poison, lasting {effect_duration} sec.";
+        var title = "Improved Hunter's Mark";
+        var description = "Power Shot applies {stash_amplifier_add} additional Hunter's Mark stack.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "archers:entangling_roots";
-
-        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 5, 1, 1);
-        impact.chance = 0.5F;
-        impact.action.status_effect.amplifier_cap_power_multiplier = 0.2F;
-        impact.particles = SkillsCommon.poisonImpactParticles();
-
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-
+        modifier.spell_pattern = "archers:power_shot";
+        modifier.stash_amplifier_add = 1;
+        modifier.effect_amplifier_cap_add = 1;
         spell.modifiers = List.of(modifier);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));

@@ -26,40 +26,6 @@ public class ArcaneSkills {
         return entry;
     }
 
-    @Deprecated(forRemoval = true)
-    public static final Skills.Entry arcane_tier_1_spell_1_modifier_1 = add(arcane_tier_1_spell_1_modifier_1());
-    private static Skills.Entry arcane_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_1_spell_1_modifier_1");
-        var title = "Conjured Arcane Charge";
-        var description = "Increases the maximum number of Arcane Charges by {effect_amplifier_cap_add}.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.ARCANE;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "wizards:arcane_blast";
-        modifier.effect_amplifier_cap_add = 1;
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
-    }
-
-    @Deprecated(forRemoval = true)
-    public static final Skills.Entry arcane_tier_1_spell_1_modifier_2 = add(arcane_tier_1_spell_1_modifier_2());
-    private static Skills.Entry arcane_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_1_spell_1_modifier_2");
-        var title = "Arcane Endurance";
-        var description = "Increases the duration of Arcane Charges by {effect_duration_add} sec.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.ARCANE;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "wizards:arcane_blast";
-        modifier.effect_duration_add = 2;
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
-    }
-
     public static final Skills.Entry arcane_tier_2_spell_1_modifier_1 = add(arcane_tier_2_spell_1_modifier_1());
     private static Skills.Entry arcane_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "arcane_tier_2_spell_1_modifier_1");

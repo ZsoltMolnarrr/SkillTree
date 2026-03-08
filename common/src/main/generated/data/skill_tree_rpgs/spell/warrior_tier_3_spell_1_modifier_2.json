@@ -2,50 +2,32 @@
   "school": "spell_power:physical_melee",
   "range": 0.0,
   "tier": 1,
-  "tooltip": {
-    "show_activation": false
-  },
-  "type": "PASSIVE",
-  "passive": {
-    "triggers": [
-      {
-        "type": "SPELL_CAST",
-        "spell": {
-          "id": "rogues:charge"
-        }
-      }
-    ]
-  },
-  "deliver": {
-    "type": "STASH_EFFECT",
-    "stash_effect": {
-      "id": "skill_tree_rpgs:concussion_blow",
-      "triggers": [
-        {
-          "type": "MELEE_IMPACT"
-        }
-      ],
-      "consumed_next_tick": true
-    }
-  },
-  "impacts": [
+  "type": "MODIFIER",
+  "modifiers": [
     {
-      "action": {
-        "type": "STATUS_EFFECT",
-        "status_effect": {
-          "effect_id": "spell_engine:stun",
-          "duration": 2.0
+      "spell_pattern": "rogues:shout",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "AGGRO",
+            "aggro": {}
+          },
+          "particles": [
+            {
+              "particle_id": "spell_engine:sign_fist",
+              "origin": "CENTER",
+              "shape": "LINE_VERTICAL",
+              "count": 1.0,
+              "min_speed": 0.8,
+              "max_speed": 0.8,
+              "color_rgba": 3208659199,
+              "scale": 0.8,
+              "follow_entity": true
+            }
+          ]
         }
-      },
-      "sound": {
-        "id": "spell_engine:stun_generic"
-      }
+      ]
     }
-  ],
-  "cost": {
-    "durability": 0,
-    "cooldown": {
-      "duration": 10.0
-    }
-  }
+  ]
 }

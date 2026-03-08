@@ -5,7 +5,10 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:whirlwind"
+      "spell_pattern": "rpg_series:whirlwind",
+      "power_modifier": {
+        "power_multiplier": 0.3
+      }
     }
   ]
 }

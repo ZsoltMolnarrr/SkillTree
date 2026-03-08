@@ -28,55 +28,6 @@ public class FireSkills {
 
     public static final Color FIRE_MAGIC_COLOR = Color.from(0xff6600);
 
-    @Deprecated(forRemoval = true)
-    public static final Skills.Entry fire_tier_1_spell_1_modifier_1 = add(fire_tier_1_spell_1_modifier_1());
-    private static Skills.Entry fire_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_1_spell_1_modifier_1");
-        var title = "Blast Radius";
-
-        var bonus = 0.5F;
-
-        var description = "Increases the area of effect of Pyroblast by {bonus}.";
-        var mutator = new SpellTooltip.DescriptionMutator() {
-            @Override
-            public String mutate(Args args) {
-                return args.description().replace("{bonus}", SpellTooltip.percent(bonus));
-            }
-        };
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.FIRE;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "wizards:fire_blast";
-        var extendedRadius = 2.5F * (1F + bonus);
-        modifier.replacing_area_impact = SpellBuilder.Complex.fireExplosion(extendedRadius);
-
-        modifier.replacing_area_impact.sound = new Sound("wizards:fireball_impact");
-
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FIRE));
-    }
-
-    @Deprecated(forRemoval = true)
-    public static final Skills.Entry fire_tier_1_spell_1_modifier_2 = add(fire_tier_1_spell_1_modifier_2());
-    private static Skills.Entry fire_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_1_spell_1_modifier_2");
-        var title = "Blast Punch";
-        var description = "Increases the knockback of Pyroblast by {knockback_multiply_base}.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.FIRE;
-
-        var bonus = 0.5F;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "wizards:fire_blast";
-        modifier.knockback_multiply_base = bonus;
-        spell.modifiers = List.of(modifier);
-
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
-    }
-
     public static final Skills.Entry fire_tier_2_spell_1_modifier_1 = add(fire_tier_2_spell_1_modifier_1());
     private static Skills.Entry fire_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "fire_tier_2_spell_1_modifier_1");

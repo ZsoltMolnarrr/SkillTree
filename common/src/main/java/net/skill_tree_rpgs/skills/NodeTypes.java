@@ -144,10 +144,6 @@ public class NodeTypes {
                     Icon.item("wizards:wand_arcane"),
                     ARCANE_ROOT.attributeReward()).require(WIZARDS)
     );
-    public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_1).require(WIZARDS));
-    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_arcane_blast_modifier_2 (for removal)
-    public static final Entry ARCANE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_1_spell_1_modifier_2).require(WIZARDS));
-    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_arcane_missile_modifier_1 (for removal)
     public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_1).require(WIZARDS));
     public static final Entry ARCANE_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcaneSkills.arcane_tier_2_spell_1_modifier_2).require(WIZARDS));
     public static final Entry ARCANE_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcaneSkills.arcane_tier_3_spell_1_modifier_1).require(WIZARDS));
@@ -181,10 +177,6 @@ public class NodeTypes {
                     Icon.item("wizards:wand_fire"),
                     FIRE_ROOT.attributeReward()).require(WIZARDS)
     );
-    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_fire_blast_modifier_1 (for removal)
-    public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_1).require(WIZARDS));
-    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_fire_blast_modifier_2 (for removal)
-    public static final Entry FIRE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_1_spell_1_modifier_2).require(WIZARDS));
     public static final Entry FIRE_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(FireSkills.fire_tier_2_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("wizards", "fire_breath"))).require(WIZARDS));
     public static final Entry FIRE_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(FireSkills.fire_tier_2_spell_1_modifier_2).require(WIZARDS));
@@ -218,10 +210,6 @@ public class NodeTypes {
                     Icon.item("wizards:wand_frost"),
                     FROST_ROOT.attributeReward()).require(WIZARDS)
     );
-    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_frostbolt_modifier_1 (for removal)
-    public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_1).require(WIZARDS));
-    @Deprecated(forRemoval = true) // Moved to WeaponSkillModifiers as weapon_frostbolt_modifier_2 (for removal)
-    public static final Entry FROST_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(FrostSkills.frost_tier_1_spell_1_modifier_2).require(WIZARDS));
     public static final Entry FROST_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(FrostSkills.frost_tier_2_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("wizards", "frost_nova")))
             .require(WIZARDS)
@@ -256,8 +244,6 @@ public class NodeTypes {
                     Icon.item("paladins:holy_wand"),
                     PRIEST_ROOT.attributeReward()).require(PALADINS)
     );
-    public static final Entry PRIEST_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(PriestSkills.priest_tier_1_spell_1_modifier_1).require(PALADINS));
-    public static final Entry PRIEST_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(PriestSkills.priest_tier_1_spell_1_modifier_2).require(PALADINS));
     public static final Entry PRIEST_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(PriestSkills.priest_tier_2_spell_1_modifier_1).require(PALADINS));
     public static final Entry PRIEST_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(PriestSkills.priest_tier_2_spell_1_modifier_2).require(PALADINS));
     public static final Entry PRIEST_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(PriestSkills.priest_tier_3_spell_1_modifier_1).require(PALADINS));
@@ -292,8 +278,6 @@ public class NodeTypes {
                     Icon.item("paladins:iron_mace"),
                     PALADIN_ROOT.attributeReward()).require(PALADINS)
     );
-    public static final Entry PALADIN_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(PaladinSkills.paladin_tier_1_spell_1_modifier_1).require(PALADINS));
-    public static final Entry PALADIN_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(PaladinSkills.paladin_tier_1_spell_1_modifier_2).require(PALADINS));
     public static final Entry PALADIN_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(PaladinSkills.paladin_tier_2_spell_1_modifier_1).require(PALADINS));
     public static final Entry PALADIN_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(PaladinSkills.paladin_tier_2_spell_1_modifier_2).require(PALADINS));
     public static final Entry PALADIN_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(PaladinSkills.paladin_tier_3_spell_1_modifier_1).require(PALADINS));
@@ -326,8 +310,6 @@ public class NodeTypes {
                     ARCHER_ROOT.attributeReward()).require(ARCHERS)
     );
     
-    public static final Entry ARCHER_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcherSkills.archer_tier_1_spell_1_modifier_1).require(ARCHERS));
-    public static final Entry ARCHER_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcherSkills.archer_tier_1_spell_1_modifier_2).require(ARCHERS));
     public static final Entry ARCHER_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcherSkills.archer_tier_2_spell_1_modifier_1).require(ARCHERS));
     public static final Entry ARCHER_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(ArcherSkills.archer_tier_2_spell_1_modifier_2).require(ARCHERS));
     public static final Entry ARCHER_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(ArcherSkills.archer_tier_3_spell_1_modifier_1).require(ARCHERS));
@@ -360,8 +342,6 @@ public class NodeTypes {
                     Icon.item("rogues:iron_sickle"),
                     ROGUE_ROOT.attributeReward()).require(ROGUES)
     );
-    public static final Entry ROGUE_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(RogueSkills.rogue_tier_1_spell_1_modifier_1).require(ROGUES));
-    public static final Entry ROGUE_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(RogueSkills.rogue_tier_1_spell_1_modifier_2).require(ROGUES));
     public static final Entry ROGUE_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(RogueSkills.rogue_tier_2_spell_1_modifier_1).require(ROGUES));
     public static final Entry ROGUE_TIER_2_SPELL_1_MODIFIER_2 = add(passiveSpell(RogueSkills.rogue_tier_2_spell_1_modifier_2)
             .withIcon(Icon.spell(Identifier.of("rogues:shock_powder")))
@@ -396,20 +376,20 @@ public class NodeTypes {
                     Icon.item("rogues:iron_double_axe"),
                     WARRIOR_ROOT.attributeReward()).require(ROGUES)
     );
-    public static final Entry WARRIOR_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell(WarriorSkills.warrior_tier_1_spell_1_modifier_1).require(ROGUES));
-    public static final Entry WARRIOR_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell(WarriorSkills.warrior_tier_1_spell_1_modifier_2).require(ROGUES));
-    public static final Entry WARRIOR_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(WarriorSkills.warrior_tier_2_spell_1_modifier_1)
+    public static final Entry WARRIOR_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(WarriorSkills.warrior_tier_2_spell_1_modifier_1).require(ROGUES));
+    public static final Entry WARRIOR_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(WarriorSkills.warrior_tier_2_spell_1_modifier_2).require(ROGUES));
+    public static final Entry WARRIOR_TIER_3_SPELL_1_MODIFIER_1 = add(passiveSpell(WarriorSkills.warrior_tier_3_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("rogues", "shout")))
             .require(ROGUES)
     );
-    public static final Entry WARRIOR_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(WarriorSkills.warrior_tier_2_spell_1_modifier_2).require(ROGUES));
-    public static final Entry WARRIOR_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(WarriorSkills.warrior_tier_3_spell_1_modifier_1).require(ROGUES));
-    public static final Entry WARRIOR_TIER_3_SPELL_1_MODIFIER_2 = add(passiveSpell(WarriorSkills.warrior_tier_3_spell_1_modifier_2)
-            .withIcon(Icon.spell(Identifier.of("rogues", "charge")))
+    public static final Entry WARRIOR_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell(WarriorSkills.warrior_tier_3_spell_1_modifier_2)
             .require(ROGUES)
     );
     public static final Entry WARRIOR_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell(WarriorSkills.warrior_tier_4_spell_1_modifier_1).require(ROGUES));
-    public static final Entry WARRIOR_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(WarriorSkills.warrior_tier_4_spell_1_modifier_2).require(ROGUES));
+    public static final Entry WARRIOR_TIER_4_SPELL_1_MODIFIER_2 = add(passiveSpell(WarriorSkills.warrior_tier_4_spell_1_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("rogues", "charge")))
+            .require(ROGUES)
+    );
 
     public static final Entry WARRIOR_TIER_1_PASSIVE_1 = add(passiveSpell(WarriorSkills.warrior_tier_1_passive_1).require(ROGUES));
     public static final Entry WARRIOR_TIER_1_PASSIVE_2 = add(passiveSpell(WarriorSkills.warrior_tier_1_passive_2).require(ROGUES));

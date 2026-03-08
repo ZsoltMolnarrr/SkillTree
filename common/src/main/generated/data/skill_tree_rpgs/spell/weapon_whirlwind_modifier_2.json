@@ -5,7 +5,20 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:whirlwind"
+      "spell_pattern": "rpg_series:whirlwind",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "chance": 0.3,
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "skill_tree_rpgs:hamstring",
+              "duration": 3.0
+            }
+          }
+        }
+      ]
     }
   ]
 }

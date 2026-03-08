@@ -3,6 +3,7 @@ package net.skill_tree_rpgs.skills;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
+import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
@@ -406,24 +407,44 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_whirlwind_modifier_1 = add(weapon_whirlwind_modifier_1());
     private static Skills.Entry weapon_whirlwind_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_whirlwind_modifier_1");
+        var title = "Whirlwind Mastery";
+        var description = "Whirlwind deals {power_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "rpg_series:whirlwind";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.3F;
+
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Whirlwind I", "", null, Skills.Category.WEAPON);
+
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry weapon_whirlwind_modifier_2 = add(weapon_whirlwind_modifier_2());
     private static Skills.Entry weapon_whirlwind_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_whirlwind_modifier_2");
+        var title = "Hamstring";
+        var description = "Whirlwind has {impact_chance} chance to immobilize the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var effect = SkillEffects.HAMSTRING;
+
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "rpg_series:whirlwind";
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
+        impact.chance = 0.3F;
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Whirlwind II", "", null, Skills.Category.WEAPON);
+
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
+
 
     // ===== SPEAR (Impale) =====
 
