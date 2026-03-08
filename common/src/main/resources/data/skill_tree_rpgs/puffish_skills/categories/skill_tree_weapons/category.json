@@ -1,14 +1,14 @@
 {
-	"title": "Class Skills",
+	"title": "Weapon Skills",
 	"icon": {
 		"type": "texture",
 		"data": {
-			"texture": "skill_tree_rpgs:textures/gui/icon.png"
+			"texture": "skill_tree_rpgs:textures/gui/weapon_skills.png"
 		}
 	},
 	"unlocked_by_default": true,
-	"spent_points_limit": 11,
-	"exclusive_root": true,
+	"spent_points_limit": 6,
+	"exclusive_root": false,
 	"background": {
 		"texture": "skill_tree_rpgs:textures/gui/background_6_b.png",
 		"width": 768,
