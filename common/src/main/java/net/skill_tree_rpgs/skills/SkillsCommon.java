@@ -8,6 +8,8 @@ import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_power.api.SpellSchools;
 
+import java.util.List;
+
 public class SkillsCommon {
     public static final float WIZARD_WARD_CHANCE = 0.25F;
     public static final float WIZARD_WARD_DURATION = 8F;
@@ -80,5 +82,11 @@ public class SkillsCommon {
                         .scale(0.8F)
                         .color(Color.BLOOD.alpha(0.2F).toRGBA())
         };
+    }
+
+    public static void explosionImpact(Spell spell, float coefficient) {
+        var impact = SpellBuilder.Impacts.damage(coefficient, 0.2F);
+        spell.area_impact = SpellBuilder.Complex.fireExplosion(2.5F);
+        spell.impacts = List.of(impact);
     }
 }

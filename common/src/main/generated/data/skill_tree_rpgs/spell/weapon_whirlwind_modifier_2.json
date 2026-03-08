@@ -13,7 +13,7 @@
           "action": {
             "type": "STATUS_EFFECT",
             "status_effect": {
-              "effect_id": "skill_tree_rpgs:hamstring",
+              "effect_id": "spell_engine:immobilize",
               "duration": 3.0
             }
           }

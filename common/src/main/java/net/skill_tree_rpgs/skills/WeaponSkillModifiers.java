@@ -5,6 +5,7 @@ import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
+import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.ParticleBatch;
@@ -12,6 +13,7 @@ import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
+import net.spell_engine.rpg_series.datagen.WeaponSkills;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
@@ -292,7 +294,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:swift_strikes";
+        modifier.spell_pattern = WeaponSkills.SWIFT_STRIKES.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Swift Strikes I", "", null, Skills.Category.WEAPON);
     }
@@ -303,7 +305,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:swift_strikes";
+        modifier.spell_pattern = WeaponSkills.SWIFT_STRIKES.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Swift Strikes II", "", null, Skills.Category.WEAPON);
     }
@@ -314,7 +316,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:flurry";
+        modifier.spell_pattern = WeaponSkills.FLURRY.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Flurry I", "", null, Skills.Category.WEAPON);
     }
@@ -325,7 +327,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:flurry";
+        modifier.spell_pattern = WeaponSkills.FLURRY.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Flurry II", "", null, Skills.Category.WEAPON);
     }
@@ -346,7 +348,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:smash";
+        modifier.spell_pattern = WeaponSkills.SMASH.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Smash I", "", null, Skills.Category.WEAPON);
     }
@@ -357,7 +359,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:smash";
+        modifier.spell_pattern = WeaponSkills.SMASH.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Smash II", "", null, Skills.Category.WEAPON);
     }
@@ -378,7 +380,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:ground_slam";
+        modifier.spell_pattern = WeaponSkills.GROUND_SLAM.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Ground Slam I", "", null, Skills.Category.WEAPON);
     }
@@ -389,7 +391,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:ground_slam";
+        modifier.spell_pattern = WeaponSkills.GROUND_SLAM.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Ground Slam II", "", null, Skills.Category.WEAPON);
     }
@@ -413,7 +415,7 @@ public class WeaponSkillModifiers {
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:whirlwind";
+        modifier.spell_pattern = WeaponSkills.WHIRLWIND.id().toString();
         modifier.power_modifier = new Spell.Impact.Modifier();
         modifier.power_modifier.power_multiplier = 0.3F;
 
@@ -430,10 +432,10 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
-        var effect = SkillEffects.HAMSTRING;
+        var effect = SpellEngineEffects.IMMOBILIZE;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:whirlwind";
+        modifier.spell_pattern = WeaponSkills.WHIRLWIND.id().toString();
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
         impact.chance = 0.3F;
@@ -444,7 +446,6 @@ public class WeaponSkillModifiers {
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
-
 
     // ===== SPEAR (Impale) =====
 
@@ -459,23 +460,38 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_impale_modifier_1 = add(weapon_impale_modifier_1());
     private static Skills.Entry weapon_impale_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_impale_modifier_1");
+        var title = "Pierce";
+        var description = "Impale spear pierces through {pierce} targets.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:impale";
+        modifier.spell_pattern = WeaponSkills.IMPALE.id().toString();
+        modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
+        modifier.projectile_perks.pierce = 3;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Impale I", "", null, Skills.Category.WEAPON);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_impale_modifier_2 = add(weapon_impale_modifier_2());
     private static Skills.Entry weapon_impale_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_impale_modifier_2");
+        var title = "Pin Down";
+        var description = "Impale pins the target, applying Immobilize for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:impale";
+        modifier.spell_pattern = WeaponSkills.IMPALE.id().toString();
+
+        var impact = SpellBuilder.Impacts.effectSet(SpellEngineEffects.IMMOBILIZE.id.toString(), 3, 0);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Impale II", "", null, Skills.Category.WEAPON);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 
     // ===== DAGGER (Fan of Knives) =====
@@ -497,7 +513,7 @@ public class WeaponSkillModifiers {
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:fan_of_knives";
+        modifier.spell_pattern = WeaponSkills.FAN_OF_KNIVES.id().toString();
         modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
         modifier.projectile_perks.ricochet = 1;
         modifier.projectile_perks.bounce = 2;
@@ -509,18 +525,16 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_fan_of_knives_modifier_2 = add(weapon_fan_of_knives_modifier_2());
     private static Skills.Entry weapon_fan_of_knives_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_fan_of_knives_modifier_2");
-        var title = "Poisoned Blades";
-        var description = "Fan of Knives daggers apply Poison for {effect_duration} sec.";
+        var title = "Expanded Fan";
+        var description = "Fan of Knives launches {extra_launch} additional daggers.";
+
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:fan_of_knives";
-
-        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 4F, 0, 1);
-        impact.particles = SkillsCommon.poisonImpactParticles();
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
+        modifier.spell_pattern = WeaponSkills.FAN_OF_KNIVES.id().toString();
+        modifier.projectile_launch = new Spell.LaunchProperties();
+        modifier.projectile_launch.extra_launch_count = 2;
 
         spell.modifiers = List.of(modifier);
 
@@ -543,7 +557,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:swipe";
+        modifier.spell_pattern = WeaponSkills.SWIPE.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Swipe I", "", null, Skills.Category.WEAPON);
     }
@@ -554,7 +568,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:swipe";
+        modifier.spell_pattern = WeaponSkills.SWIPE.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Swipe II", "", null, Skills.Category.WEAPON);
     }
@@ -575,7 +589,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:thrust";
+        modifier.spell_pattern = WeaponSkills.THRUST.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Thrust I", "", null, Skills.Category.WEAPON);
     }
@@ -586,7 +600,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:thrust";
+        modifier.spell_pattern = WeaponSkills.THRUST.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Thrust II", "", null, Skills.Category.WEAPON);
     }
@@ -604,23 +618,21 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_bow_passive_1 = add(weapon_bow_passive_1());
     private static Skills.Entry weapon_bow_passive_1() {
         var id = Identifier.of(NAMESPACE, "weapon_bow_passive_1");
-        var title = "Leeching Shot";
-        var description = "Arrow hits have {trigger_chance} chance to heal you.";
+        var title = "Dazing Arrow";
+        var description = "Arrow hits have {trigger_chance} chance to slow the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
         spell.range = 0;
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.arrowHit();
-        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         trigger.chance = 0.25F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.heal(0.15F);
-        impact.particles = SkillsCommon.leechImpactParticles();
+        var impact = SpellBuilder.Impacts.effectSet(StatusEffects.SLOWNESS.getIdAsString(), 3F, 1);
         spell.impacts = List.of(impact);
 
-        SpellBuilder.Cost.cooldown(spell, 5F);
+        SpellBuilder.Cost.cooldown(spell, 6F);
 
         return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
@@ -661,21 +673,19 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_crossbow_passive_1 = add(weapon_crossbow_passive_1());
     private static Skills.Entry weapon_crossbow_passive_1() {
         var id = Identifier.of(NAMESPACE, "weapon_crossbow_passive_1");
-        var title = "Impact Bolt";
-        var description = "Crossbow bolts have {trigger_chance} chance to slow the target for {effect_duration} sec.";
+        var title = "Weakening Bolt";
+        var description = "Crossbow shots have {trigger_chance} chance to apply Weakness to the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
         spell.range = 0;
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.arrowHit();
-        trigger.chance = 0.3F;
+        trigger.chance = 0.25F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectSet(StatusEffects.SLOWNESS.getIdAsString(), 3F, 1);
+        var impact = SpellBuilder.Impacts.effectSet(StatusEffects.WEAKNESS.getIdAsString(), 4F, 0);
         spell.impacts = List.of(impact);
-
-        SpellBuilder.Cost.cooldown(spell, 8F);
 
         return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
@@ -683,8 +693,8 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_crossbow_passive_2 = add(weapon_crossbow_passive_2());
     private static Skills.Entry weapon_crossbow_passive_2() {
         var id = Identifier.of(NAMESPACE, "weapon_crossbow_passive_2");
-        var title = "Disarming Bolt";
-        var description = "Crossbow bolts have {trigger_chance} chance to apply Weakness to the target for {effect_duration} sec.";
+        var title = "Fuse Bolt";
+        var description = "Crossbow shots have {trigger_chance} chance to cause a small explosion on the target.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
         spell.range = 0;
@@ -694,10 +704,7 @@ public class WeaponSkillModifiers {
         trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectSet(StatusEffects.WEAKNESS.getIdAsString(), 4F, 0);
-        spell.impacts = List.of(impact);
-
-        SpellBuilder.Cost.cooldown(spell, 10F);
+        SkillsCommon.explosionImpact(spell, 0.6F);
 
         return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
@@ -718,7 +725,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:cleave";
+        modifier.spell_pattern = WeaponSkills.CLEAVE.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Cleave I", "", null, Skills.Category.WEAPON);
     }
@@ -729,7 +736,7 @@ public class WeaponSkillModifiers {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "rpg_series:cleave";
+        modifier.spell_pattern = WeaponSkills.CLEAVE.id().toString();
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, "Cleave II", "", null, Skills.Category.WEAPON);
     }

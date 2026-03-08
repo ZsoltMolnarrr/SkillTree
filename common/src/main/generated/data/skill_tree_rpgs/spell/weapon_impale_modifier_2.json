@@ -5,7 +5,19 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:impale"
+      "spell_pattern": "rpg_series:impale",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "spell_engine:immobilize",
+              "duration": 3.0
+            }
+          }
+        }
+      ]
     }
   ]
 }

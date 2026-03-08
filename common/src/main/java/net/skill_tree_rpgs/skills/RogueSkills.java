@@ -5,7 +5,6 @@ import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
-import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.ParticleBatch;
@@ -121,7 +120,7 @@ public class RogueSkills {
         trigger.chance = 0.5F;
         spell.passive.triggers = List.of(trigger);
 
-        FireSkills.explosionImpact(spell, 0.6F);
+        SkillsCommon.explosionImpact(spell, 0.6F);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
     }

@@ -58,11 +58,6 @@ public class SkillTreeClientMod {
                 new BuffParticleSpawner(new ParticleBatch[]{ magicSnareParticles
                         .copy().color(SkillsCommon.ARCANE_COLOR) })
         );
-        CustomParticleStatusEffect.register(
-                SkillEffects.HAMSTRING.effect,
-                new BuffParticleSpawner(new ParticleBatch[]{ magicSnareParticles
-                        .copy().color(Color.RAGE.toRGBA()) })
-        );
 
         final var fireVulnerability = new ParticleBatch(
                 SpellEngineParticles.flame_medium_b.id().toString(),

@@ -43,17 +43,11 @@ public class FireSkills {
         trigger.chance = 0.1F;
         spell.passive.triggers = List.of(trigger);
 
-        explosionImpact(spell, 0.5F);
+        SkillsCommon.explosionImpact(spell, 0.5F);
 
         SpellBuilder.Cost.cooldown(spell, 0.5F);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
-    }
-
-    public static void explosionImpact(Spell spell, float coefficient) {
-        var impact = SpellBuilder.Impacts.damage(coefficient, 0.2F);
-        spell.area_impact = SpellBuilder.Complex.fireExplosion(2.5F);
-        spell.impacts = List.of(impact);
     }
 
     public static final Skills.Entry fire_tier_2_spell_1_modifier_2 = add(fire_tier_2_spell_1_modifier_2());

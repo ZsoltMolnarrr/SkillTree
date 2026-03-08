@@ -353,26 +353,6 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry HAMSTRING = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "hamstring"),
-            "Hamstring",
-            "Immobilized.",
-            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xcc0000),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    -10,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            ),
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_JUMP_STRENGTH.getIdAsString(),
-                                    -10,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-
     public static Effects.Entry PHASE_SHIFT = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "phase_shift"),
             "Phase Shift",
             "Reduces damage taken.",

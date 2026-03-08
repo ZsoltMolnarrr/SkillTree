@@ -5,7 +5,13 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:impale"
+      "spell_pattern": "rpg_series:impale",
+      "projectile_perks": {
+        "ricochet_range": 0.0,
+        "pierce": 3,
+        "chain_reaction_triggers": 0,
+        "chain_reaction_increment": 0
+      }
     }
   ]
 }
