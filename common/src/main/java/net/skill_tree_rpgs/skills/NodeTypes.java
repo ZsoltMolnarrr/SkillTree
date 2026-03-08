@@ -436,6 +436,7 @@ public class NodeTypes {
 
     public static final String CRIT_CHANCE_ID = "critical_strike:chance";
     public static final String CRIT_DAMAGE_ID = "critical_strike:damage";
+    public static final String ATTACK_DAMAGE_ID = EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString();
 
 
     // Arcane Staff
@@ -509,8 +510,8 @@ public class NodeTypes {
                     "Mace Specialisation",
                     null,
                     Icon.item("paladins:iron_mace"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    WEAPON_ROOT_DAMAGE,
+                    CRIT_DAMAGE_ID, ATTACK_DAMAGE_ID,
+                    WEAPON_ROOT_CRIT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.MACE
             ).require(PALADINS)
@@ -524,8 +525,8 @@ public class NodeTypes {
                     "Hammer Specialisation",
                     null,
                     Icon.item("paladins:iron_great_hammer"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    WEAPON_ROOT_DAMAGE,
+                    CRIT_DAMAGE_ID, ATTACK_DAMAGE_ID,
+                    WEAPON_ROOT_CRIT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.HAMMER
             ).require(PALADINS)
@@ -539,8 +540,8 @@ public class NodeTypes {
                     "Double Axe Specialisation",
                     null,
                     Icon.item("rogues:iron_double_axe"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    WEAPON_ROOT_DAMAGE,
+                    CRIT_CHANCE_ID, ATTACK_DAMAGE_ID,
+                    WEAPON_ROOT_CRIT_CHANCE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.DOUBLE_AXE
             ).require(ROGUES)
@@ -584,8 +585,8 @@ public class NodeTypes {
                     "Sickle Specialisation",
                     null,
                     Icon.item("rogues:iron_sickle"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    WEAPON_ROOT_DAMAGE,
+                    CRIT_CHANCE_ID, ATTACK_DAMAGE_ID,
+                    WEAPON_ROOT_CRIT_CHANCE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.SICKLE
             ).require(ROGUES)
@@ -599,8 +600,8 @@ public class NodeTypes {
                     "Glaive Specialisation",
                     null,
                     Icon.item("rogues:iron_glaive"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    WEAPON_ROOT_DAMAGE,
+                    CRIT_DAMAGE_ID, ATTACK_DAMAGE_ID,
+                    WEAPON_ROOT_CRIT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.GLAIVE
             ).require(ROGUES)
@@ -614,8 +615,8 @@ public class NodeTypes {
                     "Axe Specialisation",
                     null,
                     Icon.item("minecraft:iron_axe"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    WEAPON_ROOT_DAMAGE,
+                    CRIT_CHANCE_ID, ATTACK_DAMAGE_ID,
+                    WEAPON_ROOT_CRIT_CHANCE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.AXE
             )
@@ -629,7 +630,7 @@ public class NodeTypes {
                     "Bow Specialisation",
                     null,
                     Icon.item("minecraft:bow"),
-                    "ranged_weapon_api:ranged_damage",
+                    "ranged_weapon:damage",
                     "minecraft:generic.attack_damage",
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
@@ -647,9 +648,9 @@ public class NodeTypes {
                     "Crossbow Specialisation",
                     null,
                     Icon.item("minecraft:crossbow"),
-                    "ranged_weapon_api:ranged_damage",
-                    "minecraft:generic.attack_damage",
-                    WEAPON_ROOT_DAMAGE,
+                    "ranged_weapon:haste",
+                    ATTACK_DAMAGE_ID,
+                    WEAPON_ROOT_HASTE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.CROSSBOW
             )
