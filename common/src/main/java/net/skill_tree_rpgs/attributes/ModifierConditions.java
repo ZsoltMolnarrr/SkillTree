@@ -4,6 +4,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
+import net.skill_tree_rpgs.SkillTreeMod;
 import net.spell_engine.rpg_series.item.Equipment;
 import net.spell_engine.rpg_series.tags.RPGSeriesItemTags;
 
@@ -20,7 +21,7 @@ public class ModifierConditions {
 
     private static ModifierCondition weapon(Equipment.WeaponType type, EquipmentSlot slot, String displayText) {
         TagKey<Item> tag = RPGSeriesItemTags.WeaponType.get(type);
-        String translationKey = type.toString().toLowerCase(Locale.ROOT);
+        String translationKey = "modifier_condition." + SkillTreeMod.NAMESPACE + "." + type.toString().toLowerCase(Locale.ROOT);
         return create(tag, slot, translationKey, displayText);
     }
 

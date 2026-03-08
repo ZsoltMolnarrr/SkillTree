@@ -4174,7 +4174,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "minecraft:axes"
-            }
+            },
+            "translationKey": "axe"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612
@@ -4267,13 +4268,15 @@
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
-          "attribute": "ranged_weapon:damage",
+          "attribute": "ranged_weapon_api:ranged_damage",
           "condition": {
             "equipment": {
               "slot": "mainhand",
               "tag": "minecraft:enchantable/bow"
-            }
+            },
+            "translationKey": "bow"
           },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
           "operation": "multiply_base",
           "value": 0.10000000149011612
         }
@@ -4305,7 +4308,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "rpg_series:weapon_type/claymore"
-            }
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.claymore"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612
@@ -4466,13 +4470,15 @@
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
-          "attribute": "ranged_weapon:damage",
+          "attribute": "ranged_weapon_api:ranged_damage",
           "condition": {
             "equipment": {
               "slot": "mainhand",
               "tag": "minecraft:enchantable/crossbow"
-            }
+            },
+            "translationKey": "crossbow"
           },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
           "operation": "multiply_base",
           "value": 0.10000000149011612
         }
@@ -4504,7 +4510,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "rpg_series:weapon_type/dagger"
-            }
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.dagger"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612
@@ -4537,7 +4544,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "rpg_series:weapon_type/double_axe"
-            }
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.double_axe"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612
@@ -4940,7 +4948,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "rpg_series:weapon_type/glaive"
-            }
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.glaive"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612
@@ -5047,7 +5056,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "rpg_series:weapon_type/hammer"
-            }
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.hammer"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612
@@ -5265,7 +5275,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "rpg_series:weapon_type/mace"
-            }
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.mace"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612
@@ -5298,7 +5309,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "rpg_series:weapon_type/sickle"
-            }
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.sickle"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612
@@ -5405,7 +5417,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "rpg_series:weapon_type/spear"
-            }
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.spear"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612
@@ -5577,7 +5590,8 @@
             "equipment": {
               "slot": "mainhand",
               "tag": "rpg_series:weapon_type/sword"
-            }
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.sword"
           },
           "operation": "multiply_base",
           "value": 0.10000000149011612

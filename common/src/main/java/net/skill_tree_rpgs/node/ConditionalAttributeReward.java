@@ -18,6 +18,7 @@ import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.attributes.ConditionalAttributeHolder;
 import net.skill_tree_rpgs.attributes.ConditionalAttributeModifier;
 import net.skill_tree_rpgs.attributes.ModifierCondition;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -31,24 +32,12 @@ public class ConditionalAttributeReward implements Reward {
     private static final Gson gson = new GsonBuilder().create();
 
     public record DataStructure(String attribute, String fallbackAttribute, double value, String operation, ConditionData condition) {
-        public record ConditionData(EquipmentData equipment) {
+        public record ConditionData(String translationKey, EquipmentData equipment) {
             public record EquipmentData(String slot, String tag) {}
         }
-    }
 
-    private ConditionalAttributeModifier conditionalModifier;
-
-    private static Result<ConditionalAttributeReward, Problem> parse(RewardConfigContext context) {
-        var dataResult = context.getData();
-        if (dataResult.getFailure().isPresent()) {
-            return Result.failure(dataResult.getFailure().get());
-        }
-        var data = dataResult.getSuccess();
-        var reward = new ConditionalAttributeReward();
-        try {
-            var json = data.get().getJson();
-            var parsed = gson.fromJson(json, DataStructure.class);
-
+        public @NotNull ConditionalAttributeModifier mapped() {
+            var parsed = this;
             var effectiveEntry = Registries.ATTRIBUTE.getEntry(Identifier.of(parsed.attribute()))
                     .orElseGet(() -> {
                         if (parsed.fallbackAttribute() == null) {
@@ -66,9 +55,25 @@ public class ConditionalAttributeReward implements Reward {
 
             var modifierId = Identifier.of(SkillTreeMod.NAMESPACE, UUID.randomUUID().toString().replace("-", ""));
             var modifier = new EntityAttributeModifier(modifierId, parsed.value(), operation);
-            var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag), null);
+            var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag), parsed.condition().translationKey());
 
-            reward.conditionalModifier = new ConditionalAttributeModifier(modifierId, effectiveEntry, modifier, condition);
+            return new ConditionalAttributeModifier(modifierId, effectiveEntry, modifier, condition);
+        }
+    }
+
+    private ConditionalAttributeModifier conditionalModifier;
+
+    private static Result<ConditionalAttributeReward, Problem> parse(RewardConfigContext context) {
+        var dataResult = context.getData();
+        if (dataResult.getFailure().isPresent()) {
+            return Result.failure(dataResult.getFailure().get());
+        }
+        var data = dataResult.getSuccess();
+        var reward = new ConditionalAttributeReward();
+        try {
+            var json = data.get().getJson();
+            var parsed = gson.fromJson(json, DataStructure.class);
+            reward.conditionalModifier = parsed.mapped();
         } catch (Exception e) {
             return Result.failure(Problem.message("Failed to parse conditional attribute reward: " + e.getMessage()));
         }

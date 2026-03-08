@@ -1,6 +1,7 @@
 package net.skill_tree_rpgs.utils;
 
 import net.skill_tree_rpgs.attributes.ConditionalAttributeModifier;
+import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.skill_tree_rpgs.skills.NodeTypes;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
@@ -36,9 +37,10 @@ public class TranslationUtil {
         return SpellTooltip.spellDescriptionWithDetails(spellId, player, ItemStack.EMPTY, 0);
     }
 
-    public static List<Text> resolveConditionalAttributeTooltip(ConditionalAttributeModifier conditional) {
+    public static List<Text> resolveConditionalAttributeTooltip(ConditionalAttributeReward.DataStructure data) {
         var player = MinecraftClient.getInstance().player;
         if (player == null) return List.of();
+        var conditional = data.mapped();
         var tooltipUtil = (ItemStackTooltipAccessor) (Object) ItemStack.EMPTY;
         var lines = new ArrayList<Text>();
         lines.add(Text.translatable(conditional.condition().translationKey()));

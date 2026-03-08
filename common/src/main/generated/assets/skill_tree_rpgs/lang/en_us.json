@@ -1,4 +1,7 @@
 {
+  "axe": "While holding an Axe:",
+  "bow": "While holding a Bow:",
+  "crossbow": "While holding a Crossbow:",
   "effect.skill_tree_rpgs.ambush": "Ambush",
   "effect.skill_tree_rpgs.ambush.description": "Increased attack damage.",
   "effect.skill_tree_rpgs.arcane_exposure": "Arcane Exposure",
@@ -91,10 +94,7 @@
   "effect.skill_tree_rpgs.vitality.description": "Increased evasion chance.",
   "item.skill_tree_rpgs.orb_of_oblivion": "Orb of Oblivion",
   "item.skill_tree_rpgs.orb_of_oblivion.lore.0": "Reset all skill points spend on the Class Skill Tree.",
-  "modifier_condition.skill_tree_rpgs.axe": "While holding an Axe:",
-  "modifier_condition.skill_tree_rpgs.bow": "While holding a Bow:",
   "modifier_condition.skill_tree_rpgs.claymore": "While holding a Claymore:",
-  "modifier_condition.skill_tree_rpgs.crossbow": "While holding a Crossbow:",
   "modifier_condition.skill_tree_rpgs.dagger": "While holding a Dagger:",
   "modifier_condition.skill_tree_rpgs.damage_staff": "While holding a Damage Staff:",
   "modifier_condition.skill_tree_rpgs.damage_wand": "While holding a Damage Wand:",
