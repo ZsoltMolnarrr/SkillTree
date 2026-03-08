@@ -5,7 +5,13 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:fan_of_knives"
+      "spell_pattern": "rpg_series:fan_of_knives",
+      "projectile_perks": {
+        "ricochet": 2,
+        "ricochet_range": 0.0,
+        "chain_reaction_triggers": 0,
+        "chain_reaction_increment": 0
+      }
     }
   ]
 }

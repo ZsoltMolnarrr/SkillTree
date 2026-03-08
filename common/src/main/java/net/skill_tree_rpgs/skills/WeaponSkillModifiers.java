@@ -491,23 +491,40 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_fan_of_knives_modifier_1 = add(weapon_fan_of_knives_modifier_1());
     private static Skills.Entry weapon_fan_of_knives_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_fan_of_knives_modifier_1");
+        var title = "Ricochet";
+        var description = "Fan of Knives daggers ricochet to {ricochet} additional targets.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "rpg_series:fan_of_knives";
+        modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
+        modifier.projectile_perks.ricochet = 1;
+        modifier.projectile_perks.bounce = 2;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Fan of Knives I", "", null, Skills.Category.WEAPON);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_fan_of_knives_modifier_2 = add(weapon_fan_of_knives_modifier_2());
     private static Skills.Entry weapon_fan_of_knives_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_fan_of_knives_modifier_2");
+        var title = "Poisoned Blades";
+        var description = "Fan of Knives daggers apply Poison for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "rpg_series:fan_of_knives";
+
+        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 4F, 0, 1);
+        impact.particles = SkillsCommon.poisonImpactParticles();
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Fan of Knives II", "", null, Skills.Category.WEAPON);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 
     // ===== SICKLE (Swipe) =====
