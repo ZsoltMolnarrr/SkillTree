@@ -168,7 +168,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                     rewards.add(new Reward(AttributeReward.ID.toString(), RewardAttribute.from(attribute.attribute(),  attribute.modifier())));
                 }
                 if (skill.conditionalAttributeReward() != null) {
-                    rewards.add(new Reward(ConditionalAttributeReward.ID.toString(), RewardConditionalAttribute.from(skill.conditionalAttributeReward())));
+                    rewards.add(new Reward(ConditionalAttributeReward.ID.toString(), skill.conditionalAttributeReward()));
                 }
                 if(skill.spellReward() != null) {
                     rewards.add(new Reward(SpellContainerReward.ID.toString(), new SpellContainerReward.DataStructure(skill.spellReward())));

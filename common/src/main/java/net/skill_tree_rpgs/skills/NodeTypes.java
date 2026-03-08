@@ -1,9 +1,8 @@
 package net.skill_tree_rpgs.skills;
 
 import net.skill_tree_rpgs.SkillTreeMod;
-import net.skill_tree_rpgs.attributes.ConditionalAttributeModifier;
-import net.skill_tree_rpgs.attributes.ModifierCondition;
 import net.skill_tree_rpgs.attributes.ModifierConditions;
+import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -46,7 +45,7 @@ public class NodeTypes {
             return new EntityAttributeReward(attribute, new EntityAttributeModifier(Identifier.of(SkillTreeMod.NAMESPACE + ":attribute_reward"), value, operation));
         }
     }
-    public record Entry(String id, String title, String description, Icon icon, List<SpellContainer> spellReward, EntityAttributeReward attributeReward, ConditionalAttributeModifier conditionalAttributeReward, List<String> required_mods) {
+    public record Entry(String id, String title, String description, Icon icon, List<SpellContainer> spellReward, EntityAttributeReward attributeReward, ConditionalAttributeReward.DataStructure conditionalAttributeReward, List<String> required_mods) {
         public static Entry spell(String id, String title, String description, Icon icon, List<SpellContainer> spellReward) {
             return new Entry(id, title, description, icon, spellReward, null, null, null);
         }
@@ -60,11 +59,42 @@ public class NodeTypes {
         public static Entry conditionalAttribute(String id, String title, String description, Icon icon,
                                                  RegistryEntry<EntityAttribute> attribute, double value,
                                                  EntityAttributeModifier.Operation operation,
-                                                 EquipmentSlot slot, TagKey<Item> tag, String conditionText) {
-            var modifierId = Identifier.of(SkillTreeMod.NAMESPACE, id);
-            var modifier = new EntityAttributeModifier(modifierId, value, operation);
-            var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag), conditionText);
-            return new Entry(id, title, description, icon, null, null, new ConditionalAttributeModifier(modifierId, attribute, modifier, condition), null);
+                                                 EquipmentSlot slot, TagKey<Item> tag) {
+            return conditionalAttribute(id, title, description, icon,
+                    attribute.getKey().orElseThrow().getValue().toString(), null, value, operation, slot, tag);
+        }
+        public static Entry conditionalAttribute(String id, String title, String description, Icon icon,
+                                                 RegistryEntry<EntityAttribute> attribute,
+                                                 RegistryEntry<EntityAttribute> fallbackAttribute,
+                                                 double value,
+                                                 EntityAttributeModifier.Operation operation,
+                                                 EquipmentSlot slot, TagKey<Item> tag) {
+            return conditionalAttribute(id, title, description, icon,
+                    attribute.getKey().orElseThrow().getValue().toString(),
+                    fallbackAttribute.getKey().orElseThrow().getValue().toString(),
+                    value, operation, slot, tag);
+        }
+        public static Entry conditionalAttribute(String id, String title, String description, Icon icon,
+                                                 String attribute, String fallbackAttribute,
+                                                 double value,
+                                                 EntityAttributeModifier.Operation operation,
+                                                 EquipmentSlot slot, TagKey<Item> tag) {
+            return new Entry(id, title, description, icon, null, null, toDataStructure(attribute, fallbackAttribute, value, operation, slot, tag), null);
+        }
+        private static ConditionalAttributeReward.DataStructure toDataStructure(
+                String attribute, String fallbackAttribute,
+                double value, EntityAttributeModifier.Operation operation,
+                EquipmentSlot slot, TagKey<Item> tag) {
+            var operationStr = switch (operation) {
+                case ADD_VALUE -> "addition";
+                case ADD_MULTIPLIED_BASE -> "multiply_base";
+                case ADD_MULTIPLIED_TOTAL -> "multiply_total";
+            };
+            return new ConditionalAttributeReward.DataStructure(
+                    attribute, fallbackAttribute, value, operationStr,
+                    new ConditionalAttributeReward.DataStructure.ConditionData(
+                            new ConditionalAttributeReward.DataStructure.ConditionData.EquipmentData(
+                                    slot.getName(), tag.id().toString())));
         }
         public String titleTranslationKey() {
             return "skill." + SkillTreeMod.NAMESPACE + "." + id + ".title";
@@ -405,6 +435,9 @@ public class NodeTypes {
     public static final float WEAPON_ROOT_CRIT_DAMAGE = 0.08f;
     public static final float WEAPON_ROOT_HASTE = 0.05f;
 
+    public static final String CRIT_CHANCE_ID = "critical_strike:chance";
+    public static final String CRIT_DAMAGE_ID = "critical_strike:damage";
+
 
     // Arcane Staff
     public static final Entry WEAPON_ARCANE_ROOT = add(modifierSpell(WeaponSkillModifiers.weapon_arcane_root)
@@ -451,8 +484,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.SWORD.equipment().slot(),
-                    ModifierConditions.SWORD.equipment().tag(),
-                    ModifierConditions.SWORD.conditionText()
+                    ModifierConditions.SWORD.equipment().tag()
             )
     );
     public static final Entry WEAPON_SWIFT_STRIKES_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_swift_strikes_modifier_1));
@@ -468,8 +500,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.CLAYMORE.equipment().slot(),
-                    ModifierConditions.CLAYMORE.equipment().tag(),
-                    ModifierConditions.CLAYMORE.conditionText()
+                    ModifierConditions.CLAYMORE.equipment().tag()
             ).require(PALADINS)
     );
     public static final Entry WEAPON_FLURRY_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_flurry_modifier_1).require(PALADINS));
@@ -485,8 +516,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.MACE.equipment().slot(),
-                    ModifierConditions.MACE.equipment().tag(),
-                    ModifierConditions.MACE.conditionText()
+                    ModifierConditions.MACE.equipment().tag()
             ).require(PALADINS)
     );
     public static final Entry WEAPON_SMASH_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_smash_modifier_1).require(PALADINS));
@@ -502,8 +532,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.HAMMER.equipment().slot(),
-                    ModifierConditions.HAMMER.equipment().tag(),
-                    ModifierConditions.HAMMER.conditionText()
+                    ModifierConditions.HAMMER.equipment().tag()
             ).require(PALADINS)
     );
     public static final Entry WEAPON_GROUND_SLAM_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_ground_slam_modifier_1).require(PALADINS));
@@ -519,8 +548,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.DOUBLE_AXE.equipment().slot(),
-                    ModifierConditions.DOUBLE_AXE.equipment().tag(),
-                    ModifierConditions.DOUBLE_AXE.conditionText()
+                    ModifierConditions.DOUBLE_AXE.equipment().tag()
             ).require(ROGUES)
     );
     public static final Entry WEAPON_WHIRLWIND_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_whirlwind_modifier_1).require(ROGUES));
@@ -536,8 +564,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.SPEAR.equipment().slot(),
-                    ModifierConditions.SPEAR.equipment().tag(),
-                    ModifierConditions.SPEAR.conditionText()
+                    ModifierConditions.SPEAR.equipment().tag()
             ).require(ARCHERS)
     );
     public static final Entry WEAPON_IMPALE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_impale_modifier_1).require(ARCHERS));
@@ -553,8 +580,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.DAGGER.equipment().slot(),
-                    ModifierConditions.DAGGER.equipment().tag(),
-                    ModifierConditions.DAGGER.conditionText()
+                    ModifierConditions.DAGGER.equipment().tag()
             ).require(ROGUES)
     );
     public static final Entry WEAPON_FAN_OF_KNIVES_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_fan_of_knives_modifier_1).require(ROGUES));
@@ -570,8 +596,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.SICKLE.equipment().slot(),
-                    ModifierConditions.SICKLE.equipment().tag(),
-                    ModifierConditions.SICKLE.conditionText()
+                    ModifierConditions.SICKLE.equipment().tag()
             ).require(ROGUES)
     );
     public static final Entry WEAPON_SWIPE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_swipe_modifier_1).require(ROGUES));
@@ -587,8 +612,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.GLAIVE.equipment().slot(),
-                    ModifierConditions.GLAIVE.equipment().tag(),
-                    ModifierConditions.GLAIVE.conditionText()
+                    ModifierConditions.GLAIVE.equipment().tag()
             ).require(ROGUES)
     );
     public static final Entry WEAPON_THRUST_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_thrust_modifier_1).require(ROGUES));
@@ -604,8 +628,7 @@ public class NodeTypes {
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.AXE.equipment().slot(),
-                    ModifierConditions.AXE.equipment().tag(),
-                    ModifierConditions.AXE.conditionText()
+                    ModifierConditions.AXE.equipment().tag()
             )
     );
     public static final Entry WEAPON_CLEAVE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_cleave_modifier_1));
@@ -617,12 +640,12 @@ public class NodeTypes {
                     "Bow Specialisation",
                     null,
                     Icon.item("minecraft:bow"),
-                    EntityAttributes_RangedWeapon.DAMAGE.entry,
+                    "ranged_weapon_api:ranged_damage",
+                    "minecraft:generic.attack_damage",
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.BOW.equipment().slot(),
-                    ModifierConditions.BOW.equipment().tag(),
-                    ModifierConditions.BOW.conditionText()
+                    ModifierConditions.BOW.equipment().tag()
             )
     );
     public static final Entry WEAPON_BOW_PASSIVE_1 = add(passiveSpell(WeaponSkillModifiers.weapon_bow_passive_1)
@@ -636,12 +659,12 @@ public class NodeTypes {
                     "Crossbow Specialisation",
                     null,
                     Icon.item("minecraft:crossbow"),
-                    EntityAttributes_RangedWeapon.DAMAGE.entry,
+                    "ranged_weapon_api:ranged_damage",
+                    "minecraft:generic.attack_damage",
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.CROSSBOW.equipment().slot(),
-                    ModifierConditions.CROSSBOW.equipment().tag(),
-                    ModifierConditions.CROSSBOW.conditionText()
+                    ModifierConditions.CROSSBOW.equipment().tag()
             )
     );
     public static final Entry WEAPON_CROSSBOW_PASSIVE_1 = add(passiveSpell(WeaponSkillModifiers.weapon_crossbow_passive_1)

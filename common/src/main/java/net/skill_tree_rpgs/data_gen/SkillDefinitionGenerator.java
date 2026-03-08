@@ -13,7 +13,6 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.skill_tree_rpgs.attributes.ConditionalAttributeModifier;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -80,30 +79,6 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
             }
             var attributeId = attribute.getKey().get().getValue().toString();
             return new RewardAttribute(attributeId, modifier.value(), operation);
-        }
-    }
-
-    public record RewardConditionalAttribute(
-            String attribute,
-            double value,
-            String operation,
-            ConditionData condition
-    ) {
-        public record ConditionData(EquipmentData equipment) {
-            public record EquipmentData(String slot, String tag) {}
-        }
-
-        public static RewardConditionalAttribute from(ConditionalAttributeModifier m) {
-            String operation = switch (m.modifier().operation()) {
-                case ADD_VALUE -> "addition";
-                case ADD_MULTIPLIED_BASE -> "multiply_base";
-                case ADD_MULTIPLIED_TOTAL -> "multiply_total";
-            };
-            var attributeId = m.attribute().getKey().orElseThrow().getValue().toString();
-            var slot = m.condition().equipment().slot().getName();
-            var tag = m.condition().equipment().tag().id().toString();
-            return new RewardConditionalAttribute(attributeId, m.modifier().value(), operation,
-                    new ConditionData(new ConditionData.EquipmentData(slot, tag)));
         }
     }
 

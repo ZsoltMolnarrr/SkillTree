@@ -30,7 +30,7 @@ public class ConditionalAttributeReward implements Reward {
 
     private static final Gson gson = new GsonBuilder().create();
 
-    public record DataStructure(String attribute, double value, String operation, ConditionData condition) {
+    public record DataStructure(String attribute, String fallbackAttribute, double value, String operation, ConditionData condition) {
         public record ConditionData(EquipmentData equipment) {
             public record EquipmentData(String slot, String tag) {}
         }
@@ -49,8 +49,14 @@ public class ConditionalAttributeReward implements Reward {
             var json = data.get().getJson();
             var parsed = gson.fromJson(json, DataStructure.class);
 
-            var attributeEntry = Registries.ATTRIBUTE.getEntry(Identifier.of(parsed.attribute()))
-                    .orElseThrow(() -> new IllegalArgumentException("Unknown attribute: " + parsed.attribute()));
+            var effectiveEntry = Registries.ATTRIBUTE.getEntry(Identifier.of(parsed.attribute()))
+                    .orElseGet(() -> {
+                        if (parsed.fallbackAttribute() == null) {
+                            throw new IllegalArgumentException("Unknown attribute: " + parsed.attribute());
+                        }
+                        return Registries.ATTRIBUTE.getEntry(Identifier.of(parsed.fallbackAttribute()))
+                                .orElseThrow(() -> new IllegalArgumentException("Unknown fallback attribute: " + parsed.fallbackAttribute()));
+                    });
 
             var operation = parseOperation(parsed.operation());
 
@@ -62,7 +68,7 @@ public class ConditionalAttributeReward implements Reward {
             var modifier = new EntityAttributeModifier(modifierId, parsed.value(), operation);
             var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag), null);
 
-            reward.conditionalModifier = new ConditionalAttributeModifier(modifierId, attributeEntry, modifier, condition);
+            reward.conditionalModifier = new ConditionalAttributeModifier(modifierId, effectiveEntry, modifier, condition);
         } catch (Exception e) {
             return Result.failure(Problem.message("Failed to parse conditional attribute reward: " + e.getMessage()));
         }
