@@ -1,6 +1,6 @@
 {
 	"version": 3,
 	"categories": [
-		"skill_tree_rpgs", "skill_tree_weapons"
+		"class_skills", "weapon_skills"
 	]
 }

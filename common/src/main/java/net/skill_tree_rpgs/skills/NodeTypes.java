@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NodeTypes {
-    public static final Identifier CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "skill_tree_rpgs");
-    public static final Identifier WEAPON_CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "skill_tree_weapons");
+    public static final Identifier CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "class_skills");
+    public static final Identifier WEAPON_CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "weapon_skills");
     public record Icon(IconType type, String value, String modelId) {
         public static Icon texture(String texture) {
             return new Icon(IconType.TEXTURE, texture, null);
@@ -461,7 +461,7 @@ public class NodeTypes {
     // Claymore
     public static final Entry WEAPON_CLAYMORE_ROOT = add(
             Entry.conditionalAttribute("weapon_claymore_root",
-                    "Claymore Mastery",
+                    "Claymore Specialisation",
                     null,
                     Icon.item("paladins:iron_claymore"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
