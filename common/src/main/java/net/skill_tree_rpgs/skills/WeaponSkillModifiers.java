@@ -30,9 +30,18 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_arcane_root = add(weapon_arcane_root());
     private static Skills.Entry weapon_arcane_root() {
         var id = Identifier.of(NAMESPACE, "weapon_arcane_root");
+        var title = "Arcane Mastery";
+        var description = "Arcane Blast deals {power_multiplier} increased damage.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.ARCANE;
-        return new Skills.Entry(id, spell, "Arcane Staff Specialisation", "", null, Skills.Category.WEAPON);
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:arcane_blast";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.1F;
+        spell.modifiers = List.of(modifier);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_arcane_blast_modifier_1 = add(weapon_arcane_blast_modifier_1());
@@ -72,9 +81,21 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_fire_root = add(weapon_fire_root());
     private static Skills.Entry weapon_fire_root() {
         var id = Identifier.of(NAMESPACE, "weapon_fire_root");
+        var title = "Fire Mastery";
+        var critChance = 0.04F;
+        var description = "Pyroblast has {bonus} increased critical strike chance.";
+        SpellTooltip.DescriptionMutator mutator = (args) ->
+                args.description().replace("{bonus}", SpellTooltip.percent(critChance));
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FIRE;
-        return new Skills.Entry(id, spell, "Fire Staff Specialisation", "", null, Skills.Category.WEAPON);
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:fire_blast";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.critical_chance_bonus = critChance;
+        spell.modifiers = List.of(modifier);
+
+        return new Skills.Entry(id, spell, title, description, mutator, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_fire_blast_modifier_1 = add(weapon_fire_blast_modifier_1());
@@ -129,9 +150,21 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_frost_root = add(weapon_frost_root());
     private static Skills.Entry weapon_frost_root() {
         var id = Identifier.of(NAMESPACE, "weapon_frost_root");
+        var title = "Frost Mastery";
+        var critDamage = 0.08F;
+        var description = "Frostbolt deals {bonus} increased critical strike damage.";
+        SpellTooltip.DescriptionMutator mutator = (args) ->
+                args.description().replace("{bonus}", SpellTooltip.percent(critDamage));
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FROST;
-        return new Skills.Entry(id, spell, "Frost Staff Specialisation", "", null, Skills.Category.WEAPON);
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "wizards:frostbolt";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.critical_damage_bonus = critDamage;
+        spell.modifiers = List.of(modifier);
+
+        return new Skills.Entry(id, spell, title, description, mutator, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_frostbolt_modifier_1 = add(weapon_frostbolt_modifier_1());

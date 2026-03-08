@@ -2,5 +2,13 @@
   "school": "spell_power:arcane",
   "range": 0.0,
   "tier": 1,
-  "type": "MODIFIER"
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "wizards:arcane_blast",
+      "power_modifier": {
+        "power_multiplier": 0.1
+      }
+    }
+  ]
 }

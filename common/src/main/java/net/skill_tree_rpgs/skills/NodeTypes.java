@@ -426,43 +426,28 @@ public class NodeTypes {
 
 
     // Arcane Staff
-    public static final Entry WEAPON_ARCANE_ROOT = add(
-            Entry.attribute("weapon_arcane_root",
-                    "Arcane Staff Specialisation",
-                    null,
-                    Icon.item("wizards:staff_arcane"),
-                    SpellSchools.ARCANE.attributeEntry,
-                    WEAPON_ROOT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-            ).require(WIZARDS)
+    public static final Entry WEAPON_ARCANE_ROOT = add(modifierSpell(WeaponSkillModifiers.weapon_arcane_root)
+            .withTitle("Arcane Staff Specialisation")
+            .withItemIcon("wizards:staff_arcane")
+            .require(WIZARDS)
     );
     public static final Entry WEAPON_ARCANE_BLAST_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_arcane_blast_modifier_1).require(WIZARDS));
     public static final Entry WEAPON_ARCANE_BLAST_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_arcane_blast_modifier_2).require(WIZARDS));
 
     // Fire Staff
-    public static final Entry WEAPON_FIRE_ROOT = add(
-            Entry.attribute("weapon_fire_root",
-                    "Fire Staff Specialisation",
-                    null,
-                    Icon.item("wizards:staff_fire"),
-                    SpellSchools.FIRE.attributeEntry,
-                    WEAPON_ROOT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-            ).require(WIZARDS)
+    public static final Entry WEAPON_FIRE_ROOT = add(modifierSpell(WeaponSkillModifiers.weapon_fire_root)
+            .withTitle("Fire Staff Specialisation")
+            .withItemIcon("wizards:staff_fire")
+            .require(WIZARDS)
     );
     public static final Entry WEAPON_FIRE_BLAST_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_fire_blast_modifier_1).require(WIZARDS));
     public static final Entry WEAPON_FIRE_BLAST_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_fire_blast_modifier_2).require(WIZARDS));
 
     // Frost Staff
-    public static final Entry WEAPON_FROST_ROOT = add(
-            Entry.attribute("weapon_frost_root",
-                    "Frost Staff Specialisation",
-                    null,
-                    Icon.item("wizards:staff_frost"),
-                    SpellSchools.FROST.attributeEntry,
-                    WEAPON_ROOT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-            ).require(WIZARDS)
+    public static final Entry WEAPON_FROST_ROOT = add(modifierSpell(WeaponSkillModifiers.weapon_frost_root)
+            .withTitle("Frost Staff Specialisation")
+            .withItemIcon("wizards:staff_frost")
+            .require(WIZARDS)
     );
     public static final Entry WEAPON_FROSTBOLT_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_frostbolt_modifier_1).require(WIZARDS));
     public static final Entry WEAPON_FROSTBOLT_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_frostbolt_modifier_2).require(WIZARDS));
