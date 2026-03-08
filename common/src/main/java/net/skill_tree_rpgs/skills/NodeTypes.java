@@ -23,6 +23,7 @@ import java.util.List;
 
 public class NodeTypes {
     public static final Identifier CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "skill_tree_rpgs");
+    public static final Identifier WEAPON_CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "skill_tree_weapons");
     public record Icon(IconType type, String value, String modelId) {
         public static Icon texture(String texture) {
             return new Icon(IconType.TEXTURE, texture, null);

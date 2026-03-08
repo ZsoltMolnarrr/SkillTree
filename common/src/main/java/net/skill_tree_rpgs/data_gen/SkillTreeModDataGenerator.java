@@ -177,6 +177,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 skillDefinitions.put(skill.id(), format);
             }
             builder.entries.add(new Entry(NodeTypes.CATEGORY_ID, skillDefinitions));
+            builder.entries.add(new Entry(NodeTypes.WEAPON_CATEGORY_ID, skillDefinitions));
         }
     }
 

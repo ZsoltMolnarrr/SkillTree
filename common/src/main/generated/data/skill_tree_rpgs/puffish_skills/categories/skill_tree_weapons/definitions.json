@@ -4725,11 +4725,21 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:spell",
         "data": {
-          "attribute": "spell_power:arcane",
-          "operation": "multiply_base",
-          "value": 0.10000000149011612
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_arcane_root"
+              ]
+            }
+          ]
         }
       }
     ],
@@ -5293,11 +5303,21 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:spell",
         "data": {
-          "attribute": "spell_power:fire",
-          "operation": "multiply_base",
-          "value": 0.10000000149011612
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_fire_root"
+              ]
+            }
+          ]
         }
       }
     ],
@@ -5394,11 +5414,21 @@
     ],
     "rewards": [
       {
-        "type": "puffish_skills:attribute",
+        "type": "skill_tree_rpgs:spell",
         "data": {
-          "attribute": "spell_power:frost",
-          "operation": "multiply_base",
-          "value": 0.10000000149011612
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_frost_root"
+              ]
+            }
+          ]
         }
       }
     ],
