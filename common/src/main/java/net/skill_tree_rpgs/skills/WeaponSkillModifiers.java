@@ -215,7 +215,7 @@ public class WeaponSkillModifiers {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "paladins:holy_shock";
-        modifier.cooldown_duration_deduct = 2;
+        modifier.cooldown_duration_deduct = 3;
         spell.modifiers = List.of(modifier);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));

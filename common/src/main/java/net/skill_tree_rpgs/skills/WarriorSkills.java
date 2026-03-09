@@ -267,36 +267,26 @@ public class WarriorSkills {
     public static final Skills.Entry warrior_tier_2_passive_2 = add(warrior_tier_2_passive_2());
     private static Skills.Entry warrior_tier_2_passive_2() {
         var id = Identifier.of(NAMESPACE, "warrior_tier_2_passive_2");
-        var title = "Trample";
-        var description = "While rolling, you deal {damage} damage to nearby enemies.";
+        var title = "Second Wind";
+        var description = "Upon rolling, you have {trigger_chance} chance to restore 10%% of your total health.";
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.school = ExternalSpellSchools.HEALTH;   // power = max HP → heal(0.1) = 10% HP
         spell.range = 0;
-
-        var trigger = SpellBuilder.Triggers.roll();
-        spell.passive.triggers = List.of(trigger);
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var stashEffect = SkillEffects.TRAMPLE;
-        var stashTrigger = SpellBuilder.Triggers.effectTick(stashEffect.id.toString());
-        SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 0.5F, List.of(stashTrigger));
-        spell.deliver.stash_effect.consume = 0;
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
+        var impact = SpellBuilder.Impacts.heal(0.1F);
+        impact.action.apply_to_caster = true;
+        impact.particles = SkillsCommon.leechImpactParticles();
         spell.impacts = List.of(impact);
-        var areaImpact = new Spell.AreaImpact();
-        areaImpact.radius = 2.5F;
-        areaImpact.force_indirect = true;
-        areaImpact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        10, 0.3F, 0.3F)
-        };
-        areaImpact.sound = new Sound(SkillSounds.warrior_stomp.id());
-        spell.area_impact = areaImpact;
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }

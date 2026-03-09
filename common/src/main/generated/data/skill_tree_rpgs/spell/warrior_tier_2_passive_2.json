@@ -1,63 +1,68 @@
 {
-  "school": "spell_power:physical_melee",
+  "school": "spell_power:health",
   "range": 0.0,
   "tier": 1,
   "type": "PASSIVE",
   "passive": {
     "triggers": [
       {
-        "type": "ROLL"
+        "target_override": "CASTER",
+        "type": "ROLL",
+        "chance": 0.5
       }
     ]
   },
   "target": {
     "type": "FROM_TRIGGER"
   },
-  "deliver": {
-    "type": "STASH_EFFECT",
-    "stash_effect": {
-      "id": "skill_tree_rpgs:trample",
-      "duration": 0.5,
-      "triggers": [
-        {
-          "type": "EFFECT_TICK",
-          "effect": {
-            "id": "skill_tree_rpgs:trample"
-          }
-        }
-      ],
-      "consume": 0
-    }
-  },
   "impacts": [
     {
       "action": {
-        "type": "DAMAGE",
-        "damage": {
-          "spell_power_coefficient": 0.5,
-          "knockback": 0.0
+        "type": "HEAL",
+        "apply_to_caster": true,
+        "heal": {
+          "spell_power_coefficient": 0.1
         }
-      }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_spark_float",
+          "origin": "CENTER",
+          "shape": "WIDE_PIPE",
+          "count": 15.0,
+          "min_speed": 0.02,
+          "max_speed": 0.1,
+          "color_rgba": 3003121919
+        },
+        {
+          "particle_id": "spell_engine:magic_spark_decelerate",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 25.0,
+          "min_speed": 0.08,
+          "max_speed": 0.12,
+          "pre_spawn_travel": 5.0,
+          "invert": true,
+          "color_rgba": 3003121919,
+          "follow_entity": true
+        },
+        {
+          "particle_id": "spell_engine:ground_glow",
+          "origin": "GROUND",
+          "shape": "LINE_VERTICAL",
+          "count": 1.0,
+          "max_speed": 0.0,
+          "color_rgba": 3003121715,
+          "scale": 0.8,
+          "follow_entity": true
+        }
+      ]
     }
   ],
-  "area_impact": {
-    "force_indirect": true,
-    "radius": 2.5,
-    "particles": [
-      {
-        "particle_id": "spell_engine:smoke_medium",
-        "origin": "FEET",
-        "shape": "CIRCLE",
-        "count": 10.0,
-        "min_speed": 0.3,
-        "max_speed": 0.3
-      }
-    ],
-    "sound": {
-      "id": "skill_tree_rpgs:warrior_stomp"
-    }
-  },
   "cost": {
-    "durability": 0
+    "durability": 0,
+    "cooldown": {
+      "duration": 5.0
+    }
   }
 }

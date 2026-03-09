@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "paladins:holy_shock",
-      "cooldown_duration_deduct": 2.0
+      "cooldown_duration_deduct": 3.0
     }
   ]
 }

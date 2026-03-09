@@ -43,7 +43,11 @@ public class NodeTypes {
             return new EntityAttributeReward(attribute, new EntityAttributeModifier(Identifier.of(SkillTreeMod.NAMESPACE + ":attribute_reward"), value, operation));
         }
     }
-    public record Entry(String id, String title, String description, Icon icon, List<SpellContainer> spellReward, EntityAttributeReward attributeReward, ConditionalAttributeReward.DataStructure conditionalAttributeReward, List<String> required_mods) {
+    public record Entry(String id, String title, String description, Icon icon,
+                        List<SpellContainer> spellReward,
+                        EntityAttributeReward attributeReward,
+                        ConditionalAttributeReward.DataStructure conditionalAttributeReward,
+                        List<String> required_mods) {
         public static Entry spell(String id, String title, String description, Icon icon, List<SpellContainer> spellReward) {
             return new Entry(id, title, description, icon, spellReward, null, null, null);
         }

@@ -532,14 +532,6 @@ public class SkillEffects {
             )
     ));
 
-    public static Effects.Entry TRAMPLE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "trample"),
-            "Trample",
-            "Damaging nearby enemies.",
-            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff).interval(3),
-            new EffectConfig(
-                    List.of()
-            )
-    ));
 
     public static Effects.Entry ENRAGE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "enrage"),
             "Enrage",
