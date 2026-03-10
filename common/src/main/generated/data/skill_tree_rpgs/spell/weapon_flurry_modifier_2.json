@@ -14,7 +14,7 @@
             "apply_to_caster": true,
             "status_effect": {
               "effect_id": "skill_tree_rpgs:battle_fury",
-              "duration": 8.0,
+              "duration": 1.0,
               "amplifier": 1,
               "amplifier_cap": 3,
               "apply_mode": "ADD"

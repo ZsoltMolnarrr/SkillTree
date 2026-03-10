@@ -5,7 +5,19 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:swipe"
+      "spell_pattern": "rpg_series:swipe",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "IMMUNITY",
+            "apply_to_caster": true,
+            "immunity": {
+              "duration_ticks": 12
+            }
+          }
+        }
+      ]
     }
   ]
 }
