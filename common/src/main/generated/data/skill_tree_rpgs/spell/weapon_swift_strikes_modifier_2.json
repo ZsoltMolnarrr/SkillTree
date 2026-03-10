@@ -5,7 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:swift_strikes"
+      "spell_pattern": "rpg_series:swift_strikes",
+      "melee_damage_multiplier": 0.1
     }
   ]
 }

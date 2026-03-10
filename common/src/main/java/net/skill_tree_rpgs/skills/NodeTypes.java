@@ -13,6 +13,7 @@ import net.minecraft.util.Identifier;
 import net.puffish.skillsmod.common.IconType;
 import net.spell_engine.api.spell.container.SpellContainer;
 import net.spell_engine.api.spell.container.SpellContainers;
+import net.spell_engine.rpg_series.datagen.WeaponSkills;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
@@ -596,7 +597,9 @@ public class NodeTypes {
             ).require(ROGUES)
     );
     public static final Entry WEAPON_SWIPE_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_swipe_modifier_1).require(ROGUES));
-    public static final Entry WEAPON_SWIPE_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_swipe_modifier_2).require(ROGUES));
+    public static final Entry WEAPON_SWIPE_MODIFIER_2 = add(passiveSpell(WeaponSkillModifiers.weapon_swipe_modifier_2)
+            .withIcon(Icon.spell(WeaponSkills.SWIPE.id()))
+            .require(ROGUES));
 
     // Glaive (Thrust)
     public static final Entry WEAPON_GLAIVE_ROOT = add(

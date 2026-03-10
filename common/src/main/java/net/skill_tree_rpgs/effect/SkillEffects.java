@@ -156,7 +156,7 @@ public class SkillEffects {
     public static Effects.Entry FRACTURE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "fracture"),
             "Fracture",
             "Reduces armor.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff6666),
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xff6666),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -199,20 +199,6 @@ public class SkillEffects {
             "Battle Shout",
             "Increased attack power.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff9933),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
-                                    0.2F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry BATTLE_FURY = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "battle_fury"),
-            "Battle Fury",
-            "Increased Attack Damage.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff4400),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -648,6 +634,36 @@ public class SkillEffects {
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
             new EffectConfig(
                     List.of()
+            )
+    ));
+
+    // Weapon skill specific effects
+    public static Effects.Entry BATTLE_FURY = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "battle_fury"),
+            "Battle Fury",
+            "Increased Attack Damage.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff4400),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry SHATTER = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "shatter"),
+            "Shatter",
+            "Reduces armor.",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0xff6666),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
+                                    -0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
             )
     ));
 

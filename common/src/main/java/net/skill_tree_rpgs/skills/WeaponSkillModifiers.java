@@ -13,6 +13,7 @@ import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
+import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_engine.rpg_series.datagen.WeaponSkills;
 import net.spell_power.api.SpellSchools;
 
@@ -305,12 +306,15 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_swift_strikes_modifier_2 = add(weapon_swift_strikes_modifier_2());
     private static Skills.Entry weapon_swift_strikes_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_swift_strikes_modifier_2");
+        var title = "Precision";
+        var description = "Swift Strikes deals {melee_damage_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.SWIFT_STRIKES.id().toString();
+        modifier.melee_damage_multiplier = 0.1F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Swift Strikes II", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_flurry_modifier_1 = add(weapon_flurry_modifier_1());
@@ -324,7 +328,7 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = WeaponSkills.FLURRY.id().toString();
         modifier.channel_ticks_add = 1;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_flurry_modifier_2 = add(weapon_flurry_modifier_2());
@@ -346,7 +350,7 @@ public class WeaponSkillModifiers {
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WEAPON));
     }
 
     // ===== MACE (Smash) =====
@@ -373,12 +377,22 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_smash_modifier_2 = add(weapon_smash_modifier_2());
     private static Skills.Entry weapon_smash_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_smash_modifier_2");
+        var title = "Shatter";
+        var description = "Smash reduces the target's armor by {bonus} for {effect_duration} sec.";
+        var effect = SkillEffects.SHATTER;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(-effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.SMASH.id().toString();
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 6F, 0);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Smash II", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WEAPON));
     }
 
     // ===== HAMMER (Ground Slam) =====
@@ -405,7 +419,7 @@ public class WeaponSkillModifiers {
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(stun);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_ground_slam_modifier_2 = add(weapon_ground_slam_modifier_2());
@@ -440,11 +454,11 @@ public class WeaponSkillModifiers {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.WHIRLWIND.id().toString();
         modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.power_multiplier = 0.3F;
+        modifier.power_modifier.power_multiplier = 0.2F;
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_whirlwind_modifier_2 = add(weapon_whirlwind_modifier_2());
@@ -461,7 +475,7 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = WeaponSkills.WHIRLWIND.id().toString();
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
-        impact.chance = 0.3F;
+        impact.chance = 0.2F;
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
@@ -600,12 +614,31 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_swipe_modifier_2 = add(weapon_swipe_modifier_2());
     private static Skills.Entry weapon_swipe_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_swipe_modifier_2");
-        var spell = SpellBuilder.createSpellModifier();
+        var title = "Sequential Swipes";
+        var description = "Swipe hits have {trigger_chance} chance to reset the cooldown of Swipe.";
+        var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = WeaponSkills.SWIPE.id().toString();
-        spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Swipe II", "", null, Skills.Category.WEAPON);
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.meleeAttackImpact();
+        trigger.chance = 0.2F;
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        trigger.spell = new Spell.Trigger.SpellCondition();
+        trigger.spell.id = WeaponSkills.SWIPE.id().toString();
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.resetCooldownActive(WeaponSkills.SWIPE.id().toString());
+        impact.action.apply_to_caster = true;
+//        impact.particles = new ParticleBatch[]{
+//                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.RAGE)
+//        };
+        impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
+
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
     }
 
     // ===== GLAIVE (Thrust) =====
@@ -774,11 +807,14 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_cleave_modifier_2 = add(weapon_cleave_modifier_2());
     private static Skills.Entry weapon_cleave_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_cleave_modifier_2");
+        var title = "Hot Hatchet";
+        var description = "Reduces the cooldown of Cleave by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.CLEAVE.id().toString();
+        modifier.cooldown_duration_deduct = 2F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Cleave II", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
     }
 }

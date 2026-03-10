@@ -13,7 +13,7 @@
             "type": "IMMUNITY",
             "apply_to_caster": true,
             "immunity": {
-              "duration_ticks": 12
+              "duration_ticks": 10
             }
           }
         }

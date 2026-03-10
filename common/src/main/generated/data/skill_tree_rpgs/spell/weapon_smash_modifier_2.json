@@ -5,7 +5,19 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:smash"
+      "spell_pattern": "rpg_series:smash",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "skill_tree_rpgs:shatter",
+              "duration": 6.0
+            }
+          }
+        }
+      ]
     }
   ]
 }
