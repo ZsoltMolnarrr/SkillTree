@@ -539,7 +539,9 @@ public class NodeTypes {
             ).require(PALADINS)
     );
     public static final Entry WEAPON_GROUND_SLAM_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_ground_slam_modifier_1).require(PALADINS));
-    public static final Entry WEAPON_GROUND_SLAM_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_ground_slam_modifier_2).require(PALADINS));
+    public static final Entry WEAPON_GROUND_SLAM_MODIFIER_2 = add(passiveSpell(WeaponSkillModifiers.weapon_ground_slam_modifier_2)
+            .withIcon(Icon.spell(WeaponSkills.GROUND_SLAM.id()))
+            .require(PALADINS));
 
     // Double Axe (Whirlwind)
     public static final Entry WEAPON_DOUBLE_AXE_ROOT = add(

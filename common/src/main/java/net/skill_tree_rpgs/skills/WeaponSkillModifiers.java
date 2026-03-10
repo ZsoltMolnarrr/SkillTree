@@ -440,17 +440,22 @@ public class WeaponSkillModifiers {
     private static Skills.Entry weapon_ground_slam_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_ground_slam_modifier_2");
         var title = "Punishment";
-        var description = "Ground Slam has {impact_chance} chance to grant you guaranteed critical strike for {effect_duration} sec.";
-        var spell = SpellBuilder.createSpellModifier();
+        var description = "Casting Ground Slam has {trigger_chance_1} chance to guarantee a critical strike for the next melee attack.";
+
+        var spell = SkillsCommon.createModifierAlikePassiveSpell();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = WeaponSkills.GROUND_SLAM.id().toString();
-        var impact = SpellBuilder.Impacts.effectSet(SkillEffects.PUNISHMENT.id.toString(), 1F, 0);
-        impact.chance = 0.25F;
-        impact.action.apply_to_caster = true;
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-        spell.modifiers = List.of(modifier);
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast(WeaponSkills.GROUND_SLAM.id().toString());
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        var stashTrigger = SpellBuilder.Triggers.meleeAttackImpact();
+        SpellBuilder.Deliver.stash(spell, SkillEffects.PUNISHMENT.id.toString(), 5F, stashTrigger);
+        spell.deliver.stash_effect.consumed_next_tick = true;
+
+        spell.impacts = List.of();
+
         return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 

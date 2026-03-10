@@ -13,7 +13,7 @@
             "type": "STATUS_EFFECT",
             "apply_to_caster": true,
             "status_effect": {
-              "effect_id": "skill_tree_rpgs:battle_fury",
+              "effect_id": "skill_tree_rpgs:flurry_trance",
               "duration": 1.0,
               "amplifier": 1,
               "amplifier_cap": 3,
