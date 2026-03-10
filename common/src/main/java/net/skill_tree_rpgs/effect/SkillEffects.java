@@ -666,6 +666,20 @@ public class SkillEffects {
                     )
             )
     ));
+    public static Effects.Entry SEISMIC_FOCUS = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "seismic_focus"),
+            "Seismic Focus",
+            "Increased Critical Strike Chance.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc00),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    "critical_strike:chance",
+                                    1.0F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry: entries) {

@@ -1,17 +1,21 @@
-# 1.4.0
+# 1.4.0 - Weapon Skills rework
 
 DISCLAIMER: Reworked skill ID, and node IDs!
 
-- New ID formulas
+- Added new skill tree tab to host independent weapon skills:
+  - ID: `skill_tree_rpgs:weapon_skills`
+  - 16 new skills
+  - 1 static skill, and 1 choice out of 2, per weapon type
+  - default point cap of 6
+- Reworked skill tree tab ID:
+  - `skill_tree_rpgs:skill_tree_rpgs` -> `skill_tree_rpgs:class_skills`
+- New skill ID formulas
   - Spell modifiers: `class_tier_{tier}_spell_{choice}_modifier_{modifier}` - for example `archer_tier_3_spell_1_modifier_2`
   - Passive spells: `class_tier_{tier}_passive_{choice}` - for example `archer_tier_3_passive_1`
   - Also applies to skill tree node IDs
-- Reworked skill tree tab ID: 
-  - `skill_tree_rpgs:skill_tree_rpgs` -> `skill_tree_rpgs:class_skills`
-- Added new skill tree tab to host independent weapon skills:
-  - ID: `skill_tree_rpgs:weapon_skills`
-- Fixed missing cooldowns on some warrior passives
 - Add conditional attributes feature
+- Fixed missing cooldowns on some warrior passives
+- Reworked warrior "Trample" skill, replaced by "Second Wind"
 
 # 1.3.0
 

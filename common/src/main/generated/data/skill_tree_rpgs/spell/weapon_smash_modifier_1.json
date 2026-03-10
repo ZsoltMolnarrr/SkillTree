@@ -2,10 +2,43 @@
   "school": "spell_power:physical_melee",
   "range": 0.0,
   "tier": 1,
-  "type": "MODIFIER",
-  "modifiers": [
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "MELEE_IMPACT",
+        "chance": 0.4,
+        "spell": {
+          "id": "rpg_series:smash"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
     {
-      "spell_pattern": "rpg_series:smash"
+      "action": {
+        "type": "COOLDOWN",
+        "apply_to_caster": true,
+        "cooldown": {
+          "actives": {
+            "id": "rpg_series:smash",
+            "duration_multiplier": 0.0
+          }
+        }
+      },
+      "sound": {
+        "id": "spell_engine:spell_cooldown_impact"
+      }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0,
+    "cooldown": {
+      "duration": 8.0
+    }
+  }
 }

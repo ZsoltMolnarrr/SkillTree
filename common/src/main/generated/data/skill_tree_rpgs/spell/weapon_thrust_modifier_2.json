@@ -5,7 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:thrust"
+      "spell_pattern": "rpg_series:thrust",
+      "melee_damage_multiplier": 0.2
     }
   ]
 }

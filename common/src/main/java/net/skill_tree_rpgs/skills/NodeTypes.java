@@ -521,7 +521,9 @@ public class NodeTypes {
                     ModifierConditions.MACE
             ).require(PALADINS)
     );
-    public static final Entry WEAPON_SMASH_MODIFIER_1 = add(modifierSpell(WeaponSkillModifiers.weapon_smash_modifier_1).require(PALADINS));
+    public static final Entry WEAPON_SMASH_MODIFIER_1 = add(passiveSpell(WeaponSkillModifiers.weapon_smash_modifier_1)
+            .withIcon(Icon.spell(WeaponSkills.SMASH.id()))
+            .require(PALADINS));
     public static final Entry WEAPON_SMASH_MODIFIER_2 = add(modifierSpell(WeaponSkillModifiers.weapon_smash_modifier_2).require(PALADINS));
 
     // Hammer (Ground Slam)

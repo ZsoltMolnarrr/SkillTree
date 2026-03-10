@@ -366,12 +366,28 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_smash_modifier_1 = add(weapon_smash_modifier_1());
     private static Skills.Entry weapon_smash_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_smash_modifier_1");
-        var spell = SpellBuilder.createSpellModifier();
+        var title = "Justice Served";
+        var description = "Smash hits have {trigger_chance} chance to reset its own cooldown.";
+        var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = WeaponSkills.SMASH.id().toString();
-        spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Smash I", "", null, Skills.Category.WEAPON);
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.meleeAttackImpact();
+        trigger.chance = 0.4F;
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        trigger.spell = new Spell.Trigger.SpellCondition();
+        trigger.spell.id = WeaponSkills.SMASH.id().toString();
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.resetCooldownActive(WeaponSkills.SMASH.id().toString());
+        impact.action.apply_to_caster = true;
+        impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 8F);
+
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_smash_modifier_2 = add(weapon_smash_modifier_2());
@@ -425,12 +441,19 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_ground_slam_modifier_2 = add(weapon_ground_slam_modifier_2());
     private static Skills.Entry weapon_ground_slam_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_ground_slam_modifier_2");
+        var title = "Punishment";
+        var description = "Ground Slam has {impact_chance} chance to grant you guaranteed critical strike for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.GROUND_SLAM.id().toString();
+        var impact = SpellBuilder.Impacts.effectSet(SkillEffects.SEISMIC_FOCUS.id.toString(), 5F, 0);
+        impact.chance = 0.25F;
+        impact.action.apply_to_caster = true;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Ground Slam II", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 
     // ===== DOUBLE AXE (Whirlwind) =====
@@ -668,12 +691,15 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_thrust_modifier_2 = add(weapon_thrust_modifier_2());
     private static Skills.Entry weapon_thrust_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_thrust_modifier_2");
+        var title = "Impaling Thrust";
+        var description = "Thrust deals {melee_damage_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.THRUST.id().toString();
+        modifier.melee_damage_multiplier = 0.2F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Thrust II", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
 
     // ===== BOW =====

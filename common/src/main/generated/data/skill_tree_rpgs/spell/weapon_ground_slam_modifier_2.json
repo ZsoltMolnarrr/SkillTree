@@ -5,7 +5,21 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:ground_slam"
+      "spell_pattern": "rpg_series:ground_slam",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "chance": 0.25,
+          "action": {
+            "type": "STATUS_EFFECT",
+            "apply_to_caster": true,
+            "status_effect": {
+              "effect_id": "skill_tree_rpgs:seismic_focus",
+              "duration": 5.0
+            }
+          }
+        }
+      ]
     }
   ]
 }
