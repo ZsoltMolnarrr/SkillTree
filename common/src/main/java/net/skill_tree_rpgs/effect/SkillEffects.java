@@ -638,15 +638,15 @@ public class SkillEffects {
     ));
 
     // Weapon skill specific effects
-    public static Effects.Entry BATTLE_FURY = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "battle_fury"),
-            "Battle Fury",
+    public static Effects.Entry FLURRY_TRANCE = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "flurry_trance"),
+            "Flurry Trance",
             "Increased Attack Damage.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff4400),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
-                                    0.2F,
+                                    0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
@@ -666,9 +666,9 @@ public class SkillEffects {
                     )
             )
     ));
-    public static Effects.Entry SEISMIC_FOCUS = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "seismic_focus"),
-            "Seismic Focus",
-            "Increased Critical Strike Chance.",
+    public static Effects.Entry PUNISHMENT = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "punishment"),
+            "Punishment",
+            "Guaranteed Critical Strike!",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffcc00),
             new EffectConfig(
                     List.of(

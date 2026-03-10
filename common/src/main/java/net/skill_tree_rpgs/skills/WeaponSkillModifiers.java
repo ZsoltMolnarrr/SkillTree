@@ -334,7 +334,7 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_flurry_modifier_2 = add(weapon_flurry_modifier_2());
     private static Skills.Entry weapon_flurry_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_flurry_modifier_2");
-        var effect = SkillEffects.BATTLE_FURY;
+        var effect = SkillEffects.FLURRY_TRANCE;
         var title = "Frenzied Strikes";
         var description = "Each strike of Flurry increases your Attack Damage by {bonus} for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
@@ -384,8 +384,6 @@ public class WeaponSkillModifiers {
         impact.action.apply_to_caster = true;
         impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(impact);
-
-        SpellBuilder.Cost.cooldown(spell, 8F);
 
         return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
@@ -447,7 +445,7 @@ public class WeaponSkillModifiers {
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.GROUND_SLAM.id().toString();
-        var impact = SpellBuilder.Impacts.effectSet(SkillEffects.SEISMIC_FOCUS.id.toString(), 5F, 0);
+        var impact = SpellBuilder.Impacts.effectSet(SkillEffects.PUNISHMENT.id.toString(), 1F, 0);
         impact.chance = 0.25F;
         impact.action.apply_to_caster = true;
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
@@ -729,7 +727,7 @@ public class WeaponSkillModifiers {
         var impact = SpellBuilder.Impacts.effectSet(StatusEffects.SLOWNESS.getIdAsString(), 3F, 1);
         spell.impacts = List.of(impact);
 
-        SpellBuilder.Cost.cooldown(spell, 6F);
+        SpellBuilder.Cost.cooldown(spell, 3F);
 
         return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
@@ -751,8 +749,6 @@ public class WeaponSkillModifiers {
         var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 4F, 0, 1);
         impact.particles = SkillsCommon.poisonImpactParticles();
         spell.impacts = List.of(impact);
-
-        SpellBuilder.Cost.cooldown(spell, 6F);
 
         return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
     }
