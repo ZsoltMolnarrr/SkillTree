@@ -4279,7 +4279,7 @@
           },
           "fallbackAttribute": "minecraft:generic.attack_damage",
           "operation": "multiply_base",
-          "value": 0.10000000149011612
+          "value": 0.05000000074505806
         }
       }
     ],
@@ -4313,7 +4313,7 @@
             "translationKey": "modifier_condition.skill_tree_rpgs.claymore"
           },
           "operation": "multiply_base",
-          "value": 0.10000000149011612
+          "value": 0.05000000074505806
         }
       }
     ],
@@ -4515,7 +4515,7 @@
             "translationKey": "modifier_condition.skill_tree_rpgs.dagger"
           },
           "operation": "multiply_base",
-          "value": 0.10000000149011612
+          "value": 0.05000000074505806
         }
       }
     ],
@@ -5427,7 +5427,7 @@
             "translationKey": "modifier_condition.skill_tree_rpgs.spear"
           },
           "operation": "multiply_base",
-          "value": 0.10000000149011612
+          "value": 0.05000000074505806
         }
       }
     ],
@@ -5600,7 +5600,7 @@
             "translationKey": "modifier_condition.skill_tree_rpgs.sword"
           },
           "operation": "multiply_base",
-          "value": 0.10000000149011612
+          "value": 0.05000000074505806
         }
       }
     ],

@@ -291,12 +291,15 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_swift_strikes_modifier_1 = add(weapon_swift_strikes_modifier_1());
     private static Skills.Entry weapon_swift_strikes_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_swift_strikes_modifier_1");
+        var title = "Frequent Strikes";
+        var description = "Reduces the cooldown of Swift Strikes by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.SWIFT_STRIKES.id().toString();
+        modifier.cooldown_duration_deduct = 3F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Swift Strikes I", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry weapon_swift_strikes_modifier_2 = add(weapon_swift_strikes_modifier_2());
@@ -313,23 +316,37 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_flurry_modifier_1 = add(weapon_flurry_modifier_1());
     private static Skills.Entry weapon_flurry_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_flurry_modifier_1");
+        var title = "Relentless Flurry";
+        var description = "Flurry performs 1 additional strike.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.FLURRY.id().toString();
+        modifier.channel_ticks_add = 1;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Flurry I", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry weapon_flurry_modifier_2 = add(weapon_flurry_modifier_2());
     private static Skills.Entry weapon_flurry_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_flurry_modifier_2");
+        var effect = SkillEffects.BATTLE_FURY;
+        var title = "Frenzied Strikes";
+        var description = "Each strike of Flurry increases your Attack Damage by {bonus} for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
+            return args.description().replace("{bonus}", bonus);
+        };
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.FLURRY.id().toString();
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8F, 1, 3);
+        impact.action.apply_to_caster = true;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Flurry II", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     // ===== MACE (Smash) =====
@@ -377,12 +394,18 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_ground_slam_modifier_1 = add(weapon_ground_slam_modifier_1());
     private static Skills.Entry weapon_ground_slam_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_ground_slam_modifier_1");
+        var title = "Aftershock";
+        var description = "Ground Slam has {impact_chance} chance to stun the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.GROUND_SLAM.id().toString();
+        var stun = SpellBuilder.Impacts.stun(2F);
+        stun.chance = 0.5F;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(stun);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Ground Slam I", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry weapon_ground_slam_modifier_2 = add(weapon_ground_slam_modifier_2());
@@ -586,12 +609,15 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_thrust_modifier_1 = add(weapon_thrust_modifier_1());
     private static Skills.Entry weapon_thrust_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_thrust_modifier_1");
+        var title = "Full Thrust";
+        var description = "Thrust charges you further forward.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.THRUST.id().toString();
+        modifier.melee_momentum_add = 0.5F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Thrust I", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry weapon_thrust_modifier_2 = add(weapon_thrust_modifier_2());
@@ -722,12 +748,15 @@ public class WeaponSkillModifiers {
     public static final Skills.Entry weapon_cleave_modifier_1 = add(weapon_cleave_modifier_1());
     private static Skills.Entry weapon_cleave_modifier_1() {
         var id = Identifier.of(NAMESPACE, "weapon_cleave_modifier_1");
+        var title = "Wide Cleave";
+        var description = "Extends the reach of Cleave by +0.5 blocks.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = WeaponSkills.CLEAVE.id().toString();
+        modifier.range_add = 0.5F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Cleave I", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry weapon_cleave_modifier_2 = add(weapon_cleave_modifier_2());

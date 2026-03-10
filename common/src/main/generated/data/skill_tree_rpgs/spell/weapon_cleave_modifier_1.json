@@ -5,7 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:cleave"
+      "spell_pattern": "rpg_series:cleave",
+      "range_add": 0.5
     }
   ]
 }

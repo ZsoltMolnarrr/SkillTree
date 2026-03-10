@@ -209,6 +209,20 @@ public class SkillEffects {
                     )
             )
     ));
+    public static Effects.Entry BATTLE_FURY = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "battle_fury"),
+            "Battle Fury",
+            "Increased Attack Damage.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff4400),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
     public static Effects.Entry NATURES_GRASP = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "natures_grasp"),
             "Nature's Grasp",
             "Immobilized.",

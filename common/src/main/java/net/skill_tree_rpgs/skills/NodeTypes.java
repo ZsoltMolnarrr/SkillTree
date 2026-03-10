@@ -433,7 +433,7 @@ public class NodeTypes {
 
     // ===== WEAPON SKILLS =====
 
-    public static final float WEAPON_ROOT_DAMAGE = 0.1f;
+    public static final float WEAPON_ROOT_DAMAGE = 0.05f;
     public static final float WEAPON_ROOT_CRIT_CHANCE = 0.04f;
     public static final float WEAPON_ROOT_CRIT_DAMAGE = 0.08f;
     public static final float WEAPON_ROOT_HASTE = 0.05f;

@@ -5,7 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:flurry"
+      "spell_pattern": "rpg_series:flurry",
+      "channel_ticks_add": 1
     }
   ]
 }

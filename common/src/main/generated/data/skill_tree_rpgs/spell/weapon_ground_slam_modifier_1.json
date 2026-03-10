@@ -5,7 +5,23 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "rpg_series:ground_slam"
+      "spell_pattern": "rpg_series:ground_slam",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "chance": 0.5,
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "spell_engine:stun",
+              "duration": 2.0
+            }
+          },
+          "sound": {
+            "id": "spell_engine:stun_generic"
+          }
+        }
+      ]
     }
   ]
 }
