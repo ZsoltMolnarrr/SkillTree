@@ -21,11 +21,11 @@ public class ModifierConditions {
 
     private static ModifierCondition weapon(Equipment.WeaponType type, EquipmentSlot slot, String displayText) {
         TagKey<Item> tag = RPGSeriesItemTags.WeaponType.get(type);
-        String translationKey = "modifier_condition." + SkillTreeMod.NAMESPACE + "." + type.toString().toLowerCase(Locale.ROOT);
-        return create(tag, slot, translationKey, displayText);
+        return create(tag, slot, type.toString(), displayText);
     }
 
-    private static ModifierCondition create(TagKey<Item> tag, EquipmentSlot slot, String translationKey, String displayText) {
+    private static ModifierCondition create(TagKey<Item> tag, EquipmentSlot slot, String translationKeyCore, String displayText) {
+        String translationKey = "modifier_condition." + SkillTreeMod.NAMESPACE + "." + translationKeyCore.toLowerCase(Locale.ROOT);
         var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag), translationKey);
         TRANSLATIONS.put(condition, displayText);
         return condition;

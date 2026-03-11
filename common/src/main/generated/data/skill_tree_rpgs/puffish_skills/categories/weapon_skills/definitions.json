@@ -4175,7 +4175,7 @@
               "slot": "mainhand",
               "tag": "minecraft:axes"
             },
-            "translationKey": "axe"
+            "translationKey": "modifier_condition.skill_tree_rpgs.axe"
           },
           "fallbackAttribute": "minecraft:generic.attack_damage",
           "operation": "multiply_base",
@@ -4275,7 +4275,7 @@
               "slot": "mainhand",
               "tag": "minecraft:enchantable/bow"
             },
-            "translationKey": "bow"
+            "translationKey": "modifier_condition.skill_tree_rpgs.bow"
           },
           "fallbackAttribute": "minecraft:generic.attack_damage",
           "operation": "multiply_base",
@@ -4477,7 +4477,7 @@
               "slot": "mainhand",
               "tag": "minecraft:enchantable/crossbow"
             },
-            "translationKey": "crossbow"
+            "translationKey": "modifier_condition.skill_tree_rpgs.crossbow"
           },
           "fallbackAttribute": "minecraft:generic.attack_damage",
           "operation": "multiply_base",
@@ -5595,7 +5595,7 @@
           "condition": {
             "equipment": {
               "slot": "mainhand",
-              "tag": "rpg_series:weapon_type/sword"
+              "tag": "minecraft:swords"
             },
             "translationKey": "modifier_condition.skill_tree_rpgs.sword"
           },
