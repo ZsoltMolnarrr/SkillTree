@@ -1,3 +1,7 @@
+# 1.4.1
+
+- Fixed Sword specialization not providing attribute bonus
+
 # 1.4.0 - Weapon Skills rework
 
 DISCLAIMER: Reworked skill ID, and node IDs!

@@ -46,7 +46,6 @@ public class ModifierConditions {
     public static final ModifierCondition HEAVY_CROSSBOW = mainhand(Equipment.WeaponType.HEAVY_CROSSBOW, "While holding a Heavy Crossbow:");
 
     // Melee weapons
-    public static final ModifierCondition SWORD          = mainhand(Equipment.WeaponType.SWORD,          "While holding a Sword:");
     public static final ModifierCondition CLAYMORE       = mainhand(Equipment.WeaponType.CLAYMORE,       "While holding a Claymore:");
     public static final ModifierCondition MACE           = mainhand(Equipment.WeaponType.MACE,           "While holding a Mace:");
     public static final ModifierCondition HAMMER         = mainhand(Equipment.WeaponType.HAMMER,         "While holding a Hammer:");
@@ -63,4 +62,5 @@ public class ModifierConditions {
     public static final ModifierCondition BOW      = create(ItemTags.BOW_ENCHANTABLE,      EquipmentSlot.MAINHAND, "bow",      "While holding a Bow:");
     public static final ModifierCondition CROSSBOW = create(ItemTags.CROSSBOW_ENCHANTABLE, EquipmentSlot.MAINHAND, "crossbow", "While holding a Crossbow:");
     public static final ModifierCondition AXE      = create(ItemTags.AXES,                 EquipmentSlot.MAINHAND, "axe",      "While holding an Axe:");
+    public static final ModifierCondition SWORD    = create(ItemTags.SWORDS,               EquipmentSlot.MAINHAND, "sword",      "While holding a Sword:");
 }
