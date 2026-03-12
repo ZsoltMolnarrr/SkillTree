@@ -7,7 +7,7 @@
     "triggers": [
       {
         "type": "ROLL",
-        "chance": 0.5
+        "chance": 0.25
       }
     ]
   },
@@ -20,7 +20,7 @@
         "type": "COOLDOWN",
         "cooldown": {
           "actives": {
-            "id": "paladins:flash_heal",
+            "id": "paladins:divine_protection",
             "duration_multiplier": 0.0
           }
         }

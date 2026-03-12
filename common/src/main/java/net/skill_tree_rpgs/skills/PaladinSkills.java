@@ -351,11 +351,11 @@ public class PaladinSkills {
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
     }
 
-    public static final Skills.Entry paladin_tier_2_passive_2 = add(paladin_tier_2_passive_2()); // Conviction (rolling resets Flash Heal cooldown)
+    public static final Skills.Entry paladin_tier_2_passive_2 = add(paladin_tier_2_passive_2()); // Conviction
     private static Skills.Entry paladin_tier_2_passive_2() {
         var id = Identifier.of(NAMESPACE, "paladin_tier_2_passive_2");
         var title = "Conviction";
-        var description = "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Flash Heal.";
+        var description = "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Divine Protection.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.HEALING;
@@ -364,10 +364,12 @@ public class PaladinSkills {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.roll();
-        trigger.chance = 0.5F;
+        trigger.chance = 0.25F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.resetCooldownActive("paladins:flash_heal");
+        //var impact = SpellBuilder.Impacts.resetCooldownActive("paladins:flash_heal"); // Used to be in place with 50% chance
+        var impact = SpellBuilder.Impacts.resetCooldownActive("paladins:divine_protection");
+
         impact.particles = new ParticleBatch[]{
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.HOLY),
                 new ParticleBatch(

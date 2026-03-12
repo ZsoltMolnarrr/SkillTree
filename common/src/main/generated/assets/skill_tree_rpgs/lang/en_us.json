@@ -380,7 +380,7 @@
   "spell.skill_tree_rpgs.paladin_tier_1_passive_2.name": "Redoubt",
   "spell.skill_tree_rpgs.paladin_tier_2_passive_1.description": "Upon rolling, you have {trigger_chance_1} chance for your next melee attack to apply Crusader's Mark, increasing damage taken by {bonus}, for {effect_duration} sec.",
   "spell.skill_tree_rpgs.paladin_tier_2_passive_1.name": "Crusader Strike",
-  "spell.skill_tree_rpgs.paladin_tier_2_passive_2.description": "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Flash Heal.",
+  "spell.skill_tree_rpgs.paladin_tier_2_passive_2.description": "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Divine Protection.",
   "spell.skill_tree_rpgs.paladin_tier_2_passive_2.name": "Conviction",
   "spell.skill_tree_rpgs.paladin_tier_2_spell_1_modifier_1.description": "Flash Heal attempts to cure the target, by reducing the strength of a harmful effect.",
   "spell.skill_tree_rpgs.paladin_tier_2_spell_1_modifier_1.name": "Cleanse",

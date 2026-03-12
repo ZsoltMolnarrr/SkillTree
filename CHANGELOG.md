@@ -1,3 +1,7 @@
+# 1.4.2
+
+- Rework paladin passive "Conviction" to apply for Divine Protection
+
 # 1.4.1
 
 - Fixed Sword specialization not providing attribute bonus
