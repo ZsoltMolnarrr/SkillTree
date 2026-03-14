@@ -383,6 +383,10 @@ public class PaladinSkills {
         impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(impact);
 
+        // Cooldown applied due to resetting a strong defensive cooldown
+        // Flash Heal wouldn't need this
+        SpellBuilder.Cost.cooldown(spell, 10F);
+
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
     }
 

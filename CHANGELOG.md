@@ -1,3 +1,7 @@
+# 1.4.4
+
+- Reworked "Conviction" passive now has internal cooldown
+
 # 1.4.3
 
 - Fixed spell nodes becoming non-functional after player death
