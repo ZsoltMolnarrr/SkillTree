@@ -1,3 +1,7 @@
+# 1.4.3
+
+- Fixed spell nodes becoming non-functional after player death
+
 # 1.4.2
 
 - Rework paladin passive "Conviction" to apply for Divine Protection

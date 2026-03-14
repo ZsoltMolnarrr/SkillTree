@@ -15,6 +15,7 @@ import net.spell_engine.api.spell.container.SpellContainer;
 import net.spell_engine.internals.container.SpellContainerSource;
 
 import java.util.List;
+import java.util.UUID;
 
 public class SpellContainerReward implements Reward {
     public static final Identifier ID = Identifier.of(SkillTreeMod.NAMESPACE, "spell");
@@ -23,6 +24,7 @@ public class SpellContainerReward implements Reward {
     }
     private static final Gson gson = new GsonBuilder().create();
     public record DataStructure(List<SpellContainer> containers) { }
+
     private static Result<SpellContainerReward, Problem> parse(RewardConfigContext context) {
         var dataResult = context.getData();
         if (dataResult.getFailure().isPresent()) {
@@ -33,8 +35,6 @@ public class SpellContainerReward implements Reward {
         try {
             var json = data.get().getJson();
             var parsedContainers = gson.fromJson(json, DataStructure.class);
-            var idString = parsedContainers.containers().getFirst().spell_ids().getFirst();
-            reward.id = Identifier.of(idString);
             reward.containers = parsedContainers.containers();
         } catch (Exception e) {
             return Result.failure(Problem.message(
@@ -44,7 +44,7 @@ public class SpellContainerReward implements Reward {
         return Result.success(reward);
     }
 
-    private Identifier id;
+    private final String rawId = UUID.randomUUID().toString();
     /// Using list of containers instead a single container with a list of spells
     /// to avoid Spell Sourcing logic having to sort multiple spells.
     private List<SpellContainer> containers = List.of();
@@ -54,10 +54,10 @@ public class SpellContainerReward implements Reward {
         int count = context.getCount();
         var player = context.getPlayer();
         var containers = ((SpellContainerSource.Owner)player).serverSideSpellContainers();
-        containers.remove(id.toString());
+        containers.remove(rawId);
         if (count > 0) {
             var index = Math.min(count - 1, this.containers.size() - 1);
-            containers.put(id.toString(), this.containers.get(index));
+            containers.put(rawId, this.containers.get(index));
         }
         SpellContainerSource.setDirtyServerSide(player);
     }
