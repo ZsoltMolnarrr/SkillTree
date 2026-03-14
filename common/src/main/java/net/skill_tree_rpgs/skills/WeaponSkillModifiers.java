@@ -236,6 +236,10 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = "paladins:holy_shock";
         modifier.power_modifier = new Spell.Impact.Modifier();
         modifier.power_modifier.power_multiplier = bonus;
+
+        var impactFilter = new Spell.Modifier.ImpactFilter();
+        impactFilter.type = Spell.Impact.Action.Type.HEAL;
+        modifier.impact_filters = List.of(impactFilter);
         spell.modifiers = List.of(modifier);
 
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));

@@ -1,6 +1,7 @@
 # 1.4.3
 
 - Fixed spell nodes becoming non-functional after player death
+- Fixed Improved Healing node also affecting the damage of Holy Shock #11
 
 # 1.4.2
 

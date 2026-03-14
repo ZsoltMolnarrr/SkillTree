@@ -6,6 +6,11 @@
   "modifiers": [
     {
       "spell_pattern": "paladins:holy_shock",
+      "impact_filters": [
+        {
+          "type": "HEAL"
+        }
+      ],
       "power_modifier": {
         "power_multiplier": 0.2
       }
