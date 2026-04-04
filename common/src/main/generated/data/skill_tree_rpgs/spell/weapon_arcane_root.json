@@ -7,7 +7,7 @@
     {
       "spell_pattern": "wizards:arcane_blast",
       "power_modifier": {
-        "power_multiplier": 0.1
+        "power_multiplier": 0.05
       }
     }
   ]

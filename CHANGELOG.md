@@ -1,3 +1,7 @@
+# 1.4.5
+
+- Small tweaks to some arcane nodes
+
 # 1.4.4
 
 - Reworked "Conviction" passive now has internal cooldown

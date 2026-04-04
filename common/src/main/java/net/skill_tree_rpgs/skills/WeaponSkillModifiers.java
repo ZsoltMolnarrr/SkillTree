@@ -42,7 +42,7 @@ public class WeaponSkillModifiers {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "wizards:arcane_blast";
         modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.power_multiplier = 0.1F;
+        modifier.power_modifier.power_multiplier = 0.05F;
         spell.modifiers = List.of(modifier);
 
         return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);

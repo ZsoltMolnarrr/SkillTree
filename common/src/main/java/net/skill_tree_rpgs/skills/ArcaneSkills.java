@@ -55,7 +55,7 @@ public class ArcaneSkills {
     private static Skills.Entry arcane_tier_2_spell_1_modifier_2() {
         var id = Identifier.of(NAMESPACE, "arcane_tier_2_spell_1_modifier_2");
         var effect = SkillEffects.ARCANE_SLOWNESS;
-        var title = "Crippling Barrage";
+        var title = "Crippling Missiles";
         var description = "Arcane Missiles apply slowness, reducing movement speed by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
         SpellTooltip.DescriptionMutator mutator = (args) -> {
