@@ -39,25 +39,34 @@
     "area": {
       "distance_dropoff": "SQUARED"
     },
-    "particles": [
-      {
-        "particle_id": "spell_engine:snowflake",
-        "origin": "FEET",
-        "shape": "CIRCLE",
-        "count": 30.0,
-        "min_speed": 0.4,
-        "max_speed": 0.4
-      },
-      {
-        "particle_id": "spell_engine:area_effect_293",
-        "origin": "GROUND",
-        "shape": "SPHERE",
-        "count": 1.0,
-        "max_speed": 0.0,
-        "color_rgba": 1724710911,
-        "scale": 2.5
-      }
-    ],
+    "visuals": {
+      "particles": [
+        {
+          "id": "spell_engine:snowflake",
+          "appearance": {},
+          "batch": {
+            "count": 30.0,
+            "shape": "CIRCLE",
+            "anchor": "ENTITY",
+            "vertical_origin": 0.1,
+            "min_speed": 0.4,
+            "max_speed": 0.4
+          }
+        },
+        {
+          "id": "spell_engine:area_effect_293",
+          "appearance": {
+            "color": 1724710911,
+            "scale": 2.5
+          },
+          "batch": {
+            "count": 1.0,
+            "shape": "SPHERE",
+            "anchor": "GROUND"
+          }
+        }
+      ]
+    },
     "sound": {
       "id": "wizards:frost_nova_damage_impact"
     }

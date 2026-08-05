@@ -33,32 +33,47 @@
         "client_data": {
           "particles": [
             {
-              "particle_id": "spell_engine:magic_spark_float",
-              "origin": "GROUND",
-              "shape": "PILLAR",
-              "count": 12.0,
-              "min_speed": 0.05,
-              "max_speed": 0.1,
-              "color_rgba": 4294954239
+              "id": "spell_engine:magic_spark",
+              "appearance": {
+                "color": 4294954239,
+                "motion": "FLOAT"
+              },
+              "batch": {
+                "count": 12.0,
+                "shape": "PILLAR",
+                "anchor": "GROUND",
+                "min_speed": 0.05,
+                "max_speed": 0.1
+              }
             },
             {
-              "particle_id": "spell_engine:magic_holy_burst",
-              "origin": "GROUND",
-              "shape": "PILLAR",
-              "count": 12.0,
-              "min_speed": 0.05,
-              "max_speed": 0.15,
-              "color_rgba": 4294954239
+              "id": "spell_engine:magic_holy",
+              "appearance": {
+                "color": 4294954239,
+                "motion": "BURST"
+              },
+              "batch": {
+                "count": 12.0,
+                "shape": "PILLAR",
+                "anchor": "GROUND",
+                "min_speed": 0.05,
+                "max_speed": 0.15
+              }
             },
             {
-              "particle_id": "spell_engine:magic_arcane_burst",
-              "origin": "GROUND",
-              "shape": "CIRCLE",
-              "count": 12.0,
-              "min_speed": 0.05,
-              "max_speed": 0.15,
-              "extent": 5.0,
-              "color_rgba": 4294954239
+              "id": "spell_engine:magic_arcane",
+              "appearance": {
+                "color": 4294954239,
+                "motion": "BURST"
+              },
+              "batch": {
+                "count": 12.0,
+                "shape": "CIRCLE",
+                "anchor": "GROUND",
+                "min_speed": 0.05,
+                "max_speed": 0.15,
+                "extent": 5.0
+              }
             }
           ]
         }
@@ -74,17 +89,25 @@
           "knockback": 0.1
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_holy_burst",
-          "origin": "FEET",
-          "shape": "SPHERE",
-          "count": 10.0,
-          "min_speed": 0.4,
-          "max_speed": 0.4,
-          "color_rgba": 4294954239
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_holy",
+            "appearance": {
+              "color": 4294954239,
+              "motion": "BURST"
+            },
+            "batch": {
+              "count": 10.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 0.4,
+              "max_speed": 0.4
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "skill_tree_rpgs:priest_consecration_impact"
       }

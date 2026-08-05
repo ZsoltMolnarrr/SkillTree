@@ -18,50 +18,73 @@
     ]
   },
   "release": {
-    "particles": [
-      {
-        "particle_id": "spell_engine:magic_spark_ascend",
-        "origin": "CENTER",
-        "shape": "SPHERE",
-        "count": 40.0,
-        "min_speed": 0.6,
-        "max_speed": 0.8
-      },
-      {
-        "particle_id": "spell_engine:smoke_medium",
-        "origin": "FEET",
-        "shape": "CIRCLE",
-        "count": 20.0,
-        "min_speed": 0.4,
-        "max_speed": 0.4
-      },
-      {
-        "particle_id": "spell_engine:smoke_medium",
-        "origin": "FEET",
-        "shape": "CIRCLE",
-        "count": 20.0,
-        "min_speed": 0.6,
-        "max_speed": 0.6
-      },
-      {
-        "particle_id": "spell_engine:area_effect_658",
-        "origin": "GROUND",
-        "shape": "SPHERE",
-        "count": 1.0,
-        "max_speed": 0.0,
-        "color_rgba": 3873892095,
-        "scale": 4.0
-      },
-      {
-        "particle_id": "spell_engine:area_effect_658",
-        "origin": "GROUND",
-        "shape": "SPHERE",
-        "count": 1.0,
-        "max_speed": 0.0,
-        "color_rgba": 2795939583,
-        "scale": 5.0
-      }
-    ],
+    "visuals": {
+      "particles": [
+        {
+          "id": "spell_engine:magic_spark",
+          "appearance": {
+            "motion": "ASCEND"
+          },
+          "batch": {
+            "count": 40.0,
+            "shape": "SPHERE",
+            "anchor": "ENTITY",
+            "min_speed": 0.6,
+            "max_speed": 0.8
+          }
+        },
+        {
+          "id": "spell_engine:smoke_medium",
+          "appearance": {},
+          "batch": {
+            "count": 20.0,
+            "shape": "CIRCLE",
+            "anchor": "ENTITY",
+            "vertical_origin": 0.1,
+            "min_speed": 0.4,
+            "max_speed": 0.4
+          }
+        },
+        {
+          "id": "spell_engine:smoke_medium",
+          "appearance": {},
+          "batch": {
+            "count": 20.0,
+            "shape": "CIRCLE",
+            "anchor": "ENTITY",
+            "vertical_origin": 0.1,
+            "min_speed": 0.6,
+            "max_speed": 0.6
+          }
+        },
+        {
+          "id": "spell_engine:area_effect_658",
+          "appearance": {
+            "color": 3873892095,
+            "scale": 4.0,
+            "facing": "GROUND"
+          },
+          "batch": {
+            "count": 1.0,
+            "shape": "NONE",
+            "anchor": "GROUND"
+          }
+        },
+        {
+          "id": "spell_engine:area_effect_658",
+          "appearance": {
+            "color": 2795939583,
+            "scale": 5.0,
+            "facing": "GROUND"
+          },
+          "batch": {
+            "count": 1.0,
+            "shape": "NONE",
+            "anchor": "GROUND"
+          }
+        }
+      ]
+    },
     "sound": {
       "id": "skill_tree_rpgs:warrior_shockwave"
     }
@@ -79,16 +102,21 @@
           "duration": 4.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:smoke_medium",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 20.0,
-          "min_speed": 0.2,
-          "max_speed": 0.3
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:smoke_medium",
+            "appearance": {},
+            "batch": {
+              "count": 20.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.2,
+              "max_speed": 0.3
+            }
+          }
+        ]
+      }
     }
   ],
   "cost": {

@@ -71,17 +71,24 @@
           "knockback": 0.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_holy_burst",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 15.0,
-          "min_speed": 0.6,
-          "max_speed": 0.8,
-          "color_rgba": 4294954239
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_holy",
+            "appearance": {
+              "color": 4294954239,
+              "motion": "BURST"
+            },
+            "batch": {
+              "count": 15.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.6,
+              "max_speed": 0.8
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "skill_tree_rpgs:paladin_divine_hammer_impact"
       }

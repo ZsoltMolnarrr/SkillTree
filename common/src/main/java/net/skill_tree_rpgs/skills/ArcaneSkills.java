@@ -6,7 +6,10 @@ import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.spell.summon.AttributeScaling;
 import net.spell_engine.client.gui.SpellTooltip;
@@ -44,23 +47,6 @@ public class ArcaneSkills {
     /// lives in Wizards and cannot be referenced from here, so this must be kept in sync by hand.
     private static final float ARCANE_EXPLOSION_COOLDOWN = 10F;
 
-    // MARK: Particles
-
-    private static final Identifier ARCANE_BURST = SpellEngineParticles.MagicParticles.get(
-            SpellEngineParticles.MagicParticles.Shape.ARCANE,
-            SpellEngineParticles.MagicParticles.Motion.BURST).id();
-    private static final Identifier ARCANE_DECELERATE = SpellEngineParticles.MagicParticles.get(
-            SpellEngineParticles.MagicParticles.Shape.ARCANE,
-            SpellEngineParticles.MagicParticles.Motion.DECELERATE).id();
-    private static final Identifier SPELL_DECELERATE = SpellEngineParticles.MagicParticles.get(
-            SpellEngineParticles.MagicParticles.Shape.SPELL,
-            SpellEngineParticles.MagicParticles.Motion.DECELERATE).id();
-    private static final Identifier SPARK_BURST = SpellEngineParticles.MagicParticles.get(
-            SpellEngineParticles.MagicParticles.Shape.SPARK,
-            SpellEngineParticles.MagicParticles.Motion.BURST).id();
-    private static final Identifier SPARK_ASCEND = SpellEngineParticles.MagicParticles.get(
-            SpellEngineParticles.MagicParticles.Shape.SPARK,
-            SpellEngineParticles.MagicParticles.Motion.ASCEND).id();
 
     /// A third of the way from the arcane school color towards white — lands on the same light
     /// arcane tone as Arcane Slowness (0xff99ff). Reads brighter than Arcane Blast's own
@@ -68,15 +54,16 @@ public class ArcaneSkills {
     private static final long ARCANE_LIGHT_COLOR = Color.ARCANE.blend(Color.WHITE, 0.33F).toRGBA();
 
     /// The default arcane impact flourish: an ARCANE burst tinted to the school color.
-    private static ParticleBatch arcaneBurst(ParticleBatch.Shape shape, ParticleBatch.Origin origin,
-                                             int count, float spread, float speed) {
-        return arcaneBurst(shape, origin, count, spread, speed, SkillsCommon.ARCANE_COLOR);
+    private static ParticleGroup arcaneBurst(ParticleGroup.Shape shape, int count, float spread, float speed) {
+        return arcaneBurst(shape, count, spread, speed, SkillsCommon.ARCANE_COLOR);
     }
 
-    private static ParticleBatch arcaneBurst(ParticleBatch.Shape shape, ParticleBatch.Origin origin,
-                                             int count, float spread, float speed, long color) {
-        return new ParticleBatch(ARCANE_BURST.toString(), shape, origin, count, spread, speed)
-                .color(color);
+    /// The `origin` parameter is gone: every call site placed this at the target's centre, which is
+    /// the batch default.
+    private static ParticleGroup arcaneBurst(ParticleGroup.Shape shape, int count, float spread, float speed, long color) {
+        return ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.BURST)
+                .color(color)
+                .batch(b -> b.shape(shape).count(count).speed(spread, speed));
     }
 
     // ===================================================================================
@@ -107,17 +94,15 @@ public class ArcaneSkills {
         var area_impact = new Spell.AreaImpact();
         area_impact.radius = 2.5F;
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(ARCANE_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        30, 0.5F, 0.5F)
-                        .color(SkillsCommon.ARCANE_COLOR),
-                new ParticleBatch(
-                        SpellEngineParticles.aura_effect_642.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        1, 0, 0)
-                        .color(SkillsCommon.ARCANE_COLOR),
-        };
+        area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.DECELERATE)
+                        .color(SkillsCommon.ARCANE_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(30).speed(0.5F, 0.5F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_642)
+                        .facing(ParticleGroup.Facing.CAMERA)
+                        .color(SkillsCommon.ARCANE_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(1))
+        );
         area_impact.sound = new Sound(SkillSounds.arcane_fissile_impact.id());
         spell.area_impact = area_impact;
 
@@ -145,25 +130,20 @@ public class ArcaneSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.heal(0.1F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(SkillsCommon.SPARK_DECELERATE.toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.1F, 0.1F)
-                        .color(SkillsCommon.ARCANE_COLOR),
-                new ParticleBatch(
-                        SpellEngineParticles.area_circle_1.id().toString(),
-                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
-                        1, 0.2F, 0.2F)
-                        .followEntity(true)
-                        .scale(0.8F)
-                        .maxAge(0.8F)
-                        .color(SkillsCommon.ARCANE_COLOR),
-                new ParticleBatch(
-                        SkillsCommon.HEAL_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.2F, 0.25F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.ARCANE_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(20).speed(0.1F, 0.1F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
+                        .attached()
+                        .scale(0.8F)
+                        .playbackSpeed(1.25F)
+                        .color(SkillsCommon.ARCANE_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL).count(1).speed(0.2F, 0.2F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_heal, ParticleGroup.Motion.DECELERATE)
+                        .color(SkillsCommon.ARCANE_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.2F, 0.25F))
+        );
         impact.sound = new Sound(SkillSounds.arcane_radiance.id());
         spell.impacts = List.of(impact);
 
@@ -263,9 +243,9 @@ public class ArcaneSkills {
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
-        spell.release.particles = new ParticleBatch[]{
+        spell.release.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_cast.id(), Color.ARCANE)
-        };
+        );
         spell.release.sound = new Sound(SpellEngineSounds.SIGNAL_SPELL_CRIT.id());
 
         var reset = SpellBuilder.Impacts.resetCooldownActive(ARCANE_EXPLOSION);
@@ -309,16 +289,13 @@ public class ArcaneSkills {
         area_impact.radius = radius;
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
         // Ground ring + vertical aura of the same asset family, reading as a small Arcane Blast.
-        area_impact.particles = new ParticleBatch[]{
-                arcaneBurst(ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER, 30, 0.4F, 0.4F,
-                        ARCANE_LIGHT_COLOR),
+        area_impact.visuals = Fx.Visuals.of(
+                arcaneBurst(ParticleGroup.Shape.CIRCLE, 30, 0.4F, 0.4F, ARCANE_LIGHT_COLOR),
                 SpellBuilder.Particles.area(SpellEngineParticles.area_effect_574.id())
-                        .scale(radius - 0.5F)
-                        .color(ARCANE_LIGHT_COLOR),
-                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_574.id())
-                        .scale(radius - 0.5F)
-                        .color(ARCANE_LIGHT_COLOR)
-        };
+                        .appearance(a -> a.scale(radius - 0.5F).color(ARCANE_LIGHT_COLOR)),
+                SpellBuilder.Particles.aura(SpellEngineParticles.area_effect_574.id())
+                        .appearance(a -> a.scale(radius - 0.5F).color(ARCANE_LIGHT_COLOR))
+        );
         area_impact.sound = new Sound(SOUND_ARCANE_BLAST_IMPACT, 1F, 1.2F, 0.1F);
         spell.area_impact = area_impact;
         spell.impacts = List.of(impact);
@@ -347,10 +324,13 @@ public class ArcaneSkills {
 
         var cloudParticles = SpellBuilder.Particles.zoneMagic(
                 SkillsCommon.ARCANE_COLOR,
-                SPELL_DECELERATE,
-                List.of(SkillsCommon.SPARK_DECELERATE),
+                SpellEngineParticles.magic_spell.id(),
+                List.of(SpellEngineParticles.magic_spark.id()),
                 1
         );
+        // `zoneMagic` builds each effect with its entry's own default motion (FLOAT); the V1 ids
+        // this replaced carried DECELERATE, so restore it.
+        cloudParticles.forEach(p -> p.appearance.motion(ParticleGroup.Motion.DECELERATE));
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
@@ -358,30 +338,27 @@ public class ArcaneSkills {
                 8,
                 cloudParticles
         );
-        cloud.impact_particles = new ParticleBatch[] {
-                new ParticleBatch(SPELL_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
-                        20, 0.4F, 0.4F)
+        cloud.impact = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spell, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.ARCANE_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(20).speed(0.4F, 0.4F).verticalOrigin(Batches.FEET))
+        );
         cloud.impact_cap = 1; // Trap
 
-        cloud.client_data.interval_particles = new ParticleBatch[] {
-                new ParticleBatch(
-                        SpellEngineParticles.area_effect_715.id().toString(),
-                        ParticleBatch.Shape.LINE, ParticleBatch.Origin.GROUND,
-                        1, 0F, 0F)
+        cloud.client_data.interval_particles = List.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_715)
                         .scale(radius * 1.5F) // 1.5F is asset specific
                         .color(SkillsCommon.ARCANE_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE).count(1).anchor(ParticleGroup.Anchor.GROUND))
+        );
         cloud.client_data.particle_spawn_interval = 20;
 
         spell.deliver.clouds = List.of(cloud);
 
         var damage = SpellBuilder.Impacts.damage(0.75F, 0.5F);
-        damage.particles = new ParticleBatch[] {
-                arcaneBurst(ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 15, 0.45F, 0.75F),
-        };
+        damage.visuals = Fx.Visuals.of(
+                arcaneBurst(ParticleGroup.Shape.SPHERE, 15, 0.45F, 0.75F)
+        );
         damage.sound = new Sound(SOUND_ARCANE_BLAST_IMPACT);
         spell.impacts = List.of(damage);
 
@@ -552,12 +529,12 @@ public class ArcaneSkills {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
         spell.release.sound = Sound.withVolume(SpellEngineSounds.SIGNAL_INSTANT_CAST.id(), 0.75F);
 
-        spell.release.particles = new ParticleBatch[]{
+        spell.release.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_cast.id(), Color.ARCANE),
-                new ParticleBatch(SPARK_ASCEND.toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.3F).color(SkillsCommon.ARCANE_COLOR)
-        };
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND)
+                        .color(SkillsCommon.ARCANE_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(15).speed(0.1F, 0.3F).verticalOrigin(Batches.FEET))
+        );
 
         // Either cast can prime the instant. Two triggers means SpellTooltip indexes the chance
         // token, so the description reads {trigger_chance_1} — the plain {trigger_chance} is only
@@ -639,16 +616,14 @@ public class ArcaneSkills {
 
         var impact1 = SpellBuilder.Impacts.effectCleanse();
         impact1.action.status_effect.amplifier = -1;
-        impact1.particles = new ParticleBatch[]{
-                new ParticleBatch(SPARK_BURST.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.6F, 0.6F)
-                        .color(Color.WHITE.toRGBA()),
-                new ParticleBatch(SPARK_ASCEND.toString(),
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.4F)
+        impact1.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST)
                         .color(Color.WHITE.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.6F, 0.6F)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND)
+                        .color(Color.WHITE.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).count(10).speed(0.2F, 0.4F))
+        );
         impact1.sound = new Sound(SpellEngineSounds.GENERIC_DISPEL_1.id());
         var impact2 = SpellBuilder.Impacts.effectCleanse();
         impact2.action.status_effect.amplifier = -1;

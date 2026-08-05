@@ -6,7 +6,10 @@ import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
@@ -255,14 +258,12 @@ public class FireSkills {
         modifier.impacts = List.of(slow, pull);
 
         // A converging ground ring at the caster, replayed with each burst's release FX.
-        modifier.release_particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.area_effect_678.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.GROUND,
-                        1, 0, 0)
+        modifier.release = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_678)
                         .scale(3.5F)
                         .color(FIRE_MAGIC_COLOR.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(1).anchor(ParticleGroup.Anchor.GROUND))
+        );
 
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
@@ -334,16 +335,12 @@ public class FireSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), FIRE_VULNERABILITY_DURATION, 1, 4);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_a.id().toString(),
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.FEET,
-                        5, 0.1F, 0.3F),
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        5, 0.1F, 0.3F)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_a)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).count(5).speed(0.1F, 0.3F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(5).speed(0.1F, 0.3F).verticalOrigin(Batches.FEET))
+        );
         impact.sound = new Sound("wizards:fire_scorch_impact");
         spell.impacts = List.of(impact);
 
@@ -389,16 +386,12 @@ public class FireSkills {
         var radius = 1.5F;
         spell.deliver.type = Spell.Delivery.Type.CLOUD;
 
-        var cloudParticles = new ParticleBatch[] {
-                new ParticleBatch(
-                        SpellEngineParticles.flame_ground.id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.CENTER,
-                        2, 0.01F, 0.02F),
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        1, 0.02F, 0.05F),
-        };
+        var cloudParticles = List.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_ground)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR).count(2).speed(0.01F, 0.02F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).count(1).speed(0.02F, 0.05F))
+        );
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
@@ -406,33 +399,27 @@ public class FireSkills {
                 8,
                 cloudParticles
         );
-        cloud.impact_particles = new ParticleBatch[] {
-                new ParticleBatch(
-                        "lava",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
-                        20, 0.4F, 0.4F)
-        };
+        cloud.impact = Fx.Visuals.of(
+                ParticleGroupBuilder.of("lava")
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(20).speed(0.4F, 0.4F).verticalOrigin(Batches.FEET))
+        );
         cloud.impact_cap = 1; // Trap
 
-        cloud.client_data.interval_particles = new ParticleBatch[] {
-                new ParticleBatch(
-                        SpellEngineParticles.area_effect_715.id().toString(),
-                        ParticleBatch.Shape.LINE, ParticleBatch.Origin.GROUND,
-                        1, 0F, 0F)
+        cloud.client_data.interval_particles = List.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_715)
                         .scale(radius * 1.5F) // 1.5F is asset specific
                         .color(FIRE_MAGIC_COLOR.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE).count(1).anchor(ParticleGroup.Anchor.GROUND))
+        );
         cloud.client_data.particle_spawn_interval = 20;
 
         spell.deliver.clouds = List.of(cloud);
 
         var damage = SpellBuilder.Impacts.damage(0.5F, 0.5F);
-        damage.particles = new ParticleBatch[] {
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.15F, 0.2F)
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.15F, 0.2F))
+        );
         damage.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IMPACT_3.id());
         var debuff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), FIRE_VULNERABILITY_DURATION, 1, 4);
         spell.impacts = List.of(damage, debuff);
@@ -465,16 +452,12 @@ public class FireSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 2, 0);
-        impact.particles = new ParticleBatch[]{
+        impact.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_speed.id(), FIRE_MAGIC_COLOR),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND
-                        ).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.3F).color(FIRE_MAGIC_COLOR.toRGBA())
-        };
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND)
+                        .color(FIRE_MAGIC_COLOR.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(15).speed(0.1F, 0.3F).verticalOrigin(Batches.FEET))
+        );
         impact.sound = new Sound(SpellEngineSounds.SPEED_BOOST.id());
         spell.impacts = List.of(impact);
 
@@ -502,31 +485,22 @@ public class FireSkills {
         spell.target.area = new Spell.Target.Area();
         spell.target.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
 
-        spell.release.particles = new ParticleBatch[]{
+        spell.release.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.area(SpellEngineParticles.area_effect_609.id())
-                        .scale(radius)
-                        .color(FIRE_MAGIC_COLOR.toRGBA()),
-                new ParticleBatch(
-                        "lava",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.15F, 0.2F),
-                new ParticleBatch(
-                        SpellEngineParticles.flame_spark.id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        15, 0.2F, 0.2F),
-                new ParticleBatch(
-                        "flame",
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        15, 0.2F, 0.2F)
-        };
+                        .appearance(a -> a.scale(radius).color(FIRE_MAGIC_COLOR.toRGBA())),
+                ParticleGroupBuilder.of("lava")
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(10).speed(0.15F, 0.2F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_spark)
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE).count(15).speed(0.2F, 0.2F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.of("flame")
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE).count(15).speed(0.2F, 0.2F).verticalOrigin(Batches.FEET))
+        );
 
         var damage = SpellBuilder.Impacts.damage(0.5F, 1.2F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.15F, 0.2F)
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(25).speed(0.15F, 0.2F))
+        );
         damage.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IMPACT_2.id());
         spell.impacts = List.of(damage);
 
@@ -567,12 +541,10 @@ public class FireSkills {
         spell.deliver.stash_effect.triggers = List.of(stash_trigger);
 
         var damage = SpellBuilder.Impacts.damage(0.3F, 0.2F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.15F, 0.2F)
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.15F, 0.2F))
+        );
         damage.sound = new Sound("wizards:fire_scorch_impact");
         spell.impacts = List.of(damage);
 

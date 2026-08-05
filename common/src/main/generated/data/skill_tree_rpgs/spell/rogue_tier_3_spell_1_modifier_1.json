@@ -19,18 +19,24 @@
               "apply_mode": "ADD"
             }
           },
-          "particles": [
-            {
-              "particle_id": "spell_engine:aura_effect_538",
-              "origin": "CENTER",
-              "shape": "LINE",
-              "count": 1.0,
-              "max_speed": 0.0,
-              "color_rgba": 1711341503,
-              "scale": 1.2,
-              "follow_entity": true
-            }
-          ],
+          "visuals": {
+            "particles": [
+              {
+                "id": "spell_engine:area_effect_538",
+                "appearance": {
+                  "color": 1711341503,
+                  "scale": 1.2,
+                  "facing": "CAMERA",
+                  "attachment": "POSITION"
+                },
+                "batch": {
+                  "count": 1.0,
+                  "shape": "LINE",
+                  "anchor": "ENTITY"
+                }
+              }
+            ]
+          },
           "sound": {
             "id": "skill_tree_rpgs:rogue_shadows_activate"
           }

@@ -64,82 +64,92 @@
           "sound": {
             "id": "skill_tree_rpgs:rock_spike_impact"
           },
-          "particles": [
-            {
-              "particle_id": "spell_engine:smoke_medium",
-              "origin": "FEET",
-              "shape": "PILLAR",
-              "count": 18.0,
-              "min_speed": 0.1,
-              "max_speed": 0.4
-            },
-            {
-              "particle_id": "minecraft:campfire_cosy_smoke",
-              "origin": "FEET",
-              "shape": "SPHERE",
-              "count": 3.0,
-              "max_speed": 0.02
-            }
-          ],
-          "model_fx": [
-            {
-              "model_id": "skill_tree_rpgs:spell_effect/stone_spike",
-              "light_emission": "NONE",
-              "duration": 40,
-              "initial": [
-                {
-                  "operation": "scale",
-                  "x": -1.0,
-                  "y": -1.0,
-                  "z": -1.0
-                },
-                {
-                  "operation": "translate",
-                  "x": 0.0,
-                  "y": -1.1,
-                  "z": 0.0
+          "visuals": {
+            "particles": [
+              {
+                "id": "spell_engine:smoke_medium",
+                "appearance": {},
+                "batch": {
+                  "count": 18.0,
+                  "shape": "PILLAR",
+                  "anchor": "ENTITY",
+                  "vertical_origin": 0.1,
+                  "min_speed": 0.1,
+                  "max_speed": 0.4
                 }
-              ],
-              "animations": [
-                {
-                  "start": 0,
-                  "end": 20,
-                  "easing": "EASE_OUT_ELASTIC",
-                  "operation": "translate",
-                  "x": 0.0,
-                  "y": 1.6,
-                  "z": 0.0
-                },
-                {
-                  "start": 20,
-                  "end": 40,
-                  "easing": "EASE_IN_ELASTIC",
-                  "operation": "translate",
-                  "x": 0.0,
-                  "y": -1.6,
-                  "z": 0.0
-                },
-                {
-                  "start": 0,
-                  "end": 20,
-                  "easing": "EASE_OUT_ELASTIC",
-                  "operation": "scale",
-                  "x": 1.0,
-                  "y": 1.0,
-                  "z": 1.0
-                },
-                {
-                  "start": 20,
-                  "end": 40,
-                  "easing": "EASE_IN_ELASTIC",
-                  "operation": "scale",
-                  "x": -1.0,
-                  "y": -1.0,
-                  "z": -1.0
+              },
+              {
+                "id": "minecraft:campfire_cosy_smoke",
+                "appearance": {},
+                "batch": {
+                  "count": 3.0,
+                  "shape": "SPHERE",
+                  "anchor": "ENTITY",
+                  "vertical_origin": 0.1,
+                  "max_speed": 0.02
                 }
-              ]
-            }
-          ]
+              }
+            ],
+            "models": [
+              {
+                "model_id": "skill_tree_rpgs:spell_effect/stone_spike",
+                "light_emission": "NONE",
+                "duration": 40,
+                "initial": [
+                  {
+                    "operation": "scale",
+                    "x": -1.0,
+                    "y": -1.0,
+                    "z": -1.0
+                  },
+                  {
+                    "operation": "translate",
+                    "x": 0.0,
+                    "y": -1.1,
+                    "z": 0.0
+                  }
+                ],
+                "animations": [
+                  {
+                    "start": 0,
+                    "end": 20,
+                    "easing": "EASE_OUT_ELASTIC",
+                    "operation": "translate",
+                    "x": 0.0,
+                    "y": 1.6,
+                    "z": 0.0
+                  },
+                  {
+                    "start": 20,
+                    "end": 40,
+                    "easing": "EASE_IN_ELASTIC",
+                    "operation": "translate",
+                    "x": 0.0,
+                    "y": -1.6,
+                    "z": 0.0
+                  },
+                  {
+                    "start": 0,
+                    "end": 20,
+                    "easing": "EASE_OUT_ELASTIC",
+                    "operation": "scale",
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                  },
+                  {
+                    "start": 20,
+                    "end": 40,
+                    "easing": "EASE_IN_ELASTIC",
+                    "operation": "scale",
+                    "x": -1.0,
+                    "y": -1.0,
+                    "z": -1.0
+                  }
+                ]
+              }
+            ]
+          }
         }
       }
     ]
@@ -152,17 +162,24 @@
           "spell_power_coefficient": 0.5
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_spark_burst",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 15.0,
-          "min_speed": 0.2,
-          "max_speed": 0.5,
-          "color_rgba": 3208659199
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_spark",
+            "appearance": {
+              "color": 3208659199,
+              "motion": "BURST"
+            },
+            "batch": {
+              "count": 15.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.2,
+              "max_speed": 0.5
+            }
+          }
+        ]
+      }
     },
     {
       "action": {

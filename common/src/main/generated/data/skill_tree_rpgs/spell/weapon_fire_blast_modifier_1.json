@@ -11,16 +11,21 @@
         "area": {
           "distance_dropoff": "SQUARED"
         },
-        "particles": [
-          {
-            "particle_id": "spell_engine:fire_explosion",
-            "origin": "CENTER",
-            "shape": "SPHERE",
-            "count": 1.0,
-            "max_speed": 0.0,
-            "scale": 1.5
-          }
-        ],
+        "visuals": {
+          "particles": [
+            {
+              "id": "spell_engine:fire_explosion",
+              "appearance": {
+                "scale": 1.5
+              },
+              "batch": {
+                "count": 1.0,
+                "shape": "NONE",
+                "anchor": "ENTITY"
+              }
+            }
+          ]
+        },
         "sound": {
           "id": "wizards:fireball_impact"
         }

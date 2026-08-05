@@ -24,19 +24,26 @@
     ]
   },
   "release": {
-    "particles": [
-      {
-        "particle_id": "spell_engine:sign_cast",
-        "origin": "CENTER",
-        "shape": "LINE_VERTICAL",
-        "count": 1.0,
-        "min_speed": 0.8,
-        "max_speed": 0.8,
-        "color_rgba": 4284940287,
-        "scale": 0.8,
-        "follow_entity": true
-      }
-    ],
+    "visuals": {
+      "particles": [
+        {
+          "id": "spell_engine:sign_cast",
+          "appearance": {
+            "color": 4284940287,
+            "scale": 0.8,
+            "attachment": "POSITION"
+          },
+          "batch": {
+            "count": 1.0,
+            "shape": "LINE_VERTICAL",
+            "anchor": "ENTITY",
+            "vertical_origin": 0.0,
+            "min_speed": 0.8,
+            "max_speed": 0.8
+          }
+        }
+      ]
+    },
     "sound": {
       "id": "spell_engine:signal_spell_crit"
     }

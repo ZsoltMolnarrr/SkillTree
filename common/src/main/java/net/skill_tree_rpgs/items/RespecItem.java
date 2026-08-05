@@ -12,10 +12,13 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.ParticleHelper;
 import net.spell_engine.fx.SpellEngineParticles;
+
+import java.util.List;
 
 public class RespecItem extends Item {
     public RespecItem(Settings settings) {
@@ -26,23 +29,14 @@ public class RespecItem extends Item {
         return SoundEvents.BLOCK_AMETHYST_CLUSTER_BREAK;
     }
 
-    public static final ParticleBatch[] RESET_PARTICLES = new ParticleBatch[] {
-        new ParticleBatch(
-                SpellEngineParticles.MagicParticles.get(
-                        SpellEngineParticles.MagicParticles.Shape.SPARK,
-                        SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                30, 0.2F, 0.25F)
-                .color(Color.from(0x8000ff).toRGBA()),
-            new ParticleBatch(
-                    SpellEngineParticles.MagicParticles.get(
-                            SpellEngineParticles.MagicParticles.Shape.SPARK,
-                            SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                    ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                    30, 0.2F, 0.25F)
+    public static final List<ParticleGroup> RESET_PARTICLES = List.of(
+        ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
+                .color(Color.from(0x8000ff).toRGBA())
+                .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(30).speed(0.2F, 0.25F)),
+            ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                     .color(Color.from(0x8000ff).toRGBA())
-                    .invert()
-    };
+                    .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(30).speed(0.2F, 0.25F).invert(true))
+    );
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {

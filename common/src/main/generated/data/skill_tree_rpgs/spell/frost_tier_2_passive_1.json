@@ -23,48 +23,67 @@
         "time_to_live_seconds": 5.0,
         "impact_tick_interval": 4,
         "impact_cap": 1,
-        "impact_particles": [
-          {
-            "particle_id": "spell_engine:magic_frost_decelerate",
-            "origin": "FEET",
-            "shape": "SPHERE",
-            "count": 25.0,
-            "min_speed": 0.4,
-            "max_speed": 0.4,
-            "color_rgba": 1724710911
-          }
-        ],
+        "impact": {
+          "particles": [
+            {
+              "id": "spell_engine:magic_frost",
+              "appearance": {
+                "color": 1724710911,
+                "motion": "DECELERATE"
+              },
+              "batch": {
+                "count": 25.0,
+                "shape": "SPHERE",
+                "anchor": "ENTITY",
+                "vertical_origin": 0.1,
+                "min_speed": 0.4,
+                "max_speed": 0.4
+              }
+            }
+          ]
+        },
         "client_data": {
           "light_level": 8,
           "particles": [
             {
-              "particle_id": "spell_engine:magic_spark_decelerate",
-              "origin": "CENTER",
-              "shape": "PILLAR",
-              "count": 2.0,
-              "min_speed": 0.01,
-              "max_speed": 0.02,
-              "color_rgba": 1724710911
+              "id": "spell_engine:magic_spark",
+              "appearance": {
+                "color": 1724710911,
+                "motion": "DECELERATE"
+              },
+              "batch": {
+                "count": 2.0,
+                "shape": "PILLAR",
+                "anchor": "ENTITY",
+                "min_speed": 0.01,
+                "max_speed": 0.02
+              }
             },
             {
-              "particle_id": "spell_engine:snowflake",
-              "origin": "CENTER",
-              "shape": "PIPE",
-              "count": 2.0,
-              "min_speed": 0.02,
-              "max_speed": 0.05
+              "id": "spell_engine:snowflake",
+              "appearance": {},
+              "batch": {
+                "count": 2.0,
+                "shape": "PIPE",
+                "anchor": "ENTITY",
+                "min_speed": 0.02,
+                "max_speed": 0.05
+              }
             }
           ],
           "particle_spawn_interval": 20,
           "interval_particles": [
             {
-              "particle_id": "spell_engine:area_effect_715",
-              "origin": "GROUND",
-              "shape": "LINE",
-              "count": 1.0,
-              "max_speed": 0.0,
-              "color_rgba": 1724710911,
-              "scale": 2.25
+              "id": "spell_engine:area_effect_715",
+              "appearance": {
+                "color": 1724710911,
+                "scale": 2.25
+              },
+              "batch": {
+                "count": 1.0,
+                "shape": "LINE",
+                "anchor": "GROUND"
+              }
             }
           ]
         },

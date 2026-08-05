@@ -7,7 +7,10 @@ import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
@@ -58,16 +61,12 @@ public class PaladinSkills {
         modifier.spell_pattern = FLASH_HEAL;
 
         var impact = SpellBuilder.Impacts.effectSet(SkillEffects.DIVINE_STRENGTH.id.toString(), 8, 0);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.05F, 0.1F)
-                        .color(SkillsCommon.MIGHT_COLOR.toRGBA()),
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT)
+                        .color(SkillsCommon.MIGHT_COLOR.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(20).speed(0.05F, 0.1F).verticalOrigin(Batches.FEET)),
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), SkillsCommon.MIGHT_COLOR)
-        };
+        );
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
 
@@ -89,13 +88,11 @@ public class PaladinSkills {
         modifier.spell_pattern = FLASH_HEAL;
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         var impact = SpellBuilder.Impacts.effectCleanse();
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.HEAL_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.25F, 0.3F
-                ).color(Color.HOLY.toRGBA())
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_heal, ParticleGroup.Motion.DECELERATE)
+                        .color(Color.HOLY.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(20).speed(0.25F, 0.3F))
+        );
         impact.action.status_effect.amplifier = cleanseCount;
         modifier.impacts = List.of(impact);
 
@@ -176,9 +173,9 @@ public class PaladinSkills {
         modifier.spell_pattern = JUDGEMENT;
 
         var impact = SpellBuilder.Impacts.taunt();
-        impact.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_aggro.id(), Color.RAGE),
-        };
+        impact.visuals = Fx.Visuals.of(
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_aggro.id(), Color.RAGE)
+        );
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
@@ -291,13 +288,11 @@ public class PaladinSkills {
         heal.action.apply_to_caster = true;
         heal.power_blend = List.of(SpellBuilder.Impacts.powerBlend(
                 ExternalSpellSchools.PHYSICAL_MELEE, 1F / 3F, true, true, true));
-        heal.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.HEAL_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        8, 0.15F, 0.25F)
+        heal.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_heal, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.HOLY_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(8).speed(0.15F, 0.25F))
+        );
         modifier.impacts = List.of(heal);
         spell.modifiers = List.of(modifier);
 
@@ -323,14 +318,12 @@ public class PaladinSkills {
         modifier.impacts = List.of(pull);
 
         // A converging ground ring at the caster, played with Immolation's release FX.
-        modifier.release_particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.area_effect_678.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.GROUND,
-                        1, 0, 0)
+        modifier.release = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_678)
                         .scale(4.5F)
                         .color(Color.HOLY.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(1).anchor(ParticleGroup.Anchor.GROUND))
+        );
 
         spell.modifiers = List.of(modifier);
 
@@ -362,41 +355,25 @@ public class PaladinSkills {
         cloud.volume.radius = radius;
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 5;
-        cloud.client_data.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND,
-                        12, 0.05F, 0.1F)
-                        .color(SkillsCommon.HOLY_COLOR),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HOLY,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND,
-                        12, 0.05F, 0.15F)
-                        .color(SkillsCommon.HOLY_COLOR),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.GROUND,
-                        12, 0.05F, 0.15F)
-                        .color(SkillsCommon.HOLY_COLOR).extent(radius),
-        };
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.FLOAT)
+                        .color(SkillsCommon.HOLY_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR).count(12).speed(0.05F, 0.1F).anchor(ParticleGroup.Anchor.GROUND)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_holy, ParticleGroup.Motion.BURST)
+                        .color(SkillsCommon.HOLY_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR).count(12).speed(0.05F, 0.15F).anchor(ParticleGroup.Anchor.GROUND)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.BURST)
+                        .color(SkillsCommon.HOLY_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE).count(12).speed(0.05F, 0.15F).anchor(ParticleGroup.Anchor.GROUND).extent(radius))
+        );
         spell.deliver.clouds = List.of(cloud);
 
         var impact = SpellBuilder.Impacts.damage(0.2F, 0.1F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HOLY,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
-                        10, 0.4F, 0.4F)
-                        .color(SkillsCommon.HOLY_COLOR),
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_holy, ParticleGroup.Motion.BURST)
+                        .color(SkillsCommon.HOLY_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(10).speed(0.4F, 0.4F).verticalOrigin(Batches.FEET))
+        );
         impact.sound = new Sound(SkillSounds.priest_consecration_impact.id());
         spell.impacts = List.of(impact);
 
@@ -426,15 +403,11 @@ public class PaladinSkills {
 
         var impact = SpellBuilder.Impacts.effectAdd(SkillEffects.REDOUBT.id.toString(), 8, 1, 2);
         impact.action.apply_to_caster = true;
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.2F, 0.3F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.MIGHT_COLOR.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(20).speed(0.2F, 0.3F).verticalOrigin(Batches.FEET))
+        );
         impact.sound = new Sound(SkillSounds.paladin_redoubt.id());
         spell.impacts = List.of(impact);
 
@@ -473,15 +446,11 @@ public class PaladinSkills {
 
         var buff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10, 1, 2);
         buff.action.apply_to_caster = true;
-        buff.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        15, 0.2F, 0.3F)
+        buff.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.MIGHT_COLOR.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(15).speed(0.2F, 0.3F).verticalOrigin(Batches.FEET))
+        );
         // No impact particles: the Vengeance status effect renders its own ground decal
         // (see SkillTreeClientMod), so gaining a stack only chimes.
         buff.sound = Sound.withVolume(SkillSounds.paladin_crusader_activate.id(), 0.25F);
@@ -509,16 +478,12 @@ public class PaladinSkills {
         // Resets both tier 2 book spells — the retribution and the protection pick alike
         var impact = SpellBuilder.Impacts.resetCooldownActive(BLESSED_STRIKES);
 
-        impact.particles = new ParticleBatch[]{
+        impact.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.HOLY),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HOLY,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        15, 0.2F, 0.3F)
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_holy, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.HOLY_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(15).speed(0.2F, 0.3F))
+        );
         impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         var flashHealReset = SpellBuilder.Impacts.resetCooldownActive(FLASH_HEAL);
         spell.impacts = List.of(impact, flashHealReset);
@@ -547,16 +512,12 @@ public class PaladinSkills {
         // (classification-based, so modded slows/snares are covered too)
         var impact = SpellBuilder.Impacts.effectRemoveMovementImpairing();
         impact.action.apply_to_caster = true;
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
-                        15, 0.3F, 0.4F)
-                        .color(FREEDOM_COLOR.toRGBA()),
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.FLOAT)
+                        .color(FREEDOM_COLOR.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.3F, 0.4F).verticalOrigin(Batches.FEET)),
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), FREEDOM_COLOR)
-        };
+        );
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 10F);
@@ -591,39 +552,25 @@ public class PaladinSkills {
         spell.passive.triggers = List.of(trigger1, trigger2);
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 0);
-        buff.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        30, 0.2F, 0.2F)
-                        .color(Color.HOLY.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        20, 0.3F, 0.3F)
-                        .color(Color.HOLY.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.FEET,
-                        30, 0.1F, 0.3F)
-                        .color(Color.HOLY.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        30, 0.1F, 0.2F)
-                        .color(Color.HOLY.toRGBA()),
-                SpellBuilder.Particles.area(SpellEngineParticles.aura_effect_415.id())
+        buff.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
+                        .color(Color.HOLY.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE).count(30).speed(0.2F, 0.2F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
+                        .color(Color.HOLY.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE).count(20).speed(0.3F, 0.3F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT)
+                        .color(Color.HOLY.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).count(30).speed(0.1F, 0.3F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.ASCEND)
+                        .color(Color.HOLY.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(30).speed(0.1F, 0.2F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_415)
+                        .facing(ParticleGroup.Facing.CAMERA)
                         .scale(1.5F)
                         .color(Color.HOLY.toRGBA())
-        };
+                        .batch(Batches.ground(1))
+        );
         buff.sound = new Sound(SkillSounds.paladin_ardent_defender.id());
         var heal = SpellBuilder.Impacts.heal(0.5F);
         spell.impacts = List.of(buff, heal);
@@ -673,15 +620,11 @@ public class PaladinSkills {
         // (base PHYSICAL_MELEE weighs 1, healing weighs 1/3).
         var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
         impact.power_blend = List.of(SpellBuilder.Impacts.powerBlend(SpellSchools.HEALING, 1F / 3F));
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HOLY,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.6F, 0.8F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_holy, ParticleGroup.Motion.BURST)
                         .color(SkillsCommon.HOLY_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.6F, 0.8F))
+        );
         impact.sound = new Sound(SkillSounds.paladin_divine_hammer_impact.id());
         spell.impacts = List.of(impact);
 

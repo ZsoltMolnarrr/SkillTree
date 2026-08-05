@@ -8,7 +8,10 @@ import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.summon.AttributeScaling;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
@@ -59,18 +62,14 @@ public class FrostSkills {
         area_impact.force_indirect = true;
         area_impact.radius = radius;
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.snowflake.id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        30, 0.4F, 0.4F),
-                new ParticleBatch(
-                        SpellEngineParticles.area_effect_293.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.GROUND,
-                        1, 0,0)
+        area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.snowflake)
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE).count(30).speed(0.4F, 0.4F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_293)
                         .scale(radius - 0.5F)
                         .color(Color.FROST.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(1).anchor(ParticleGroup.Anchor.GROUND))
+        );
         area_impact.sound = new Sound("wizards:frost_nova_damage_impact");
         spell.area_impact = area_impact;
         spell.impacts = List.of(impact);
@@ -287,21 +286,16 @@ public class FrostSkills {
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.FROST,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        40, 0.5F, 0.5F)
-                        .color(Color.FROST.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.aura_effect_676.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        1, 0, 0)
+        area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_frost, ParticleGroup.Motion.BURST)
                         .color(Color.FROST.toRGBA())
-                        .scale(radius - 0.5F),
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(40).speed(0.5F, 0.5F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_676)
+                        .facing(ParticleGroup.Facing.CAMERA)
+                        .color(Color.FROST.toRGBA())
+                        .scale(radius - 0.5F)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(1))
+        );
         area_impact.sound = new Sound("wizards:frost_nova_damage_impact");
         modifier.replacing_area_impact = area_impact;
 
@@ -378,12 +372,10 @@ public class FrostSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 4);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.snowflake.id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        25, 0.1F, 0.3F),
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.snowflake)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(25).speed(0.1F, 0.3F))
+        );
         impact.sound = new Sound(SkillSounds.frost_winters_chill.id());
         spell.impacts = List.of(impact);
 
@@ -407,15 +399,11 @@ public class FrostSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(WIZARDS_FREEZE_EFFECT, 3F, 0);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.FROST,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.25F, 0.3F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_frost, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.FROST_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(25).speed(0.25F, 0.3F))
+        );
         impact.sound = new Sound("wizards:frost_nova_effect_impact");
         spell.impacts = List.of(impact);
 
@@ -439,19 +427,13 @@ public class FrostSkills {
         var radius = 1.5F;
         spell.deliver.type = Spell.Delivery.Type.CLOUD;
 
-        var cloudParticles = new ParticleBatch[] {
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.CENTER,
-                        2, 0.01F, 0.02F)
-                        .color(Color.FROST.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.snowflake.id().toString(),
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        2, 0.02F, 0.05F),
-        };
+        var cloudParticles = List.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
+                        .color(Color.FROST.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR).count(2).speed(0.01F, 0.02F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.snowflake)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).count(2).speed(0.02F, 0.05F))
+        );
         var cloud = SpellBuilder.Deliver.cloud(
                 5,
                 1.5F,
@@ -459,25 +441,19 @@ public class FrostSkills {
                 8,
                 cloudParticles
         );
-        cloud.impact_particles = new ParticleBatch[] {
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.FROST,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
-                        25, 0.4F, 0.4F)
+        cloud.impact = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_frost, ParticleGroup.Motion.DECELERATE)
                         .color(Color.FROST.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(25).speed(0.4F, 0.4F).verticalOrigin(Batches.FEET))
+        );
         cloud.impact_cap = 1; // Trap
 
-        cloud.client_data.interval_particles = new ParticleBatch[] {
-                new ParticleBatch(
-                        SpellEngineParticles.area_effect_715.id().toString(),
-                        ParticleBatch.Shape.LINE, ParticleBatch.Origin.GROUND,
-                        1, 0F, 0F)
+        cloud.client_data.interval_particles = List.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_715)
                         .scale(radius * 1.5F) // 1.5F is asset specific
                         .color(Color.FROST.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE).count(1).anchor(ParticleGroup.Anchor.GROUND))
+        );
         cloud.client_data.particle_spawn_interval = 20;
 
         spell.deliver.clouds = List.of(cloud);
@@ -504,15 +480,12 @@ public class FrostSkills {
         spell.release.sound = Sound.withVolume(SpellEngineSounds.SIGNAL_INSTANT_CAST.id(), 0.75F);
 
         // Release particle `sign_cast`
-        spell.release.particles = new ParticleBatch[]{
+        spell.release.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_cast.id(), Color.FROST),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.3F).color(Color.FROST.toRGBA())
-        };
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND)
+                        .color(Color.FROST.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(15).speed(0.1F, 0.3F).verticalOrigin(Batches.FEET))
+        );
 
         var trigger = SpellBuilder.Triggers.roll();
         trigger.chance = 0.25F;
@@ -545,16 +518,12 @@ public class FrostSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.resetCooldownActive(FROST_SPELL_TAG);
-        impact.particles = new ParticleBatch[]{
+        impact.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.FROST),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        25, 0.2F, 0.2F)
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(Color.FROST.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(25).speed(0.2F, 0.2F))
+        );
         impact.sound = new Sound(SkillSounds.frost_cold_snap.id());
         spell.impacts = List.of(impact);
 
@@ -595,19 +564,13 @@ public class FrostSkills {
         spell.deliver.stash_effect.triggers = List.of(stash_trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd("wizards:frost_slowness", 5, 2, 9);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.FROST,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.25F, 0.3F)
-                        .color(SkillsCommon.FROST_COLOR),
-                new ParticleBatch(
-                        SpellEngineParticles.snowflake.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.25F, 0.3F)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_frost, ParticleGroup.Motion.BURST)
+                        .color(SkillsCommon.FROST_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.25F, 0.3F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.snowflake)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(10).speed(0.25F, 0.3F))
+        );
         impact.sound = new Sound("wizards:frost_nova_effect_impact");
         spell.impacts = List.of(impact);
 

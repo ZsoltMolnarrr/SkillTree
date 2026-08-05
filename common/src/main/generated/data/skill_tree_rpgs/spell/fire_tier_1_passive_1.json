@@ -33,24 +33,35 @@
           "apply_mode": "ADD"
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:flame_medium_a",
-          "origin": "FEET",
-          "shape": "PIPE",
-          "count": 5.0,
-          "min_speed": 0.1,
-          "max_speed": 0.3
-        },
-        {
-          "particle_id": "spell_engine:flame_medium_b",
-          "origin": "FEET",
-          "shape": "WIDE_PIPE",
-          "count": 5.0,
-          "min_speed": 0.1,
-          "max_speed": 0.3
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:flame_medium_a",
+            "appearance": {},
+            "batch": {
+              "count": 5.0,
+              "shape": "PIPE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 0.1,
+              "max_speed": 0.3
+            }
+          },
+          {
+            "id": "spell_engine:flame_medium_b",
+            "appearance": {},
+            "batch": {
+              "count": 5.0,
+              "shape": "PIPE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 0.1,
+              "max_speed": 0.3,
+              "width_factor": 2.0
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "wizards:fire_scorch_impact"
       }

@@ -23,49 +23,72 @@
         "time_to_live_seconds": 5.0,
         "impact_tick_interval": 4,
         "impact_cap": 1,
-        "impact_particles": [
-          {
-            "particle_id": "spell_engine:magic_spell_decelerate",
-            "origin": "FEET",
-            "shape": "SPHERE",
-            "count": 20.0,
-            "min_speed": 0.4,
-            "max_speed": 0.4,
-            "color_rgba": 4284940287
-          }
-        ],
+        "impact": {
+          "particles": [
+            {
+              "id": "spell_engine:magic_spell",
+              "appearance": {
+                "color": 4284940287,
+                "motion": "DECELERATE"
+              },
+              "batch": {
+                "count": 20.0,
+                "shape": "SPHERE",
+                "anchor": "ENTITY",
+                "vertical_origin": 0.1,
+                "min_speed": 0.4,
+                "max_speed": 0.4
+              }
+            }
+          ]
+        },
         "client_data": {
           "light_level": 8,
           "particles": [
             {
-              "particle_id": "spell_engine:magic_spell_decelerate",
-              "origin": "GROUND",
-              "shape": "PIPE",
-              "count": 3.0,
-              "min_speed": 0.05,
-              "max_speed": 0.15,
-              "color_rgba": 4284940287
+              "id": "spell_engine:magic_spell",
+              "appearance": {
+                "color": 4284940287,
+                "facing": "GROUND",
+                "motion": "DECELERATE"
+              },
+              "batch": {
+                "count": 3.0,
+                "shape": "PIPE",
+                "anchor": "GROUND",
+                "min_speed": 0.05,
+                "max_speed": 0.15
+              }
             },
             {
-              "particle_id": "spell_engine:magic_spark_decelerate",
-              "origin": "GROUND",
-              "shape": "PILLAR",
-              "count": 3.0,
-              "min_speed": 0.05,
-              "max_speed": 0.1,
-              "color_rgba": 4284940287
+              "id": "spell_engine:magic_spark",
+              "appearance": {
+                "color": 4284940287,
+                "facing": "GROUND",
+                "motion": "DECELERATE"
+              },
+              "batch": {
+                "count": 3.0,
+                "shape": "PILLAR",
+                "anchor": "GROUND",
+                "min_speed": 0.05,
+                "max_speed": 0.1
+              }
             }
           ],
           "particle_spawn_interval": 20,
           "interval_particles": [
             {
-              "particle_id": "spell_engine:area_effect_715",
-              "origin": "GROUND",
-              "shape": "LINE",
-              "count": 1.0,
-              "max_speed": 0.0,
-              "color_rgba": 4284940287,
-              "scale": 2.25
+              "id": "spell_engine:area_effect_715",
+              "appearance": {
+                "color": 4284940287,
+                "scale": 2.25
+              },
+              "batch": {
+                "count": 1.0,
+                "shape": "LINE",
+                "anchor": "GROUND"
+              }
             }
           ]
         },
@@ -86,17 +109,24 @@
           "knockback": 0.5
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_arcane_burst",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 15.0,
-          "min_speed": 0.45,
-          "max_speed": 0.75,
-          "color_rgba": 4284940287
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_arcane",
+            "appearance": {
+              "color": 4284940287,
+              "motion": "BURST"
+            },
+            "batch": {
+              "count": 15.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.45,
+              "max_speed": 0.75
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "wizards:arcane_blast_impact"
       }

@@ -14,7 +14,8 @@ import net.spell_engine.api.config.EffectConfig;
 import net.spell_engine.api.effect.*;
 import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.event.CombatEvents;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.registry.SpellRegistry;
 import net.spell_engine.api.tags.SpellEngineDamageTypeTags;
 import net.spell_engine.client.util.Color;
@@ -299,13 +300,9 @@ public class SkillEffects {
             )
     ));
 
-    private static ParticleBatch CLOAK_OF_SHADOWS_POP = new ParticleBatch(
-            SpellEngineParticles.MagicParticles.get(
-                    SpellEngineParticles.MagicParticles.Shape.SKULL,
-                    SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-            ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-            15, 0.25F, 0.25F)
-            .color(Color.from(0xcc00cc).alpha(0.5F).toRGBA());
+    private static ParticleGroup CLOAK_OF_SHADOWS_POP = ParticleGroupBuilder.magic(SpellEngineParticles.magic_skull, ParticleGroup.Motion.DECELERATE)
+            .color(Color.from(0xcc00cc).alpha(0.5F).toRGBA())
+            .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.25F, 0.25F));
     public static Effects.Entry CLOAK_OF_SHADOWS = add(new Effects.Entry(Identifier.of(SkillTreeMod.NAMESPACE, "cloak_of_shadows"),
             "Cloak of Shadows",
             "Protects you from an attack",
@@ -819,18 +816,13 @@ public class SkillEffects {
         Effects.register(entries, config.effects);
 
         Protection.register(CLOAK_OF_SHADOWS.entry, new Protection.Pop(
-                new ParticleBatch[]{ CLOAK_OF_SHADOWS_POP },
+                List.of(CLOAK_OF_SHADOWS_POP),
                 SkillSounds.rogue_shadows_impact.soundEvent()
         ));
         Protection.register(DEFLECTION.entry, SpellEngineDamageTypeTags.EVADABLE, new Protection.Pop(
-                new ParticleBatch[]{ new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.25F, 0.3F)
+                List.of(ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(Color.WHITE.toRGBA())
-                },
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(25).speed(0.25F, 0.3F))),
                 SkillSounds.archer_deflection_impact.soundEvent()
         ));
         CombatEvents.PLAYER_MELEE_ATTACK.register((event) -> {

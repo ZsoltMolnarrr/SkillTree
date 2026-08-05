@@ -34,26 +34,37 @@
           "knockback": 0.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_spark_burst",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 40.0,
-          "min_speed": 0.5,
-          "max_speed": 0.8,
-          "color_rgba": 3003121919
-        },
-        {
-          "particle_id": "spell_engine:aura_effect_409",
-          "origin": "CENTER",
-          "shape": "LINE",
-          "count": 1.0,
-          "max_speed": 0.0,
-          "color_rgba": 3003121919,
-          "follow_entity": true
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_spark",
+            "appearance": {
+              "color": 3003121919,
+              "motion": "BURST"
+            },
+            "batch": {
+              "count": 40.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.5,
+              "max_speed": 0.8
+            }
+          },
+          {
+            "id": "spell_engine:area_effect_409",
+            "appearance": {
+              "color": 3003121919,
+              "facing": "CAMERA",
+              "attachment": "POSITION"
+            },
+            "batch": {
+              "count": 1.0,
+              "shape": "LINE",
+              "anchor": "ENTITY"
+            }
+          }
+        ]
+      }
     },
     {
       "action": {

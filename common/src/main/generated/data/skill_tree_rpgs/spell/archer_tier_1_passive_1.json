@@ -23,17 +23,23 @@
           "duration": 2.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "crit",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 15.0,
-          "min_speed": 0.25,
-          "max_speed": 0.3,
-          "color_rgba": 4278190335
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "crit",
+            "appearance": {
+              "color": 4278190335
+            },
+            "batch": {
+              "count": 15.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.25,
+              "max_speed": 0.3
+            }
+          }
+        ]
+      }
     }
   ],
   "cost": {

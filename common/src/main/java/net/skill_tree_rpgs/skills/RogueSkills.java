@@ -8,7 +8,10 @@ import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
@@ -107,12 +110,11 @@ public class RogueSkills {
         cloud.volume.radius = 5F;
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 5;
-        cloud.client_data.particles = new ParticleBatch[]{
-                new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND,
-                        3, 0.01F, 0.05F)
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_large)
                         .color(Color.from(0x999999).toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR).count(3).speed(0.01F, 0.05F).anchor(ParticleGroup.Anchor.GROUND))
+        );
         spell.deliver.clouds = List.of(cloud);
 
         var evasion = SpellBuilder.Impacts.effectSet(effect.id.toString(), 1, 0);
@@ -178,11 +180,10 @@ public class RogueSkills {
         modifier.spell_pattern = SHADOW_STEP;
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 0, 1);
-        impact.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_538.id())
-                        .scale(1.2F)
-                        .color(ROGUE_SHADOW_COLOR.alpha(0.75F).toRGBA())
-        };
+        impact.visuals = Fx.Visuals.of(
+                SpellBuilder.Particles.aura(SpellEngineParticles.area_effect_538.id())
+                        .appearance(a -> a.scale(1.2F).color(ROGUE_SHADOW_COLOR.alpha(0.75F).toRGBA()))
+        );
         impact.action.apply_to_caster = true;
         impact.sound = new Sound(SkillSounds.rogue_shadows_activate.id());
 
@@ -304,11 +305,10 @@ public class RogueSkills {
         // The same Bleed Mortal Strike applies, amplifier scaled by power.
         var bleed = SpellBuilder.Impacts.effectSet_ScaledAmplifier(
                 SpellEngineEffects.BLEED.id.toString(), 6, 1, 0.25F);
-        bleed.particles = new ParticleBatch[]{
-                new ParticleBatch(SpellEngineParticles.dripping_blood.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        40, 0.2F, 0.4F)
-        };
+        bleed.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.dripping_blood)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(40).speed(0.2F, 0.4F))
+        );
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(bleed);
 
@@ -356,7 +356,7 @@ public class RogueSkills {
         // The self-heal Mutilate used to have as part of its base kit, now opt-in here.
         var leech = SpellBuilder.Impacts.heal(0.1F);
         leech.action.apply_to_caster = true;
-        leech.particles = SkillsCommon.leechImpactParticles();
+        leech.visuals = SkillsCommon.leechImpactParticles();
         leech.sound = Sound.of(SpellEngineSounds.LEECHING_IMPACT.id());
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(leech);
@@ -381,7 +381,7 @@ public class RogueSkills {
         // cap), so the two build the same poison together.
         var poison = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 8, 1, 1);
         poison.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
-        poison.particles = SkillsCommon.poisonImpactParticles();
+        poison.visuals = SkillsCommon.poisonImpactParticles();
         poison.sound = new Sound(SpellEngineSounds.GENERIC_POISON_IMPACT.id());
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(poison);
@@ -410,7 +410,7 @@ public class RogueSkills {
 
         var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 8, 1, 1);
         impact.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
-        impact.particles = SkillsCommon.poisonImpactParticles();
+        impact.visuals = SkillsCommon.poisonImpactParticles();
         impact.sound = new Sound(SpellEngineSounds.GENERIC_POISON_IMPACT.id());
         spell.impacts = List.of(impact);
 
@@ -443,17 +443,13 @@ public class RogueSkills {
         spell.passive.triggers = triggers;
 
         var damage = SpellBuilder.Impacts.damage(0.5F, 0F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        40, 0.5F, 0.8F)
-                        .color(Color.BLOOD.toRGBA()),
-                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_409.id())
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST)
                         .color(Color.BLOOD.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(40).speed(0.5F, 0.8F)),
+                SpellBuilder.Particles.aura(SpellEngineParticles.area_effect_409.id())
+                        .appearance(a -> a.color(Color.BLOOD.toRGBA()))
+        );
         var debuff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 6, 1, 1);
         debuff.sound = new Sound(SkillSounds.rogue_fracture_impact.id());
         spell.impacts = List.of(damage, debuff);
@@ -480,16 +476,12 @@ public class RogueSkills {
         trigger.chance = 0.5F;
         spell.passive.triggers = List.of(trigger);
 
-        spell.release.particles = new ParticleBatch[]{
+        spell.release.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_crit.id(), Color.from(0xffcc66)),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        25, 0.3F, 0.5F)
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(Color.from(0xcc2900).toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(25).speed(0.3F, 0.5F).verticalOrigin(Batches.FEET))
+        );
         spell.release.sound = new Sound(SpellEngineSounds.SIGNAL_SPELL_CRIT.id());
 
         SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, SpellBuilder.Triggers.meleeAttackImpact());
@@ -559,11 +551,10 @@ public class RogueSkills {
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
         buff.action.apply_to_caster = true;
-        buff.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_728.id())
-                        .scale(1.2F)
-                        .color(ROGUE_SHADOW_COLOR.alpha(0.5F).toRGBA())
-        };
+        buff.visuals = Fx.Visuals.of(
+                SpellBuilder.Particles.aura(SpellEngineParticles.area_effect_728.id())
+                        .appearance(a -> a.scale(1.2F).color(ROGUE_SHADOW_COLOR.alpha(0.5F).toRGBA()))
+        );
         buff.sound = new Sound(SkillSounds.rogue_cheat_death.id());
         spell.impacts = List.of(buff);
 
@@ -591,16 +582,12 @@ public class RogueSkills {
 
         var impact = SpellBuilder.Impacts.resetCooldownActive(ROGUE_SPELL_TAG);
         impact.action.apply_to_caster = true;
-        impact.particles = new ParticleBatch[]{
+        impact.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), SkillsCommon.MIGHT_COLOR),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        25, 0.3F, 0.4F)
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.MIGHT_COLOR.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(25).speed(0.3F, 0.4F))
+        );
         impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(impact);
 

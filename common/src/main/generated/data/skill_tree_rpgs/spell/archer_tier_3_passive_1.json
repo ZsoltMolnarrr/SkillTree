@@ -13,28 +13,42 @@
     ]
   },
   "release": {
-    "particles": [
-      {
-        "particle_id": "spell_engine:sign_arrow",
-        "origin": "CENTER",
-        "shape": "LINE_VERTICAL",
-        "count": 1.0,
-        "min_speed": 0.8,
-        "max_speed": 0.8,
-        "color_rgba": 3003101951,
-        "scale": 0.8,
-        "follow_entity": true
-      },
-      {
-        "particle_id": "spell_engine:magic_spark_ascend",
-        "origin": "FEET",
-        "shape": "WIDE_PIPE",
-        "count": 15.0,
-        "min_speed": 0.1,
-        "max_speed": 0.3,
-        "color_rgba": 3003101951
-      }
-    ],
+    "visuals": {
+      "particles": [
+        {
+          "id": "spell_engine:sign_arrow",
+          "appearance": {
+            "color": 3003101951,
+            "scale": 0.8,
+            "attachment": "POSITION"
+          },
+          "batch": {
+            "count": 1.0,
+            "shape": "LINE_VERTICAL",
+            "anchor": "ENTITY",
+            "vertical_origin": 0.0,
+            "min_speed": 0.8,
+            "max_speed": 0.8
+          }
+        },
+        {
+          "id": "spell_engine:magic_spark",
+          "appearance": {
+            "color": 3003101951,
+            "motion": "ASCEND"
+          },
+          "batch": {
+            "count": 15.0,
+            "shape": "PIPE",
+            "anchor": "ENTITY",
+            "vertical_origin": 0.1,
+            "min_speed": 0.1,
+            "max_speed": 0.3,
+            "width_factor": 2.0
+          }
+        }
+      ]
+    },
     "sound": {
       "id": "skill_tree_rpgs:archer_supercharge_activate"
     }
@@ -67,63 +81,93 @@
           "knockback": 1.5
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_spark_decelerate",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 25.0,
-          "min_speed": 0.4,
-          "max_speed": 0.5,
-          "color_rgba": 3003101951
-        },
-        {
-          "particle_id": "spell_engine:magic_spark_decelerate",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 25.0,
-          "min_speed": 0.7,
-          "max_speed": 0.8,
-          "color_rgba": 3003101951
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_spark",
+            "appearance": {
+              "color": 3003101951,
+              "motion": "DECELERATE"
+            },
+            "batch": {
+              "count": 25.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.4,
+              "max_speed": 0.5
+            }
+          },
+          {
+            "id": "spell_engine:magic_spark",
+            "appearance": {
+              "color": 3003101951,
+              "motion": "DECELERATE"
+            },
+            "batch": {
+              "count": 25.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.7,
+              "max_speed": 0.8
+            }
+          }
+        ]
+      }
     }
   ],
   "arrow_perks": {
     "damage_multiplier": 2.0,
     "travel_particles": [
       {
-        "particle_id": "spell_engine:magic_arcane_burst",
-        "origin": "FEET",
-        "shape": "SPHERE",
-        "count": 5.0,
-        "min_speed": 0.1,
-        "max_speed": 0.2,
-        "color_rgba": 3003101951
+        "id": "spell_engine:magic_arcane",
+        "appearance": {
+          "color": 3003101951,
+          "motion": "BURST"
+        },
+        "batch": {
+          "count": 5.0,
+          "shape": "SPHERE",
+          "anchor": "ENTITY",
+          "vertical_origin": 0.1,
+          "min_speed": 0.1,
+          "max_speed": 0.2
+        }
       }
     ],
-    "launch_particles": [
-      {
-        "particle_id": "spell_engine:magic_spark_decelerate",
-        "origin": "LAUNCH_POINT",
-        "shape": "CIRCLE",
-        "rotation": "LOOK",
-        "count": 50.0,
-        "min_speed": 0.18,
-        "max_speed": 0.2,
-        "color_rgba": 3003101951
-      },
-      {
-        "particle_id": "spell_engine:magic_spark_decelerate",
-        "origin": "LAUNCH_POINT",
-        "shape": "CIRCLE",
-        "rotation": "LOOK",
-        "count": 25.0,
-        "min_speed": 0.28,
-        "max_speed": 0.3,
-        "color_rgba": 3003101951
-      }
-    ],
+    "launch_visuals": {
+      "particles": [
+        {
+          "id": "spell_engine:magic_spark",
+          "appearance": {
+            "color": 3003101951,
+            "motion": "DECELERATE"
+          },
+          "batch": {
+            "count": 50.0,
+            "shape": "CIRCLE",
+            "anchor": "LAUNCH_POINT",
+            "alignment": "LOOK",
+            "min_speed": 0.18,
+            "max_speed": 0.2
+          }
+        },
+        {
+          "id": "spell_engine:magic_spark",
+          "appearance": {
+            "color": 3003101951,
+            "motion": "DECELERATE"
+          },
+          "batch": {
+            "count": 25.0,
+            "shape": "CIRCLE",
+            "anchor": "LAUNCH_POINT",
+            "alignment": "LOOK",
+            "min_speed": 0.28,
+            "max_speed": 0.3
+          }
+        }
+      ]
+    },
     "launch_sound": {
       "id": "skill_tree_rpgs:archer_supercharge_release"
     }

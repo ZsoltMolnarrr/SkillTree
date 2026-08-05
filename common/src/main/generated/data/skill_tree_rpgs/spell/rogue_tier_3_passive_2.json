@@ -27,28 +27,41 @@
           }
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:sign_hourglass",
-          "origin": "CENTER",
-          "shape": "LINE_VERTICAL",
-          "count": 1.0,
-          "min_speed": 0.8,
-          "max_speed": 0.8,
-          "color_rgba": 3439329279,
-          "scale": 0.8,
-          "follow_entity": true
-        },
-        {
-          "particle_id": "spell_engine:magic_spark_decelerate",
-          "origin": "CENTER",
-          "shape": "WIDE_PIPE",
-          "count": 25.0,
-          "min_speed": 0.3,
-          "max_speed": 0.4,
-          "color_rgba": 3439329279
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:sign_hourglass",
+            "appearance": {
+              "color": 3439329279,
+              "scale": 0.8,
+              "attachment": "POSITION"
+            },
+            "batch": {
+              "count": 1.0,
+              "shape": "LINE_VERTICAL",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.0,
+              "min_speed": 0.8,
+              "max_speed": 0.8
+            }
+          },
+          {
+            "id": "spell_engine:magic_spark",
+            "appearance": {
+              "color": 3439329279,
+              "motion": "DECELERATE"
+            },
+            "batch": {
+              "count": 25.0,
+              "shape": "PIPE",
+              "anchor": "ENTITY",
+              "min_speed": 0.3,
+              "max_speed": 0.4,
+              "width_factor": 2.0
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "spell_engine:spell_cooldown_impact"
       }

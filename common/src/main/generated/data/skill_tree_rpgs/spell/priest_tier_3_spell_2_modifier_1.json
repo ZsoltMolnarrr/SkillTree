@@ -19,17 +19,25 @@
               "apply_mode": "ADD"
             }
           },
-          "particles": [
-            {
-              "particle_id": "spell_engine:magic_spark_decelerate",
-              "origin": "CENTER",
-              "shape": "WIDE_PIPE",
-              "count": 10.0,
-              "min_speed": 0.15,
-              "max_speed": 0.3,
-              "color_rgba": 4294954239
-            }
-          ]
+          "visuals": {
+            "particles": [
+              {
+                "id": "spell_engine:magic_spark",
+                "appearance": {
+                  "color": 4294954239,
+                  "motion": "DECELERATE"
+                },
+                "batch": {
+                  "count": 10.0,
+                  "shape": "PIPE",
+                  "anchor": "ENTITY",
+                  "min_speed": 0.15,
+                  "max_speed": 0.3,
+                  "width_factor": 2.0
+                }
+              }
+            ]
+          }
         }
       ]
     }

@@ -22,17 +22,22 @@
           }
         }
       ],
-      "release_particles": [
-        {
-          "particle_id": "spell_engine:area_effect_678",
-          "origin": "GROUND",
-          "shape": "SPHERE",
-          "count": 1.0,
-          "max_speed": 0.0,
-          "color_rgba": 4294954239,
-          "scale": 4.5
-        }
-      ]
+      "release": {
+        "particles": [
+          {
+            "id": "spell_engine:area_effect_678",
+            "appearance": {
+              "color": 4294954239,
+              "scale": 4.5
+            },
+            "batch": {
+              "count": 1.0,
+              "shape": "SPHERE",
+              "anchor": "GROUND"
+            }
+          }
+        ]
+      }
     }
   ]
 }

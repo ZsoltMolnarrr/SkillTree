@@ -41,36 +41,51 @@
     "area": {
       "distance_dropoff": "SQUARED"
     },
-    "particles": [
-      {
-        "particle_id": "spell_engine:magic_arcane_burst",
-        "origin": "CENTER",
-        "shape": "CIRCLE",
-        "count": 30.0,
-        "min_speed": 0.4,
-        "max_speed": 0.4,
-        "color_rgba": 4288217087
-      },
-      {
-        "particle_id": "spell_engine:area_effect_574",
-        "origin": "GROUND",
-        "shape": "SPHERE",
-        "count": 1.0,
-        "max_speed": 0.0,
-        "color_rgba": 4288217087,
-        "scale": 3.5
-      },
-      {
-        "particle_id": "spell_engine:aura_effect_574",
-        "origin": "CENTER",
-        "shape": "LINE",
-        "count": 1.0,
-        "max_speed": 0.0,
-        "color_rgba": 4288217087,
-        "scale": 3.5,
-        "follow_entity": true
-      }
-    ],
+    "visuals": {
+      "particles": [
+        {
+          "id": "spell_engine:magic_arcane",
+          "appearance": {
+            "color": 4288217087,
+            "motion": "BURST"
+          },
+          "batch": {
+            "count": 30.0,
+            "shape": "CIRCLE",
+            "anchor": "ENTITY",
+            "min_speed": 0.4,
+            "max_speed": 0.4
+          }
+        },
+        {
+          "id": "spell_engine:area_effect_574",
+          "appearance": {
+            "color": 4288217087,
+            "scale": 3.5,
+            "facing": "GROUND"
+          },
+          "batch": {
+            "count": 1.0,
+            "shape": "NONE",
+            "anchor": "GROUND"
+          }
+        },
+        {
+          "id": "spell_engine:area_effect_574",
+          "appearance": {
+            "color": 4288217087,
+            "scale": 3.5,
+            "facing": "CAMERA",
+            "attachment": "POSITION"
+          },
+          "batch": {
+            "count": 1.0,
+            "shape": "LINE",
+            "anchor": "ENTITY"
+          }
+        }
+      ]
+    },
     "sound": {
       "id": "wizards:arcane_blast_impact",
       "pitch": 1.2

@@ -11,7 +11,10 @@ import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.ModelEffect;
 import net.spell_engine.api.spell.fx.ModelEffectBuilder;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
@@ -136,16 +139,12 @@ public class WarriorSkills {
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 6, 0);
         impact.action.apply_to_caster = true;
-        impact.particles = new ParticleBatch[]{
+        impact.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_crit.id(), Color.RAGE),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.25F)
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.DECELERATE)
                         .color(Color.RAGE.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(15).speed(0.1F, 0.25F).verticalOrigin(Batches.FEET))
+        );
         impact.sound = Sound.of(SkillSounds.recklessness_impact.id());
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
@@ -186,19 +185,15 @@ public class WarriorSkills {
         cloud.time_to_live_seconds = (SPIKE_APEX_TICK * 2 - 1) / 20F;
         cloud.spawn = new Spell.Delivery.Cloud.Spawn();
         cloud.spawn.sound = new Sound(SkillSounds.rock_spike_impact.id());
-        cloud.spawn.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
-                        18, 0.1F, 0.4F),
+        cloud.spawn.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR).count(18).speed(0.1F, 0.4F).verticalOrigin(Batches.FEET)),
                 // Cosy campfire smoke drifting up from the eruption: it carries its own slow rise
                 // and long lifetime, so near-zero batch speed lets it hang and linger around the base.
-                new ParticleBatch(
-                        "minecraft:campfire_cosy_smoke",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
-                        3, 0F, 0.02F)
-        };
-        cloud.spawn.model_fx = impalingSpikeModelFx();
+                ParticleGroupBuilder.of("minecraft:campfire_cosy_smoke")
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(3).speed(0F, 0.02F).verticalOrigin(Batches.FEET))
+        );
+        cloud.spawn.visuals.models = impalingSpikeModelFx();
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
 
         // Four spike-clouds marching straight forward from the caster, 1.5 blocks apart, the first
@@ -213,15 +208,11 @@ public class WarriorSkills {
         spell.deliver.clouds = List.of(cloud);
 
         var damage = SpellBuilder.Impacts.damage(0.5F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.2F, 0.5F)
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST)
                         .color(Color.RAGE.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.2F, 0.5F))
+        );
 
         // Vertical launch of struck enemies as the spikes burst upward. Harmful, so knockback
         // resistance applies; reset_velocity makes the pop consistent regardless of prior motion.
@@ -282,9 +273,9 @@ public class WarriorSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 6, 0);
-        impact.particles = new ParticleBatch[]{
+        impact.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), Color.RAGE)
-        };
+        );
         spell.impacts = List.of(impact);
 
         return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
@@ -302,9 +293,9 @@ public class WarriorSkills {
         modifier.spell_pattern = SHOUT;
 
         var impact = SpellBuilder.Impacts.taunt();
-        impact.particles = new ParticleBatch[]{
+        impact.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), Color.RAGE)
-        };
+        );
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
@@ -466,15 +457,11 @@ public class WarriorSkills {
 
         var haste = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 3, 1, 2);
         haste.action.apply_to_caster = true;
-        haste.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        10, 0.15F, 0.3F)
+        haste.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(Color.from(0xff6633).toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(10).speed(0.15F, 0.3F).verticalOrigin(Batches.FEET))
+        );
         haste.sound = Sound.of(SkillSounds.recklessness_impact.id());
         spell.impacts = List.of(haste);
 
@@ -500,15 +487,11 @@ public class WarriorSkills {
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 2);
         impact.action.apply_to_caster = true;
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.2F, 0.3F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(Color.RAGE.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(20).speed(0.2F, 0.3F).verticalOrigin(Batches.FEET))
+        );
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -539,15 +522,11 @@ public class WarriorSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 2);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.2F, 0.3F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(Color.NATURE.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(20).speed(0.2F, 0.3F).verticalOrigin(Batches.FEET))
+        );
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -571,9 +550,9 @@ public class WarriorSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.resetCooldownActive(CHARGE);
-        impact.particles = new ParticleBatch[]{
+        impact.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.RAGE)
-        };
+        );
         impact.action.apply_to_caster = true;
         impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(impact);
@@ -600,7 +579,7 @@ public class WarriorSkills {
 
         var impact = SpellBuilder.Impacts.heal(0.1F);
         impact.action.apply_to_caster = true;
-        impact.particles = SkillsCommon.leechImpactParticles();
+        impact.visuals = SkillsCommon.leechImpactParticles();
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 5F);
@@ -630,29 +609,19 @@ public class WarriorSkills {
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
-        var activateParticles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        15, 0.3F, 0.5F)
-                        .color(Color.RAGE.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        15, 0.3F, 0.5F)
-                        .invert()
-                        .color(Color.RAGE.toRGBA()),
-                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
-                        .origin(ParticleBatch.Origin.CENTER)
-                        .scale(1.5F)
+        var activateParticles = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.DECELERATE)
                         .color(Color.RAGE.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(15).speed(0.3F, 0.5F)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.DECELERATE)
+                        .color(Color.RAGE.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(15).speed(0.3F, 0.5F).invert(true)),
+                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
+                        .appearance(a -> a.scale(1.5F).color(Color.RAGE.toRGBA()))
+                        .batch(b -> b.anchor(ParticleGroup.Anchor.ENTITY))
+        );
 
-        spell.release.particles = activateParticles;
+        spell.release.visuals = activateParticles;
         spell.release.sound = new Sound(SkillSounds.warrior_enrage.id());
 
         SpellBuilder.Deliver.stash(spell, effect.id.toString(), 10F, List.of(
@@ -663,7 +632,7 @@ public class WarriorSkills {
         var buff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10F, 1, 2);
         buff.action.apply_to_caster = true;
         buff.action.status_effect.refresh_duration = false;
-        buff.particles = activateParticles;
+        buff.visuals = activateParticles;
         // buff.sound = new Sound(SkillTreeSounds.warrior_enrage.id());
         spell.impacts = List.of(buff);
 
@@ -691,28 +660,18 @@ public class WarriorSkills {
         spell.target.type = Spell.Target.Type.AREA;
         spell.target.area = new Spell.Target.Area();
 
-        spell.release.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        40, 0.6F, 0.8F),
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        20, 0.4F, 0.4F),
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        20, 0.6F, 0.6F),
+        spell.release.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(40).speed(0.6F, 0.8F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE).count(20).speed(0.4F, 0.4F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE).count(20).speed(0.6F, 0.6F).verticalOrigin(Batches.FEET)),
                 SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
-                        .scale(radius * 0.8F)
-                        .color(Color.from(0xe6e6e6).toRGBA()),
+                        .appearance(a -> a.scale(radius * 0.8F).color(Color.from(0xe6e6e6).toRGBA())),
                 SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
-                        .scale(radius)
-                        .color(Color.from(0xa6a6a6).toRGBA())
-        };
+                        .appearance(a -> a.scale(radius).color(Color.from(0xa6a6a6).toRGBA()))
+        );
         spell.release.sound = new Sound(SkillSounds.warrior_shockwave.id());
 
         var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
@@ -720,12 +679,10 @@ public class WarriorSkills {
         spell.passive.triggers = List.of(trigger);
 
         var stun = SpellBuilder.Impacts.effectSet(SpellEngineEffects.STUN.id.toString(), 4, 0);
-        stun.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.2F, 0.3F)
-        };
+        stun.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(20).speed(0.2F, 0.3F))
+        );
         spell.impacts = List.of(stun);
 
         SpellBuilder.Cost.cooldown(spell, 30F);

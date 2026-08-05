@@ -12,26 +12,37 @@
         "area": {
           "distance_dropoff": "SQUARED"
         },
-        "particles": [
-          {
-            "particle_id": "spell_engine:magic_frost_burst",
-            "origin": "CENTER",
-            "shape": "SPHERE",
-            "count": 40.0,
-            "min_speed": 0.5,
-            "max_speed": 0.5,
-            "color_rgba": 1724710911
-          },
-          {
-            "particle_id": "spell_engine:aura_effect_676",
-            "origin": "CENTER",
-            "shape": "SPHERE",
-            "count": 1.0,
-            "max_speed": 0.0,
-            "color_rgba": 1724710911,
-            "scale": 2.0
-          }
-        ],
+        "visuals": {
+          "particles": [
+            {
+              "id": "spell_engine:magic_frost",
+              "appearance": {
+                "color": 1724710911,
+                "motion": "BURST"
+              },
+              "batch": {
+                "count": 40.0,
+                "shape": "SPHERE",
+                "anchor": "ENTITY",
+                "min_speed": 0.5,
+                "max_speed": 0.5
+              }
+            },
+            {
+              "id": "spell_engine:area_effect_676",
+              "appearance": {
+                "color": 1724710911,
+                "scale": 2.0,
+                "facing": "CAMERA"
+              },
+              "batch": {
+                "count": 1.0,
+                "shape": "SPHERE",
+                "anchor": "ENTITY"
+              }
+            }
+          ]
+        },
         "sound": {
           "id": "wizards:frost_nova_damage_impact"
         }

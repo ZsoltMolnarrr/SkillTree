@@ -3,7 +3,9 @@ package net.skill_tree_rpgs.skills;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_power.api.SpellSchool;
@@ -20,22 +22,6 @@ public class SkillsCommon {
     public static final long FROST_COLOR = Color.from(SpellSchools.FROST.color).toRGBA();
     public static final long HOLY_COLOR = Color.HOLY.toRGBA();
     public static final Color MIGHT_COLOR = Color.from(0xccffff);
-    static final Identifier HOLY_DECELERATE = SpellEngineParticles.MagicParticles.get(
-            SpellEngineParticles.MagicParticles.Shape.HOLY,
-            SpellEngineParticles.MagicParticles.Motion.DECELERATE
-    ).id();
-    static final Identifier SPARK_DECELERATE = SpellEngineParticles.MagicParticles.get(
-            SpellEngineParticles.MagicParticles.Shape.SPARK,
-            SpellEngineParticles.MagicParticles.Motion.DECELERATE
-    ).id();
-    static final Identifier SPARK_FLOAT = SpellEngineParticles.MagicParticles.get(
-            SpellEngineParticles.MagicParticles.Shape.SPARK,
-            SpellEngineParticles.MagicParticles.Motion.FLOAT
-    ).id();
-    static final Identifier HEAL_DECELERATE = SpellEngineParticles.MagicParticles.get(
-            SpellEngineParticles.MagicParticles.Shape.HEAL,
-            SpellEngineParticles.MagicParticles.Motion.DECELERATE
-    ).id();
 
     public static Spell createModifierAlikePassiveSpell() {
         var spell = SpellBuilder.createSpellPassive();
@@ -45,46 +31,32 @@ public class SkillsCommon {
         return spell;
     }
 
-    public static ParticleBatch[] poisonImpactParticles() {
-        return new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.5F, 0.8F)
-                        .color(Color.POISON_MID.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.5F, 0.8F)
-                        .color(Color.POISON_DARK.toRGBA()),
-        };
+    public static Fx.Visuals poisonImpactParticles() {
+        return Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST)
+                        .color(Color.POISON_MID.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(10).speed(0.5F, 0.8F)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST)
+                        .color(Color.POISON_DARK.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(10).speed(0.5F, 0.8F))
+        );
     }
 
-    public static ParticleBatch[] leechImpactParticles() {
-        return new ParticleBatch[]{
-                new ParticleBatch(SPARK_FLOAT.toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        15, 0.02F, 0.1F)
-                        .color(Color.BLOOD.toRGBA()),
-                new ParticleBatch(SPARK_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.08F, 0.12F)
-                        .invert()
-                        .preSpawnTravel(5)
-                        .followEntity(true)
-                        .color(Color.BLOOD.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.ground_glow.id().toString(),
-                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.GROUND,
-                        1, 0.0F, 0.F)
-                        .followEntity(true)
+    public static Fx.Visuals leechImpactParticles() {
+        return Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.FLOAT)
+                        .color(Color.BLOOD.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(15).speed(0.02F, 0.1F)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
+                        .attached()
+                        .color(Color.BLOOD.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(25).speed(0.08F, 0.12F).invert(true).preTravel(5)),
+                ParticleGroupBuilder.of(SpellEngineParticles.ground_glow)
+                        .attachedToGround()
                         .scale(0.8F)
                         .color(Color.BLOOD.alpha(0.2F).toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL).count(1).anchor(ParticleGroup.Anchor.GROUND))
+        );
     }
 
     public static void explosionImpact(Spell spell, float coefficient) {

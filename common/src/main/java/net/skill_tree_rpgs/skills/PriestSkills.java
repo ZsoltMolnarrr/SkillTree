@@ -8,7 +8,10 @@ import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.summon.AttributeScaling;
 import net.spell_engine.api.spell.summon.SummonBehaviour;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
@@ -54,15 +57,11 @@ public class PriestSkills {
         spell.target.aim.required = true;
 
         var cleanse = SpellBuilder.Impacts.effectCleanse();
-        cleanse.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.4F)
+        cleanse.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND)
                         .color(Color.WHITE.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).count(10).speed(0.2F, 0.4F))
+        );
         cleanse.sound = new Sound(SpellEngineSounds.GENERIC_DISPEL_1.id());
         spell.impacts = List.of(cleanse);
 
@@ -101,16 +100,12 @@ public class PriestSkills {
         modifier.power_modifier.power_multiplier = 0.1F;
 
         var impact = SpellBuilder.Impacts.fire(2F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_a.id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        1, 0.1F, 0.2F),
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        1, 0.1F, 0.2F)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_a)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(1).speed(0.1F, 0.2F).verticalOrigin(Batches.FEET)),
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(1).speed(0.1F, 0.2F).verticalOrigin(Batches.FEET))
+        );
         impact.sound = Sound.withVolume(SpellEngineSounds.GENERIC_FIRE_IGNITE.id(), 0.6F);
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
@@ -132,22 +127,14 @@ public class PriestSkills {
         modifier.spell_pattern = CIRCLE_OF_HEALING;
 
         var impact = SpellBuilder.Impacts.effectCleanse();
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.6F, 0.6F)
-                        .color(Color.WHITE.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.4F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST)
                         .color(Color.WHITE.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.6F, 0.6F)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND)
+                        .color(Color.WHITE.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).count(10).speed(0.2F, 0.4F))
+        );
         impact.sound = new Sound(SpellEngineSounds.GENERIC_DISPEL_1.id());
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
@@ -172,13 +159,11 @@ public class PriestSkills {
         // now opt-in via this node ("paladins:priest_absorption" scales with healing power).
         var shield = SpellBuilder.Impacts.effectSet_ScaledAmplifier(
                 "paladins:priest_absorption", 6, 0, 0.25F);
-        shield.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.SPARK_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        12, 0.2F, 0.25F)
+        shield.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.HOLY_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(12).speed(0.2F, 0.25F))
+        );
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(shield);
 
@@ -308,13 +293,11 @@ public class PriestSkills {
         // One stack per channel release (Levitate releases 4 times): a full channel reaches
         // 4 x 20% = 80% damage reduction, lingering as long as the Floating effect does.
         var serenity = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 6, 1, 3);
-        serenity.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.HOLY_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        8, 0.15F, 0.2F)
+        serenity.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_holy, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.HOLY_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(8).speed(0.15F, 0.2F))
+        );
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(serenity);
 
@@ -342,13 +325,11 @@ public class PriestSkills {
         // Beneficial, so Penance's Atonement splash carries it to allies near the struck
         // enemy (alongside the absorption shield) — one stack per bolt, 3 bolts per volley.
         var hysteria = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 1, 2);
-        hysteria.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.SPARK_DECELERATE.toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        10, 0.15F, 0.3F)
+        hysteria.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.HOLY_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(10).speed(0.15F, 0.3F))
+        );
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(hysteria);
 
@@ -374,13 +355,11 @@ public class PriestSkills {
         modifier.spell_pattern = PENANCE;
 
         var chastise = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 1, 2);
-        chastise.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.SPARK_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.25F)
+        chastise.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(Color.from(0xffcc66).toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(10).speed(0.2F, 0.25F))
+        );
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(chastise);
 
@@ -412,37 +391,29 @@ public class PriestSkills {
         cloud.volume.radius = 4F;
         cloud.impact_tick_interval = 40;
         cloud.time_to_live_seconds = 10;
-        cloud.client_data.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND,
-                        2, 0.02F, 0.08F)
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.FLOAT)
                         .color(Color.from(0xccffff).toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR).count(2).speed(0.02F, 0.08F).anchor(ParticleGroup.Anchor.GROUND))
+        );
         spell.deliver.clouds = List.of(cloud);
 
         var heal = SpellBuilder.Impacts.heal(0.1F);
-        heal.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.HEAL_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        6, 0.1F, 0.15F)
+        heal.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_heal, ParticleGroup.Motion.DECELERATE)
                         .color(Color.from(0xccffff).toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(6).speed(0.1F, 0.15F))
+        );
         heal.sound = Sound.withVolume(SpellEngineSounds.GENERIC_HEALING_IMPACT_2.id(), 0.4F);
 
         // Default cleanse carries a dispel chime; muted here so it doesn't ring on every cloud tick.
         var cleanse = SpellBuilder.Impacts.effectCleanse();
         cleanse.sound = Sound.of(SpellEngineSounds.GENERIC_DISPEL_1.id());
-        cleanse.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.SPARK_DECELERATE.toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.CENTER,
-                        25, 0.3F, 0.5F)
+        cleanse.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(Color.from(0xccffff).toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR).count(25).speed(0.3F, 0.5F))
+        );
 
         spell.impacts = List.of(heal, cleanse);
 
@@ -487,16 +458,14 @@ public class PriestSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 1, 4);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.area_circle_1.id().toString(),
-                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
-                        1, 0.15F, 0.16F)
-                        .followEntity(true)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
+                        .attached()
                         .scale(0.8F)
-                        .maxAge(0.8F)
-                        .color(Color.HOLY.toRGBA()),
-        };
+                        .playbackSpeed(1.25F)
+                        .color(Color.HOLY.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL).count(1).speed(0.15F, 0.16F).verticalOrigin(Batches.FEET))
+        );
         impact.sound = new Sound(SkillSounds.priest_healing_focus.id());
         spell.impacts = List.of(impact);
 
@@ -525,15 +494,11 @@ public class PriestSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8, 1, 2);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        10, 0.15F, 0.3F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.HOLY_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(10).speed(0.15F, 0.3F))
+        );
         impact.sound = new Sound(SkillSounds.priest_incanter_cadence.id());
         spell.impacts = List.of(impact);
 
@@ -557,13 +522,11 @@ public class PriestSkills {
         spell.target.area = new Spell.Target.Area();
 
         var impact = SpellBuilder.Impacts.disengage(true);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.2F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
                         .color(Color.HOLY.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(10).speed(0.2F, 0.2F))
+        );
         impact.sound = new Sound(SkillSounds.priest_fade.id());
         spell.impacts = List.of(impact);
 
@@ -584,16 +547,12 @@ public class PriestSkills {
         trigger.chance = 0.25F;
         spell.passive.triggers = List.of(trigger);
 
-        spell.release.particles = new ParticleBatch[]{
+        spell.release.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_wand.id(), Color.HOLY),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HOLY,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        25, 0.2F, 0.2F)
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_holy, ParticleGroup.Motion.DECELERATE)
                         .color(Color.HOLY.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F).count(25).speed(0.2F, 0.2F))
+        );
         spell.release.sound = new Sound(SpellEngineSounds.SIGNAL_SPELL_CRIT.id());
 
         var cooldownDuration = 15F;
@@ -635,15 +594,11 @@ public class PriestSkills {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 0);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.2F, 0.2F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                         .color(SkillsCommon.HOLY_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(15).speed(0.2F, 0.2F))
+        );
         impact.sound = new Sound(SkillSounds.priest_pain_suppression.id());
         spell.impacts = List.of(impact);
 
@@ -674,15 +629,11 @@ public class PriestSkills {
         spell.deliver.stash_effect.amplifier = 2;
 
         var impact = SpellBuilder.Impacts.damage(0.5F, 0.1F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HOLY,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.6F, 0.8F)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_holy, ParticleGroup.Motion.BURST)
                         .color(SkillsCommon.HOLY_COLOR)
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(25).speed(0.6F, 0.8F))
+        );
         impact.sound = new Sound(SkillSounds.priest_holy_blast.id());
         spell.impacts = List.of(impact);
 

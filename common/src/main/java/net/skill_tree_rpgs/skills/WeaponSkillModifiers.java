@@ -8,7 +8,9 @@ import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
@@ -273,19 +275,16 @@ public class WeaponSkillModifiers {
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SkillsCommon.HOLY_DECELERATE.toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        40, 0.5F, 0.5F)
-                        .color(Color.HOLY.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.aura_effect_649.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        1, 0, 0)
+        area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_holy, ParticleGroup.Motion.DECELERATE)
                         .color(Color.HOLY.toRGBA())
-                        .scale(radius - 0.5F),
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(40).speed(0.5F, 0.5F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_649)
+                        .facing(ParticleGroup.Facing.CAMERA)
+                        .color(Color.HOLY.toRGBA())
+                        .scale(radius - 0.5F)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE).count(1))
+        );
         area_impact.sound = new Sound(SkillSounds.priest_holy_blast.id());
         modifier.replacing_area_impact = area_impact;
 
@@ -666,9 +665,9 @@ public class WeaponSkillModifiers {
 
         var impact = SpellBuilder.Impacts.resetCooldownActive(WeaponSkills.SWIPE.id().toString());
         impact.action.apply_to_caster = true;
-//        impact.particles = new ParticleBatch[]{
+//        impact.visuals = Fx.Visuals.of(
 //                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.RAGE)
-//        };
+//        );
         impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(impact);
 
@@ -764,7 +763,7 @@ public class WeaponSkillModifiers {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 4F, 0, 1);
-        impact.particles = SkillsCommon.poisonImpactParticles();
+        impact.visuals = SkillsCommon.poisonImpactParticles();
         spell.impacts = List.of(impact);
 
         return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);

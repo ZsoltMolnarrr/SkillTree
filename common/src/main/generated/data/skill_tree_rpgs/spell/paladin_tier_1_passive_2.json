@@ -38,17 +38,26 @@
           "apply_mode": "ADD"
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_spark_decelerate",
-          "origin": "FEET",
-          "shape": "WIDE_PIPE",
-          "count": 15.0,
-          "min_speed": 0.2,
-          "max_speed": 0.3,
-          "color_rgba": 3439329279
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_spark",
+            "appearance": {
+              "color": 3439329279,
+              "motion": "DECELERATE"
+            },
+            "batch": {
+              "count": 15.0,
+              "shape": "PIPE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 0.2,
+              "max_speed": 0.3,
+              "width_factor": 2.0
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "skill_tree_rpgs:paladin_crusader_activate",
         "volume": 0.25
