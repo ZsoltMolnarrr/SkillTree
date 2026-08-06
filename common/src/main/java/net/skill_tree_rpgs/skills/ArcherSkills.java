@@ -17,7 +17,7 @@ import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.summon.AttributeScaling;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -56,7 +56,7 @@ public class ArcherSkills {
         modifier.effect_amplifier_cap_add = 1;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_2_spell_1_modifier_2 = add(archer_tier_2_spell_1_modifier_2());
@@ -94,7 +94,7 @@ public class ArcherSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_2_spell_2_modifier_1 = add(archer_tier_2_spell_2_modifier_1());
@@ -118,7 +118,7 @@ public class ArcherSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
 
@@ -140,7 +140,7 @@ public class ArcherSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_3_spell_1_modifier_1 = add(archer_tier_3_spell_1_modifier_1());
@@ -157,7 +157,7 @@ public class ArcherSkills {
         modifier.projectile_launch.extra_launch_count = 1; // TODO: Check if works for arrows
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_3_spell_1_modifier_2 = add(archer_tier_3_spell_1_modifier_2());
@@ -178,7 +178,7 @@ public class ArcherSkills {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_4_spell_1_modifier_1 = add(archer_tier_4_spell_1_modifier_1());
@@ -194,7 +194,7 @@ public class ArcherSkills {
         modifier.projectile_launch.extra_launch_count = 10;
         modifier.meteor_launch_radius_add = 1.5F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_4_spell_1_modifier_2 = add(archer_tier_4_spell_1_modifier_2());
@@ -230,7 +230,7 @@ public class ArcherSkills {
         shave.action.cooldown.actives.duration_add = -20F; // 20 ticks = 1 second
         spell.impacts = List.of(shave);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     // ===================================================================================
@@ -290,7 +290,7 @@ public class ArcherSkills {
         modifier.spell_pattern = SPIRIT_WOLF;
         modifier.summon_spawn_count_add = 1;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_3_spell_2_modifier_2 = add(archer_tier_3_spell_2_modifier_2());
@@ -305,7 +305,7 @@ public class ArcherSkills {
         modifier.spell_pattern = SPIRIT_WOLF;
         modifier.summon_behaviour.lifespan.active_seconds_add = seconds;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_4_spell_2_modifier_1 = add(archer_tier_4_spell_2_modifier_1());
@@ -324,7 +324,7 @@ public class ArcherSkills {
         impact.action.apply_to_caster = true;
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_4_spell_2_modifier_2 = add(archer_tier_4_spell_2_modifier_2());
@@ -340,7 +340,7 @@ public class ArcherSkills {
         modifier.knockback_multiply_base = 1.5F;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     private static final float RHYTHM_DURATION = 6F;
@@ -384,7 +384,7 @@ public class ArcherSkills {
 
         SpellBuilder.Cost.cooldown(spell, 10F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_1_passive_2 = add(archer_tier_1_passive_2());
@@ -392,12 +392,8 @@ public class ArcherSkills {
         var id = Identifier.of(NAMESPACE, "archer_tier_1_passive_2");
 
         var title = "Rhythm";
-        var description = "Hitting Marked target increasing ranged attack speed by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var description = "Hitting Marked target increasing ranged attack speed by " + TooltipTokens.effect(SkillEffects.RHYTHM.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var effect = SkillEffects.RHYTHM;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
@@ -414,7 +410,7 @@ public class ArcherSkills {
 
         spell.impacts = List.of(rhythmImpact());
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_2_passive_1 = add(archer_tier_2_passive_1()); // Momentum (additional stack of Rhythm on roll)
@@ -436,7 +432,7 @@ public class ArcherSkills {
 
         SpellBuilder.Cost.cooldown(spell, RHYTHM_DURATION);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Color ROLL_COLOR = Color.from(0x3399ff);
@@ -445,12 +441,8 @@ public class ArcherSkills {
     private static Skills.Entry archer_tier_2_passive_2() {
         var id = Identifier.of(NAMESPACE, "archer_tier_2_passive_2");
         var title = "Tactical Maneuver";
-        var description = "Rolling has {trigger_chance} chance to increase your roll recharge speed by {bonus}, for {effect_duration} sec.";
+        var description = "Rolling has {trigger_chance} chance to increase your roll recharge speed by " + TooltipTokens.effect(SkillEffects.TACTICAL_MANEUVER.id) + ", for {effect_duration} sec.";
         var effect = SkillEffects.TACTICAL_MANEUVER;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
@@ -480,7 +472,7 @@ public class ArcherSkills {
 
         SpellBuilder.Cost.cooldown(spell, 10F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Color SUPERCHARGE_COLOR = Color.NATURE.blend(Color.WHITE, 0.5F);
@@ -491,11 +483,9 @@ public class ArcherSkills {
         var title = "Supercharge";
         var effect = SkillEffects.SUPERCHARGE;
         var damageMultiplier = 2F;
-        var description = "Arrow hits have {trigger_chance_1} chance to Supercharge your next shot within {stash_duration} sec, taking longer to pull but dealing {bonus} damage with strong knockback.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(damageMultiplier);
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Arrow hits have {trigger_chance_1} chance to Supercharge your next shot within {stash_duration} sec, taking longer to pull but dealing "
+                + Skills.bakedPercent(damageMultiplier)
+                + " damage with strong knockback.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
@@ -551,7 +541,7 @@ public class ArcherSkills {
 
         SpellBuilder.Cost.cooldown(spell, 10F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 
     public static final Skills.Entry archer_tier_3_passive_2 = add(archer_tier_3_passive_2()); // Deflection (protective effect on low HP)
@@ -559,13 +549,9 @@ public class ArcherSkills {
         var id = Identifier.of(NAMESPACE, "archer_tier_3_passive_2");
         var title = "Deflection";
         final var healthThreshold = 0.5F;
-        var description = "Upon taking damage below {threshold} health you gain Deflection effect, parrying the next {effect_amplifier} incoming melee attack, lasting {effect_duration} sec.";
+        var description = "Upon taking damage below " + Skills.bakedPercent(healthThreshold)
+                + " health you gain Deflection effect, parrying the next {effect_amplifier} incoming melee attack, lasting {effect_duration} sec.";
         var effect = SkillEffects.DEFLECTION;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var threshold = SpellTooltip.percent(healthThreshold);
-            return args.description()
-                    .replace("{threshold}", threshold);
-        };
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
@@ -583,6 +569,6 @@ public class ArcherSkills {
 
         SpellBuilder.Cost.cooldown(spell, 45F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ARCHER));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCHER));
     }
 }

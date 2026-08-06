@@ -12,7 +12,7 @@ import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -59,7 +59,7 @@ public class WeaponSkillModifiers {
         modifier.power_modifier.power_multiplier = 0.05F;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_arcane_blast_modifier_1 = add(weapon_arcane_blast_modifier_1());
@@ -75,7 +75,7 @@ public class WeaponSkillModifiers {
         modifier.effect_amplifier_cap_add = 1;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry weapon_arcane_blast_modifier_2 = add(weapon_arcane_blast_modifier_2());
@@ -91,7 +91,7 @@ public class WeaponSkillModifiers {
         modifier.effect_duration_add = 2;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===== FIRE =====
@@ -101,9 +101,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_fire_root");
         var title = "Fire Staff Specialisation";
         var critChance = 0.04F;
-        var description = "Pyroblast has {bonus} increased critical strike chance.";
-        SpellTooltip.DescriptionMutator mutator = (args) ->
-                args.description().replace("{bonus}", SpellTooltip.percent(critChance));
+        var description = "Pyroblast has " + Skills.bakedPercent(critChance) + " increased critical strike chance.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FIRE;
 
@@ -113,7 +111,7 @@ public class WeaponSkillModifiers {
         modifier.power_modifier.critical_chance_bonus = critChance;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_fire_blast_modifier_1 = add(weapon_fire_blast_modifier_1());
@@ -123,13 +121,7 @@ public class WeaponSkillModifiers {
 
         var bonus = 0.5F;
 
-        var description = "Increases the area of effect of Pyroblast by {bonus}.";
-        var mutator = new SpellTooltip.DescriptionMutator() {
-            @Override
-            public String mutate(Args args) {
-                return args.description().replace("{bonus}", SpellTooltip.percent(bonus));
-            }
-        };
+        var description = "Increases the area of effect of Pyroblast by " + Skills.bakedPercent(bonus) + ".";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FIRE;
 
@@ -142,7 +134,7 @@ public class WeaponSkillModifiers {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_fire_blast_modifier_2 = add(weapon_fire_blast_modifier_2());
@@ -160,7 +152,7 @@ public class WeaponSkillModifiers {
         modifier.knockback_multiply_base = bonus;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     // ===== FROST =====
@@ -170,9 +162,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_frost_root");
         var title = "Frost Staff Specialisation";
         var critDamage = 0.08F;
-        var description = "Frostbolt deals {bonus} increased critical strike damage.";
-        SpellTooltip.DescriptionMutator mutator = (args) ->
-                args.description().replace("{bonus}", SpellTooltip.percent(critDamage));
+        var description = "Frostbolt deals " + Skills.bakedPercent(critDamage) + " increased critical strike damage.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FROST;
 
@@ -182,7 +172,7 @@ public class WeaponSkillModifiers {
         modifier.power_modifier.critical_damage_bonus = critDamage;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_frostbolt_modifier_1 = add(weapon_frostbolt_modifier_1());
@@ -199,7 +189,7 @@ public class WeaponSkillModifiers {
         modifier.projectile_perks.ricochet = 1;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_frostbolt_modifier_2 = add(weapon_frostbolt_modifier_2());
@@ -215,7 +205,7 @@ public class WeaponSkillModifiers {
         modifier.effect_duration_add = 2;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     // ===== HOLY =====
@@ -233,7 +223,7 @@ public class WeaponSkillModifiers {
         modifier.cooldown_duration_deduct = 3;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_holy_shock_modifier_1 = add(weapon_holy_shock_modifier_1());
@@ -256,7 +246,7 @@ public class WeaponSkillModifiers {
         modifier.impact_filters = List.of(impactFilter);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_holy_shock_modifier_2 = add(weapon_holy_shock_modifier_2());
@@ -290,7 +280,7 @@ public class WeaponSkillModifiers {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
 
@@ -301,7 +291,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_sword_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Sword Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Sword Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_swift_strikes_modifier_1 = add(weapon_swift_strikes_modifier_1());
@@ -315,7 +305,7 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = WeaponSkills.SWIFT_STRIKES.id().toString();
         modifier.cooldown_duration_deduct = 3F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_swift_strikes_modifier_2 = add(weapon_swift_strikes_modifier_2());
@@ -329,7 +319,7 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = WeaponSkills.SWIFT_STRIKES.id().toString();
         modifier.melee_damage_multiplier = 0.1F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_flurry_modifier_1 = add(weapon_flurry_modifier_1());
@@ -343,7 +333,7 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = WeaponSkills.FLURRY.id().toString();
         modifier.channel_ticks_add = 1;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_flurry_modifier_2 = add(weapon_flurry_modifier_2());
@@ -351,11 +341,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_flurry_modifier_2");
         var effect = SkillEffects.FLURRY_TRANCE;
         var title = "Frenzied Strikes";
-        var description = "Each strike of Flurry increases your Attack Damage by {bonus} for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Each strike of Flurry increases your Attack Damage by " + TooltipTokens.effect(SkillEffects.FLURRY_TRANCE.id) + " for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
@@ -365,7 +351,7 @@ public class WeaponSkillModifiers {
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     // ===== MACE (Smash) =====
@@ -375,7 +361,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_mace_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Mace Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Mace Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_smash_modifier_1 = add(weapon_smash_modifier_1());
@@ -394,19 +380,17 @@ public class WeaponSkillModifiers {
         modifier.impacts = List.of(taunt);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_smash_modifier_2 = add(weapon_smash_modifier_2());
     private static Skills.Entry weapon_smash_modifier_2() {
         var id = Identifier.of(NAMESPACE, "weapon_smash_modifier_2");
         var title = "Shatter";
-        var description = "Smash reduces the target's armor by {bonus} for {effect_duration} sec.";
+        var description = "Smash reduces the target's armor by "
+                + TooltipTokens.effect(SkillEffects.SHATTER.id, 0, null, TooltipTokens.Format.ABS)
+                + " for {effect_duration} sec.";
         var effect = SkillEffects.SHATTER;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(-effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         var modifier = new Spell.Modifier();
@@ -415,7 +399,7 @@ public class WeaponSkillModifiers {
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     // ===== HAMMER (Ground Slam) =====
@@ -425,7 +409,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_hammer_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Hammer Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Hammer Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_ground_slam_modifier_1 = add(weapon_ground_slam_modifier_1());
@@ -442,7 +426,7 @@ public class WeaponSkillModifiers {
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(stun);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_ground_slam_modifier_2 = add(weapon_ground_slam_modifier_2());
@@ -465,7 +449,7 @@ public class WeaponSkillModifiers {
 
         spell.impacts = List.of();
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     // ===== DOUBLE AXE (Whirlwind) =====
@@ -475,7 +459,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_double_axe_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Double Axe Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Double Axe Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_whirlwind_modifier_1 = add(weapon_whirlwind_modifier_1());
@@ -493,7 +477,7 @@ public class WeaponSkillModifiers {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_whirlwind_modifier_2 = add(weapon_whirlwind_modifier_2());
@@ -516,7 +500,7 @@ public class WeaponSkillModifiers {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     // ===== SPEAR (Impale) =====
@@ -526,7 +510,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_spear_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Spear Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Spear Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_impale_modifier_1 = add(weapon_impale_modifier_1());
@@ -543,7 +527,7 @@ public class WeaponSkillModifiers {
         modifier.projectile_perks.pierce = 3;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_impale_modifier_2 = add(weapon_impale_modifier_2());
@@ -563,7 +547,7 @@ public class WeaponSkillModifiers {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     // ===== DAGGER (Fan of Knives) =====
@@ -573,7 +557,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_dagger_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Dagger Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Dagger Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_fan_of_knives_modifier_1 = add(weapon_fan_of_knives_modifier_1());
@@ -591,7 +575,7 @@ public class WeaponSkillModifiers {
         modifier.projectile_perks.bounce = 2;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_fan_of_knives_modifier_2 = add(weapon_fan_of_knives_modifier_2());
@@ -610,7 +594,7 @@ public class WeaponSkillModifiers {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     // ===== SICKLE (Swipe) =====
@@ -620,7 +604,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_sickle_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Sickle Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Sickle Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_swipe_modifier_1 = add(weapon_swipe_modifier_1());
@@ -643,7 +627,7 @@ public class WeaponSkillModifiers {
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_swipe_modifier_2 = add(weapon_swipe_modifier_2());
@@ -673,7 +657,7 @@ public class WeaponSkillModifiers {
 
         SpellBuilder.Cost.cooldown(spell, 5F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     // ===== GLAIVE (Thrust) =====
@@ -683,7 +667,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_glaive_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Glaive Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Glaive Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_thrust_modifier_1 = add(weapon_thrust_modifier_1());
@@ -697,7 +681,7 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = WeaponSkills.THRUST.id().toString();
         modifier.melee_momentum_add = 0.5F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_thrust_modifier_2 = add(weapon_thrust_modifier_2());
@@ -711,7 +695,7 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = WeaponSkills.THRUST.id().toString();
         modifier.melee_damage_multiplier = 0.2F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     // ===== BOW =====
@@ -721,7 +705,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_bow_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
-        return new Skills.Entry(id, spell, "Bow Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Bow Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_bow_passive_1 = add(weapon_bow_passive_1());
@@ -744,7 +728,7 @@ public class WeaponSkillModifiers {
 
         SpellBuilder.Cost.cooldown(spell, 3F);
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_bow_passive_2 = add(weapon_bow_passive_2());
@@ -766,7 +750,7 @@ public class WeaponSkillModifiers {
         impact.visuals = SkillsCommon.poisonImpactParticles();
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     // ===== CROSSBOW =====
@@ -776,7 +760,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_crossbow_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
-        return new Skills.Entry(id, spell, "Crossbow Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Crossbow Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_crossbow_passive_1 = add(weapon_crossbow_passive_1());
@@ -797,7 +781,7 @@ public class WeaponSkillModifiers {
         var impact = SpellBuilder.Impacts.effectSet(StatusEffects.WEAKNESS.getIdAsString(), 4F, 0);
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_crossbow_passive_2 = add(weapon_crossbow_passive_2());
@@ -817,7 +801,7 @@ public class WeaponSkillModifiers {
 
         SkillsCommon.explosionImpact(spell, 0.6F);
 
-        return new Skills.Entry(id, spell, title, description, null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
     }
 
     // ===== AXE (Cleave) =====
@@ -827,7 +811,7 @@ public class WeaponSkillModifiers {
         var id = Identifier.of(NAMESPACE, "weapon_axe_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
-        return new Skills.Entry(id, spell, "Axe Specialisation", "", null, Skills.Category.WEAPON);
+        return new Skills.Entry(id, spell, "Axe Specialisation", "", Skills.Category.WEAPON);
     }
 
     public static final Skills.Entry weapon_cleave_modifier_1 = add(weapon_cleave_modifier_1());
@@ -841,7 +825,7 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = WeaponSkills.CLEAVE.id().toString();
         modifier.range_add = 0.5F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 
     public static final Skills.Entry weapon_cleave_modifier_2 = add(weapon_cleave_modifier_2());
@@ -855,6 +839,6 @@ public class WeaponSkillModifiers {
         modifier.spell_pattern = WeaponSkills.CLEAVE.id().toString();
         modifier.cooldown_duration_deduct = 2F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WEAPON));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WEAPON));
     }
 }

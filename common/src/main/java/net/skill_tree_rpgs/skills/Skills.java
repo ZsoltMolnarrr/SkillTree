@@ -3,8 +3,7 @@ package net.skill_tree_rpgs.skills;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.client.gui.SpellTooltip;
-import org.jetbrains.annotations.Nullable;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -16,11 +15,17 @@ public class Skills {
         ARCANE, FIRE, FROST, PRIEST, PALADIN, ROGUE, WARRIOR, ARCHER, WEAPON
     }
 
+    /// A percentage baked directly into a description literal. The description is a lang value and
+    /// `I18n.translate` feeds it to `String.format`, so a literal `%` must be doubled (`%%` → `%`) or
+    /// it renders as "Format error". Token percentages injected after translation don't need this.
+    public static String bakedPercent(float value) {
+        return TooltipTokens.percent(value).replace("%", "%%");
+    }
+
     public record Entry(Identifier id, Spell spell, String title, String description,
-                        @Nullable SpellTooltip.DescriptionMutator mutator, EnumSet<Category> categories) {
-        public Entry(Identifier id, Spell spell, String title, String description,
-                     @Nullable SpellTooltip.DescriptionMutator mutator, Category category) {
-            this(id, spell, title, description, mutator, EnumSet.of(category));
+                        EnumSet<Category> categories) {
+        public Entry(Identifier id, Spell spell, String title, String description, Category category) {
+            this(id, spell, title, description, EnumSet.of(category));
         }
         public String key() {
             return id.getPath();

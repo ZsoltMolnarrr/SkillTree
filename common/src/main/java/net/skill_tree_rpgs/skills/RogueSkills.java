@@ -13,7 +13,7 @@ import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -59,7 +59,7 @@ public class RogueSkills {
 
         SkillsCommon.explosionImpact(spell, 0.6F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     /// Hidden companion to Explosive Powder: the node grants this MODIFIER spell alongside the
@@ -78,7 +78,7 @@ public class RogueSkills {
         modifier.effect_duration_add = 1F;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_2_spell_1_modifier_2 = add(rogue_tier_2_spell_1_modifier_2());
@@ -86,11 +86,7 @@ public class RogueSkills {
         var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_1_modifier_2");
         var title = "Smoke Screen";
         var effect = SkillEffects.SMOKE_SCREEN;
-        var description = "Shock Powder leaves a smoke screen behind for {cloud_duration} sec, increasing evasion chance of allies inside by {bonus}.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Shock Powder leaves a smoke screen behind for {cloud_duration} sec, increasing evasion chance of allies inside by " + TooltipTokens.effect(SkillEffects.SMOKE_SCREEN.id) + ".";
 
         var spell = SkillsCommon.createModifierAlikePassiveSpell();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -120,7 +116,7 @@ public class RogueSkills {
         var evasion = SpellBuilder.Impacts.effectSet(effect.id.toString(), 1, 0);
         spell.impacts = List.of(evasion);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_2_spell_2_modifier_1 = add(rogue_tier_2_spell_2_modifier_1());
@@ -136,7 +132,7 @@ public class RogueSkills {
         modifier.effect_amplifier_cap_add = 2;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_2_spell_2_modifier_2 = add(rogue_tier_2_spell_2_modifier_2());
@@ -144,12 +140,7 @@ public class RogueSkills {
         var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_2_modifier_2");
         var title = "Fleet Footed";
         var effect = SkillEffects.FLEET_FOOTED;
-        var description = "Slice and Dice attacks increases movement speed by {bonus}, stacking up to {effect_amplifier_cap}, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Slice and Dice attacks increases movement speed by " + TooltipTokens.effect(SkillEffects.FLEET_FOOTED.id) + ", stacking up to {effect_amplifier_cap}, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
@@ -162,7 +153,7 @@ public class RogueSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_3_spell_1_modifier_1 = add(rogue_tier_3_spell_1_modifier_1());
@@ -192,20 +183,16 @@ public class RogueSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_3_spell_1_modifier_2 = add(rogue_tier_3_spell_1_modifier_2());
     private static Skills.Entry rogue_tier_3_spell_1_modifier_2() {
         var id = Identifier.of(NAMESPACE, "rogue_tier_3_spell_1_modifier_2");
         var title = "Ambush";
-        var description = "Next attack after Shadowstep, within {effect_duration} sec, deals {bonus} extra damage.";
+        var description = "Next attack after Shadowstep, within {effect_duration} sec, deals " + TooltipTokens.effect(SkillEffects.AMBUSH.id) + " extra damage.";
 
         var effect = SkillEffects.AMBUSH;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -221,7 +208,7 @@ public class RogueSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_4_spell_1_modifier_1 = add(rogue_tier_4_spell_1_modifier_1());
@@ -243,7 +230,7 @@ public class RogueSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_4_spell_1_modifier_2 = add(rogue_tier_4_spell_1_modifier_2());
@@ -259,7 +246,7 @@ public class RogueSkills {
         modifier.effect_duration_add = 8;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     // ===================================================================================
@@ -314,7 +301,7 @@ public class RogueSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_3_spell_2_modifier_2 = add(rogue_tier_3_spell_2_modifier_2());
@@ -339,7 +326,7 @@ public class RogueSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_4_spell_2_modifier_1 = add(rogue_tier_4_spell_2_modifier_1());
@@ -363,7 +350,7 @@ public class RogueSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_4_spell_2_modifier_2 = add(rogue_tier_4_spell_2_modifier_2());
@@ -388,7 +375,7 @@ public class RogueSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_1_passive_1 = add(rogue_tier_1_passive_1());
@@ -414,7 +401,7 @@ public class RogueSkills {
         impact.sound = new Sound(SpellEngineSounds.GENERIC_POISON_IMPACT.id());
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_1_passive_2 = add(rogue_tier_1_passive_2());
@@ -422,12 +409,8 @@ public class RogueSkills {
         var id = Identifier.of(NAMESPACE, "rogue_tier_1_passive_2");
         var effect = SkillEffects.FRACTURE;
         var title = effect.title;
-        var description = "Melee attacks have {trigger_chance_1} chance to wound the enemy, dealing {damage} damage and reducing its armor by {bonus}, for {effect_duration} sec.";
+        var description = "Melee attacks have {trigger_chance_1} chance to wound the enemy, dealing {damage} damage and reducing its armor by " + TooltipTokens.effect(SkillEffects.FRACTURE.id, 0, null, TooltipTokens.Format.ABS) + ", for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(Math.abs(effect.config().firstModifier().value));
-            return args.description().replace("{bonus}", bonus);
-        };
 
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         spell.range = 0;
@@ -456,7 +439,7 @@ public class RogueSkills {
 
         SpellBuilder.Cost.cooldown(spell, 6F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_2_passive_2 = add(rogue_tier_2_passive_2()); // Opportunist (upon roll, next melee attack crits)
@@ -491,7 +474,7 @@ public class RogueSkills {
 
         SpellBuilder.Cost.cooldown(spell, 10F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_2_passive_1 = add(rogue_tier_2_passive_1());
@@ -499,12 +482,8 @@ public class RogueSkills {
         var id = Identifier.of(NAMESPACE, "rogue_tier_2_passive_1");
         var effect = SkillEffects.SIDE_STEP;
         var title = effect.title;
-        var description = "Upon rolling, you gain a stack of Sidestep, increasing your Evasion Chance by {bonus}, stacking up to {stash_amplifier} times. Removed when taking damage.";
+        var description = "Upon rolling, you gain a stack of Sidestep, increasing your Evasion Chance by " + TooltipTokens.effect(SkillEffects.SIDE_STEP.id) + ", stacking up to {stash_amplifier} times. Removed when taking damage.";
 
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -529,7 +508,7 @@ public class RogueSkills {
         impact.action.apply_to_caster = true;
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_3_passive_1 = add(rogue_tier_3_passive_1()); // Cheat Death
@@ -560,7 +539,7 @@ public class RogueSkills {
 
         SpellBuilder.Cost.cooldown(spell, 60F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 
     public static final Skills.Entry rogue_tier_3_passive_2 = add(rogue_tier_3_passive_2()); // Preparation (reset all cooldowns on evade)
@@ -593,6 +572,6 @@ public class RogueSkills {
 
         SpellBuilder.Cost.cooldown(spell, 30F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ROGUE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ROGUE));
     }
 }

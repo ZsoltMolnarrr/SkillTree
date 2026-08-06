@@ -16,7 +16,6 @@ import net.spell_engine.api.render.BuffParticleSpawner;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
-import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 
@@ -24,11 +23,6 @@ import java.util.List;
 
 public class SkillTreeClientMod {
     public static void init() {
-        for (var spell: Skills.ENTRIES) {
-            if (spell.mutator() != null) {
-                SpellTooltip.addDescriptionMutator(spell.id(), spell.mutator());
-            }
-        }
         for (var entry: NodeTypes.allNodes()) {
             var skillId = entry.id();
             if (entry.spellReward() != null) {

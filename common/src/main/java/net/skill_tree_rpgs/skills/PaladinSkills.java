@@ -12,7 +12,7 @@ import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -46,13 +46,8 @@ public class PaladinSkills {
 
         var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_1_modifier_1");
         var title = "Divine Strength";
-        var description = "Flash Heal increases Attack Damage by {bonus} for {effect_duration} sec.";
+        var description = "Flash Heal increases Attack Damage by " + TooltipTokens.effect(SkillEffects.DIVINE_STRENGTH.id) + " for {effect_duration} sec.";
 
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.HEALING;
@@ -72,7 +67,7 @@ public class PaladinSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_2_spell_1_modifier_2 = add(paladin_tier_2_spell_1_modifier_2());
@@ -98,19 +93,15 @@ public class PaladinSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_3_spell_1_modifier_1 = add(paladin_tier_3_spell_1_modifier_1());
     private static Skills.Entry paladin_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "paladin_tier_3_spell_1_modifier_1");
         var title = "Pursuit of Justice";
-        var description = "Divine Protection also increases your movement speed by {bonus}, for {effect_duration} sec.";
+        var description = "Divine Protection also increases your movement speed by " + TooltipTokens.effect(SkillEffects.PURSUIT_OF_JUSTICE.id) + ", for {effect_duration} sec.";
         var effect = SkillEffects.PURSUIT_OF_JUSTICE;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.HEALING;
@@ -124,7 +115,7 @@ public class PaladinSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_3_spell_1_modifier_2 = add(paladin_tier_3_spell_1_modifier_2());
@@ -141,7 +132,7 @@ public class PaladinSkills {
         modifier.effect_amplifier_cap_add = 1;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_3_spell_2_modifier_1 = add(paladin_tier_3_spell_2_modifier_1());
@@ -158,7 +149,7 @@ public class PaladinSkills {
         modifier.power_modifier.power_multiplier = 0.2F;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_3_spell_2_modifier_2 = add(paladin_tier_3_spell_2_modifier_2());
@@ -180,7 +171,7 @@ public class PaladinSkills {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_4_spell_1_modifier_1 = add(paladin_tier_4_spell_1_modifier_1());
@@ -196,19 +187,15 @@ public class PaladinSkills {
         modifier.spawn_duration_add = 4;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_4_spell_1_modifier_2 = add(paladin_tier_4_spell_1_modifier_2());
     private static Skills.Entry paladin_tier_4_spell_1_modifier_2() {
         var id = Identifier.of(NAMESPACE, "paladin_tier_4_spell_1_modifier_2");
         var title = "Protective Banner";
-        var description = "Battle Banner also reduces damage taken by {bonus}.";
+        var description = "Battle Banner also reduces damage taken by " + TooltipTokens.effect(SkillEffects.BANNER_PROTECTION.id, 0, null, TooltipTokens.Format.ABS) + ".";
         var effect = SkillEffects.BANNER_PROTECTION;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent( Math.abs( effect.config().firstModifier().value ) );
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -220,7 +207,7 @@ public class PaladinSkills {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     // ===================================================================================
@@ -264,7 +251,7 @@ public class PaladinSkills {
         modifier.power_modifier.power_multiplier = 0.2F;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_2_spell_2_modifier_2 = add(paladin_tier_2_spell_2_modifier_2()); // Seal of Light
@@ -296,7 +283,7 @@ public class PaladinSkills {
         modifier.impacts = List.of(heal);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
     public static final Skills.Entry paladin_tier_4_spell_2_modifier_1 = add(paladin_tier_4_spell_2_modifier_1());
     private static Skills.Entry paladin_tier_4_spell_2_modifier_1() {
@@ -327,7 +314,7 @@ public class PaladinSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_4_spell_2_modifier_2 = add(paladin_tier_4_spell_2_modifier_2());
@@ -377,20 +364,16 @@ public class PaladinSkills {
         impact.sound = new Sound(SkillSounds.priest_consecration_impact.id());
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_1_passive_1 = add(paladin_tier_1_passive_1()); // Redoubt
     private static Skills.Entry paladin_tier_1_passive_1() {
         var id = Identifier.of(NAMESPACE, "paladin_tier_1_passive_1");
         var title = "Redoubt";
-        var description = "Blocking with shield grants {bonus} armor, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var description = "Blocking with shield grants " + TooltipTokens.effect(SkillEffects.REDOUBT.id) + " armor, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
         var effect = SkillEffects.REDOUBT;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -413,7 +396,7 @@ public class PaladinSkills {
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_1_passive_2 = add(paladin_tier_1_passive_2()); // Vengeance
@@ -422,11 +405,7 @@ public class PaladinSkills {
         var effect = SkillEffects.VENGEANCE;
         var title = "Vengeance";
         var description = "Critical strikes grant " + effect.title
-                + ", increasing Attack Damage by {bonus}, stacking up to {effect_amplifier_cap} times, for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+                + ", increasing Attack Damage by " + TooltipTokens.effect(SkillEffects.VENGEANCE.id) + ", stacking up to {effect_amplifier_cap} times, for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -456,7 +435,7 @@ public class PaladinSkills {
         buff.sound = Sound.withVolume(SkillSounds.paladin_crusader_activate.id(), 0.25F);
         spell.impacts = List.of(buff);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_2_passive_1 = add(paladin_tier_2_passive_1()); // Conviction
@@ -488,7 +467,7 @@ public class PaladinSkills {
         var flashHealReset = SpellBuilder.Impacts.resetCooldownActive(FLASH_HEAL);
         spell.impacts = List.of(impact, flashHealReset);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Color FREEDOM_COLOR = Color.from(0xff9933);
@@ -522,7 +501,7 @@ public class PaladinSkills {
 
         SpellBuilder.Cost.cooldown(spell, 10F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_3_passive_1 = add(paladin_tier_3_passive_1()); // Ardent Defender (hp boost on low HP)
@@ -531,13 +510,10 @@ public class PaladinSkills {
         var effect = SkillEffects.ARDENT_DEFENDER;
         var title = "Ardent Defender";
         var healthThreshold = 0.3F;
-        var description = "Upon taking damage below {threshold} health, your max health is increased by {bonus}, for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(Math.abs(effect.config().firstModifier().value));
-            return args.description()
-                    .replace("{bonus}", bonus)
-                    .replace("{threshold}", SpellTooltip.percent(healthThreshold));
-        };
+        var description = "Upon taking damage below " + Skills.bakedPercent(healthThreshold)
+                + " health, your max health is increased by "
+                + TooltipTokens.effect(SkillEffects.ARDENT_DEFENDER.id, 0, null, TooltipTokens.Format.ABS)
+                + ", for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.HEALTH;
@@ -577,7 +553,7 @@ public class PaladinSkills {
 
         SpellBuilder.Cost.cooldown(spell, 60F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 
     public static final Skills.Entry paladin_tier_3_passive_2 = add(paladin_tier_3_passive_2()); // Divine Hammer
@@ -630,6 +606,6 @@ public class PaladinSkills {
 
         SpellBuilder.Cost.cooldown(spell, 5F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PALADIN));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PALADIN));
     }
 }

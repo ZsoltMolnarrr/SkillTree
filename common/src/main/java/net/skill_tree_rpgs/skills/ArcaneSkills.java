@@ -12,7 +12,8 @@ import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.spell.summon.AttributeScaling;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -108,7 +109,7 @@ public class ArcaneSkills {
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry arcane_tier_1_passive_2 = add(arcane_tier_1_passive_2());
@@ -149,7 +150,7 @@ public class ArcaneSkills {
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===================================================================================
@@ -182,7 +183,7 @@ public class ArcaneSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry arcane_tier_2_spell_1_modifier_2 = add(arcane_tier_2_spell_1_modifier_2());
@@ -190,13 +191,8 @@ public class ArcaneSkills {
         var id = Identifier.of(NAMESPACE, "arcane_tier_2_spell_1_modifier_2");
         var effect = SkillEffects.ARCANE_SLOWNESS;
         var title = "Crippling Missiles";
-        var description = "Arcane Missiles apply slowness, reducing movement speed by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var description = "Arcane Missiles apply slowness, reducing movement speed by " + TooltipTokens.effect(SkillEffects.ARCANE_SLOWNESS.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.ARCANE;
@@ -212,7 +208,7 @@ public class ArcaneSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===================================================================================
@@ -255,7 +251,7 @@ public class ArcaneSkills {
         // Internal cooldown matching the base spell's, so one cast can grant at most one reset.
         SpellBuilder.Cost.cooldown(spell, ARCANE_EXPLOSION_COOLDOWN);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry arcane_tier_2_spell_2_modifier_2 = add(arcane_tier_2_spell_2_modifier_2());
@@ -300,7 +296,7 @@ public class ArcaneSkills {
         spell.area_impact = area_impact;
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===================================================================================
@@ -366,7 +362,7 @@ public class ArcaneSkills {
         area_impact.radius = radius;
         spell.area_impact = area_impact;
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry arcane_tier_2_passive_2 = add(arcane_tier_2_passive_2());
@@ -390,7 +386,7 @@ public class ArcaneSkills {
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===================================================================================
@@ -405,11 +401,10 @@ public class ArcaneSkills {
     private static Skills.Entry arcane_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(NAMESPACE, "arcane_tier_3_spell_1_modifier_1");
         var title = "Beam Exposure";
-        var description = "Arcane Beam applies Arcane Exposure increasing Arcane damage taken by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var description = "Arcane Beam applies Arcane Exposure increasing Arcane damage taken by "
+                + Skills.bakedPercent(SkillEffects.ARCANE_EXPOSURE_MULTIPLIER)
+                + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var effect = SkillEffects.ARCANE_EXPOSURE;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            return args.description().replace("{bonus}", SpellTooltip.percent(SkillEffects.ARCANE_EXPOSURE_MULTIPLIER));
-        };
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.ARCANE;
 
@@ -421,19 +416,19 @@ public class ArcaneSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry arcane_tier_3_spell_1_modifier_2 = add(arcane_tier_3_spell_1_modifier_2());
     private static Skills.Entry arcane_tier_3_spell_1_modifier_2() {
         var id = Identifier.of(NAMESPACE, "arcane_tier_3_spell_1_modifier_2");
         var title = "Beam Propulsion";
-        var description = "Arcane Beam hits increase your speed and jump strength by {bonus} for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
+        // ARCANE_SPEED has two equal modifiers (movement + jump); name the first explicitly.
+        var description = "Arcane Beam hits increase your speed and jump strength by "
+                + TooltipTokens.effect(SkillEffects.ARCANE_SPEED.id, 0,
+                        Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
+                + " for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
         var effect = SkillEffects.ARCANE_SPEED;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.ARCANE;
 
@@ -446,7 +441,7 @@ public class ArcaneSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===================================================================================
@@ -480,7 +475,7 @@ public class ArcaneSkills {
         modifier.spell_pattern = ARCANE_BARRAGE;
         modifier.summon_spawn_count_add = 1;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry arcane_tier_3_spell_2_modifier_2 = add(arcane_tier_3_spell_2_modifier_2());
@@ -506,7 +501,7 @@ public class ArcaneSkills {
         modifier.summon_attribute_scaling.entries = List.of(haste);
 
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===================================================================================
@@ -551,7 +546,7 @@ public class ArcaneSkills {
 
         SpellBuilder.Cost.cooldown(spell, 15F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry arcane_tier_3_passive_2 = add(arcane_tier_3_passive_2());
@@ -581,7 +576,7 @@ public class ArcaneSkills {
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===================================================================================
@@ -603,7 +598,7 @@ public class ArcaneSkills {
         modifier.spell_pattern = ARCANE_BLINK;
         modifier.cooldown_duration_deduct = 4F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry arcane_tier_4_spell_1_modifier_2 = add(arcane_tier_4_spell_1_modifier_2());
@@ -634,7 +629,7 @@ public class ArcaneSkills {
         modifier.impacts = List.of(impact1, impact2);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     // ===================================================================================
@@ -657,7 +652,7 @@ public class ArcaneSkills {
         modifier.spell_pattern = ARCANE_EVOCATION;
         modifier.channel_ticks_add = extraChannels;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 
     public static final Skills.Entry arcane_tier_4_spell_2_modifier_2 = add(arcane_tier_4_spell_2_modifier_2());
@@ -671,6 +666,6 @@ public class ArcaneSkills {
         modifier.spell_pattern = ARCANE_EVOCATION;
         modifier.effect_duration_add = 2;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.ARCANE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.ARCANE));
     }
 }

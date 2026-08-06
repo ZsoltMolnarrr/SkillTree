@@ -13,7 +13,6 @@ import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -74,7 +73,7 @@ public class FrostSkills {
         spell.area_impact = area_impact;
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_2_spell_1_modifier_2 = add(frost_tier_2_spell_1_modifier_2());
@@ -90,7 +89,7 @@ public class FrostSkills {
         modifier.effect_amplifier_add = 1;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_3_spell_1_modifier_1 = add(frost_tier_3_spell_1_modifier_1());
@@ -111,7 +110,7 @@ public class FrostSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_3_spell_1_modifier_2 = add(frost_tier_3_spell_1_modifier_2());
@@ -127,7 +126,7 @@ public class FrostSkills {
         modifier.effect_duration_add = 2;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_4_spell_1_modifier_1 = add(frost_tier_4_spell_1_modifier_1());
@@ -145,7 +144,7 @@ public class FrostSkills {
         modifier.power_modifier.power_multiplier = 0.2F;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_4_spell_1_modifier_2 = add(frost_tier_4_spell_1_modifier_2());
@@ -168,7 +167,7 @@ public class FrostSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     // ===================================================================================
@@ -220,7 +219,7 @@ public class FrostSkills {
         modifier.additional_placements = extension;
 
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_2_spell_2_modifier_2 = add(frost_tier_2_spell_2_modifier_2());
@@ -244,7 +243,7 @@ public class FrostSkills {
         modifier.additional_placements = placements;
 
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_3_spell_2_modifier_1 = add(frost_tier_3_spell_2_modifier_1());
@@ -253,7 +252,7 @@ public class FrostSkills {
         var title = "Colossal Lance";
         var bonus = 0.5F;
         var critChance = 0.15F;
-        var description = "Ice Lance is " + SpellTooltip.percent(bonus) + "% larger and gains {critical_chance_bonus} increased critical strike chance.";
+        var description = "Ice Lance is " + Skills.bakedPercent(bonus) + " larger and gains {critical_chance_bonus} increased critical strike chance.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FROST;
         var modifier = new Spell.Modifier();
@@ -264,7 +263,7 @@ public class FrostSkills {
         modifier.power_modifier = new Spell.Impact.Modifier();
         modifier.power_modifier.critical_chance_bonus = critChance;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_3_spell_2_modifier_2 = add(frost_tier_3_spell_2_modifier_2());
@@ -300,7 +299,7 @@ public class FrostSkills {
         modifier.replacing_area_impact = area_impact;
 
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_4_spell_2_modifier_1 = add(frost_tier_4_spell_2_modifier_1());
@@ -314,7 +313,7 @@ public class FrostSkills {
         modifier.spell_pattern = FROST_ELEMENTAL;
         modifier.summon_spawn_count_add = 1;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_4_spell_2_modifier_2 = add(frost_tier_4_spell_2_modifier_2());
@@ -340,7 +339,7 @@ public class FrostSkills {
         );
 
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     /// A single owner-scaled attribute entry: `targetAttribute += base + ownerAttribute * coefficient`.
@@ -359,10 +358,9 @@ public class FrostSkills {
         var effect = SkillEffects.FROST_VULNERABILITY;
         var title = "Winter's Chill";
         var description = "Frost spell impacts have {trigger_chance} chance to apply Winter's Chill effect."
-                + " Increasing damage taken from frost spell critical strikes by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            return args.description().replace("{bonus}", SpellTooltip.percent(SkillEffects.FROST_VULNERABILITY_MULTIPLIER));
-        };
+                + " Increasing damage taken from frost spell critical strikes by "
+                + Skills.bakedPercent(SkillEffects.FROST_VULNERABILITY_MULTIPLIER)
+                + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.FROST;
         spell.range = 0;
@@ -379,7 +377,7 @@ public class FrostSkills {
         impact.sound = new Sound(SkillSounds.frost_winters_chill.id());
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final String WIZARDS_FREEZE_EFFECT = "wizards:frozen";
@@ -409,7 +407,7 @@ public class FrostSkills {
 
         SpellBuilder.Cost.cooldown(spell, 10F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_2_passive_1 = add(frost_tier_2_passive_1()); // Frost Trap
@@ -461,7 +459,7 @@ public class FrostSkills {
         var debuff = SpellBuilder.Impacts.effectAdd(WIZARDS_FREEZE_EFFECT, 6, 1, 4);
         spell.impacts = List.of(debuff);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_2_passive_2 = add(frost_tier_2_passive_2());
@@ -498,7 +496,7 @@ public class FrostSkills {
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_3_passive_1 = add(frost_tier_3_passive_1());
@@ -529,7 +527,7 @@ public class FrostSkills {
 
         SpellBuilder.Cost.cooldown(spell, 30F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 
     public static final Skills.Entry frost_tier_3_passive_2 = add(frost_tier_3_passive_2()); // Frost Shield
@@ -576,6 +574,6 @@ public class FrostSkills {
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FROST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FROST));
     }
 }

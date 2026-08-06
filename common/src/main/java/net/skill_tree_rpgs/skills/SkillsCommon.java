@@ -83,7 +83,7 @@ public class SkillsCommon {
         modifier.spell_pattern = spellPattern;
         configure.accept(modifier);
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, "Improved " + spellName, description, null, EnumSet.of(category));
+        return new Skills.Entry(id, spell, "Improved " + spellName, description, EnumSet.of(category));
     }
 
     /** Burst damage spells. */

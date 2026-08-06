@@ -11,7 +11,7 @@ import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -60,7 +60,7 @@ public class FireSkills {
 
         SpellBuilder.Cost.cooldown(spell, 0.5F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_2_spell_1_modifier_2 = add(fire_tier_2_spell_1_modifier_2());
@@ -76,7 +76,7 @@ public class FireSkills {
         modifier.range_add = 2;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_3_spell_1_modifier_1 = add(fire_tier_3_spell_1_modifier_1());
@@ -84,9 +84,6 @@ public class FireSkills {
         var id = Identifier.of(NAMESPACE, "fire_tier_3_spell_1_modifier_1");
         var title = "Meteor Shower";
         var description = "Meteor launches {extra_launch} extra projectile.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            return args.description().replace("{bonus}", SpellTooltip.percent(SkillEffects.FIRE_VULNERABILITY_MULTIPLIER));
-        };
 
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FIRE;
@@ -97,7 +94,7 @@ public class FireSkills {
         modifier.projectile_launch.extra_launch_count = 1;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_3_spell_1_modifier_2 = add(fire_tier_3_spell_1_modifier_2());
@@ -117,7 +114,7 @@ public class FireSkills {
 
         SpellBuilder.Complex.flameCloud(spell, 3.0F, 0.3F, 6, null);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_4_spell_1_modifier_1 = add(fire_tier_4_spell_1_modifier_1());
@@ -138,7 +135,7 @@ public class FireSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_4_spell_1_modifier_2 = add(fire_tier_4_spell_1_modifier_2());
@@ -158,7 +155,7 @@ public class FireSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     // ===================================================================================
@@ -195,7 +192,7 @@ public class FireSkills {
         var id = Identifier.of(NAMESPACE, "fire_tier_2_spell_2_modifier_1");
         var title = "Towering Slash";
         var bonus = 0.33F;
-        var description = "Flame Slash is " + SpellTooltip.percent(bonus) + "% larger.";
+        var description = "Flame Slash is " + Skills.bakedPercent(bonus) + " larger.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FIRE;
         var modifier = new Spell.Modifier();
@@ -203,7 +200,7 @@ public class FireSkills {
         // Stacks on top of the base spell's charge growth (up to 2x at full charge -> up to 2.33x).
         modifier.projectile_scale_multiply = bonus;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_2_spell_2_modifier_2 = add(fire_tier_2_spell_2_modifier_2());
@@ -235,7 +232,7 @@ public class FireSkills {
         modifier.impacts = List.of(shave);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_3_spell_2_modifier_1 = add(fire_tier_3_spell_2_modifier_1());
@@ -266,7 +263,7 @@ public class FireSkills {
         );
 
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_3_spell_2_modifier_2 = add(fire_tier_3_spell_2_modifier_2());
@@ -281,7 +278,7 @@ public class FireSkills {
         modifier.channel_ticks_add = 2;
         modifier.knockback_multiply_base = 1F;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_4_spell_2_modifier_1 = add(fire_tier_4_spell_2_modifier_1());
@@ -295,7 +292,7 @@ public class FireSkills {
         modifier.spell_pattern = FIRE_HYDRA;
         modifier.summon_group_count_add = 1;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_4_spell_2_modifier_2 = add(fire_tier_4_spell_2_modifier_2());
@@ -310,7 +307,7 @@ public class FireSkills {
         modifier.spell_pattern = FIRE_HYDRA;
         modifier.summon_behaviour.lifespan.active_seconds_add = seconds;
         spell.modifiers = List.of(modifier);
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final int FIRE_VULNERABILITY_DURATION = 8; // seconds
@@ -320,10 +317,9 @@ public class FireSkills {
         var id = Identifier.of(NAMESPACE, "fire_tier_1_passive_1");
         var effect = SkillEffects.FIRE_VULNERABILITY;
         var title = "Scorching Flames";
-        var description = "Fire spell impacts have {trigger_chance} chance to apply Fire Vulnerability. Increasing damage taken from fire spells by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            return args.description().replace("{bonus}", SpellTooltip.percent(SkillEffects.FIRE_VULNERABILITY_MULTIPLIER));
-        };
+        var description = "Fire spell impacts have {trigger_chance} chance to apply Fire Vulnerability. Increasing damage taken from fire spells by "
+                + Skills.bakedPercent(SkillEffects.FIRE_VULNERABILITY_MULTIPLIER)
+                + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.FIRE;
@@ -344,7 +340,7 @@ public class FireSkills {
         impact.sound = new Sound("wizards:fire_scorch_impact");
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_1_passive_2 = add(fire_tier_1_passive_2());
@@ -366,7 +362,7 @@ public class FireSkills {
 
         SpellBuilder.Cost.cooldown(spell, 10F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_2_passive_1 = add(fire_tier_2_passive_1()); // Fire trap
@@ -428,20 +424,16 @@ public class FireSkills {
         area_impact.radius = radius;
         spell.area_impact = area_impact;
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_2_passive_2 = add(fire_tier_2_passive_2()); // Blazing Speed
     private static Skills.Entry fire_tier_2_passive_2() {
         var id = Identifier.of(NAMESPACE, "fire_tier_2_passive_2");
         var title = "Blazing Speed";
-        var description = "Upon rolling, you have {trigger_chance} chance to gain {bonus} movement speed for {effect_duration} sec.";
+        var description = "Upon rolling, you have {trigger_chance} chance to gain " + TooltipTokens.effect(SkillEffects.BLAZING_SPEED.id) + " movement speed for {effect_duration} sec.";
         var effect = SkillEffects.BLAZING_SPEED;
 
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.FIRE;
@@ -461,7 +453,7 @@ public class FireSkills {
         impact.sound = new Sound(SpellEngineSounds.SPEED_BOOST.id());
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_3_passive_1 = add(fire_tier_3_passive_1());
@@ -506,7 +498,7 @@ public class FireSkills {
 
         SpellBuilder.Cost.cooldown(spell, 5F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
     public static final Skills.Entry fire_tier_3_passive_2 = add(fire_tier_3_passive_2()); // Flame Shield
@@ -550,7 +542,7 @@ public class FireSkills {
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.FIRE));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
 
 }

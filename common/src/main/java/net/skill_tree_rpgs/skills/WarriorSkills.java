@@ -16,7 +16,8 @@ import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -59,7 +60,7 @@ public class WarriorSkills {
         modifier.projectile_perks.ricochet = 1;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_2_spell_1_modifier_2 = add(warrior_tier_2_spell_1_modifier_2());
@@ -77,7 +78,7 @@ public class WarriorSkills {
         modifier.knockback_multiply_base = bonus;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_3_spell_1_modifier_1 = add(warrior_tier_3_spell_1_modifier_1());
@@ -93,7 +94,7 @@ public class WarriorSkills {
         modifier.effect_duration_add = 1;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_3_spell_1_modifier_2 = add(warrior_tier_3_spell_1_modifier_2());
@@ -122,7 +123,7 @@ public class WarriorSkills {
 
         SpellBuilder.Cost.cooldown(spell, 10F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_4_spell_1_modifier_1 = add(warrior_tier_4_spell_1_modifier_1());
@@ -151,7 +152,7 @@ public class WarriorSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_4_spell_1_modifier_2 = add(warrior_tier_4_spell_1_modifier_2());
@@ -222,7 +223,7 @@ public class WarriorSkills {
 
         spell.impacts = List.of(damage, launch);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     /// Tick at which the cloud lands its single hit. Drives the cloud's impact interval and
@@ -250,17 +251,13 @@ public class WarriorSkills {
     private static Skills.Entry warrior_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_2_modifier_1");
         var title = "Battle Shout";
-        var description = "Shout increases Attack Damage of allies by {bonus}, lasting {effect_duration} sec.";
+        var description = "Shout increases Attack Damage of allies by " + TooltipTokens.effect(SkillEffects.BATTLE_SHOUT.id) + ", lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.tooltip = new Spell.Tooltip();
         spell.tooltip.show_activation = false;
         spell.tooltip.show_range = false;
 
         var effect = SkillEffects.BATTLE_SHOUT;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         spell.range = 12;
@@ -278,7 +275,7 @@ public class WarriorSkills {
         );
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_3_spell_2_modifier_2 = add(warrior_tier_3_spell_2_modifier_2());
@@ -300,7 +297,7 @@ public class WarriorSkills {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     // ===================================================================================
@@ -334,7 +331,7 @@ public class WarriorSkills {
 
         // No cooldown on purpose: a cooling-down passive is skipped entirely by the trigger
         // dispatcher, which would silence the dispel for the rest of the Charge.
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
     public static final Skills.Entry warrior_tier_4_spell_1_root = add(SkillsCommon.meleeRoot(
             Skills.Category.WARRIOR, ExternalSpellSchools.PHYSICAL_MELEE,
@@ -368,7 +365,7 @@ public class WarriorSkills {
         modifier.projectile_perks.ricochet = 2;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_2_spell_2_modifier_2 = add(warrior_tier_2_spell_2_modifier_2());
@@ -384,7 +381,7 @@ public class WarriorSkills {
         modifier.effect_duration_add = 2F;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_4_spell_2_modifier_1 = add(warrior_tier_4_spell_2_modifier_1());
@@ -392,20 +389,14 @@ public class WarriorSkills {
         var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_2_modifier_1");
         var title = "Juggernaut";
         var effect = SkillEffects.JUGGERNAUT;
-        var description = "Each stack of Last Stand also grows you in size by {bonus_1}, and reduces damage taken by {bonus_2}.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus1 = SpellTooltip.percent(effect.config().firstModifier().value);
-            var bonus2 = "";
-            if (effect.config().attributes().size() > 1) {
-                var value2 = Math.abs(effect.config().attributes().get(1).value);
-                bonus2 = SpellTooltip.percent(value2);
-            }
-            var result = args.description().replace("{bonus_1}", bonus1);
-            if (!bonus2.isEmpty()) {
-                result = result.replace("{bonus_2}", bonus2);
-            }
-            return result;
-        };
+        // JUGGERNAUT's two modifiers: size (first) and damage-taken (second, stored negative).
+        var description = "Each stack of Last Stand also grows you in size by "
+                + TooltipTokens.effect(SkillEffects.JUGGERNAUT.id, 0,
+                        Identifier.of(EntityAttributes.GENERIC_SCALE.getIdAsString()))
+                + ", and reduces damage taken by "
+                + TooltipTokens.effect(SkillEffects.JUGGERNAUT.id, 0,
+                        Identifier.of("spell_engine:damage_taken"), TooltipTokens.Format.ABS)
+                + ".";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
@@ -421,7 +412,7 @@ public class WarriorSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_4_spell_2_modifier_2 = add(warrior_tier_4_spell_2_modifier_2());
@@ -429,11 +420,7 @@ public class WarriorSkills {
         var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_2_modifier_2");
         var title = "Revenge";
         var effect = SkillEffects.REVENGE;
-        var description = "Blocking, or taking damage mitigatable by armor during Last Stand, increases your attack speed by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Blocking, or taking damage mitigatable by armor during Last Stand, increases your attack speed by " + TooltipTokens.effect(SkillEffects.REVENGE.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
         var spell = SkillsCommon.createModifierAlikePassiveSpell();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -465,19 +452,15 @@ public class WarriorSkills {
         haste.sound = Sound.of(SkillSounds.recklessness_impact.id());
         spell.impacts = List.of(haste);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_1_passive_1 = add(warrior_tier_1_passive_1());
     private static Skills.Entry warrior_tier_1_passive_1() {
         var id = Identifier.of(NAMESPACE, "warrior_tier_1_passive_1");
         var title = "Killing Spree";
-        var description = "Killing an enemy increases Attack Damage by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var description = "Killing an enemy increases Attack Damage by " + TooltipTokens.effect(SkillEffects.KILLING_SPREE.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var effect = SkillEffects.KILLING_SPREE;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -496,7 +479,7 @@ public class WarriorSkills {
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_1_passive_2 = add(warrior_tier_1_passive_2());
@@ -504,11 +487,7 @@ public class WarriorSkills {
         var id = Identifier.of(NAMESPACE, "warrior_tier_1_passive_2");
         var effect = SkillEffects.VITALITY;
         var title = "Vitality";
-        var description = "Blocking with shield has {trigger_chance} chance to increase your Evasion Chance by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Blocking with shield has {trigger_chance} chance to increase your Evasion Chance by " + TooltipTokens.effect(SkillEffects.VITALITY.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -531,7 +510,7 @@ public class WarriorSkills {
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_2_passive_1 = add(warrior_tier_2_passive_1());
@@ -557,7 +536,7 @@ public class WarriorSkills {
         impact.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_2_passive_2 = add(warrior_tier_2_passive_2());
@@ -584,7 +563,7 @@ public class WarriorSkills {
 
         SpellBuilder.Cost.cooldown(spell, 5F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_3_passive_1 = add(warrior_tier_3_passive_1()); // Enrage (on damage taken, gain Enrage effect)
@@ -592,11 +571,11 @@ public class WarriorSkills {
         var id = Identifier.of(NAMESPACE, "warrior_tier_3_passive_1");
         var effect = SkillEffects.ENRAGE;
         var title = effect.title;
-        var description = "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by {bonus} but also the damage you take, stacking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+        // ENRAGE's first modifier is attack speed; name it explicitly (it also carries size + damage-taken).
+        var description = "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by "
+                + TooltipTokens.effect(SkillEffects.ENRAGE.id, 0,
+                        Identifier.of(EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString()))
+                + " but also the damage you take, stacking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -638,7 +617,7 @@ public class WarriorSkills {
 
         SpellBuilder.Cost.cooldown(spell, 30F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 
     public static final Skills.Entry warrior_tier_3_passive_2 = add(warrior_tier_3_passive_2()); // Shockwave (like Ardent Defender)
@@ -647,15 +626,11 @@ public class WarriorSkills {
         var title = "Shockwave";
         float healthThreshold = 0.3F;
         float radius = 5F;
-        var description = "Taking damage below {threshold} causes a shockwave, stunning enemies nearby for {effect_duration} sec.";
+        var description = "Taking damage below " + Skills.bakedPercent(healthThreshold)
+                + " causes a shockwave, stunning enemies nearby for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         spell.range = radius;
-
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var threshold = SpellTooltip.percent(healthThreshold);
-            return args.description().replace("{threshold}", threshold);
-        };
 
         spell.target.type = Spell.Target.Type.AREA;
         spell.target.area = new Spell.Target.Area();
@@ -687,6 +662,6 @@ public class WarriorSkills {
 
         SpellBuilder.Cost.cooldown(spell, 30F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.WARRIOR));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.WARRIOR));
     }
 }

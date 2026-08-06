@@ -13,7 +13,8 @@ import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -67,7 +68,7 @@ public class PriestSkills {
 
         SpellBuilder.Cost.cooldown(spell, 8);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_2_spell_1_modifier_1 = add(priest_tier_2_spell_1_modifier_1());
@@ -83,7 +84,7 @@ public class PriestSkills {
         modifier.channel_ticks_add = 2;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_2_spell_1_modifier_2 = add(priest_tier_2_spell_1_modifier_2());
@@ -112,7 +113,7 @@ public class PriestSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_3_spell_1_modifier_1 = add(priest_tier_3_spell_1_modifier_1());
@@ -141,7 +142,7 @@ public class PriestSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_3_spell_1_modifier_2 = add(priest_tier_3_spell_1_modifier_2());
@@ -169,7 +170,7 @@ public class PriestSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_4_spell_1_modifier_1 = add(priest_tier_4_spell_1_modifier_1());
@@ -193,7 +194,7 @@ public class PriestSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_4_spell_1_modifier_2 = add(priest_tier_4_spell_1_modifier_2());
@@ -219,7 +220,7 @@ public class PriestSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     // ===================================================================================
@@ -271,7 +272,7 @@ public class PriestSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_2_spell_2_modifier_2 = add(priest_tier_2_spell_2_modifier_2());
@@ -279,11 +280,7 @@ public class PriestSkills {
         var id = Identifier.of(NAMESPACE, "priest_tier_2_spell_2_modifier_2");
         var title = "Serenity";
         var effect = SkillEffects.SERENITY;
-        var description = "Channeling Levitate grants Serenity, reducing damage taken by {bonus} per stack, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(Math.abs(effect.config().firstModifier().value));
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Channeling Levitate grants Serenity, reducing damage taken by " + TooltipTokens.effect(SkillEffects.SERENITY.id, 0, null, TooltipTokens.Format.ABS) + " per stack, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.HEALING;
 
@@ -303,7 +300,7 @@ public class PriestSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_3_spell_2_modifier_1 = add(priest_tier_3_spell_2_modifier_1());
@@ -311,11 +308,11 @@ public class PriestSkills {
         var id = Identifier.of(NAMESPACE, "priest_tier_3_spell_2_modifier_1");
         var title = "Hysteria";
         var effect = SkillEffects.HYSTERIA;
-        var description = "Penance bolts grant allies Hysteria, increasing attack speed, ranged and spell haste by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+        // HYSTERIA has three equal haste modifiers; name the first (attack speed) explicitly.
+        var description = "Penance bolts grant allies Hysteria, increasing attack speed, ranged and spell haste by "
+                + TooltipTokens.effect(SkillEffects.HYSTERIA.id, 0,
+                        Identifier.of(EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString()))
+                + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.HEALING;
 
@@ -335,7 +332,7 @@ public class PriestSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_3_spell_2_modifier_2 = add(priest_tier_3_spell_2_modifier_2());
@@ -343,11 +340,7 @@ public class PriestSkills {
         var id = Identifier.of(NAMESPACE, "priest_tier_3_spell_2_modifier_2");
         var title = "Chastise";
         var effect = SkillEffects.CHASTISE;
-        var description = "Penance bolts apply Chastise, increasing damage taken by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Penance bolts apply Chastise, increasing damage taken by " + TooltipTokens.effect(SkillEffects.CHASTISE.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.HEALING;
 
@@ -365,7 +358,7 @@ public class PriestSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_4_spell_2_modifier_1 = add(priest_tier_4_spell_2_modifier_1());
@@ -417,7 +410,7 @@ public class PriestSkills {
 
         spell.impacts = List.of(heal, cleanse);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_4_spell_2_modifier_2 = add(priest_tier_4_spell_2_modifier_2());
@@ -434,7 +427,7 @@ public class PriestSkills {
         modifier.spawn_duration_add = 4;
         spell.modifiers = List.of(modifier);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_1_passive_1 = add(priest_tier_1_passive_1());
@@ -442,11 +435,7 @@ public class PriestSkills {
         var id = Identifier.of(NAMESPACE, "priest_tier_1_passive_1");
         var effect = SkillEffects.HEALING_FOCUS;
         var title = "Healing Focus";
-        var description = "Healing spells apply Healing Focus effect. Increasing healing received by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Healing spells apply Healing Focus effect. Increasing healing received by " + TooltipTokens.effect(SkillEffects.HEALING_FOCUS.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.HEALING;
@@ -469,7 +458,7 @@ public class PriestSkills {
         impact.sound = new Sound(SkillSounds.priest_healing_focus.id());
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_1_passive_2 = add(priest_tier_1_passive_2());
@@ -477,11 +466,7 @@ public class PriestSkills {
         var id = Identifier.of(NAMESPACE, "priest_tier_1_passive_2");
         var effect = SkillEffects.INCANTER_CADENCE;
         var title = "Incanters' Cadence";
-        var description = "Spell hits have {trigger_chance} chance to increase spell haste by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(effect.config().firstModifier().value);
-            return args.description().replace("{bonus}", bonus);
-        };
+        var description = "Spell hits have {trigger_chance} chance to increase spell haste by " + TooltipTokens.effect(SkillEffects.INCANTER_CADENCE.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.HEALING;
@@ -502,7 +487,7 @@ public class PriestSkills {
         impact.sound = new Sound(SkillSounds.priest_incanter_cadence.id());
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_2_passive_1 = add(priest_tier_2_passive_1()); // Fade
@@ -530,7 +515,7 @@ public class PriestSkills {
         impact.sound = new Sound(SkillSounds.priest_fade.id());
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_2_passive_2 = add(priest_tier_2_passive_2()); // Divine Favor
@@ -565,7 +550,7 @@ public class PriestSkills {
 
         SpellBuilder.Cost.cooldown(spell, 15F);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_3_passive_1 = add(priest_tier_3_passive_1()); // Pain Suppression
@@ -574,13 +559,11 @@ public class PriestSkills {
         var effect = SkillEffects.PAIN_SUPPRESSION;
         var title = effect.title;
         var healthThreshold = 0.3F;
-        var description = "Healing targets under {threshold} health, grants them " + effect.title + ", reducing damage taken by {bonus}, for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var bonus = SpellTooltip.percent(Math.abs(effect.config().firstModifier().value));
-            return args.description()
-                    .replace("{bonus}", bonus)
-                    .replace("{threshold}", SpellTooltip.percent(healthThreshold));
-        };
+        var description = "Healing targets under " + Skills.bakedPercent(healthThreshold)
+                + " health, grants them " + effect.title
+                + ", reducing damage taken by "
+                + TooltipTokens.effect(SkillEffects.PAIN_SUPPRESSION.id, 0, null, TooltipTokens.Format.ABS)
+                + ", for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = SpellSchools.HEALING;
@@ -604,7 +587,7 @@ public class PriestSkills {
 
         SpellBuilder.Cost.cooldown(spell, 30F);
 
-        return new Skills.Entry(id, spell, title, description, mutator, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 
     public static final Skills.Entry priest_tier_3_passive_2 = add(priest_tier_3_passive_2()); // Celestial Orbs
@@ -637,6 +620,6 @@ public class PriestSkills {
         impact.sound = new Sound(SkillSounds.priest_holy_blast.id());
         spell.impacts = List.of(impact);
 
-        return new Skills.Entry(id, spell, title, description, null, EnumSet.of(Skills.Category.PRIEST));
+        return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.PRIEST));
     }
 }
