@@ -11,7 +11,7 @@
   "environment": "*",
   "entrypoints": {
     "fabric-datagen": [
-      "net.skill_tree_rpgs.data_gen.SkillTreeModDataGenerator"
+      "net.skill_tree_rpgs.fabric.data_gen.SkillTreeModDataGenerator"
     ],
     "client": [
       "net.skill_tree_rpgs.fabric.client.FabricClientMod"

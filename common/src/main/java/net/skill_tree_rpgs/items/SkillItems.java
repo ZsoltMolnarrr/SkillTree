@@ -1,11 +1,9 @@
 package net.skill_tree_rpgs.items;
 
 import net.skill_tree_rpgs.SkillTreeMod;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
@@ -78,11 +76,7 @@ public class SkillItems {
             entry.container.item = item;
             Registry.register(Registries.ITEM, entry.id(), item);
         }
-
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> {
-            for(var entry: ENTRIES) {
-                content.add(entry.item());
-            }
-        });
+        // Creative-tab placement (vanilla Combat tab) is wired per-platform from each loader's entrypoint
+        // (Fabric ItemGroupEvents / NeoForge BuildCreativeModeTabContentsEvent), iterating ENTRIES.
     }
 }

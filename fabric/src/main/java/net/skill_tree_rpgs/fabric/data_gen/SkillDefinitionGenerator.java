@@ -1,4 +1,4 @@
-package net.skill_tree_rpgs.data_gen;
+package net.skill_tree_rpgs.fabric.data_gen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

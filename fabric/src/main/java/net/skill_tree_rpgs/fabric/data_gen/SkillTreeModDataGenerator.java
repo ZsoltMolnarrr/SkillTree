@@ -1,4 +1,4 @@
-package net.skill_tree_rpgs.data_gen;
+package net.skill_tree_rpgs.fabric.data_gen;
 
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;

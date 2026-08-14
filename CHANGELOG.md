@@ -1,3 +1,8 @@
+# 1.6.0
+
+- Adopt Spell Engine 1.10 changes
+- NeoForge version no longer depends on Forgified Fabric API
+
 # 1.5.3
 
 - Renamed "Evocation Radiance" to "Arcane Radiance"
