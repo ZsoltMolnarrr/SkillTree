@@ -5,7 +5,7 @@ import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.skill_tree_rpgs.skills.SkillSounds;
-import net.spell_engine.api.config.ConfigFile;
+import net.spell_engine.rpg_series.config.ConfigFile;
 import net.tiny_config.ConfigManager;
 
 public class SkillTreeMod {
