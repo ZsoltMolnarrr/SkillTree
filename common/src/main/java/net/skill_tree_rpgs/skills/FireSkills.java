@@ -215,7 +215,7 @@ public class FireSkills {
         // every enemy struck (chaining through a crowd shortens the cooldown faster — "wave after
         // wave"). apply_to_caster routes the deduction onto the caster, not the victim; duration_add
         // trims the remaining cooldown (multiplier stays 1, so it's not a reset). NOTE: the engine
-        // applies duration_add in TICKS against the remaining tick count (SpellHelper.modifyCooldowns,
+        // applies duration_add in TICKS against the remaining tick count (SpellImpacts.modifyCooldowns,
         // no seconds->ticks conversion), so -20 ticks == -1 second per hit.
         var shave = new Spell.Impact();
         shave.action = new Spell.Impact.Action();

@@ -219,7 +219,7 @@ public class ArcherSkills {
 
         // Deterministic per-tick trim of the remaining cooldown (multiplier stays 1, so it's not a
         // reset). The engine applies duration_add in TICKS against the remaining tick count
-        // (SpellHelper.modifyCooldowns, no seconds->ticks conversion), so -20 ticks == -1 second.
+        // (SpellImpacts.modifyCooldowns, no seconds->ticks conversion), so -20 ticks == -1 second.
         var shave = new Spell.Impact();
         shave.action = new Spell.Impact.Action();
         shave.action.type = Spell.Impact.Action.Type.COOLDOWN;

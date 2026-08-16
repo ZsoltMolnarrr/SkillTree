@@ -267,7 +267,7 @@ public class ArcaneSkills {
         spell.range = 6F;
 
         // Detonate on up to 4 targets rather than on whichever enemy happened to trigger this.
-        // `cap` keeps the nearest N (SpellHelper sorts by distance to caster); the engine has no
+        // `cap` keeps the nearest N (SpellExecution sorts by distance to caster); the engine has no
         // random selection, so ordering is by proximity.
         spell.target.type = Spell.Target.Type.AREA;
         spell.target.area = new Spell.Target.Area(); // Required: Target.area has no default instance
