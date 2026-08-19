@@ -835,6 +835,7 @@ public class SkillEffects {
         // Light the wielded weapon in arcane light while primed — a visible tell that the next arcane
         // cast will fire instantly. Single application (1 stack), so full opacity for a bold glow.
         GlowingItemStatusEffect.register(PRESENCE_OF_MIND.effect, Color.ARCANE, 1F);
+        EntityTints.register(PHASE_SHIFT.effect, 0x66ff66ff);
         InstantCast.register(ARCTIC_REFLEX.entry,
                 TagKey.of(SpellRegistry.KEY, Identifier.of("wizards:frost")));
     }
