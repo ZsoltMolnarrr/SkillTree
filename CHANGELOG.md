@@ -3,6 +3,7 @@
 - Adopt Spell Engine 1.10 changes
 - NeoForge version no longer depends on Forgified Fabric API
 - Fully translated content, now supporting 20 languages
+- Phase-Shift effect now applies purple-semi translucent tint color to the player
 
 # 1.5.3
 
