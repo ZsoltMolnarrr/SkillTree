@@ -15,14 +15,14 @@ logoFile = "assets/skill_tree_rpgs/icon.png"
 [[dependencies.skill_tree_rpgs]]
 modId = "neoforge"
 type = "required"
-versionRange = "[${neoforge_version},)"
+versionRange = "[21.11,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.skill_tree_rpgs]]
 modId = "minecraft"
 type = "required"
-versionRange = "[${minecraft_compat_version},)"
+versionRange = "[1.21.11,)"
 ordering = "NONE"
 side = "BOTH"
 
