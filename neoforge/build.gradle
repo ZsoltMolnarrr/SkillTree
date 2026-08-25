@@ -69,7 +69,6 @@ dependencies {
 
     // Curios - https://docs.illusivesoulworks.com/category/curios
     modImplementation("top.theillusivec4.curios:curios-neoforge:${project.curios_version}")
-    forgeRuntimeLibrary("blue.endless:jankson:1.2.2")
 
     modImplementation("net.puffish:skillsmod:${project.pufferfish_skills_version}:${platform}")
 
