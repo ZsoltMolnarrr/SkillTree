@@ -332,10 +332,10 @@ public class FrostSkills {
         var s = SpellSchools.FROST.id.toString();
         modifier.summon_attribute_scaling = new AttributeScaling();
         modifier.summon_attribute_scaling.entries = List.of(
-                summonScaling(EntityAttributes.GENERIC_SCALE.getIdAsString(), s, 0, 0.05),
-                summonScaling(EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString(), s, 0, 1.0),
-                summonScaling(EntityAttributes.GENERIC_ARMOR.getIdAsString(), s, 5, 0.05),
-                summonScaling(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE.getIdAsString(), s, 2.5, 0.025)
+                summonScaling(EntityAttributes.SCALE.getIdAsString(), s, 0, 0.05),
+                summonScaling(EntityAttributes.MAX_HEALTH.getIdAsString(), s, 0, 1.0),
+                summonScaling(EntityAttributes.ARMOR.getIdAsString(), s, 5, 0.05),
+                summonScaling(EntityAttributes.KNOCKBACK_RESISTANCE.getIdAsString(), s, 2.5, 0.025)
         );
 
         spell.modifiers = List.of(modifier);

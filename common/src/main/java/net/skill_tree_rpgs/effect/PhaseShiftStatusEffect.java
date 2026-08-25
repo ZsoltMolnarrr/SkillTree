@@ -2,6 +2,7 @@ package net.skill_tree_rpgs.effect;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.server.world.ServerWorld;
 import net.spell_engine.api.effect.CustomStatusEffect;
 import net.spell_engine.api.entity.LivingEntityImmunity;
 
@@ -23,11 +24,9 @@ public class PhaseShiftStatusEffect extends CustomStatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        // Server-authoritative; effect application and damage checks resolve server-side.
-        if (!entity.getWorld().isClient()) {
-            LivingEntityImmunity.apply(entity, null, null, null, true, IMMUNITY_TICKS);
-        }
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
+        // Server-authoritative; `applyUpdateEffect` only runs server-side now.
+        LivingEntityImmunity.apply(entity, null, null, null, true, IMMUNITY_TICKS);
         return true; // keep the normal lifecycle
     }
 }

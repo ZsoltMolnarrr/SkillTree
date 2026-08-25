@@ -14,13 +14,13 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Models;
-import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.client.data.BlockStateModelGenerator;
+import net.minecraft.client.data.ItemModelGenerator;
+import net.minecraft.client.data.Models;
+import net.minecraft.data.recipe.RecipeExporter;
+import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
@@ -124,16 +124,28 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
             super(output, registriesFuture);
         }
 
+        /// 1.21.2+: recipe providers hand back a {@link RecipeGenerator}, which owns the builder
+        /// helpers (`createShaped`, `hasItem`, `conditionsFromItem`) that used to be statics.
         @Override
-        public void generate(RecipeExporter recipeExporter) {
-            ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, SkillItems.ORB_OF_OBLIVION.item())
-                    .pattern(" X ")
-                    .pattern("XCX")
-                    .pattern(" X ")
-                    .input('X', Items.EXPERIENCE_BOTTLE)
-                    .input('C', Items.DIAMOND)
-                    .criterion(FabricRecipeProvider.hasItem(Items.EXPERIENCE_BOTTLE), FabricRecipeProvider.conditionsFromItem(Items.EXPERIENCE_BOTTLE))
-                    .offerTo(recipeExporter);
+        protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
+            return new RecipeGenerator(registries, exporter) {
+                @Override
+                public void generate() {
+                    createShaped(RecipeCategory.COMBAT, SkillItems.ORB_OF_OBLIVION.item())
+                            .pattern(" X ")
+                            .pattern("XCX")
+                            .pattern(" X ")
+                            .input('X', Items.EXPERIENCE_BOTTLE)
+                            .input('C', Items.DIAMOND)
+                            .criterion(hasItem(Items.EXPERIENCE_BOTTLE), conditionsFromItem(Items.EXPERIENCE_BOTTLE))
+                            .offerTo(this.exporter);
+                }
+            };
+        }
+
+        @Override
+        public String getName() {
+            return "Skill Tree Recipes";
         }
     }
 

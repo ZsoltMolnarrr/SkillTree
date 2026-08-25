@@ -392,7 +392,7 @@ public class WarriorSkills {
         // JUGGERNAUT's two modifiers: size (first) and damage-taken (second, stored negative).
         var description = "Each stack of Last Stand also grows you in size by "
                 + TooltipTokens.effect(SkillEffects.JUGGERNAUT.id, 0,
-                        Identifier.of(EntityAttributes.GENERIC_SCALE.getIdAsString()))
+                        Identifier.of(EntityAttributes.SCALE.getIdAsString()))
                 + ", and reduces damage taken by "
                 + TooltipTokens.effect(SkillEffects.JUGGERNAUT.id, 0,
                         Identifier.of("spell_engine:damage_taken"), TooltipTokens.Format.ABS)
@@ -574,7 +574,7 @@ public class WarriorSkills {
         // ENRAGE's first modifier is attack speed; name it explicitly (it also carries size + damage-taken).
         var description = "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by "
                 + TooltipTokens.effect(SkillEffects.ENRAGE.id, 0,
-                        Identifier.of(EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString()))
+                        Identifier.of(EntityAttributes.ATTACK_SPEED.getIdAsString()))
                 + " but also the damage you take, stacking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();

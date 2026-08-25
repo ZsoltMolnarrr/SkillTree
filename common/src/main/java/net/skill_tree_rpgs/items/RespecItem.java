@@ -6,11 +6,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
@@ -25,10 +23,6 @@ public class RespecItem extends Item {
         super(settings);
     }
 
-    public SoundEvent getBreakSound() {
-        return SoundEvents.BLOCK_AMETHYST_CLUSTER_BREAK;
-    }
-
     public static final List<ParticleGroup> RESET_PARTICLES = List.of(
         ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.DECELERATE)
                 .color(Color.from(0x8000ff).toRGBA())
@@ -39,19 +33,19 @@ public class RespecItem extends Item {
     );
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         if ((user instanceof ServerPlayerEntity serverUser)) {
             if (SkillHelper.respec(serverUser)) {
                 user.incrementStat(Stats.USED.getOrCreateStat(this));
                 var equipmentSlot = user.getActiveHand() == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
-                itemStack.damage(1, ((ServerPlayerEntity) user).getServerWorld(), serverUser, item -> {
+                itemStack.damage(1, serverUser.getEntityWorld(), serverUser, item -> {
                     serverUser.sendEquipmentBreakStatus(item, equipmentSlot);
                 });
                 ParticleHelper.sendBatches(user, RESET_PARTICLES);
-                return TypedActionResult.success(itemStack, true);
+                return ActionResult.SUCCESS;
             }
         }
-        return TypedActionResult.fail(itemStack);
+        return ActionResult.FAIL;
     }
 }

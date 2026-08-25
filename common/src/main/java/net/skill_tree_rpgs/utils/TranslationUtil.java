@@ -4,11 +4,11 @@ import net.skill_tree_rpgs.attributes.ConditionalAttributeModifier;
 import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.skill_tree_rpgs.skills.NodeTypes;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.spell_engine.client.gui.SpellTooltip;
-import net.spell_engine.mixin.client.ItemStackTooltipAccessor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,11 +41,10 @@ public class TranslationUtil {
         var player = MinecraftClient.getInstance().player;
         if (player == null) return List.of();
         var conditional = data.mapped();
-        var tooltipUtil = (ItemStackTooltipAccessor) (Object) ItemStack.EMPTY;
+        var display = AttributeModifiersComponent.Display.getDefault();
         var lines = new ArrayList<Text>();
         lines.add(Text.translatable(conditional.condition().translationKey()));
-        tooltipUtil.spellEngine_appendAttributeModifierTooltip(
-                lines::add, player, conditional.attribute(), conditional.modifier());
+        display.addTooltip(lines::add, player, conditional.attribute(), conditional.modifier());
         return lines;
     }
 
@@ -54,16 +53,10 @@ public class TranslationUtil {
         if (player == null) {
             return List.of();
         }
-        var tooltipUtil = (ItemStackTooltipAccessor) (Object) ItemStack.EMPTY;
+        var display = AttributeModifiersComponent.Display.getDefault();
         var bonusLines = new ArrayList<Text>();
         var modifier = attributeReward.modifier();
-        tooltipUtil
-                .spellEngine_appendAttributeModifierTooltip(
-                        bonusLines::add,
-                        player,
-                        attributeReward.attribute(),
-                        modifier
-                );
+        display.addTooltip(bonusLines::add, player, attributeReward.attribute(), modifier);
         return bonusLines;
     }
 }

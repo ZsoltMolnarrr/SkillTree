@@ -258,7 +258,7 @@ public class ArcherSkills {
             "Spirit Wolves gain 10%% increased maximum health.",
             modifier -> {
                 var health = new AttributeScaling.Entry();
-                health.attribute_id = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
+                health.attribute_id = EntityAttributes.MAX_HEALTH.getIdAsString();
                 health.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
                         ExternalSpellSchools.PHYSICAL_RANGED.attributeEntry.getIdAsString(),
                         EntityAttributeModifier.Operation.ADD_VALUE, 2.0, 0.1));

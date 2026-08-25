@@ -18,7 +18,8 @@ public record ResolvableTextContent(String id) implements TextContent {
 			Codec.STRING.fieldOf("skill_definition_id").forGetter(ResolvableTextContent::id)
 	).apply(instance, ResolvableTextContent::new));
 
-	public static final TextContent.Type<ResolvableTextContent> TYPE = new TextContent.Type<>(CODEC, SkillTreeMod.NAMESPACE + ":resolvable");
+	/** Dispatch id under the text component's {@code type} key; registered by {@code TextCodecsMixin}. */
+	public static final String TYPE_ID = SkillTreeMod.NAMESPACE + ":resolvable";
 
 	private Text getText() {
 		return Texts.join(TranslationUtil.resolve(id), Text.literal("\n"));
@@ -35,8 +36,8 @@ public record ResolvableTextContent(String id) implements TextContent {
 	}
 
 	@Override
-	public TextContent.Type<?> getType() {
-		return TYPE;
+	public MapCodec<ResolvableTextContent> getCodec() {
+		return CODEC;
 	}
 
 }

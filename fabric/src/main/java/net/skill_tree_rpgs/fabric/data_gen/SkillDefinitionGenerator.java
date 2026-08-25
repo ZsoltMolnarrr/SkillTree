@@ -2,16 +2,19 @@ package net.skill_tree_rpgs.fabric.data_gen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSerializer;
+import com.mojang.serialization.JsonOps;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.data.DataOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.DataWriter;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextCodecs;
 import net.minecraft.util.Identifier;
 
 import java.nio.file.Path;
@@ -48,8 +51,12 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
         public static Icon item(String item) {
             return new Icon("item", new IconItem(item, null));
         }
+        /// The vanilla `minecraft:item_model` component names an **item-model definition**
+        /// (`assets/<ns>/items/<path>.json`), and SpellEngine resolves a spell book/scroll pool
+        /// to its pool id verbatim — so `modelId` is the pool id (`wizards:spell_book/arcane`).
+        /// (`spell_engine:item_model` is deprecated and no longer read.)
         public static Icon itemWithModel(String item, String modelId) {
-            return new Icon("item", new IconItem(item, Map.of("spell_engine:item_model", modelId)));
+            return new Icon("item", new IconItem(item, Map.of("minecraft:item_model", modelId)));
         }
         public static Icon effect(String effect) {
             return new Icon("effect", new IconEffect(effect));
@@ -89,8 +96,15 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
 
     public abstract void generate(Builder builder);
 
+    /// 1.21.11: `Text.Serializer` is gone — encode through `TextCodecs.CODEC` instead.
+    /// The dispatch shape is unchanged (the `type` key is omitted on encode), so the emitted
+    /// JSON matches what the 1.21.1 serializer produced.
+    private static final JsonSerializer<Text> TEXT_SERIALIZER = (src, type, context) ->
+            TextCodecs.CODEC.encodeStart(JsonOps.INSTANCE, src)
+                    .getOrThrow(message -> new JsonParseException("Failed to encode text: " + message));
+
     private static final Gson gson = new GsonBuilder()
-            .registerTypeHierarchyAdapter(Text.class, new Text.Serializer(DynamicRegistryManager.EMPTY))
+            .registerTypeHierarchyAdapter(Text.class, TEXT_SERIALIZER)
             .setPrettyPrinting()
             .create();
 

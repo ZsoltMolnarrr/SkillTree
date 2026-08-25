@@ -42,7 +42,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    EntityAttributes.ATTACK_DAMAGE.getIdAsString(),
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -75,7 +75,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    EntityAttributes.MOVEMENT_SPEED.getIdAsString(),
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -89,7 +89,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    EntityAttributes.MOVEMENT_SPEED.getIdAsString(),
                                     -0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -152,7 +152,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
+                                    EntityAttributes.ARMOR.getIdAsString(),
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -166,7 +166,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    EntityAttributes.ATTACK_DAMAGE.getIdAsString(),
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -180,7 +180,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
+                                    EntityAttributes.ARMOR.getIdAsString(),
                                     -0.3F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -208,7 +208,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    EntityAttributes.MOVEMENT_SPEED.getIdAsString(),
                                     0.3F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -222,7 +222,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    EntityAttributes.ATTACK_DAMAGE.getIdAsString(),
                                     0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -236,12 +236,12 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    EntityAttributes.MOVEMENT_SPEED.getIdAsString(),
                                     -10,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_JUMP_STRENGTH.getIdAsString(),
+                                    EntityAttributes.JUMP_STRENGTH.getIdAsString(),
                                     -10,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -265,12 +265,12 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    EntityAttributes.MOVEMENT_SPEED.getIdAsString(),
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_JUMP_STRENGTH.getIdAsString(),
+                                    EntityAttributes.JUMP_STRENGTH.getIdAsString(),
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -284,7 +284,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    EntityAttributes.MOVEMENT_SPEED.getIdAsString(),
                                     0.5F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -320,7 +320,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    EntityAttributes.ATTACK_DAMAGE.getIdAsString(),
                                     0.5F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -346,7 +346,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    EntityAttributes.MOVEMENT_SPEED.getIdAsString(),
                                     -0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -391,7 +391,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    EntityAttributes.MOVEMENT_SPEED.getIdAsString(),
                                     0.5F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -415,7 +415,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    EntityAttributes.MAX_ABSORPTION.getIdAsString(),
                                     2,
                                     EntityAttributeModifier.Operation.ADD_VALUE
                             )
@@ -430,7 +430,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    EntityAttributes.MAX_ABSORPTION.getIdAsString(),
                                     2,
                                     EntityAttributeModifier.Operation.ADD_VALUE
                             )
@@ -445,7 +445,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    EntityAttributes.MAX_ABSORPTION.getIdAsString(),
                                     2,
                                     EntityAttributeModifier.Operation.ADD_VALUE
                             )
@@ -507,7 +507,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
+                                    EntityAttributes.ATTACK_SPEED.getIdAsString(),
                                     0.08F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
@@ -559,7 +559,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    EntityAttributes.ATTACK_DAMAGE.getIdAsString(),
                                     0.05F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -574,7 +574,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString(),
+                                    EntityAttributes.MAX_HEALTH.getIdAsString(),
                                     1,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -605,12 +605,12 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
+                                    EntityAttributes.ATTACK_SPEED.getIdAsString(),
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_SCALE.getIdAsString(),
+                                    EntityAttributes.SCALE.getIdAsString(),
                                     0.15F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
@@ -727,7 +727,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_SCALE.getIdAsString(),
+                                    EntityAttributes.SCALE.getIdAsString(),
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
@@ -748,7 +748,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
+                                    EntityAttributes.ATTACK_SPEED.getIdAsString(),
                                     0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -773,7 +773,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    EntityAttributes.ATTACK_DAMAGE.getIdAsString(),
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -787,7 +787,7 @@ public class SkillEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
+                                    EntityAttributes.ARMOR.getIdAsString(),
                                     -0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )

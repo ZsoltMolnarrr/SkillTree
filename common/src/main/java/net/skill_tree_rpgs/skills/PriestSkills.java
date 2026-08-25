@@ -311,7 +311,7 @@ public class PriestSkills {
         // HYSTERIA has three equal haste modifiers; name the first (attack speed) explicitly.
         var description = "Penance bolts grant allies Hysteria, increasing attack speed, ranged and spell haste by "
                 + TooltipTokens.effect(SkillEffects.HYSTERIA.id, 0,
-                        Identifier.of(EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString()))
+                        Identifier.of(EntityAttributes.ATTACK_SPEED.getIdAsString()))
                 + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.HEALING;

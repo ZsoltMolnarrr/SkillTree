@@ -3,6 +3,7 @@ package net.skill_tree_rpgs.effect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.server.world.ServerWorld;
 
 public class WizardAbsorbEffect extends StatusEffect {
     private final int healthPerStack;
@@ -12,8 +13,9 @@ public class WizardAbsorbEffect extends StatusEffect {
         this.healthPerStack = 2;
     }
 
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        return entity.getAbsorptionAmount() > 0.0F || entity.getWorld().isClient;
+    @Override
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
+        return entity.getAbsorptionAmount() > 0.0F;
     }
 
     public boolean canApplyUpdateEffect(int duration, int amplifier) {

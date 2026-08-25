@@ -4,8 +4,11 @@ import net.skill_tree_rpgs.SkillTreeMod;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.Item;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -59,6 +62,8 @@ public class SkillItems {
                     new Item.Settings()
                             .rarity(Rarity.UNCOMMON)
                             .maxDamage(1)
+                            // 1.21.2+: `Item#getBreakSound` is gone, the sound is a component
+                            .component(DataComponentTypes.BREAK_SOUND, Registries.SOUND_EVENT.getEntry(SoundEvents.BLOCK_AMETHYST_CLUSTER_BREAK))
             )
     );
 
@@ -71,6 +76,8 @@ public class SkillItems {
                     })
                     .toList();
             Item item = entry.factory().apply(entry.settings()
+                    // 1.21.2+: item settings built in a factory must carry the registry key
+                    .registryKey(RegistryKey.of(RegistryKeys.ITEM, entry.id()))
                     .component(DataComponentTypes.LORE, new LoreComponent(List.of(), lore) )
             );
             entry.container.item = item;

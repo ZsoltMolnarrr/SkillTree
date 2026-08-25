@@ -139,7 +139,7 @@ public class NodeTypes {
             Entry.attribute("arcane_root",
                     "Path of Arcane",
                     null,
-                    Icon.itemWithModel("spell_engine:spell_book", "wizards:item/spell_book/arcane"),
+                    Icon.itemWithModel("spell_engine:spell_book", "wizards:spell_book/arcane"),
                     SpellSchools.ARCANE.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -157,7 +157,7 @@ public class NodeTypes {
             Entry.attribute("fire_root",
                     "Path of Fire",
                     null,
-                    Icon.itemWithModel("spell_engine:spell_book", "wizards:item/spell_book/fire"),
+                    Icon.itemWithModel("spell_engine:spell_book", "wizards:spell_book/fire"),
                     SpellSchools.FIRE.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -175,7 +175,7 @@ public class NodeTypes {
             Entry.attribute("frost_root",
                     "Path of Frost",
                     null,
-                    Icon.itemWithModel("spell_engine:spell_book", "wizards:item/spell_book/frost"),
+                    Icon.itemWithModel("spell_engine:spell_book", "wizards:spell_book/frost"),
                     SpellSchools.FROST.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -193,7 +193,7 @@ public class NodeTypes {
             Entry.attribute("priest_root",
                     "Path of the Light",
                     null,
-                    Icon.itemWithModel("spell_engine:spell_book", "paladins:item/spell_book/priest"),
+                    Icon.itemWithModel("spell_engine:spell_book", "paladins:spell_book/priest"),
                     SpellSchools.HEALING.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -211,7 +211,7 @@ public class NodeTypes {
             Entry.attribute("paladin_root",
                     "Path of the Paladin",
                     null,
-                    Icon.itemWithModel("spell_engine:spell_book", "paladins:item/spell_book/paladin"),
+                    Icon.itemWithModel("spell_engine:spell_book", "paladins:spell_book/paladin"),
                     SpellSchools.HEALING.attributeEntry,
                     0.2,
                     EntityAttributeModifier.Operation.ADD_VALUE
@@ -229,7 +229,7 @@ public class NodeTypes {
             Entry.attribute("archer_root",
                     "Path of the Archer",
                     null,
-                    Icon.itemWithModel("spell_engine:spell_book", "archers:item/spell_book/archer"),
+                    Icon.itemWithModel("spell_engine:spell_book", "archers:spell_book/archer"),
                     EntityAttributes_RangedWeapon.DAMAGE.entry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -247,8 +247,8 @@ public class NodeTypes {
             Entry.attribute("rogue_root",
                     "Path of the Rogue",
                     null,
-                    Icon.itemWithModel("spell_engine:spell_book", "rogues:item/spell_book/rogue"),
-                    EntityAttributes.GENERIC_ATTACK_SPEED,
+                    Icon.itemWithModel("spell_engine:spell_book", "rogues:spell_book/rogue"),
+                    EntityAttributes.ATTACK_SPEED,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             ).require(ROGUES)
@@ -265,8 +265,8 @@ public class NodeTypes {
             Entry.attribute("warrior_root",
                     "Path of the Warrior",
                     null,
-                    Icon.itemWithModel("spell_engine:spell_book", "rogues:item/spell_book/warrior"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                    Icon.itemWithModel("spell_engine:spell_book", "rogues:spell_book/warrior"),
+                    EntityAttributes.ATTACK_DAMAGE,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             ).require(ROGUES)
@@ -288,14 +288,14 @@ public class NodeTypes {
 
     public static final String CRIT_CHANCE_ID = "critical_strike:chance";
     public static final String CRIT_DAMAGE_ID = "critical_strike:damage";
-    public static final String ATTACK_DAMAGE_ID = EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString();
+    public static final String ATTACK_DAMAGE_ID = EntityAttributes.ATTACK_DAMAGE.getIdAsString();
 
     public static final Entry WEAPON_SWORD_ROOT = add(
             Entry.conditionalAttribute("weapon_sword_root",
                     "Sword Specialisation",
                     null,
                     Icon.item("minecraft:iron_sword"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                    EntityAttributes.ATTACK_DAMAGE,
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.SWORD
@@ -306,7 +306,7 @@ public class NodeTypes {
                     "Claymore Specialisation",
                     null,
                     Icon.item("paladins:iron_claymore"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                    EntityAttributes.ATTACK_DAMAGE,
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.CLAYMORE
@@ -350,7 +350,7 @@ public class NodeTypes {
                     "Spear Specialisation",
                     null,
                     Icon.item("archers:iron_spear"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                    EntityAttributes.ATTACK_DAMAGE,
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.SPEAR
@@ -361,7 +361,7 @@ public class NodeTypes {
                     "Dagger Specialisation",
                     null,
                     Icon.item("rogues:iron_dagger"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                    EntityAttributes.ATTACK_DAMAGE,
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.DAGGER
@@ -406,7 +406,7 @@ public class NodeTypes {
                     null,
                     Icon.item("minecraft:bow"),
                     "ranged_weapon:damage",
-                    "minecraft:generic.attack_damage",
+                    ATTACK_DAMAGE_ID,
                     WEAPON_ROOT_DAMAGE,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
                     ModifierConditions.BOW

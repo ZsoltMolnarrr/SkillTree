@@ -426,7 +426,7 @@ public class ArcaneSkills {
         // ARCANE_SPEED has two equal modifiers (movement + jump); name the first explicitly.
         var description = "Arcane Beam hits increase your speed and jump strength by "
                 + TooltipTokens.effect(SkillEffects.ARCANE_SPEED.id, 0,
-                        Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
+                        Identifier.of(EntityAttributes.MOVEMENT_SPEED.getIdAsString()))
                 + " for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
         var effect = SkillEffects.ARCANE_SPEED;
         var spell = SpellBuilder.createSpellModifier();
