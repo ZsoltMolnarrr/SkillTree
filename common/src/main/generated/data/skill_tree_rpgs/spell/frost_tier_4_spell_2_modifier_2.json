@@ -9,7 +9,7 @@
       "summon_attribute_scaling": {
         "entries": [
           {
-            "attribute_id": "minecraft:generic.scale",
+            "attribute_id": "minecraft:scale",
             "modifiers": [
               {
                 "attribute_id": "spell_power:frost",
@@ -20,7 +20,7 @@
             ]
           },
           {
-            "attribute_id": "minecraft:generic.max_health",
+            "attribute_id": "minecraft:max_health",
             "modifiers": [
               {
                 "attribute_id": "spell_power:frost",
@@ -31,7 +31,7 @@
             ]
           },
           {
-            "attribute_id": "minecraft:generic.armor",
+            "attribute_id": "minecraft:armor",
             "modifiers": [
               {
                 "attribute_id": "spell_power:frost",
@@ -42,7 +42,7 @@
             ]
           },
           {
-            "attribute_id": "minecraft:generic.knockback_resistance",
+            "attribute_id": "minecraft:knockback_resistance",
             "modifiers": [
               {
                 "attribute_id": "spell_power:frost",

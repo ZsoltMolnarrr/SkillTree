@@ -9,7 +9,7 @@
       "summon_attribute_scaling": {
         "entries": [
           {
-            "attribute_id": "minecraft:generic.max_health",
+            "attribute_id": "minecraft:max_health",
             "modifiers": [
               {
                 "attribute_id": "ranged_weapon:damage",

@@ -34,7 +34,7 @@
       "type": "item",
       "data": {
         "components": {
-          "spell_engine:item_model": "wizards:item/spell_book/arcane"
+          "minecraft:item_model": "wizards:spell_book/arcane"
         },
         "item": "spell_engine:spell_book"
       }
@@ -979,7 +979,7 @@
       "type": "item",
       "data": {
         "components": {
-          "spell_engine:item_model": "archers:item/spell_book/archer"
+          "minecraft:item_model": "archers:spell_book/archer"
         },
         "item": "spell_engine:spell_book"
       }
@@ -1924,7 +1924,7 @@
       "type": "item",
       "data": {
         "components": {
-          "spell_engine:item_model": "wizards:item/spell_book/fire"
+          "minecraft:item_model": "wizards:spell_book/fire"
         },
         "item": "spell_engine:spell_book"
       }
@@ -2906,7 +2906,7 @@
       "type": "item",
       "data": {
         "components": {
-          "spell_engine:item_model": "wizards:item/spell_book/frost"
+          "minecraft:item_model": "wizards:spell_book/frost"
         },
         "item": "spell_engine:spell_book"
       }
@@ -3851,7 +3851,7 @@
       "type": "item",
       "data": {
         "components": {
-          "spell_engine:item_model": "paladins:item/spell_book/paladin"
+          "minecraft:item_model": "paladins:spell_book/paladin"
         },
         "item": "spell_engine:spell_book"
       }
@@ -4796,7 +4796,7 @@
       "type": "item",
       "data": {
         "components": {
-          "spell_engine:item_model": "paladins:item/spell_book/priest"
+          "minecraft:item_model": "paladins:spell_book/priest"
         },
         "item": "spell_engine:spell_book"
       }
@@ -5723,7 +5723,7 @@
       {
         "type": "puffish_skills:attribute",
         "data": {
-          "attribute": "minecraft:generic.attack_speed",
+          "attribute": "minecraft:attack_speed",
           "operation": "multiply_base",
           "value": 0.01
         }
@@ -5741,7 +5741,7 @@
       "type": "item",
       "data": {
         "components": {
-          "spell_engine:item_model": "rogues:item/spell_book/rogue"
+          "minecraft:item_model": "rogues:spell_book/rogue"
         },
         "item": "spell_engine:spell_book"
       }
@@ -5753,7 +5753,7 @@
       {
         "type": "puffish_skills:attribute",
         "data": {
-          "attribute": "minecraft:generic.attack_speed",
+          "attribute": "minecraft:attack_speed",
           "operation": "multiply_base",
           "value": 0.01
         }
@@ -6679,7 +6679,7 @@
       {
         "type": "puffish_skills:attribute",
         "data": {
-          "attribute": "minecraft:generic.attack_damage",
+          "attribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.01
         }
@@ -6697,7 +6697,7 @@
       "type": "item",
       "data": {
         "components": {
-          "spell_engine:item_model": "rogues:item/spell_book/warrior"
+          "minecraft:item_model": "rogues:spell_book/warrior"
         },
         "item": "spell_engine:spell_book"
       }
@@ -6709,7 +6709,7 @@
       {
         "type": "puffish_skills:attribute",
         "data": {
-          "attribute": "minecraft:generic.attack_damage",
+          "attribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.01
         }
@@ -7740,7 +7740,7 @@
             },
             "translationKey": "modifier_condition.skill_tree_rpgs.axe"
           },
-          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "fallbackAttribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.03999999910593033
         }
@@ -7840,7 +7840,7 @@
             },
             "translationKey": "modifier_condition.skill_tree_rpgs.bow"
           },
-          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "fallbackAttribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.05000000074505806
         }
@@ -7867,7 +7867,7 @@
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
-          "attribute": "minecraft:generic.attack_damage",
+          "attribute": "minecraft:attack_damage",
           "condition": {
             "equipment": {
               "slot": "mainhand",
@@ -8042,7 +8042,7 @@
             },
             "translationKey": "modifier_condition.skill_tree_rpgs.crossbow"
           },
-          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "fallbackAttribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.05000000074505806
         }
@@ -8069,7 +8069,7 @@
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
-          "attribute": "minecraft:generic.attack_damage",
+          "attribute": "minecraft:attack_damage",
           "condition": {
             "equipment": {
               "slot": "mainhand",
@@ -8111,7 +8111,7 @@
             },
             "translationKey": "modifier_condition.skill_tree_rpgs.double_axe"
           },
-          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "fallbackAttribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.03999999910593033
         }
@@ -8516,7 +8516,7 @@
             },
             "translationKey": "modifier_condition.skill_tree_rpgs.glaive"
           },
-          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "fallbackAttribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.07999999821186066
         }
@@ -8625,7 +8625,7 @@
             },
             "translationKey": "modifier_condition.skill_tree_rpgs.hammer"
           },
-          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "fallbackAttribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.07999999821186066
         }
@@ -8845,7 +8845,7 @@
             },
             "translationKey": "modifier_condition.skill_tree_rpgs.mace"
           },
-          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "fallbackAttribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.07999999821186066
         }
@@ -8880,7 +8880,7 @@
             },
             "translationKey": "modifier_condition.skill_tree_rpgs.sickle"
           },
-          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "fallbackAttribute": "minecraft:attack_damage",
           "operation": "multiply_base",
           "value": 0.03999999910593033
         }
@@ -8981,7 +8981,7 @@
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
-          "attribute": "minecraft:generic.attack_damage",
+          "attribute": "minecraft:attack_damage",
           "condition": {
             "equipment": {
               "slot": "mainhand",
@@ -9154,7 +9154,7 @@
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
-          "attribute": "minecraft:generic.attack_damage",
+          "attribute": "minecraft:attack_damage",
           "condition": {
             "equipment": {
               "slot": "mainhand",

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": {
-      "item": "minecraft:diamond"
-    },
-    "X": {
-      "item": "minecraft:experience_bottle"
-    }
+    "C": "minecraft:diamond",
+    "X": "minecraft:experience_bottle"
   },
   "pattern": [
     " X ",
