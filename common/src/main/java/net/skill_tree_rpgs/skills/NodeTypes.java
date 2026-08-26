@@ -4,7 +4,7 @@ import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.attributes.ModifierCondition;
 import net.skill_tree_rpgs.attributes.ModifierConditions;
 import net.skill_tree_rpgs.node.ConditionalAttributeReward;
-import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
+import net.rpg_foundation.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
