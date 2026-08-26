@@ -1,6 +1,6 @@
 package net.skill_tree_rpgs.utils;
 
-import net.minecraft.text.*;
+import net.minecraft.text.Text;
 import net.minecraft.util.Language;
 
 import java.util.List;

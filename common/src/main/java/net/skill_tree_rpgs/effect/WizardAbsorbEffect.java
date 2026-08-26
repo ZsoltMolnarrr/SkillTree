@@ -18,10 +18,12 @@ public class WizardAbsorbEffect extends StatusEffect {
         return entity.getAbsorptionAmount() > 0.0F;
     }
 
+    @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
     }
 
+    @Override
     public void onApplied(LivingEntity entity, int amplifier) {
         super.onApplied(entity, amplifier);
         entity.setAbsorptionAmount(Math.max(entity.getAbsorptionAmount(), (float)(healthPerStack * (1 + amplifier))));
