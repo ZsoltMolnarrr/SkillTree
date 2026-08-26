@@ -1,7 +1,7 @@
 package net.skill_tree_rpgs.neoforge;
 
-import net.minecraft.item.ItemGroups;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -20,22 +20,22 @@ public final class NeoForgeMod {
     }
 
     private static void buildTabContents(BuildCreativeModeTabContentsEvent event) {
-        if (!event.getTabKey().equals(ItemGroups.COMBAT)) {
+        if (!event.getTabKey().equals(CreativeModeTabs.COMBAT)) {
             return;
         }
         for (var entry : SkillItems.ENTRIES) {
-            event.add(entry.item());
+            event.accept(entry.item());
         }
     }
 
     public static void register(RegisterEvent event) {
-        event.register(RegistryKeys.SOUND_EVENT, reg -> {
+        event.register(Registries.SOUND_EVENT, reg -> {
             SkillTreeMod.registerSounds();
         });
-        event.register(RegistryKeys.ITEM, reg -> {
+        event.register(Registries.ITEM, reg -> {
             SkillTreeMod.registerItems();
         });
-        event.register(RegistryKeys.STATUS_EFFECT, reg -> {
+        event.register(Registries.MOB_EFFECT, reg -> {
             SkillTreeMod.registerEffects();
         });
     }

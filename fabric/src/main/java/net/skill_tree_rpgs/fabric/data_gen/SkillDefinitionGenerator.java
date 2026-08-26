@@ -6,17 +6,16 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializer;
 import com.mojang.serialization.JsonOps;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.data.DataOutput;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.DataWriter;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.text.Text;
-import net.minecraft.text.TextCodecs;
-import net.minecraft.util.Identifier;
-
+import net.minecraft.data.PackOutput;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentSerialization;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -25,17 +24,17 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class SkillDefinitionGenerator implements DataProvider {
-    private final CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup;
+    private final CompletableFuture<HolderLookup.Provider> registryLookup;
     protected final FabricDataOutput dataOutput;
 
-    public SkillDefinitionGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+    public SkillDefinitionGenerator(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         this.dataOutput = dataOutput;
         this.registryLookup = registryLookup;
     }
 
     public record Format(
             Translatable title,
-            Text description,
+            Component description,
             Icon icon,
             List<Reward> rewards,
             List<String> required_mods
@@ -76,7 +75,7 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
             double value,
             String operation
     ) {
-        public static RewardAttribute from(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier) {
+        public static RewardAttribute from(Holder<Attribute> attribute, AttributeModifier modifier) {
             String operation;
             switch (modifier.operation()) {
                 case ADD_VALUE -> operation = "addition";
@@ -84,8 +83,8 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
                 case ADD_MULTIPLIED_TOTAL -> operation = "multiply_total";
                 default -> throw new IllegalArgumentException("Unknown operation: " + modifier.operation());
             }
-            var attributeId = attribute.getKey().get().getValue().toString();
-            return new RewardAttribute(attributeId, modifier.value(), operation);
+            var attributeId = attribute.unwrapKey().get().identifier().toString();
+            return new RewardAttribute(attributeId, modifier.amount(), operation);
         }
     }
 
@@ -99,17 +98,17 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
     /// 1.21.11: `Text.Serializer` is gone — encode through `TextCodecs.CODEC` instead.
     /// The dispatch shape is unchanged (the `type` key is omitted on encode), so the emitted
     /// JSON matches what the 1.21.1 serializer produced.
-    private static final JsonSerializer<Text> TEXT_SERIALIZER = (src, type, context) ->
-            TextCodecs.CODEC.encodeStart(JsonOps.INSTANCE, src)
+    private static final JsonSerializer<Component> TEXT_SERIALIZER = (src, type, context) ->
+            ComponentSerialization.CODEC.encodeStart(JsonOps.INSTANCE, src)
                     .getOrThrow(message -> new JsonParseException("Failed to encode text: " + message));
 
     private static final Gson gson = new GsonBuilder()
-            .registerTypeHierarchyAdapter(Text.class, TEXT_SERIALIZER)
+            .registerTypeHierarchyAdapter(Component.class, TEXT_SERIALIZER)
             .setPrettyPrinting()
             .create();
 
     @Override
-    public CompletableFuture<?> run(DataWriter writer) {
+    public CompletableFuture<?> run(CachedOutput writer) {
         var builder = new Builder();
         generate(builder);
         var entries = builder.entries;
@@ -119,7 +118,7 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
             var content = entry.definitions();
             var json = gson.toJsonTree(content);
             var path = getFilePath(entry.category());
-            writes.add(DataProvider.writeToPath(writer, json, path));
+            writes.add(DataProvider.saveStable(writer, json, path));
         }
 
         return CompletableFuture.allOf(writes.toArray(new CompletableFuture[0]));
@@ -131,6 +130,6 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
     }
 
     private Path getFilePath(Identifier category) {
-        return this.dataOutput.getResolver(DataOutput.OutputType.DATA_PACK, "puffish_skills/categories/" + category.getPath()).resolveJson(Identifier.of(category.getNamespace(), "definitions"));
+        return this.dataOutput.createPathProvider(PackOutput.Target.DATA_PACK, "puffish_skills/categories/" + category.getPath()).json(Identifier.fromNamespaceAndPath(category.getNamespace(), "definitions"));
     }
 }

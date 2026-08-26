@@ -1,8 +1,8 @@
 package net.skill_tree_rpgs.effect;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
 import net.spell_engine.api.effect.CustomStatusEffect;
 import net.spell_engine.api.entity.LivingEntityImmunity;
 
@@ -17,13 +17,13 @@ public class CheatDeathStatusEffect extends CustomStatusEffect {
     /// it always outlives the gap to the next tick yet expires promptly once Cheat Death itself fades.
     private static final int IMMUNITY_TICKS = 5;
 
-    public CheatDeathStatusEffect(StatusEffectCategory category, int color) {
+    public CheatDeathStatusEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
-    public void onApplied(LivingEntity entity, int amplifier) {
-        super.onApplied(entity, amplifier);
+    public void onEffectStarted(LivingEntity entity, int amplifier) {
+        super.onEffectStarted(entity, amplifier);
         // Grant immunity SYNCHRONOUSLY the instant the effect is applied. This is what makes reactive
         // death-cheating work: the fatal-damage trigger applies this effect part-way through the
         // victim's `damage()` call, and SpellEngine's `isInvulnerableTo` re-check runs later in that
@@ -33,19 +33,19 @@ public class CheatDeathStatusEffect extends CustomStatusEffect {
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true; // refresh the immunity every tick, so it tracks the effect's real (data-driven) duration
     }
 
     @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
         grantImmunity(entity);
         return true; // keep the normal lifecycle
     }
 
     private static void grantImmunity(LivingEntity entity) {
         // Server-authoritative; effect application and damage checks resolve server-side.
-        if (!entity.getEntityWorld().isClient()) {
+        if (!entity.level().isClientSide()) {
             LivingEntityImmunity.apply(entity, null, null, null, true, IMMUNITY_TICKS);
         }
     }

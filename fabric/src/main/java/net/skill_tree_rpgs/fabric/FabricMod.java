@@ -2,7 +2,7 @@ package net.skill_tree_rpgs.fabric;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.ItemGroups;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.items.SkillItems;
 
@@ -15,9 +15,9 @@ public final class FabricMod implements ModInitializer {
         SkillTreeMod.registerEffects();
 
         // Skill items into the vanilla Combat tab — Fabric API.
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> {
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT).register(content -> {
             for (var entry : SkillItems.ENTRIES) {
-                content.add(entry.item());
+                content.accept(entry.item());
             }
         });
     }

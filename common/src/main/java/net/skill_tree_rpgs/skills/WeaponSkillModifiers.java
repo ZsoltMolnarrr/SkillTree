@@ -1,7 +1,7 @@
 package net.skill_tree_rpgs.skills;
 
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.effect.MobEffects;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
@@ -47,7 +47,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_arcane_root = add(weapon_arcane_root());
     private static Skills.Entry weapon_arcane_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_arcane_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_arcane_root");
         var title = "Arcane Staff Specialisation";
         var description = "Arcane Blast deals {power_multiplier} increased damage.";
         var spell = SpellBuilder.createSpellModifier();
@@ -64,7 +64,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_arcane_blast_modifier_1 = add(weapon_arcane_blast_modifier_1());
     private static Skills.Entry weapon_arcane_blast_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_arcane_blast_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_arcane_blast_modifier_1");
         var title = "Conjured Arcane Charge";
         var description = "Increases the maximum number of Arcane Charges by {effect_amplifier_cap_add}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -80,7 +80,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_arcane_blast_modifier_2 = add(weapon_arcane_blast_modifier_2());
     private static Skills.Entry weapon_arcane_blast_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_arcane_blast_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_arcane_blast_modifier_2");
         var title = "Arcane Endurance";
         var description = "Increases the duration of Arcane Charges by {effect_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -98,7 +98,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_fire_root = add(weapon_fire_root());
     private static Skills.Entry weapon_fire_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_fire_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_fire_root");
         var title = "Fire Staff Specialisation";
         var critChance = 0.04F;
         var description = "Pyroblast has " + Skills.bakedPercent(critChance) + " increased critical strike chance.";
@@ -116,7 +116,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_fire_blast_modifier_1 = add(weapon_fire_blast_modifier_1());
     private static Skills.Entry weapon_fire_blast_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_fire_blast_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_fire_blast_modifier_1");
         var title = "Blast Radius";
 
         var bonus = 0.5F;
@@ -139,7 +139,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_fire_blast_modifier_2 = add(weapon_fire_blast_modifier_2());
     private static Skills.Entry weapon_fire_blast_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_fire_blast_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_fire_blast_modifier_2");
         var title = "Blast Punch";
         var description = "Increases the knockback of Pyroblast by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -159,7 +159,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_frost_root = add(weapon_frost_root());
     private static Skills.Entry weapon_frost_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_frost_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_frost_root");
         var title = "Frost Staff Specialisation";
         var critDamage = 0.08F;
         var description = "Frostbolt deals " + Skills.bakedPercent(critDamage) + " increased critical strike damage.";
@@ -177,7 +177,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_frostbolt_modifier_1 = add(weapon_frostbolt_modifier_1());
     private static Skills.Entry weapon_frostbolt_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_frostbolt_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_frostbolt_modifier_1");
         var title = "Frost Bounce";
         var description = "Frostbolt ricochets to {ricochet} additional target.";
         var spell = SpellBuilder.createSpellModifier();
@@ -194,7 +194,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_frostbolt_modifier_2 = add(weapon_frostbolt_modifier_2());
     private static Skills.Entry weapon_frostbolt_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_frostbolt_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_frostbolt_modifier_2");
         var title = "Lingering Chill";
         var description = "Frostbolt slow effect lasts {effect_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
@@ -212,7 +212,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_holy_root = add(weapon_holy_root());
     private static Skills.Entry weapon_holy_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_holy_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_holy_root");
         var title = "Holy Staff Specialisation";
         var description = "Reduces the cooldown of Holy Shock by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -228,7 +228,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_holy_shock_modifier_1 = add(weapon_holy_shock_modifier_1());
     private static Skills.Entry weapon_holy_shock_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_holy_shock_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_holy_shock_modifier_1");
         var title = "Improved Healing";
         var description = "Holy Shock heals for {power_multiplier} more.";
         var spell = SpellBuilder.createSpellModifier();
@@ -251,7 +251,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_holy_shock_modifier_2 = add(weapon_holy_shock_modifier_2());
     private static Skills.Entry weapon_holy_shock_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_holy_shock_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_holy_shock_modifier_2");
         var title = "Holy Blast";
         var description = "Damaging with Holy Shock causes small explosion, hitting enemies within {impact_range} blocks radius.";
         var spell = SpellBuilder.createSpellModifier();
@@ -288,7 +288,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_sword_root = add(weapon_sword_root());
     private static Skills.Entry weapon_sword_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_sword_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_sword_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         return new Skills.Entry(id, spell, "Sword Specialisation", "", Skills.Category.WEAPON);
@@ -296,7 +296,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_swift_strikes_modifier_1 = add(weapon_swift_strikes_modifier_1());
     private static Skills.Entry weapon_swift_strikes_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_swift_strikes_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_swift_strikes_modifier_1");
         var title = "Frequent Strikes";
         var description = "Reduces the cooldown of Swift Strikes by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -310,7 +310,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_swift_strikes_modifier_2 = add(weapon_swift_strikes_modifier_2());
     private static Skills.Entry weapon_swift_strikes_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_swift_strikes_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_swift_strikes_modifier_2");
         var title = "Precision";
         var description = "Swift Strikes deals {melee_damage_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
@@ -324,7 +324,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_flurry_modifier_1 = add(weapon_flurry_modifier_1());
     private static Skills.Entry weapon_flurry_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_flurry_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_flurry_modifier_1");
         var title = "Relentless Flurry";
         var description = "Flurry performs 1 additional strike.";
         var spell = SpellBuilder.createSpellModifier();
@@ -338,7 +338,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_flurry_modifier_2 = add(weapon_flurry_modifier_2());
     private static Skills.Entry weapon_flurry_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_flurry_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_flurry_modifier_2");
         var effect = SkillEffects.FLURRY_TRANCE;
         var title = "Frenzied Strikes";
         var description = "Each strike of Flurry increases your Attack Damage by " + TooltipTokens.effect(SkillEffects.FLURRY_TRANCE.id) + " for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
@@ -358,7 +358,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_mace_root = add(weapon_mace_root());
     private static Skills.Entry weapon_mace_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_mace_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_mace_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         return new Skills.Entry(id, spell, "Mace Specialisation", "", Skills.Category.WEAPON);
@@ -366,7 +366,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_smash_modifier_1 = add(weapon_smash_modifier_1());
     private static Skills.Entry weapon_smash_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_smash_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_smash_modifier_1");
         var title = "Challenging Blow";
         var description = "Smash has {impact_chance} chance to taunt the targets hit.";
         var spell = SpellBuilder.createSpellModifier();
@@ -385,7 +385,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_smash_modifier_2 = add(weapon_smash_modifier_2());
     private static Skills.Entry weapon_smash_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_smash_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_smash_modifier_2");
         var title = "Shatter";
         var description = "Smash reduces the target's armor by "
                 + TooltipTokens.effect(SkillEffects.SHATTER.id, 0, null, TooltipTokens.Format.ABS)
@@ -406,7 +406,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_hammer_root = add(weapon_hammer_root());
     private static Skills.Entry weapon_hammer_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_hammer_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_hammer_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         return new Skills.Entry(id, spell, "Hammer Specialisation", "", Skills.Category.WEAPON);
@@ -414,7 +414,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_ground_slam_modifier_1 = add(weapon_ground_slam_modifier_1());
     private static Skills.Entry weapon_ground_slam_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_ground_slam_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_ground_slam_modifier_1");
         var title = "Aftershock";
         var description = "Ground Slam has {impact_chance} chance to stun the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -431,7 +431,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_ground_slam_modifier_2 = add(weapon_ground_slam_modifier_2());
     private static Skills.Entry weapon_ground_slam_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_ground_slam_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_ground_slam_modifier_2");
         var title = "Punishment";
         var description = "Casting Ground Slam has {trigger_chance_1} chance to guarantee a critical strike for the next melee attack.";
 
@@ -456,7 +456,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_double_axe_root = add(weapon_double_axe_root());
     private static Skills.Entry weapon_double_axe_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_double_axe_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_double_axe_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         return new Skills.Entry(id, spell, "Double Axe Specialisation", "", Skills.Category.WEAPON);
@@ -464,7 +464,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_whirlwind_modifier_1 = add(weapon_whirlwind_modifier_1());
     private static Skills.Entry weapon_whirlwind_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_whirlwind_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_whirlwind_modifier_1");
         var title = "Whirlwind Mastery";
         var description = "Whirlwind deals {power_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
@@ -482,7 +482,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_whirlwind_modifier_2 = add(weapon_whirlwind_modifier_2());
     private static Skills.Entry weapon_whirlwind_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_whirlwind_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_whirlwind_modifier_2");
         var title = "Hamstring";
         var description = "Whirlwind has {impact_chance} chance to immobilize the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -507,7 +507,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_spear_root = add(weapon_spear_root());
     private static Skills.Entry weapon_spear_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_spear_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_spear_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         return new Skills.Entry(id, spell, "Spear Specialisation", "", Skills.Category.WEAPON);
@@ -515,7 +515,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_impale_modifier_1 = add(weapon_impale_modifier_1());
     private static Skills.Entry weapon_impale_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_impale_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_impale_modifier_1");
         var title = "Pierce";
         var description = "Impale spear pierces through {pierce} targets.";
         var spell = SpellBuilder.createSpellModifier();
@@ -532,7 +532,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_impale_modifier_2 = add(weapon_impale_modifier_2());
     private static Skills.Entry weapon_impale_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_impale_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_impale_modifier_2");
         var title = "Pin Down";
         var description = "Impale pins the target, applying Immobilize for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -554,7 +554,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_dagger_root = add(weapon_dagger_root());
     private static Skills.Entry weapon_dagger_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_dagger_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_dagger_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         return new Skills.Entry(id, spell, "Dagger Specialisation", "", Skills.Category.WEAPON);
@@ -562,7 +562,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_fan_of_knives_modifier_1 = add(weapon_fan_of_knives_modifier_1());
     private static Skills.Entry weapon_fan_of_knives_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_fan_of_knives_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_fan_of_knives_modifier_1");
         var title = "Ricochet";
         var description = "Fan of Knives daggers ricochet to {ricochet} additional targets.";
         var spell = SpellBuilder.createSpellModifier();
@@ -580,7 +580,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_fan_of_knives_modifier_2 = add(weapon_fan_of_knives_modifier_2());
     private static Skills.Entry weapon_fan_of_knives_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_fan_of_knives_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_fan_of_knives_modifier_2");
         var title = "Expanded Fan";
         var description = "Fan of Knives launches {extra_launch} additional daggers.";
 
@@ -601,7 +601,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_sickle_root = add(weapon_sickle_root());
     private static Skills.Entry weapon_sickle_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_sickle_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_sickle_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         return new Skills.Entry(id, spell, "Sickle Specialisation", "", Skills.Category.WEAPON);
@@ -609,7 +609,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_swipe_modifier_1 = add(weapon_swipe_modifier_1());
     private static Skills.Entry weapon_swipe_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_swipe_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_swipe_modifier_1");
         var title = "Evasive Swipe";
         var description = "You are invulnerable when using Swipe.";
         var spell = SpellBuilder.createSpellModifier();
@@ -632,7 +632,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_swipe_modifier_2 = add(weapon_swipe_modifier_2());
     private static Skills.Entry weapon_swipe_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_swipe_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_swipe_modifier_2");
         var title = "Sequential Swipes";
         var description = "Swipe hits have {trigger_chance} chance to reset the cooldown of Swipe.";
         var spell = SpellBuilder.createSpellPassive();
@@ -664,7 +664,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_glaive_root = add(weapon_glaive_root());
     private static Skills.Entry weapon_glaive_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_glaive_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_glaive_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         return new Skills.Entry(id, spell, "Glaive Specialisation", "", Skills.Category.WEAPON);
@@ -672,7 +672,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_thrust_modifier_1 = add(weapon_thrust_modifier_1());
     private static Skills.Entry weapon_thrust_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_thrust_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_thrust_modifier_1");
         var title = "Full Thrust";
         var description = "Thrust charges you further forward.";
         var spell = SpellBuilder.createSpellModifier();
@@ -686,7 +686,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_thrust_modifier_2 = add(weapon_thrust_modifier_2());
     private static Skills.Entry weapon_thrust_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_thrust_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_thrust_modifier_2");
         var title = "Impaling Thrust";
         var description = "Thrust deals {melee_damage_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
@@ -702,7 +702,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_bow_root = add(weapon_bow_root());
     private static Skills.Entry weapon_bow_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_bow_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_bow_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
         return new Skills.Entry(id, spell, "Bow Specialisation", "", Skills.Category.WEAPON);
@@ -710,7 +710,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_bow_passive_1 = add(weapon_bow_passive_1());
     private static Skills.Entry weapon_bow_passive_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_bow_passive_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_bow_passive_1");
         var title = "Dazing Arrow";
         var description = "Bow arrow hits have {trigger_chance} chance to slow the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -723,7 +723,7 @@ public class WeaponSkillModifiers {
         trigger.weapon_condition = BOW_WEAPONS;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectSet(StatusEffects.SLOWNESS.getIdAsString(), 3F, 1);
+        var impact = SpellBuilder.Impacts.effectSet(MobEffects.SLOWNESS.getRegisteredName(), 3F, 1);
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 3F);
@@ -733,7 +733,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_bow_passive_2 = add(weapon_bow_passive_2());
     private static Skills.Entry weapon_bow_passive_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_bow_passive_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_bow_passive_2");
         var title = "Poison Arrow";
         var description = "Bow arrow hits have {trigger_chance} chance to apply Poison for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -746,7 +746,7 @@ public class WeaponSkillModifiers {
         trigger.weapon_condition = BOW_WEAPONS;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 4F, 0, 1);
+        var impact = SpellBuilder.Impacts.effectAdd(MobEffects.POISON.getRegisteredName(), 4F, 0, 1);
         impact.visuals = SkillsCommon.poisonImpactParticles();
         spell.impacts = List.of(impact);
 
@@ -757,7 +757,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_crossbow_root = add(weapon_crossbow_root());
     private static Skills.Entry weapon_crossbow_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_crossbow_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_crossbow_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
         return new Skills.Entry(id, spell, "Crossbow Specialisation", "", Skills.Category.WEAPON);
@@ -765,7 +765,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_crossbow_passive_1 = add(weapon_crossbow_passive_1());
     private static Skills.Entry weapon_crossbow_passive_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_crossbow_passive_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_crossbow_passive_1");
         var title = "Weakening Bolt";
         var description = "Crossbow shots have {trigger_chance} chance to apply Weakness to the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -778,7 +778,7 @@ public class WeaponSkillModifiers {
         trigger.weapon_condition = CROSSBOW_WEAPONS;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectSet(StatusEffects.WEAKNESS.getIdAsString(), 4F, 0);
+        var impact = SpellBuilder.Impacts.effectSet(MobEffects.WEAKNESS.getRegisteredName(), 4F, 0);
         spell.impacts = List.of(impact);
 
         return new Skills.Entry(id, spell, title, description, Skills.Category.WEAPON);
@@ -786,7 +786,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_crossbow_passive_2 = add(weapon_crossbow_passive_2());
     private static Skills.Entry weapon_crossbow_passive_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_crossbow_passive_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_crossbow_passive_2");
         var title = "Fuse Bolt";
         var description = "Crossbow shots have {trigger_chance} chance to cause a small explosion on the target.";
         var spell = SpellBuilder.createSpellPassive();
@@ -808,7 +808,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_axe_root = add(weapon_axe_root());
     private static Skills.Entry weapon_axe_root() {
-        var id = Identifier.of(NAMESPACE, "weapon_axe_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_axe_root");
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
         return new Skills.Entry(id, spell, "Axe Specialisation", "", Skills.Category.WEAPON);
@@ -816,7 +816,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_cleave_modifier_1 = add(weapon_cleave_modifier_1());
     private static Skills.Entry weapon_cleave_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "weapon_cleave_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_cleave_modifier_1");
         var title = "Wide Cleave";
         var description = "Extends the reach of Cleave by +0.5 blocks.";
         var spell = SpellBuilder.createSpellModifier();
@@ -830,7 +830,7 @@ public class WeaponSkillModifiers {
 
     public static final Skills.Entry weapon_cleave_modifier_2 = add(weapon_cleave_modifier_2());
     private static Skills.Entry weapon_cleave_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "weapon_cleave_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "weapon_cleave_modifier_2");
         var title = "Hot Hatchet";
         var description = "Reduces the cooldown of Cleave by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();

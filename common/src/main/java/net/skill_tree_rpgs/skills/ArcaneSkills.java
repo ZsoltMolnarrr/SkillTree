@@ -1,7 +1,8 @@
 package net.skill_tree_rpgs.skills;
 
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
@@ -12,7 +13,6 @@ import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.spell.summon.AttributeScaling;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
@@ -73,7 +73,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_1_passive_1 = add(arcane_tier_1_passive_1());
     private static Skills.Entry arcane_tier_1_passive_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_1_passive_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_1_passive_1");
         var title = "Fissile Magic";
         var description = "Arcane spell impacts have {trigger_chance} chance, to cause a small explosion, dealing {damage} damage.";
 
@@ -114,7 +114,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_1_passive_2 = add(arcane_tier_1_passive_2());
     private static Skills.Entry arcane_tier_1_passive_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_1_passive_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_1_passive_2");
         var title = "Arcane Radiance";
         var description = "Arcane spell impacts have {trigger_chance} chance, to heal you for {heal}.";
 
@@ -166,7 +166,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_2_spell_1_modifier_1 = add(arcane_tier_2_spell_1_modifier_1());
     private static Skills.Entry arcane_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_2_spell_1_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_2_spell_1_modifier_1");
         var title = "Conjured Missile";
         var description = "Arcane Missile shoots {extra_launch} additional missile per batch.";
 
@@ -188,7 +188,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_2_spell_1_modifier_2 = add(arcane_tier_2_spell_1_modifier_2());
     private static Skills.Entry arcane_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_2_spell_1_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_2_spell_1_modifier_2");
         var effect = SkillEffects.ARCANE_SLOWNESS;
         var title = "Crippling Missiles";
         var description = "Arcane Missiles apply slowness, reducing movement speed by " + TooltipTokens.effect(SkillEffects.ARCANE_SLOWNESS.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -221,7 +221,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_2_spell_2_modifier_1 = add(arcane_tier_2_spell_2_modifier_1());
     private static Skills.Entry arcane_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_2_spell_2_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_2_spell_2_modifier_1");
         var title = "Echoing Blast";
         var description = "Arcane Explosion hits have {trigger_chance} chance to reset its cooldown.";
         var spell = SkillsCommon.createModifierAlikePassiveSpell();
@@ -256,7 +256,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_2_spell_2_modifier_2 = add(arcane_tier_2_spell_2_modifier_2());
     private static Skills.Entry arcane_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_2_spell_2_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_2_spell_2_modifier_2");
         var title = "Chain Detonation";
         var maxTargets = 4;
         var description = "Arcane Explosion causes up to " + maxTargets + " secondary explosions, dealing {damage} damage to nearby enemies.";
@@ -305,7 +305,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_2_passive_1 = add(arcane_tier_2_passive_1());
     private static Skills.Entry arcane_tier_2_passive_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_2_passive_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_2_passive_1");
         var title = "Arcane Trap";
         var description = "Upon rolling, you leave behind an Arcane Trap, lasting {cloud_duration} sec, dealing {damage} damage to entering enemies.";
 
@@ -367,7 +367,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_2_passive_2 = add(arcane_tier_2_passive_2());
     private static Skills.Entry arcane_tier_2_passive_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_2_passive_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_2_passive_2");
         var title = "Phase Shift";
         var description = "Upon rolling, you become invulnerable for {effect_duration} sec.";
 
@@ -399,7 +399,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_3_spell_1_modifier_1 = add(arcane_tier_3_spell_1_modifier_1());
     private static Skills.Entry arcane_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_3_spell_1_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_3_spell_1_modifier_1");
         var title = "Beam Exposure";
         var description = "Arcane Beam applies Arcane Exposure increasing Arcane damage taken by "
                 + Skills.bakedPercent(SkillEffects.ARCANE_EXPOSURE_MULTIPLIER)
@@ -421,12 +421,12 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_3_spell_1_modifier_2 = add(arcane_tier_3_spell_1_modifier_2());
     private static Skills.Entry arcane_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_3_spell_1_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_3_spell_1_modifier_2");
         var title = "Beam Propulsion";
         // ARCANE_SPEED has two equal modifiers (movement + jump); name the first explicitly.
         var description = "Arcane Beam hits increase your speed and jump strength by "
                 + TooltipTokens.effect(SkillEffects.ARCANE_SPEED.id, 0,
-                        Identifier.of(EntityAttributes.MOVEMENT_SPEED.getIdAsString()))
+                        Identifier.parse(Attributes.MOVEMENT_SPEED.getRegisteredName()))
                 + " for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
         var effect = SkillEffects.ARCANE_SPEED;
         var spell = SpellBuilder.createSpellModifier();
@@ -459,14 +459,14 @@ public class ArcaneSkills {
                 critChance.attribute_id = SpellPowerMechanics.CRITICAL_CHANCE.id.toString();
                 critChance.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
                         SpellPowerMechanics.CRITICAL_CHANCE.id.toString(),
-                        EntityAttributeModifier.Operation.ADD_VALUE, 10.0, 0.0));
+                        AttributeModifier.Operation.ADD_VALUE, 10.0, 0.0));
                 modifier.summon_attribute_scaling = new AttributeScaling();
                 modifier.summon_attribute_scaling.entries = List.of(critChance);
             }));
 
     public static final Skills.Entry arcane_tier_3_spell_2_modifier_1 = add(arcane_tier_3_spell_2_modifier_1());
     private static Skills.Entry arcane_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_3_spell_2_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_3_spell_2_modifier_1");
         var title = "Arcane Battery";
         var description = "Conjures an additional Arcane Emitter.";
         var spell = SpellBuilder.createSpellModifier();
@@ -480,7 +480,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_3_spell_2_modifier_2 = add(arcane_tier_3_spell_2_modifier_2());
     private static Skills.Entry arcane_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_3_spell_2_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_3_spell_2_modifier_2");
         var title = "Attuned Emitters";
         var description = "Arcane Emitters fire faster, matching your spell haste.";
         var spell = SpellBuilder.createSpellModifier();
@@ -495,7 +495,7 @@ public class ArcaneSkills {
         haste.attribute_id = SpellPowerMechanics.HASTE.id.toString();
         haste.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
                 SpellPowerMechanics.HASTE.id.toString(),
-                EntityAttributeModifier.Operation.ADD_VALUE,
+                AttributeModifier.Operation.ADD_VALUE,
                 -SpellPowerMechanics.PERCENT_ATTRIBUTE_BASELINE, 1.0));
         modifier.summon_attribute_scaling = new AttributeScaling();
         modifier.summon_attribute_scaling.entries = List.of(haste);
@@ -510,7 +510,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_3_passive_1 = add(arcane_tier_3_passive_1());
     private static Skills.Entry arcane_tier_3_passive_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_3_passive_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_3_passive_1");
         var title = "Presence of Mind";
         var description = "Blink and Evocation have {trigger_chance_1} chance, to turn your next spell cast instant, within the next {stash_duration} sec.";
 
@@ -551,7 +551,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_3_passive_2 = add(arcane_tier_3_passive_2());
     private static Skills.Entry arcane_tier_3_passive_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_3_passive_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_3_passive_2");
         var effect = SkillEffects.ARCANE_WARD;
         var title = effect.title;
         var description = "Arcane spells have {trigger_chance} chance, to grant you " + effect.title + ", absorbing high amount of damage, lasting {effect_duration} sec.";
@@ -589,7 +589,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_4_spell_1_modifier_1 = add(arcane_tier_4_spell_1_modifier_1());
     private static Skills.Entry arcane_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_4_spell_1_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_4_spell_1_modifier_1");
         var title = "Slipstream";
         var description = "Reduces the cooldown of Blink by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -603,7 +603,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_4_spell_1_modifier_2 = add(arcane_tier_4_spell_1_modifier_2());
     private static Skills.Entry arcane_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_4_spell_1_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_4_spell_1_modifier_2");
         var title = "Purge";
         var description = "Blink attempts to remove 2 negative effects from you entirely.";
         var spell = SpellBuilder.createSpellModifier();
@@ -642,7 +642,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_4_spell_2_modifier_1 = add(arcane_tier_4_spell_2_modifier_1());
     private static Skills.Entry arcane_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_4_spell_2_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_4_spell_2_modifier_1");
         var title = "Rapid Evocation";
         var extraChannels = 2;
         var description = "Evocation channels " + extraChannels + " additional times, granting more stacks.";
@@ -657,7 +657,7 @@ public class ArcaneSkills {
 
     public static final Skills.Entry arcane_tier_4_spell_2_modifier_2 = add(arcane_tier_4_spell_2_modifier_2());
     private static Skills.Entry arcane_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "arcane_tier_4_spell_2_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "arcane_tier_4_spell_2_modifier_2");
         var title = "Lasting Evocation";
         var description = "Increases the duration of Evocation by {effect_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();

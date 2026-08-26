@@ -1,6 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.spell_engine.fx.SpellEngineSounds;
 
@@ -14,7 +14,7 @@ public class SkillSounds {
         return entry;
     }
     private static SpellEngineSounds.Entry entry(String name) {
-        return new SpellEngineSounds.Entry(Identifier.of(SkillTreeMod.NAMESPACE, name));
+        return new SpellEngineSounds.Entry(Identifier.fromNamespaceAndPath(SkillTreeMod.NAMESPACE, name));
     }
 
     public static final SpellEngineSounds.Entry arcane_trap_activate = add(entry("arcane_trap_activate"));

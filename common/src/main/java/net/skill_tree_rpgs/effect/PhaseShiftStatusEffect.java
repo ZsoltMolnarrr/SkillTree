@@ -1,8 +1,8 @@
 package net.skill_tree_rpgs.effect;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
 import net.spell_engine.api.effect.CustomStatusEffect;
 import net.spell_engine.api.entity.LivingEntityImmunity;
 
@@ -14,17 +14,17 @@ public class PhaseShiftStatusEffect extends CustomStatusEffect {
     /// it always outlives the gap to the next tick yet expires promptly once Phase Shift itself fades.
     private static final int IMMUNITY_TICKS = 5;
 
-    public PhaseShiftStatusEffect(StatusEffectCategory category, int color) {
+    public PhaseShiftStatusEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true; // refresh the immunity every tick, so it tracks the effect's real (data-driven) duration
     }
 
     @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
         // Server-authoritative; `applyUpdateEffect` only runs server-side now.
         LivingEntityImmunity.apply(entity, null, null, null, true, IMMUNITY_TICKS);
         return true; // keep the normal lifecycle

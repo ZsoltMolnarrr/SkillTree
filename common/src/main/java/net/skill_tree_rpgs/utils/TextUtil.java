@@ -1,20 +1,19 @@
 package net.skill_tree_rpgs.utils;
 
-import net.minecraft.text.Text;
-import net.minecraft.util.Language;
-
 import java.util.List;
+import net.minecraft.locale.Language;
+import net.minecraft.network.chat.Component;
 
 public class TextUtil {
-    public static String convert(List<Text> lines) {
+    public static String convert(List<Component> lines) {
         StringBuilder builder = new StringBuilder();
-        for (Text text : lines) {
+        for (Component text : lines) {
             // line.getString();
 
-            System.out.println("attribute.name.spell_power.fire translation: " + Language.getInstance().hasTranslation("attribute.name.spell_power.fire")
-            + " " + Language.getInstance().get("attribute.name.spell_power.fire"));
+            System.out.println("attribute.name.spell_power.fire translation: " + Language.getInstance().has("attribute.name.spell_power.fire")
+            + " " + Language.getInstance().getOrDefault("attribute.name.spell_power.fire"));
 
-            var string = Text.literal("").append(text).getString();
+            var string = Component.literal("").append(text).getString();
             if (!string.isEmpty()) {
                 if (!builder.isEmpty()) {
                     builder.append("\n");

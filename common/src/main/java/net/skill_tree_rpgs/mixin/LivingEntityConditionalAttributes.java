@@ -1,8 +1,8 @@
 package net.skill_tree_rpgs.mixin;
 
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.skill_tree_rpgs.attributes.ConditionalAttributeHolder;
 import net.skill_tree_rpgs.attributes.ConditionalAttributeModifier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,7 +25,7 @@ public abstract class LivingEntityConditionalAttributes implements ConditionalAt
         return conditionalModifiers;
     }
 
-    @Inject(method = "getEquipmentChanges", at = @At("RETURN"))
+    @Inject(method = "collectEquipmentChanges", at = @At("RETURN"))
     private void onEquipmentChanges(CallbackInfoReturnable<Map<EquipmentSlot, ItemStack>> cir) {
         if (cir.getReturnValue() != null) {
             var entity = (LivingEntity) (Object) this;

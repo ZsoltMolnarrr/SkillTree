@@ -1,7 +1,5 @@
 package net.skill_tree_rpgs.fabric.data_gen;
 
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.items.SkillItems;
 import net.skill_tree_rpgs.attributes.ModifierConditions;
@@ -16,14 +14,15 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.client.data.BlockStateModelGenerator;
-import net.minecraft.client.data.ItemModelGenerator;
-import net.minecraft.client.data.Models;
-import net.minecraft.data.recipe.RecipeExporter;
-import net.minecraft.data.recipe.RecipeGenerator;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.item.Items;
 import net.puffish.skillsmod.reward.builtin.AttributeReward;
 import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.skill_tree_rpgs.utils.ResolvableTextContent;
@@ -49,12 +48,12 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class LangGenerator extends FabricLanguageProvider {
-        protected LangGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        protected LangGenerator(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(dataOutput, registryLookup);
         }
 
         @Override
-        public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
+        public void generateTranslations(HolderLookup.Provider wrapperLookup, TranslationBuilder translationBuilder) {
             for (var item: SkillItems.ENTRIES) {
                 translationBuilder.add(item.item(), item.title());
                 for (var lore : item.loreTranslation()) {
@@ -80,14 +79,14 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 translationBuilder.add(SpellTooltip.spellDescriptionTranslationKey(entry.id()), entry.description());
             }
             SkillEffects.entries.forEach(entry -> {
-                translationBuilder.add(entry.effect.getTranslationKey(), entry.title);
-                translationBuilder.add(entry.effect.getTranslationKey() + ".description", entry.description);
+                translationBuilder.add(entry.effect.getDescriptionId(), entry.title);
+                translationBuilder.add(entry.effect.getDescriptionId() + ".description", entry.description);
             });
         }
     }
 
     public static class SoundGen extends SimpleSoundGeneratorV2 {
-        public SoundGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        public SoundGen(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(dataOutput, registryLookup);
         }
 
@@ -108,37 +107,37 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
         }
 
         @Override
-        public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
         }
 
         @Override
-        public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+        public void generateItemModels(ItemModelGenerators itemModelGenerator) {
             SkillItems.ENTRIES.forEach(entry -> {
-                itemModelGenerator.register(entry.item(), Models.GENERATED);
+                itemModelGenerator.generateFlatItem(entry.item(), ModelTemplates.FLAT_ITEM);
             });
         }
     }
 
     public static class RecipeProvider extends FabricRecipeProvider {
-        public RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        public RecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
             super(output, registriesFuture);
         }
 
         /// 1.21.2+: recipe providers hand back a {@link RecipeGenerator}, which owns the builder
         /// helpers (`createShaped`, `hasItem`, `conditionsFromItem`) that used to be statics.
         @Override
-        protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
-            return new RecipeGenerator(registries, exporter) {
+        protected net.minecraft.data.recipes.RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput exporter) {
+            return new net.minecraft.data.recipes.RecipeProvider(registries, exporter) {
                 @Override
-                public void generate() {
-                    createShaped(RecipeCategory.COMBAT, SkillItems.ORB_OF_OBLIVION.item())
+                public void buildRecipes() {
+                    shaped(RecipeCategory.COMBAT, SkillItems.ORB_OF_OBLIVION.item())
                             .pattern(" X ")
                             .pattern("XCX")
                             .pattern(" X ")
-                            .input('X', Items.EXPERIENCE_BOTTLE)
-                            .input('C', Items.DIAMOND)
-                            .criterion(hasItem(Items.EXPERIENCE_BOTTLE), conditionsFromItem(Items.EXPERIENCE_BOTTLE))
-                            .offerTo(this.exporter);
+                            .define('X', Items.EXPERIENCE_BOTTLE)
+                            .define('C', Items.DIAMOND)
+                            .unlockedBy(getHasName(Items.EXPERIENCE_BOTTLE), has(Items.EXPERIENCE_BOTTLE))
+                            .save(this.output);
                 }
             };
         }
@@ -150,7 +149,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class SkillDefinitionGen extends SkillDefinitionGenerator {
-        public SkillDefinitionGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        public SkillDefinitionGen(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(dataOutput, registryLookup);
         }
 
@@ -162,17 +161,17 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 if (skill.title() != null && !skill.title().isEmpty()) {
                     title = new Translatable(skill.titleTranslationKey());
                 }
-                Text description;
+                Component description;
                 if (skill.spellReward() != null) {
                     // Spell-reward nodes always resolve the granted spell's fully tokenized description
                     // through the runtime adapter (ResolvableTextContent -> TranslationUtil -> SpellTooltip).
                     // A node's own `description` string would route to a static lang key with no token
                     // substitution, so it is intentionally ignored here for spell rewards.
-                    description = MutableText.of(new ResolvableTextContent(skill.id()));
+                    description = MutableComponent.create(new ResolvableTextContent(skill.id()));
                 } else if (skill.description() != null && !skill.description().isEmpty()) {
-                    description = Text.translatable(skill.descriptionTranslationKey());
+                    description = Component.translatable(skill.descriptionTranslationKey());
                 } else {
-                    description = MutableText.of(new ResolvableTextContent(skill.id()));
+                    description = MutableComponent.create(new ResolvableTextContent(skill.id()));
                 }
 
                 Icon icon = null;
@@ -203,7 +202,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class SpellsGen extends SpellGenerator {
-        public SpellsGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        public SpellsGen(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(dataOutput, registryLookup);
         }
 

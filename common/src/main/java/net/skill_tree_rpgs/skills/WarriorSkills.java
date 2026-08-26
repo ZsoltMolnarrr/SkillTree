@@ -1,6 +1,7 @@
 package net.skill_tree_rpgs.skills;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.spell_engine.rpg_series.config.AttributeModifier;
@@ -16,7 +17,6 @@ import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder.Batches;
 import net.spell_engine.api.spell.fx.Sound;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
@@ -48,7 +48,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_2_spell_1_modifier_1 = add(warrior_tier_2_spell_1_modifier_1());
     private static Skills.Entry warrior_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_2_spell_1_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_2_spell_1_modifier_1");
         var title = "Bouncing Throw";
         var description = "Shattering Throw ricochets to {ricochet} additional target.";
         var spell = SpellBuilder.createSpellModifier();
@@ -65,7 +65,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_2_spell_1_modifier_2 = add(warrior_tier_2_spell_1_modifier_2());
     private static Skills.Entry warrior_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_2_spell_1_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_2_spell_1_modifier_2");
         var title = "Punching Throw";
         var description = "Shattering Throw deals {knockback_multiply_base} more knockback.";
         var spell = SpellBuilder.createSpellModifier();
@@ -83,7 +83,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_3_spell_1_modifier_1 = add(warrior_tier_3_spell_1_modifier_1());
     private static Skills.Entry warrior_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_1_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_3_spell_1_modifier_1");
         var title = "Endurance";
         var description = "Charge lasts {effect_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
@@ -99,7 +99,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_3_spell_1_modifier_2 = add(warrior_tier_3_spell_1_modifier_2());
     private static Skills.Entry warrior_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_1_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_3_spell_1_modifier_2");
         var title = "Concussion Blow";
         var description = "Next attack after using Charge, stuns the target for {effect_duration} sec.";
         var stashEffect = SkillEffects.CONCUSSION_BLOW;
@@ -128,7 +128,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_4_spell_1_modifier_1 = add(warrior_tier_4_spell_1_modifier_1());
     private static Skills.Entry warrior_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_1_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_4_spell_1_modifier_1");
         var title = "Recklessness";
         var description = "Mortal Strike also grants you Recklessness for {effect_duration} sec, increasing critical strike chance by 100%%, but also the damage you take by 100%%.";
         var effect = SkillEffects.RECKLESSNESS;
@@ -157,7 +157,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_4_spell_1_modifier_2 = add(warrior_tier_4_spell_1_modifier_2());
     private static Skills.Entry warrior_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_1_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_4_spell_1_modifier_2");
         var title = "Impaling Spikes";
         var description = "Mortal Strike erupts a line of spikes from the ground, dealing {damage} damage and launching struck enemies into the air.";
 
@@ -249,7 +249,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_3_spell_2_modifier_1 = add(warrior_tier_3_spell_2_modifier_1());
     private static Skills.Entry warrior_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_2_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_3_spell_2_modifier_1");
         var title = "Battle Shout";
         var description = "Shout increases Attack Damage of allies by " + TooltipTokens.effect(SkillEffects.BATTLE_SHOUT.id) + ", lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -280,7 +280,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_3_spell_2_modifier_2 = add(warrior_tier_3_spell_2_modifier_2());
     private static Skills.Entry warrior_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_2_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_3_spell_2_modifier_2");
         var title = "Challenging Shout";
         var description = "Shout taunts all affected enemies.";
         var spell = SpellBuilder.createSpellModifier();
@@ -314,7 +314,7 @@ public class WarriorSkills {
     /// effect is a TickingStatusEffect, so this hooks its tick and dispels on each one.
     public static final Skills.Entry warrior_tier_3_spell_1_root = add(warrior_tier_3_spell_1_root());
     private static Skills.Entry warrior_tier_3_spell_1_root() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_3_spell_1_root");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_3_spell_1_root");
         var title = "Improved Charge";
         var description = "Charge frees you from movement impairing effects.";
 
@@ -353,7 +353,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_2_spell_2_modifier_1 = add(warrior_tier_2_spell_2_modifier_1());
     private static Skills.Entry warrior_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_2_spell_2_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_2_spell_2_modifier_1");
         var title = "Ricocheting Net";
         var description = "Throw Net ricochets to {ricochet} additional targets.";
         var spell = SpellBuilder.createSpellModifier();
@@ -370,7 +370,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_2_spell_2_modifier_2 = add(warrior_tier_2_spell_2_modifier_2());
     private static Skills.Entry warrior_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_2_spell_2_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_2_spell_2_modifier_2");
         var title = "Reinforced Nets";
         var description = "Net Trap holds its victims {effect_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
@@ -386,16 +386,16 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_4_spell_2_modifier_1 = add(warrior_tier_4_spell_2_modifier_1());
     private static Skills.Entry warrior_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_2_modifier_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_4_spell_2_modifier_1");
         var title = "Juggernaut";
         var effect = SkillEffects.JUGGERNAUT;
         // JUGGERNAUT's two modifiers: size (first) and damage-taken (second, stored negative).
         var description = "Each stack of Last Stand also grows you in size by "
                 + TooltipTokens.effect(SkillEffects.JUGGERNAUT.id, 0,
-                        Identifier.of(EntityAttributes.SCALE.getIdAsString()))
+                        Identifier.parse(Attributes.SCALE.getRegisteredName()))
                 + ", and reduces damage taken by "
                 + TooltipTokens.effect(SkillEffects.JUGGERNAUT.id, 0,
-                        Identifier.of("spell_engine:damage_taken"), TooltipTokens.Format.ABS)
+                        Identifier.parse("spell_engine:damage_taken"), TooltipTokens.Format.ABS)
                 + ".";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
@@ -417,7 +417,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_4_spell_2_modifier_2 = add(warrior_tier_4_spell_2_modifier_2());
     private static Skills.Entry warrior_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_4_spell_2_modifier_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_4_spell_2_modifier_2");
         var title = "Revenge";
         var effect = SkillEffects.REVENGE;
         var description = "Blocking, or taking damage mitigatable by armor during Last Stand, increases your attack speed by " + TooltipTokens.effect(SkillEffects.REVENGE.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -428,7 +428,7 @@ public class WarriorSkills {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var lastStandActive = SpellBuilder.TargetConditions.hasEffect(Identifier.of("rogues", "last_stand"));
+        var lastStandActive = SpellBuilder.TargetConditions.hasEffect(Identifier.fromNamespaceAndPath("rogues", "last_stand"));
 
         var damageTrigger = SpellBuilder.Triggers.damageTaken();
         damageTrigger.target_override = Spell.Trigger.TargetSelector.CASTER;
@@ -457,7 +457,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_1_passive_1 = add(warrior_tier_1_passive_1());
     private static Skills.Entry warrior_tier_1_passive_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_1_passive_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_1_passive_1");
         var title = "Killing Spree";
         var description = "Killing an enemy increases Attack Damage by " + TooltipTokens.effect(SkillEffects.KILLING_SPREE.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var effect = SkillEffects.KILLING_SPREE;
@@ -484,7 +484,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_1_passive_2 = add(warrior_tier_1_passive_2());
     private static Skills.Entry warrior_tier_1_passive_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_1_passive_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_1_passive_2");
         var effect = SkillEffects.VITALITY;
         var title = "Vitality";
         var description = "Blocking with shield has {trigger_chance} chance to increase your Evasion Chance by " + TooltipTokens.effect(SkillEffects.VITALITY.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -515,7 +515,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_2_passive_1 = add(warrior_tier_2_passive_1());
     private static Skills.Entry warrior_tier_2_passive_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_2_passive_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_2_passive_1");
         var title = "Intercept";
         var description = "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Charge.";
         var spell = SpellBuilder.createSpellPassive();
@@ -541,7 +541,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_2_passive_2 = add(warrior_tier_2_passive_2());
     private static Skills.Entry warrior_tier_2_passive_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_2_passive_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_2_passive_2");
         var title = "Second Wind";
         var description = "Upon rolling, you have {trigger_chance} chance to restore 10%% of your total health.";
 
@@ -568,13 +568,13 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_3_passive_1 = add(warrior_tier_3_passive_1()); // Enrage (on damage taken, gain Enrage effect)
     private static Skills.Entry warrior_tier_3_passive_1() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_3_passive_1");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_3_passive_1");
         var effect = SkillEffects.ENRAGE;
         var title = effect.title;
         // ENRAGE's first modifier is attack speed; name it explicitly (it also carries size + damage-taken).
         var description = "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by "
                 + TooltipTokens.effect(SkillEffects.ENRAGE.id, 0,
-                        Identifier.of(EntityAttributes.ATTACK_SPEED.getIdAsString()))
+                        Identifier.parse(Attributes.ATTACK_SPEED.getRegisteredName()))
                 + " but also the damage you take, stacking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
@@ -622,7 +622,7 @@ public class WarriorSkills {
 
     public static final Skills.Entry warrior_tier_3_passive_2 = add(warrior_tier_3_passive_2()); // Shockwave (like Ardent Defender)
     private static Skills.Entry warrior_tier_3_passive_2() {
-        var id = Identifier.of(NAMESPACE, "warrior_tier_3_passive_2");
+        var id = Identifier.fromNamespaceAndPath(NAMESPACE, "warrior_tier_3_passive_2");
         var title = "Shockwave";
         float healthThreshold = 0.3F;
         float radius = 5F;

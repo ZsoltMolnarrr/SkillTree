@@ -1,7 +1,7 @@
 package net.skill_tree_rpgs.skills;
 
+import net.minecraft.resources.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
-import net.minecraft.util.Identifier;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
 

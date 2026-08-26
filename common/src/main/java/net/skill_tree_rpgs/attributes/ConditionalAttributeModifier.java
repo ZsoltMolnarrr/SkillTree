@@ -1,13 +1,13 @@
 package net.skill_tree_rpgs.attributes;
 
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 public record ConditionalAttributeModifier(
         Identifier id,
-        RegistryEntry<EntityAttribute> attribute,
-        EntityAttributeModifier modifier,
+        Holder<Attribute> attribute,
+        AttributeModifier modifier,
         ModifierCondition condition
 ) {}

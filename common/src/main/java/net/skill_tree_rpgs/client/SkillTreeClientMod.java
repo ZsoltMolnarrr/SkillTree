@@ -1,5 +1,6 @@
 package net.skill_tree_rpgs.client;
 
+import net.minecraft.resources.Identifier;
 import net.skill_tree_rpgs.client.effect.DeflectionEffectRenderer;
 import net.skill_tree_rpgs.client.effect.HolyChargeEffectRenderer;
 import net.skill_tree_rpgs.skills.RogueSkills;
@@ -8,7 +9,6 @@ import net.skill_tree_rpgs.skills.NodeTypes;
 import net.skill_tree_rpgs.effect.SkillEffects;
 import net.skill_tree_rpgs.skills.Skills;
 import net.skill_tree_rpgs.utils.TranslationUtil;
-import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
@@ -27,7 +27,7 @@ public class SkillTreeClientMod {
             var skillId = entry.id();
             if (entry.spellReward() != null) {
                 var container = entry.spellReward().get(0);
-                var id = Identifier.of(container.spell_ids().getFirst());
+                var id = Identifier.parse(container.spell_ids().getFirst());
                 TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveSpellDetails(id));
             }
             else if (entry.attributeReward() != null) {

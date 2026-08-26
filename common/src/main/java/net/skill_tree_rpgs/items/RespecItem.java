@@ -1,15 +1,15 @@
 package net.skill_tree_rpgs.items;
 
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.skill_tree_rpgs.utils.SkillHelper;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ActionResult;
-import net.minecraft.world.World;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.client.util.Color;
@@ -19,7 +19,7 @@ import net.spell_engine.fx.SpellEngineParticles;
 import java.util.List;
 
 public class RespecItem extends Item {
-    public RespecItem(Settings settings) {
+    public RespecItem(Properties settings) {
         super(settings);
     }
 
@@ -33,19 +33,19 @@ public class RespecItem extends Item {
     );
 
     @Override
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        if ((user instanceof ServerPlayerEntity serverUser)) {
+    public InteractionResult use(Level world, Player user, InteractionHand hand) {
+        ItemStack itemStack = user.getItemInHand(hand);
+        if ((user instanceof ServerPlayer serverUser)) {
             if (SkillHelper.respec(serverUser)) {
-                user.incrementStat(Stats.USED.getOrCreateStat(this));
-                var equipmentSlot = user.getActiveHand() == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
-                itemStack.damage(1, serverUser.getEntityWorld(), serverUser, item -> {
-                    serverUser.sendEquipmentBreakStatus(item, equipmentSlot);
+                user.awardStat(Stats.ITEM_USED.get(this));
+                var equipmentSlot = user.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+                itemStack.hurtAndBreak(1, serverUser.level(), serverUser, item -> {
+                    serverUser.onEquippedItemBroken(item, equipmentSlot);
                 });
                 ParticleHelper.sendBatches(user, RESET_PARTICLES);
-                return ActionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
-        return ActionResult.FAIL;
+        return InteractionResult.FAIL;
     }
 }

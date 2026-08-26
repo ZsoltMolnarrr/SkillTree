@@ -1,6 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.Fx;
@@ -76,7 +76,7 @@ public class SkillsCommon {
     public static Skills.Entry spellRoot(Skills.Category category, SpellSchool school,
                                          String path, String spellPattern, String spellName,
                                          String description, Consumer<Spell.Modifier> configure) {
-        var id = Identifier.of(Skills.NAMESPACE, path);
+        var id = Identifier.fromNamespaceAndPath(Skills.NAMESPACE, path);
         var spell = SpellBuilder.createSpellModifier();
         spell.school = school;
         var modifier = new Spell.Modifier();

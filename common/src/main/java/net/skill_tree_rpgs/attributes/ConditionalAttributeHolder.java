@@ -1,9 +1,8 @@
 package net.skill_tree_rpgs.attributes;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
-
 import java.util.List;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.LivingEntity;
 
 public interface ConditionalAttributeHolder {
     List<ConditionalAttributeModifier> getConditionalModifiers();
@@ -18,12 +17,12 @@ public interface ConditionalAttributeHolder {
 
     default void reapplyConditionalModifiers(LivingEntity entity) {
         for (var conditional : getConditionalModifiers()) {
-            var instance = entity.getAttributeInstance(conditional.attribute());
+            var instance = entity.getAttribute(conditional.attribute());
             if (instance == null) continue;
             boolean shouldApply = conditional.condition().equipment().test(entity);
             boolean isApplied = instance.getModifier(conditional.modifier().id()) != null;
             if (shouldApply && !isApplied) {
-                instance.addTemporaryModifier(conditional.modifier());
+                instance.addTransientModifier(conditional.modifier());
             } else if (!shouldApply && isApplied) {
                 instance.removeModifier(conditional.modifier().id());
             }

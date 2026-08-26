@@ -1,9 +1,9 @@
 package net.skill_tree_rpgs.attributes;
 
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.spell_engine.rpg_series.item.Equipment;
 import net.spell_engine.rpg_series.tags.RPGSeriesItemTags;

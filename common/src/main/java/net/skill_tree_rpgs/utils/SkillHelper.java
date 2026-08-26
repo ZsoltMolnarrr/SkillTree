@@ -1,8 +1,8 @@
 package net.skill_tree_rpgs.utils;
 
-import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.skills.NodeTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
 import net.puffish.skillsmod.api.SkillsAPI;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class SkillHelper {
         RESET_CATEGORIES.add(NodeTypes.WEAPON_CATEGORY_ID);
     }
 
-    public static boolean respec(ServerPlayerEntity player) {
+    public static boolean respec(ServerPlayer player) {
         boolean respeced = false;
         for (var categoryId : RESET_CATEGORIES) {
             respeced |= respecCategory(player, categoryId);
@@ -23,7 +23,7 @@ public class SkillHelper {
         return respeced;
     }
 
-    public static boolean respecCategory(ServerPlayerEntity player, Identifier categoryId) {
+    public static boolean respecCategory(ServerPlayer player, Identifier categoryId) {
         var category = SkillsAPI.getCategory(categoryId);
         if (category.isEmpty()) {
             return false;
