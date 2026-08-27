@@ -15,7 +15,7 @@ logoFile = "assets/skill_tree_rpgs/icon.png"
 [[dependencies.skill_tree_rpgs]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.11,)"
+versionRange = "[26.1,)"
 ordering = "NONE"
 side = "BOTH"
 
