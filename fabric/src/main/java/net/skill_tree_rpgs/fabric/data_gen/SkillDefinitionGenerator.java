@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializer;
 import com.mojang.serialization.JsonOps;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.CachedOutput;
@@ -25,9 +25,9 @@ import java.util.concurrent.CompletableFuture;
 
 public abstract class SkillDefinitionGenerator implements DataProvider {
     private final CompletableFuture<HolderLookup.Provider> registryLookup;
-    protected final FabricDataOutput dataOutput;
+    protected final FabricPackOutput dataOutput;
 
-    public SkillDefinitionGenerator(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    public SkillDefinitionGenerator(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         this.dataOutput = dataOutput;
         this.registryLookup = registryLookup;
     }

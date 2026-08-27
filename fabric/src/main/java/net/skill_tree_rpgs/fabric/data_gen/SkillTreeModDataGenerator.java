@@ -10,7 +10,7 @@ import net.skill_tree_rpgs.skills.SkillSounds;
 import net.skill_tree_rpgs.skills.Skills;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -48,7 +48,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class LangGenerator extends FabricLanguageProvider {
-        protected LangGenerator(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        protected LangGenerator(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(dataOutput, registryLookup);
         }
 
@@ -86,7 +86,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class SoundGen extends SimpleSoundGeneratorV2 {
-        public SoundGen(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        public SoundGen(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(dataOutput, registryLookup);
         }
 
@@ -102,7 +102,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class ModelProvider extends FabricModelProvider {
-        public ModelProvider(FabricDataOutput output) {
+        public ModelProvider(FabricPackOutput output) {
             super(output);
         }
 
@@ -119,7 +119,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class RecipeProvider extends FabricRecipeProvider {
-        public RecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        public RecipeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
             super(output, registriesFuture);
         }
 
@@ -149,7 +149,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class SkillDefinitionGen extends SkillDefinitionGenerator {
-        public SkillDefinitionGen(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        public SkillDefinitionGen(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(dataOutput, registryLookup);
         }
 
@@ -202,7 +202,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class SpellsGen extends SpellGenerator {
-        public SpellsGen(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        public SpellsGen(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(dataOutput, registryLookup);
         }
 
