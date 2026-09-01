@@ -642,7 +642,7 @@
   "spell.skill_tree_rpgs.fire_tier_3_spell_2_root.name": "强化的火焰风暴",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.description": "火墙术的持续时间延长{spawn_duration_add}秒。",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.name": "强化的火墙术",
-  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "额外召唤一组火焰九头蛇头。",
+  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "额外召唤一个火焰九头蛇头。",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.name": "九头蛇群",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.description": "火焰九头蛇的持续时间延长15秒。",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.name": "远古九头蛇",

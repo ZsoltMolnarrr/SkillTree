@@ -209,7 +209,7 @@
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_modifier_2.name": "Исцеляющее пламя",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.description": "Стена пламени существует на {spawn_duration_add} сек. дольше.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.name": "Улучшенная стена пламени",
-  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Призывает дополнительную группу голов Огненной гидры.",
+  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Призывает дополнительную голову Огненной гидры.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.name": "Выводок гидры",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.description": "Огненная гидра существует на 15 сек. дольше.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.name": "Древняя гидра",
