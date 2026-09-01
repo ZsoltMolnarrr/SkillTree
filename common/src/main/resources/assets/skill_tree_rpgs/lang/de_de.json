@@ -209,7 +209,7 @@
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_modifier_2.name": "Heilende Flammen",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.description": "Flammenwand hält {spawn_duration_add} Sek. länger an.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.name": "Verbesserte Flammenwand",
-  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Beschwört eine zusätzliche Gruppe von Feuerhydra-Köpfen.",
+  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Beschwört einen zusätzlichen Feuerhydra-Kopf.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.name": "Hydra-Brut",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.description": "Feuerhydra hält 15 Sek. länger an.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.name": "Uralte Hydra",

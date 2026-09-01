@@ -523,7 +523,7 @@
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_modifier_2.name": "Healing Flames",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.description": "Wall of Flames persists {spawn_duration_add} sec longer.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.name": "Improved Wall of Flames",
-  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Conjures an additional group of Fire Hydra heads.",
+  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Conjures an additional Fire Hydra head.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.name": "Hydra Brood",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.description": "Fire Hydra lasts 15 sec longer.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.name": "Ancient Hydra",

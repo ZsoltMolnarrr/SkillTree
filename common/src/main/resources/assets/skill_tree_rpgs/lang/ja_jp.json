@@ -209,7 +209,7 @@
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_modifier_2.name": "癒しの炎",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.description": "炎の壁の持続時間が{spawn_duration_add}秒延長する。",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.name": "強化された炎の壁",
-  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "炎のヒドラの頭の群れをもう1組召喚する。",
+  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "炎のヒドラの頭をもう1つ召喚する。",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.name": "ヒドラの群れ",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.description": "炎のヒドラの持続時間が15秒延長する。",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.name": "古代のヒドラ",

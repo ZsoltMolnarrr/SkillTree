@@ -209,7 +209,7 @@
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_modifier_2.name": "치유의 불꽃",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.description": "불의 벽이 {spawn_duration_add}초 더 오래 유지됩니다.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.name": "향상된 불의 벽",
-  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "화염 히드라 머리 무리를 추가로 하나 더 소환합니다.",
+  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "화염 히드라 머리를 하나 더 소환합니다.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.name": "히드라 무리",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.description": "화염 히드라가 15초 더 오래 유지됩니다.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.name": "고대 히드라",

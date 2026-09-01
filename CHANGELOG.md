@@ -1,3 +1,7 @@
+# 1.6.1
+
+- Hydra Brood now conjures an additional Fire Hydra head, instead of an entire additional group
+
 # 1.6.0
 
 - Adopt Spell Engine 1.10 changes

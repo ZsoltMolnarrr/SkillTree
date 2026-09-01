@@ -616,7 +616,7 @@
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_modifier_2.name": "Flammes Curatives",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.description": "Mur de Flammes persiste {spawn_duration_add} sec de plus.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.name": "Mur de Flammes Amélioré",
-  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Invoque un groupe supplémentaire de têtes d’Hydre de Feu.",
+  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Invoque une tête d’Hydre de Feu supplémentaire.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.name": "Couvée d’Hydre",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.description": "Hydre de Feu dure 15 sec de plus.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.name": "Hydre Ancienne",

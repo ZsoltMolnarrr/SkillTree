@@ -285,12 +285,12 @@ public class FireSkills {
     private static Skills.Entry fire_tier_4_spell_2_modifier_1() {
         var id = Identifier.fromNamespaceAndPath(NAMESPACE, "fire_tier_4_spell_2_modifier_1");
         var title = "Hydra Brood";
-        var description = "Conjures an additional group of Fire Hydra heads.";
+        var description = "Conjures an additional Fire Hydra head.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.FIRE;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = FIRE_HYDRA;
-        modifier.summon_group_count_add = 1;
+        modifier.summon_spawn_count_add = 1;
         spell.modifiers = List.of(modifier);
         return new Skills.Entry(id, spell, title, description, EnumSet.of(Skills.Category.FIRE));
     }
