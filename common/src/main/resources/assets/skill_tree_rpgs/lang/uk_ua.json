@@ -209,7 +209,7 @@
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_modifier_2.name": "Цілюще полум'я",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.description": "Стіна полум'я триває на {spawn_duration_add} сек довше.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.name": "Покращена Стіна полум'я",
-  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Викликає додаткову групу голів Вогняної гідри.",
+  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "Викликає додаткову голову Вогняної гідри.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.name": "Виводок гідри",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.description": "Вогняна гідра існує на 15 сек довше.",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.name": "Прадавня гідра",

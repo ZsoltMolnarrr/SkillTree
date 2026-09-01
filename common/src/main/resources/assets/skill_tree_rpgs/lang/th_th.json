@@ -209,7 +209,7 @@
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_modifier_2.name": "เปลวเพลิงบำบัด",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.description": "กำแพงเพลิงคงอยู่นานขึ้นอีก {spawn_duration_add} วินาที",
   "spell.skill_tree_rpgs.fire_tier_4_spell_1_root.name": "กำแพงเพลิงขั้นสูง",
-  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "เรียกกลุ่มหัวไฮดราไฟเพิ่มขึ้นอีกกลุ่ม",
+  "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.description": "เรียกหัวไฮดราไฟเพิ่มขึ้นอีกหนึ่งหัว",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_1.name": "ฝูงไฮดรา",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.description": "ไฮดราไฟคงอยู่นานขึ้นอีก 15 วินาที",
   "spell.skill_tree_rpgs.fire_tier_4_spell_2_modifier_2.name": "ไฮดราโบราณ",

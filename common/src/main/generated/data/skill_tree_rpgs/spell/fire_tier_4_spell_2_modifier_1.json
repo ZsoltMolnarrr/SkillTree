@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "wizards:fire_hydra",
-      "summon_group_count_add": 1
+      "summon_spawn_count_add": 1
     }
   ]
 }
