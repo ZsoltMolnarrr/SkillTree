@@ -10,12 +10,12 @@ authors = "Daedelus"
 description = '''
 Specialise your RPG class, by unlocking powerful skills.
 '''
-logoFile = "assets/skill_tree_rpgs/icon.png"
+iconFile = "assets/skill_tree_rpgs/icon.png"
 
 [[dependencies.skill_tree_rpgs]]
 modId = "neoforge"
 type = "required"
-versionRange = "[26.1,)"
+versionRange = "[26.2,)"
 ordering = "NONE"
 side = "BOTH"
 
