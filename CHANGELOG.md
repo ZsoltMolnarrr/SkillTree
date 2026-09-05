@@ -1,5 +1,6 @@
 # 1.6.1
 
+- Updated for Minecraft 26.2
 - Updated for Minecraft 26.1.2 (Java 25)
 - Hydra Brood now conjures an additional Fire Hydra head, instead of an entire additional group
 
