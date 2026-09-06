@@ -331,10 +331,11 @@ public class SkillEffects {
             "Presence of Mind",
             "Next spell cast is instant.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            // Marker effect only — the payload is `InstantCast.register` + the item glow below,
+            // no attribute modifiers. (A default-constructed `AttributeModifier` here would carry
+            // an empty attribute id, which never resolves.)
             new EffectConfig(
-                    List.of(
-                            new AttributeModifier()
-                    )
+                    List.of()
             )
     ));
 
