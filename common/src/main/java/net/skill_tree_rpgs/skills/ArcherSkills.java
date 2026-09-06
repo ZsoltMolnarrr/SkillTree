@@ -1,5 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
+import net.skill_tree_rpgs.utils.RegistryIds;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
@@ -44,7 +45,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_2_spell_1_modifier_1 = add(archer_tier_2_spell_1_modifier_1());
     private static Skills.Entry archer_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_2_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "archer_tier_2_spell_1_modifier_1");
         var title = "Improved Hunter's Mark";
         var description = "Power Shot applies {stash_amplifier_add} additional Hunter's Mark stack.";
         var spell = SpellBuilder.createSpellModifier();
@@ -61,7 +62,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_2_spell_1_modifier_2 = add(archer_tier_2_spell_1_modifier_2());
     private static Skills.Entry archer_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_2_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "archer_tier_2_spell_1_modifier_2");
         var title = "Charged Shot";
         var description = "Power Shot deals {damage} damage around the target hit.";
         var spell = SpellBuilder.createSpellModifier();
@@ -99,7 +100,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_2_spell_2_modifier_1 = add(archer_tier_2_spell_2_modifier_1());
     private static Skills.Entry archer_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_2_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "archer_tier_2_spell_2_modifier_1");
         var title = "Nettle Sprouts";
         var description = "Entangling Roots has {impact_chance} chance to apply stacking poison, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -108,7 +109,7 @@ public class ArcherSkills {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = ENTANGLING_ROOTS;
 
-        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 5, 1, 1);
+        var impact = SpellBuilder.Impacts.effectAdd(RegistryIds.effect(StatusEffects.POISON), 5, 1, 1);
         impact.chance = 0.5F;
         impact.action.status_effect.amplifier_cap_power_multiplier = 0.2F;
         impact.visuals = SkillsCommon.poisonImpactParticles();
@@ -124,7 +125,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_2_spell_2_modifier_2 = add(archer_tier_2_spell_2_modifier_2());
     private static Skills.Entry archer_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_2_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "archer_tier_2_spell_2_modifier_2");
         var title = "Nature's Grasp";
         var description = "Entangling Roots has {impact_chance} chance to immobilize the target for {effect_duration} sec.";
         var effect = SkillEffects.NATURES_GRASP;
@@ -145,7 +146,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_3_spell_1_modifier_1 = add(archer_tier_3_spell_1_modifier_1());
     private static Skills.Entry archer_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_3_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "archer_tier_3_spell_1_modifier_1");
         var title = "Extensive Barrage";
         var description = "Barrage fires {extra_launch} extra arrow.";
         var spell = SpellBuilder.createSpellModifier();
@@ -162,7 +163,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_3_spell_1_modifier_2 = add(archer_tier_3_spell_1_modifier_2());
     private static Skills.Entry archer_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_3_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "archer_tier_3_spell_1_modifier_2");
         var title = "Blood Barrage";
         var description = "Barrage arrow hits heal you by {heal}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -183,7 +184,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_4_spell_1_modifier_1 = add(archer_tier_4_spell_1_modifier_1());
     private static Skills.Entry archer_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_4_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "archer_tier_4_spell_1_modifier_1");
         var title = "Torrential Arrows";
         var description = "Rain of Arrows rains {extra_launch} additional arrows, scattered over a {meteor_launch_radius_add} blocks wider area.";
         var spell = SpellBuilder.createSpellModifier();
@@ -199,7 +200,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_4_spell_1_modifier_2 = add(archer_tier_4_spell_1_modifier_2());
     private static Skills.Entry archer_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_4_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "archer_tier_4_spell_1_modifier_2");
         var title = "Endless Volley";
         var description = "Rain of Arrows hits reduce its remaining cooldown by 1 sec.";
 
@@ -258,10 +259,10 @@ public class ArcherSkills {
             "Spirit Wolves gain 10%% increased maximum health.",
             modifier -> {
                 var health = new AttributeScaling.Entry();
-                health.attribute_id = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
+                health.attribute_id = RegistryIds.attribute(EntityAttributes.GENERIC_MAX_HEALTH);
                 health.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                        ExternalSpellSchools.PHYSICAL_RANGED.attributeEntry.getIdAsString(),
-                        EntityAttributeModifier.Operation.ADD_VALUE, 2.0, 0.1));
+                        RegistryIds.attribute(ExternalSpellSchools.PHYSICAL_RANGED.attributeEntry),
+                        EntityAttributeModifier.Operation.ADDITION, 2.0, 0.1));
                 modifier.summon_attribute_scaling = new AttributeScaling();
                 modifier.summon_attribute_scaling.entries = List.of(health);
             }));
@@ -281,7 +282,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_3_spell_2_modifier_1 = add(archer_tier_3_spell_2_modifier_1());
     private static Skills.Entry archer_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_3_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "archer_tier_3_spell_2_modifier_1");
         var title = "Leader of the Pack";
         var description = "Summons an additional Spirit Wolf.";
         var spell = SpellBuilder.createSpellModifier();
@@ -295,7 +296,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_3_spell_2_modifier_2 = add(archer_tier_3_spell_2_modifier_2());
     private static Skills.Entry archer_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_3_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "archer_tier_3_spell_2_modifier_2");
         var title = "Enduring Bond";
         var seconds = 10;
         var description = "Spirit Wolf lasts " + seconds + " sec longer.";
@@ -310,7 +311,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_4_spell_2_modifier_1 = add(archer_tier_4_spell_2_modifier_1());
     private static Skills.Entry archer_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_4_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "archer_tier_4_spell_2_modifier_1");
         var title = "Conjured Arrow";
         var description = "Magic Arrow has {trigger_chance} chance to reset its own cooldown.";
         var spell = SkillsCommon.createModifierAlikePassiveSpell();
@@ -329,7 +330,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_4_spell_2_modifier_2 = add(archer_tier_4_spell_2_modifier_2());
     private static Skills.Entry archer_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_4_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "archer_tier_4_spell_2_modifier_2");
         var title = "Magic Punch";
         var description = "Magic Arrow deals extra {knockback_multiply_base} knockback.";
         var spell = SpellBuilder.createSpellModifier();
@@ -356,10 +357,10 @@ public class ArcherSkills {
         return impact;
     }
 
-    private static SpellEntityPredicates.Entry HAS_HUNTERS_MARK = SpellEntityPredicates.hasEffectOptimized(Identifier.of("archers", "hunters_mark"));
+    private static SpellEntityPredicates.Entry HAS_HUNTERS_MARK = SpellEntityPredicates.hasEffectOptimized(new Identifier("archers", "hunters_mark"));
     public static final Skills.Entry archer_tier_1_passive_1 = add(archer_tier_1_passive_1());
     private static Skills.Entry archer_tier_1_passive_1() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_1_passive_1");
+        var id = new Identifier(NAMESPACE, "archer_tier_1_passive_1");
 
         var title = "Concussive Shot";
         var description = "Arrows have {trigger_chance} chance, to stun the target for {effect_duration} sec.";
@@ -389,7 +390,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_1_passive_2 = add(archer_tier_1_passive_2());
     private static Skills.Entry archer_tier_1_passive_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_1_passive_2");
+        var id = new Identifier(NAMESPACE, "archer_tier_1_passive_2");
 
         var title = "Rhythm";
         var description = "Hitting Marked target increasing ranged attack speed by " + TooltipTokens.effect(SkillEffects.RHYTHM.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -415,7 +416,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_2_passive_1 = add(archer_tier_2_passive_1()); // Momentum (additional stack of Rhythm on roll)
     private static Skills.Entry archer_tier_2_passive_1() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_2_passive_1");
+        var id = new Identifier(NAMESPACE, "archer_tier_2_passive_1");
         var title = "Momentum";
         var effect = SkillEffects.RHYTHM;
         var description = "Rolling grants you an additional stack of " + effect.title + ".";
@@ -439,7 +440,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_2_passive_2 = add(archer_tier_2_passive_2()); // Tactical Maneuver (effect on roll)
     private static Skills.Entry archer_tier_2_passive_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_2_passive_2");
+        var id = new Identifier(NAMESPACE, "archer_tier_2_passive_2");
         var title = "Tactical Maneuver";
         var description = "Rolling has {trigger_chance} chance to increase your roll recharge speed by " + TooltipTokens.effect(SkillEffects.TACTICAL_MANEUVER.id) + ", for {effect_duration} sec.";
         var effect = SkillEffects.TACTICAL_MANEUVER;
@@ -479,7 +480,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_3_passive_1 = add(archer_tier_3_passive_1()); // Supercharge on arrow hit
     private static Skills.Entry archer_tier_3_passive_1() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_3_passive_1");
+        var id = new Identifier(NAMESPACE, "archer_tier_3_passive_1");
         var title = "Supercharge";
         var effect = SkillEffects.SUPERCHARGE;
         var damageMultiplier = 2F;
@@ -546,7 +547,7 @@ public class ArcherSkills {
 
     public static final Skills.Entry archer_tier_3_passive_2 = add(archer_tier_3_passive_2()); // Deflection (protective effect on low HP)
     private static Skills.Entry archer_tier_3_passive_2() {
-        var id = Identifier.of(NAMESPACE, "archer_tier_3_passive_2");
+        var id = new Identifier(NAMESPACE, "archer_tier_3_passive_2");
         var title = "Deflection";
         final var healthThreshold = 0.5F;
         var description = "Upon taking damage below " + Skills.bakedPercent(healthThreshold)

@@ -13,7 +13,7 @@
             "modifiers": [
               {
                 "attribute_id": "spell_power:healing",
-                "operation": "ADD_VALUE",
+                "operation": "ADDITION",
                 "base": 0.0,
                 "coefficient": 0.25
               }

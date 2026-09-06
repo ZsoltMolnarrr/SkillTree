@@ -1,8 +1,6 @@
 package net.skill_tree_rpgs.items;
 
 import net.skill_tree_rpgs.SkillTreeMod;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -12,7 +10,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 import java.util.ArrayList;
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 public class SkillItems {
@@ -50,7 +50,7 @@ public class SkillItems {
     }
 
     public static final Entry ORB_OF_OBLIVION = add(
-            new Entry(Identifier.of(SkillTreeMod.NAMESPACE, "orb_of_oblivion"),
+            new Entry(new Identifier(SkillTreeMod.NAMESPACE, "orb_of_oblivion"),
                     "Orb of Oblivion",
                     List.of(
                             new LoreLine("Reset all skill points spend on the Class Skill Tree.", Formatting.GRAY)
@@ -62,6 +62,16 @@ public class SkillItems {
             )
     );
 
+    /// 1.20.1 has no `minecraft:lore` data component (the 1.21 line attached the lore to
+    /// `Item.Settings`), so the lines are held here and appended by the item's own `appendTooltip`
+    /// (see {@link RespecItem}). An entry registered with a factory that does not append them —
+    /// e.g. a plain `Item::new` — would simply render without lore.
+    private static final Map<Item, List<Text>> LORE = new IdentityHashMap<>();
+
+    public static void appendLore(Item item, List<Text> tooltip) {
+        tooltip.addAll(LORE.getOrDefault(item, List.of()));
+    }
+
     public static void register() {
         for (Entry entry : ENTRIES) {
             List<Text> lore = entry.loreTranslation().stream()
@@ -70,9 +80,8 @@ public class SkillItems {
                                 .formatted(line.line().formatting());
                     })
                     .toList();
-            Item item = entry.factory().apply(entry.settings()
-                    .component(DataComponentTypes.LORE, new LoreComponent(List.of(), lore) )
-            );
+            Item item = entry.factory().apply(entry.settings());
+            LORE.put(item, lore);
             entry.container.item = item;
             Registry.register(Registries.ITEM, entry.id(), item);
         }

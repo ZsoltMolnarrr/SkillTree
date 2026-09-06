@@ -1,5 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
+import net.skill_tree_rpgs.utils.RegistryIds;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
@@ -43,7 +44,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_2_spell_1_modifier_1 = add(fire_tier_2_spell_1_modifier_1());
     private static Skills.Entry fire_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_2_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "fire_tier_2_spell_1_modifier_1");
         var title = "Explosive Breath";
         var description = "Fire Breath hits have {trigger_chance} chance to explode a target, dealing {damage} damage to nearby enemies.";
         var spell = SkillsCommon.createModifierAlikePassiveSpell();
@@ -65,7 +66,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_2_spell_1_modifier_2 = add(fire_tier_2_spell_1_modifier_2());
     private static Skills.Entry fire_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_2_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "fire_tier_2_spell_1_modifier_2");
         var title = "Flame Throwing";
         var description = "Increased the range of Fire Breath by {range_add}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -81,7 +82,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_3_spell_1_modifier_1 = add(fire_tier_3_spell_1_modifier_1());
     private static Skills.Entry fire_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_3_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "fire_tier_3_spell_1_modifier_1");
         var title = "Meteor Shower";
         var description = "Meteor launches {extra_launch} extra projectile.";
 
@@ -99,7 +100,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_3_spell_1_modifier_2 = add(fire_tier_3_spell_1_modifier_2());
     private static Skills.Entry fire_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_3_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "fire_tier_3_spell_1_modifier_2");
         var title = "Meteor Splash";
         var description = "Meteor impacts leave a fiery area behind, lasting {cloud_duration} sec.";
 
@@ -119,7 +120,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_4_spell_1_modifier_1 = add(fire_tier_4_spell_1_modifier_1());
     private static Skills.Entry fire_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_4_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "fire_tier_4_spell_1_modifier_1");
         var title = "Great Wall";
         var description = "Wall of Flames spawns 2 additional columns.";
 
@@ -140,7 +141,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_4_spell_1_modifier_2 = add(fire_tier_4_spell_1_modifier_2());
     private static Skills.Entry fire_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_4_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "fire_tier_4_spell_1_modifier_2");
         var title = "Healing Flames";
         var description = "Wall of Flames heals you and allies for {heal}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -189,7 +190,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_2_spell_2_modifier_1 = add(fire_tier_2_spell_2_modifier_1());
     private static Skills.Entry fire_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_2_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "fire_tier_2_spell_2_modifier_1");
         var title = "Towering Slash";
         var bonus = 0.33F;
         var description = "Flame Slash is " + Skills.bakedPercent(bonus) + " larger.";
@@ -205,7 +206,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_2_spell_2_modifier_2 = add(fire_tier_2_spell_2_modifier_2());
     private static Skills.Entry fire_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_2_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "fire_tier_2_spell_2_modifier_2");
         var title = "Wave after Wave";
         var description = "Flame Slash hits reduce its own remaining cooldown by 1 sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -237,7 +238,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_3_spell_2_modifier_1 = add(fire_tier_3_spell_2_modifier_1());
     private static Skills.Entry fire_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_3_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "fire_tier_3_spell_2_modifier_1");
         var title = "Flame Whirlpool";
         var description = "Firestorm drags enemies towards you, briefly slowing them.";
         var spell = SpellBuilder.createSpellModifier();
@@ -245,7 +246,7 @@ public class FireSkills {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = FIRE_STORM;
 
-        var slow = SpellBuilder.Impacts.effectSet(StatusEffects.SLOWNESS.getIdAsString(), 1, 0);
+        var slow = SpellBuilder.Impacts.effectSet(RegistryIds.effect(StatusEffects.SLOWNESS), 1, 0);
 
         // Gentle radial pull: -Z in the ORIGIN frame points towards the storm's centre (the
         // caster); reapplied on every channel burst, with a slight lift to beat ground friction.
@@ -268,7 +269,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_3_spell_2_modifier_2 = add(fire_tier_3_spell_2_modifier_2());
     private static Skills.Entry fire_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_3_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "fire_tier_3_spell_2_modifier_2");
         var title = "Raging Firestorm";
         var description = "Firestorm channels {channel_ticks_add} additional times, knocking enemies away with {knockback_multiply_base} increased force.";
         var spell = SpellBuilder.createSpellModifier();
@@ -283,7 +284,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_4_spell_2_modifier_1 = add(fire_tier_4_spell_2_modifier_1());
     private static Skills.Entry fire_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_4_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "fire_tier_4_spell_2_modifier_1");
         var title = "Hydra Brood";
         var description = "Conjures an additional Fire Hydra head.";
         var spell = SpellBuilder.createSpellModifier();
@@ -297,7 +298,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_4_spell_2_modifier_2 = add(fire_tier_4_spell_2_modifier_2());
     private static Skills.Entry fire_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_4_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "fire_tier_4_spell_2_modifier_2");
         var title = "Ancient Hydra";
         var seconds = 15;
         var description = "Fire Hydra lasts " + seconds + " sec longer.";
@@ -314,7 +315,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_1_passive_1 = add(fire_tier_1_passive_1());
     private static Skills.Entry fire_tier_1_passive_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_1_passive_1");
+        var id = new Identifier(NAMESPACE, "fire_tier_1_passive_1");
         var effect = SkillEffects.FIRE_VULNERABILITY;
         var title = "Scorching Flames";
         var description = "Fire spell impacts have {trigger_chance} chance to apply Fire Vulnerability. Increasing damage taken from fire spells by "
@@ -345,7 +346,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_1_passive_2 = add(fire_tier_1_passive_2());
     private static Skills.Entry fire_tier_1_passive_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_1_passive_2");
+        var id = new Identifier(NAMESPACE, "fire_tier_1_passive_2");
         var title = "Hot Impact";
         var description = "Fire spell impacts have {trigger_chance} chance to stun the target for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -367,7 +368,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_2_passive_1 = add(fire_tier_2_passive_1()); // Fire trap
     private static Skills.Entry fire_tier_2_passive_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_2_passive_1");
+        var id = new Identifier(NAMESPACE, "fire_tier_2_passive_1");
         var title = "Flame Trap";
         var description = "Upon rolling, you leave behind a Flame Trap, lasting {cloud_duration} sec, dealing {damage} damage and applying Fire Vulnerability to entering enemies.";
 
@@ -429,7 +430,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_2_passive_2 = add(fire_tier_2_passive_2()); // Blazing Speed
     private static Skills.Entry fire_tier_2_passive_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_2_passive_2");
+        var id = new Identifier(NAMESPACE, "fire_tier_2_passive_2");
         var title = "Blazing Speed";
         var description = "Upon rolling, you have {trigger_chance} chance to gain " + TooltipTokens.effect(SkillEffects.BLAZING_SPEED.id) + " movement speed for {effect_duration} sec.";
         var effect = SkillEffects.BLAZING_SPEED;
@@ -458,7 +459,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_3_passive_1 = add(fire_tier_3_passive_1());
     private static Skills.Entry fire_tier_3_passive_1() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_3_passive_1");
+        var id = new Identifier(NAMESPACE, "fire_tier_3_passive_1");
         var title = "Eruption";
         var description = "Taking damage has {trigger_chance} chance to cause a strong explosion, dealing {damage} damage to nearby enemies.";
         var radius = 5F;
@@ -503,7 +504,7 @@ public class FireSkills {
 
     public static final Skills.Entry fire_tier_3_passive_2 = add(fire_tier_3_passive_2()); // Flame Shield
     private static Skills.Entry fire_tier_3_passive_2() {
-        var id = Identifier.of(NAMESPACE, "fire_tier_3_passive_2");
+        var id = new Identifier(NAMESPACE, "fire_tier_3_passive_2");
         var effect = SkillEffects.FIRE_WARD;
         var title = effect.title;
         var description = "Fire spells have {trigger_chance_1} chance, to grant you " + effect.title + ", absorbing damage and dealing {damage} damage to attackers, lasts {stash_duration} sec.";

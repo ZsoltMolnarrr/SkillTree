@@ -27,7 +27,7 @@ public class SkillTreeClientMod {
             var skillId = entry.id();
             if (entry.spellReward() != null) {
                 var container = entry.spellReward().get(0);
-                var id = Identifier.of(container.spell_ids().getFirst());
+                var id = new Identifier(container.spell_ids().get(0));
                 TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveSpellDetails(id));
             }
             else if (entry.attributeReward() != null) {

@@ -14,7 +14,7 @@ public class SkillSounds {
         return entry;
     }
     private static SpellEngineSounds.Entry entry(String name) {
-        return new SpellEngineSounds.Entry(Identifier.of(SkillTreeMod.NAMESPACE, name));
+        return new SpellEngineSounds.Entry(new Identifier(SkillTreeMod.NAMESPACE, name));
     }
 
     public static final SpellEngineSounds.Entry arcane_trap_activate = add(entry("arcane_trap_activate"));

@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.UUID;
 
 public class ConditionalAttributeReward implements Reward {
-    public static final Identifier ID = Identifier.of(SkillTreeMod.NAMESPACE, "conditional_attribute");
+    public static final Identifier ID = new Identifier(SkillTreeMod.NAMESPACE, "conditional_attribute");
 
     public static void register() {
         SkillsAPI.registerReward(ID, ConditionalAttributeReward::parse);
@@ -38,26 +38,33 @@ public class ConditionalAttributeReward implements Reward {
 
         public @NotNull ConditionalAttributeModifier mapped() {
             var parsed = this;
-            var effectiveEntry = Registries.ATTRIBUTE.getEntry(Identifier.of(parsed.attribute()))
-                    .orElseGet(() -> {
-                        if (parsed.fallbackAttribute() == null) {
-                            throw new IllegalArgumentException("Unknown attribute: " + parsed.attribute());
-                        }
-                        return Registries.ATTRIBUTE.getEntry(Identifier.of(parsed.fallbackAttribute()))
-                                .orElseThrow(() -> new IllegalArgumentException("Unknown fallback attribute: " + parsed.fallbackAttribute()));
-                    });
+            // 1.20.1 has no `Registry#getEntry(Identifier)`; look the raw attribute up instead, falling
+            // back when the primary id belongs to an absent mod (e.g. `ranged_weapon:*` without RWA).
+            var effectiveAttribute = Registries.ATTRIBUTE.get(new Identifier(parsed.attribute()));
+            if (effectiveAttribute == null) {
+                if (parsed.fallbackAttribute() == null) {
+                    throw new IllegalArgumentException("Unknown attribute: " + parsed.attribute());
+                }
+                effectiveAttribute = Registries.ATTRIBUTE.get(new Identifier(parsed.fallbackAttribute()));
+                if (effectiveAttribute == null) {
+                    throw new IllegalArgumentException("Unknown fallback attribute: " + parsed.fallbackAttribute());
+                }
+            }
 
             var operation = parseOperation(parsed.operation());
 
             var equipment = parsed.condition().equipment();
             var slot = parseEquipmentSlot(equipment.slot());
-            var tag = TagKey.of(net.minecraft.registry.RegistryKeys.ITEM, Identifier.of(equipment.tag()));
+            var tag = TagKey.of(net.minecraft.registry.RegistryKeys.ITEM, new Identifier(equipment.tag()));
 
-            var modifierId = Identifier.of(SkillTreeMod.NAMESPACE, UUID.randomUUID().toString().replace("-", ""));
-            var modifier = new EntityAttributeModifier(modifierId, parsed.value(), operation);
+            // 1.20.1 attribute modifiers are UUID + name keyed (there is no `Identifier` constructor).
+            // A random UUID per parsed instance keeps the per-node identity the 1.21 `Identifier` gave.
+            var modifierUuid = UUID.randomUUID();
+            var modifierId = new Identifier(SkillTreeMod.NAMESPACE, modifierUuid.toString().replace("-", ""));
+            var modifier = new EntityAttributeModifier(modifierUuid, modifierId.toString(), parsed.value(), operation);
             var condition = new ModifierCondition(new ModifierCondition.Equipment(slot, tag), parsed.condition().translationKey());
 
-            return new ConditionalAttributeModifier(modifierId, effectiveEntry, modifier, condition);
+            return new ConditionalAttributeModifier(modifierId, effectiveAttribute, modifier, condition);
         }
     }
 
@@ -82,9 +89,9 @@ public class ConditionalAttributeReward implements Reward {
 
     private static EntityAttributeModifier.Operation parseOperation(String op) {
         return switch (op) {
-            case "addition" -> EntityAttributeModifier.Operation.ADD_VALUE;
-            case "multiply_base" -> EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE;
-            case "multiply_total" -> EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL;
+            case "addition" -> EntityAttributeModifier.Operation.ADDITION;
+            case "multiply_base" -> EntityAttributeModifier.Operation.MULTIPLY_BASE;
+            case "multiply_total" -> EntityAttributeModifier.Operation.MULTIPLY_TOTAL;
             default -> throw new IllegalArgumentException("Unknown operation: " + op);
         };
     }
@@ -103,7 +110,7 @@ public class ConditionalAttributeReward implements Reward {
         holder.removeConditionalModifier(conditionalModifier.id());
         var instance = player.getAttributeInstance(conditionalModifier.attribute());
         if (instance != null) {
-            instance.removeModifier(conditionalModifier.modifier().id());
+            instance.removeModifier(conditionalModifier.modifier().getId());
         }
         if (context.getCount() > 0) {
             holder.addConditionalModifier(conditionalModifier);
@@ -118,7 +125,7 @@ public class ConditionalAttributeReward implements Reward {
             holder.removeConditionalModifier(conditionalModifier.id());
             var instance = player.getAttributeInstance(conditionalModifier.attribute());
             if (instance != null) {
-                instance.removeModifier(conditionalModifier.modifier().id());
+                instance.removeModifier(conditionalModifier.modifier().getId());
             }
         }
     }

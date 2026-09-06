@@ -19,7 +19,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
-import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -33,6 +33,7 @@ import net.spell_engine.client.gui.SpellTooltip;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.function.Consumer;
 import java.util.concurrent.CompletableFuture;
 
 public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
@@ -49,12 +50,14 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class LangGenerator extends FabricLanguageProvider {
-        protected LangGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
-            super(dataOutput, registryLookup);
+        // Fabric API 0.92: FabricLanguageProvider(FabricDataOutput) — no registry future, and
+        // generateTranslations takes only the builder.
+        protected LangGenerator(FabricDataOutput dataOutput) {
+            super(dataOutput);
         }
 
         @Override
-        public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
+        public void generateTranslations(TranslationBuilder translationBuilder) {
             for (var item: SkillItems.ENTRIES) {
                 translationBuilder.add(item.item(), item.title());
                 for (var lore : item.loreTranslation()) {
@@ -120,12 +123,13 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
     }
 
     public static class RecipeProvider extends FabricRecipeProvider {
-        public RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-            super(output, registriesFuture);
+        // Fabric API 0.92: FabricRecipeProvider(FabricDataOutput), generate(Consumer<RecipeJsonProvider>).
+        public RecipeProvider(FabricDataOutput output) {
+            super(output);
         }
 
         @Override
-        public void generate(RecipeExporter recipeExporter) {
+        public void generate(Consumer<RecipeJsonProvider> recipeExporter) {
             ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, SkillItems.ORB_OF_OBLIVION.item())
                     .pattern(" X ")
                     .pattern("XCX")
@@ -174,7 +178,7 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
                 ArrayList<Reward> rewards = new ArrayList<>();
                 if (skill.attributeReward() != null) {
                     var attribute = skill.attributeReward();
-                    rewards.add(new Reward(AttributeReward.ID.toString(), RewardAttribute.from(attribute.attribute(),  attribute.modifier())));
+                    rewards.add(new Reward(AttributeReward.ID.toString(), RewardAttribute.from(attribute)));
                 }
                 if (skill.conditionalAttributeReward() != null) {
                     rewards.add(new Reward(ConditionalAttributeReward.ID.toString(), skill.conditionalAttributeReward()));

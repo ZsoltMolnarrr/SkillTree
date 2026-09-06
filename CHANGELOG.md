@@ -1,3 +1,14 @@
+# 1.6.1.001
+
+- Minecraft 1.20.1 port (Fabric + Forge 47)
+- Requires Pufferfish's Skills `0.16.7+1.20`
+- RangedWeaponAPI is now optional: the bow/crossbow specialisation nodes fall back to attack damage when it is absent
+- Bow/Crossbow specialisation nodes key off `#skill_tree_rpgs:bow` / `#skill_tree_rpgs:crossbow`
+  (1.20.1 has no `minecraft:*_enchantable` item tags)
+- Dropped effect modifiers with no 1.20.1 attribute: jump strength (Nature's Grasp, Arcane Speed),
+  max absorption (the three Ward effects — the absorption itself is unchanged), entity scale
+  (Enrage, Juggernaut, Elemental Colossus)
+
 # 1.6.1
 
 - Hydra Brood now conjures an additional Fire Hydra head, instead of an entire additional group

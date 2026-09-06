@@ -1,5 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
+import net.skill_tree_rpgs.utils.RegistryIds;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
@@ -45,7 +46,7 @@ public class PriestSkills {
     /// modifiers never apply to summon-cast spells, so the orb spell itself cannot be modified).
     public static final Skills.Entry lightwell_cleanse = add(lightwell_cleanse());
     private static Skills.Entry lightwell_cleanse() {
-        var id = Identifier.of(NAMESPACE, "lightwell_cleanse");
+        var id = new Identifier(NAMESPACE, "lightwell_cleanse");
         var title = "Cleansing Light";
         var description = "Removes a negative effect.";
         var spell = SpellBuilder.createSpellActive();
@@ -73,7 +74,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_2_spell_1_modifier_1 = add(priest_tier_2_spell_1_modifier_1());
     private static Skills.Entry priest_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_2_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "priest_tier_2_spell_1_modifier_1");
         var title = "Graceful Channeling";
         var description = "Channeling Holy Light releases {channel_ticks_add} additional times.";
         var spell = SpellBuilder.createSpellModifier();
@@ -89,7 +90,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_2_spell_1_modifier_2 = add(priest_tier_2_spell_1_modifier_2());
     private static Skills.Entry priest_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_2_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "priest_tier_2_spell_1_modifier_2");
         var title = "Searing Light";
         var description = "Holy Light deals {power_multiplier} more damage, and lights enemies on fire.";
         var spell = SpellBuilder.createSpellModifier();
@@ -118,7 +119,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_3_spell_1_modifier_1 = add(priest_tier_3_spell_1_modifier_1());
     private static Skills.Entry priest_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_3_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "priest_tier_3_spell_1_modifier_1");
         var title = "Mass Dispel";
         var description = "Circle of Healing removes {effect_amplifier} negative effect from allies.";
         var spell = SpellBuilder.createSpellModifier();
@@ -147,7 +148,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_3_spell_1_modifier_2 = add(priest_tier_3_spell_1_modifier_2());
     private static Skills.Entry priest_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_3_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "priest_tier_3_spell_1_modifier_2");
         var title = "Sanctuary";
         var description = "Circle of Healing also applies an absorption shield to affected allies, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -175,7 +176,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_4_spell_1_modifier_1 = add(priest_tier_4_spell_1_modifier_1());
     private static Skills.Entry priest_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_4_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "priest_tier_4_spell_1_modifier_1");
         var title = "Cleansing Light";
         var description = "The Lightwell also cleanses negative effects from the allies it tends.";
         var spell = SpellBuilder.createSpellModifier();
@@ -199,7 +200,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_4_spell_1_modifier_2 = add(priest_tier_4_spell_1_modifier_2());
     private static Skills.Entry priest_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_4_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "priest_tier_4_spell_1_modifier_2");
         var title = "Empowered Well";
         var description = "Increases the Lightwell's healing power by 50%%.";
         var spell = SpellBuilder.createSpellModifier();
@@ -214,7 +215,7 @@ public class PriestSkills {
         healingPower.attribute_id = SpellSchools.HEALING.id.toString();
         healingPower.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
                 SpellSchools.HEALING.id.toString(),
-                EntityAttributeModifier.Operation.ADD_VALUE, 0.0, 0.25));
+                EntityAttributeModifier.Operation.ADDITION, 0.0, 0.25));
         modifier.summon_attribute_scaling = new AttributeScaling();
         modifier.summon_attribute_scaling.entries = List.of(healingPower);
 
@@ -254,7 +255,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_2_spell_2_modifier_1 = add(priest_tier_2_spell_2_modifier_1());
     private static Skills.Entry priest_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_2_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "priest_tier_2_spell_2_modifier_1");
         var title = "Uplift";
         var description = "Levitate also lifts allies within {impact_range} blocks of you.";
         var spell = SpellBuilder.createSpellModifier();
@@ -277,7 +278,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_2_spell_2_modifier_2 = add(priest_tier_2_spell_2_modifier_2());
     private static Skills.Entry priest_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_2_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "priest_tier_2_spell_2_modifier_2");
         var title = "Serenity";
         var effect = SkillEffects.SERENITY;
         var description = "Channeling Levitate grants Serenity, reducing damage taken by " + TooltipTokens.effect(SkillEffects.SERENITY.id, 0, null, TooltipTokens.Format.ABS) + " per stack, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -305,13 +306,13 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_3_spell_2_modifier_1 = add(priest_tier_3_spell_2_modifier_1());
     private static Skills.Entry priest_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_3_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "priest_tier_3_spell_2_modifier_1");
         var title = "Hysteria";
         var effect = SkillEffects.HYSTERIA;
         // HYSTERIA has three equal haste modifiers; name the first (attack speed) explicitly.
         var description = "Penance bolts grant allies Hysteria, increasing attack speed, ranged and spell haste by "
                 + TooltipTokens.effect(SkillEffects.HYSTERIA.id, 0,
-                        Identifier.of(EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString()))
+                        new Identifier(RegistryIds.attribute(EntityAttributes.GENERIC_ATTACK_SPEED)))
                 + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = SpellSchools.HEALING;
@@ -337,7 +338,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_3_spell_2_modifier_2 = add(priest_tier_3_spell_2_modifier_2());
     private static Skills.Entry priest_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_3_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "priest_tier_3_spell_2_modifier_2");
         var title = "Chastise";
         var effect = SkillEffects.CHASTISE;
         var description = "Penance bolts apply Chastise, increasing damage taken by " + TooltipTokens.effect(SkillEffects.CHASTISE.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -363,7 +364,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_4_spell_2_modifier_1 = add(priest_tier_4_spell_2_modifier_1());
     private static Skills.Entry priest_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_4_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "priest_tier_4_spell_2_modifier_1");
         var title = "Sacred Refuge";
         var description = "While your Barrier stands, its interior heals allies for {heal} and cleanses a negative effect every 2 sec, for {cloud_duration} sec.";
 
@@ -415,7 +416,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_4_spell_2_modifier_2 = add(priest_tier_4_spell_2_modifier_2());
     private static Skills.Entry priest_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_4_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "priest_tier_4_spell_2_modifier_2");
         var title = "Barrier Duration";
         var description = "Increases the duration of Barrier by {spawn_duration_add} sec.";
 
@@ -432,7 +433,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_1_passive_1 = add(priest_tier_1_passive_1());
     private static Skills.Entry priest_tier_1_passive_1() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_1_passive_1");
+        var id = new Identifier(NAMESPACE, "priest_tier_1_passive_1");
         var effect = SkillEffects.HEALING_FOCUS;
         var title = "Healing Focus";
         var description = "Healing spells apply Healing Focus effect. Increasing healing received by " + TooltipTokens.effect(SkillEffects.HEALING_FOCUS.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -463,7 +464,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_1_passive_2 = add(priest_tier_1_passive_2());
     private static Skills.Entry priest_tier_1_passive_2() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_1_passive_2");
+        var id = new Identifier(NAMESPACE, "priest_tier_1_passive_2");
         var effect = SkillEffects.INCANTER_CADENCE;
         var title = "Incanters' Cadence";
         var description = "Spell hits have {trigger_chance} chance to increase spell haste by " + TooltipTokens.effect(SkillEffects.INCANTER_CADENCE.id) + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -492,7 +493,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_2_passive_1 = add(priest_tier_2_passive_1()); // Fade
     private static Skills.Entry priest_tier_2_passive_1() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_2_passive_1");
+        var id = new Identifier(NAMESPACE, "priest_tier_2_passive_1");
         var title = "Fade";
         var description = "Upon rolling, nearby mobs stop attacking you, allowing them to target your allies.";
 
@@ -520,7 +521,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_2_passive_2 = add(priest_tier_2_passive_2()); // Divine Favor
     private static Skills.Entry priest_tier_2_passive_2() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_2_passive_2");
+        var id = new Identifier(NAMESPACE, "priest_tier_2_passive_2");
         var effect = SkillEffects.DIVINE_FAVOR;
         var title = effect.title;
         var description = "Upon rolling, you have {trigger_chance_1} chance to guarantee critical strike for your next spell cast.";
@@ -555,7 +556,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_3_passive_1 = add(priest_tier_3_passive_1()); // Pain Suppression
     private static Skills.Entry priest_tier_3_passive_1() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_3_passive_1");
+        var id = new Identifier(NAMESPACE, "priest_tier_3_passive_1");
         var effect = SkillEffects.PAIN_SUPPRESSION;
         var title = effect.title;
         var healthThreshold = 0.3F;
@@ -592,7 +593,7 @@ public class PriestSkills {
 
     public static final Skills.Entry priest_tier_3_passive_2 = add(priest_tier_3_passive_2()); // Celestial Orbs
     private static Skills.Entry priest_tier_3_passive_2() {
-        var id = Identifier.of(NAMESPACE, "priest_tier_3_passive_2");
+        var id = new Identifier(NAMESPACE, "priest_tier_3_passive_2");
         var effect = SkillEffects.CELESTIAL_ORB;
         var title = "Celestial Orbs";
         var description = "Spell critical strikes and heals grant you {stash_amplifier} Celestial Orbs. Orbs damage enemies attacking you, dealing {damage} spell damage.";

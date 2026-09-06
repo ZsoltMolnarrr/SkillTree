@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.spell_engine.client.gui.SpellTooltip;
-import net.spell_engine.mixin.client.ItemStackTooltipAccessor;
+import net.spell_engine.client.gui.AttributeModifierTooltip;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,15 +37,15 @@ public class TranslationUtil {
         return SpellTooltip.spellDescriptionWithDetails(spellId, player, ItemStack.EMPTY, 0);
     }
 
+    /// 1.20.1 has no `ItemStack#appendAttributeModifierTooltip` (and so no `ItemStackTooltipAccessor`
+    /// in SpellEngine); the same vanilla-styled lines come from SpellEngine's `AttributeModifierTooltip`.
     public static List<Text> resolveConditionalAttributeTooltip(ConditionalAttributeReward.DataStructure data) {
         var player = MinecraftClient.getInstance().player;
         if (player == null) return List.of();
         var conditional = data.mapped();
-        var tooltipUtil = (ItemStackTooltipAccessor) (Object) ItemStack.EMPTY;
         var lines = new ArrayList<Text>();
         lines.add(Text.translatable(conditional.condition().translationKey()));
-        tooltipUtil.spellEngine_appendAttributeModifierTooltip(
-                lines::add, player, conditional.attribute(), conditional.modifier());
+        AttributeModifierTooltip.append(lines::add, player, conditional.attribute(), conditional.modifier());
         return lines;
     }
 
@@ -54,16 +54,14 @@ public class TranslationUtil {
         if (player == null) {
             return List.of();
         }
-        var tooltipUtil = (ItemStackTooltipAccessor) (Object) ItemStack.EMPTY;
+        // The attribute is resolved by id at render time: `ranged_weapon:*` only exists with
+        // RangedWeaponAPI installed, and the reward silently falls back (or renders nothing).
+        var attribute = attributeReward.resolve();
+        if (attribute == null) {
+            return List.of();
+        }
         var bonusLines = new ArrayList<Text>();
-        var modifier = attributeReward.modifier();
-        tooltipUtil
-                .spellEngine_appendAttributeModifierTooltip(
-                        bonusLines::add,
-                        player,
-                        attributeReward.attribute(),
-                        modifier
-                );
+        AttributeModifierTooltip.append(bonusLines::add, player, attribute, attributeReward.modifier());
         return bonusLines;
     }
 }

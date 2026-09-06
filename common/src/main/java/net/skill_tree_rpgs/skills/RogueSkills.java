@@ -1,5 +1,6 @@
 package net.skill_tree_rpgs.skills;
 
+import net.skill_tree_rpgs.utils.RegistryIds;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
@@ -43,7 +44,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_2_spell_1_modifier_1 = add(rogue_tier_2_spell_1_modifier_1());
     private static Skills.Entry rogue_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "rogue_tier_2_spell_1_modifier_1");
         var title = "Explosive Powder";
         var description = "Shock Powder has {trigger_chance} chance to create secondary explosions dealing {damage} damage, and its stun lasts 1 sec longer.";
         var spell = SkillsCommon.createModifierAlikePassiveSpell();
@@ -67,7 +68,7 @@ public class RogueSkills {
     /// spells are — so the stun extension needs its own spell in a second container).
     public static final Skills.Entry rogue_tier_2_spell_1_modifier_1_bonus = add(rogue_tier_2_spell_1_modifier_1_bonus());
     private static Skills.Entry rogue_tier_2_spell_1_modifier_1_bonus() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_1_modifier_1_bonus");
+        var id = new Identifier(NAMESPACE, "rogue_tier_2_spell_1_modifier_1_bonus");
         var title = "Explosive Powder";
         var description = "Shock Powder's stun lasts {effect_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
@@ -83,7 +84,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_2_spell_1_modifier_2 = add(rogue_tier_2_spell_1_modifier_2());
     private static Skills.Entry rogue_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "rogue_tier_2_spell_1_modifier_2");
         var title = "Smoke Screen";
         var effect = SkillEffects.SMOKE_SCREEN;
         var description = "Shock Powder leaves a smoke screen behind for {cloud_duration} sec, increasing evasion chance of allies inside by " + TooltipTokens.effect(SkillEffects.SMOKE_SCREEN.id) + ".";
@@ -121,7 +122,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_2_spell_2_modifier_1 = add(rogue_tier_2_spell_2_modifier_1());
     private static Skills.Entry rogue_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "rogue_tier_2_spell_2_modifier_1");
         var title = "Blade Fury";
         var description = "Increases the maximum number of Slice and Dice stacks by {effect_amplifier_cap_add}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -137,7 +138,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_2_spell_2_modifier_2 = add(rogue_tier_2_spell_2_modifier_2());
     private static Skills.Entry rogue_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_2_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "rogue_tier_2_spell_2_modifier_2");
         var title = "Fleet Footed";
         var effect = SkillEffects.FLEET_FOOTED;
         var description = "Slice and Dice attacks increases movement speed by " + TooltipTokens.effect(SkillEffects.FLEET_FOOTED.id) + ", stacking up to {effect_amplifier_cap}, lasting {effect_duration} sec.";
@@ -158,7 +159,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_3_spell_1_modifier_1 = add(rogue_tier_3_spell_1_modifier_1());
     private static Skills.Entry rogue_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_3_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "rogue_tier_3_spell_1_modifier_1");
         var title = "Cloak of Shadows";
         var description = "Shadowstep grants you Cloak of Shadows effect, protecting your from {effect_amplifier} incoming attack for {effect_duration} sec.";
 
@@ -188,7 +189,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_3_spell_1_modifier_2 = add(rogue_tier_3_spell_1_modifier_2());
     private static Skills.Entry rogue_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_3_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "rogue_tier_3_spell_1_modifier_2");
         var title = "Ambush";
         var description = "Next attack after Shadowstep, within {effect_duration} sec, deals " + TooltipTokens.effect(SkillEffects.AMBUSH.id) + " extra damage.";
 
@@ -213,7 +214,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_4_spell_1_modifier_1 = add(rogue_tier_4_spell_1_modifier_1());
     private static Skills.Entry rogue_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_4_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "rogue_tier_4_spell_1_modifier_1");
         var title = "Stealth Speed";
         var description = "Stealth no longer slows you down.";
 
@@ -235,7 +236,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_4_spell_1_modifier_2 = add(rogue_tier_4_spell_1_modifier_2());
     private static Skills.Entry rogue_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_4_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "rogue_tier_4_spell_1_modifier_2");
         var title = "Deep Stealth";
         var description = "Increases the duration of Stealth by {effect_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -280,7 +281,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_3_spell_2_modifier_1 = add(rogue_tier_3_spell_2_modifier_1());
     private static Skills.Entry rogue_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_3_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "rogue_tier_3_spell_2_modifier_1");
         var title = "Serrated Traps";
         var description = "Sprung traps cause their victim to Bleed for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -306,7 +307,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_3_spell_2_modifier_2 = add(rogue_tier_3_spell_2_modifier_2());
     private static Skills.Entry rogue_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_3_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "rogue_tier_3_spell_2_modifier_2");
         var title = "Extensive Coverage";
         var description = "Bear Trap places 3 additional traps at twice the distance, rotated between the inner ones.";
         var spell = SpellBuilder.createSpellModifier();
@@ -331,7 +332,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_4_spell_2_modifier_1 = add(rogue_tier_4_spell_2_modifier_1());
     private static Skills.Entry rogue_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_4_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "rogue_tier_4_spell_2_modifier_1");
         var title = "Crimson Strikes";
         var description = "Mutilate heals you for {heal} per enemy struck.";
         var spell = SpellBuilder.createSpellModifier();
@@ -355,7 +356,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_4_spell_2_modifier_2 = add(rogue_tier_4_spell_2_modifier_2());
     private static Skills.Entry rogue_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_4_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "rogue_tier_4_spell_2_modifier_2");
         var title = "Envenom";
         var description = "Mutilate applies a stack of Poison lasting {effect_duration} sec, stacking up based on your attack damage.";
         var spell = SpellBuilder.createSpellModifier();
@@ -366,7 +367,7 @@ public class RogueSkills {
 
         // Same additive poison convention as the Coated Blades passive (power-scaled stack
         // cap), so the two build the same poison together.
-        var poison = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 8, 1, 1);
+        var poison = SpellBuilder.Impacts.effectAdd(RegistryIds.effect(StatusEffects.POISON), 8, 1, 1);
         poison.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
         poison.visuals = SkillsCommon.poisonImpactParticles();
         poison.sound = new Sound(SpellEngineSounds.GENERIC_POISON_IMPACT.id());
@@ -380,7 +381,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_1_passive_1 = add(rogue_tier_1_passive_1());
     private static Skills.Entry rogue_tier_1_passive_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_1_passive_1");
+        var id = new Identifier(NAMESPACE, "rogue_tier_1_passive_1");
         var title = "Coated Blades";
         var description = "Melee attacks have {trigger_chance_1} chance, to apply poison effect lasting {effect_duration} sec, stacking up based on your attack damage.";
         var spell = SpellBuilder.createSpellPassive();
@@ -395,7 +396,7 @@ public class RogueSkills {
         }
         spell.passive.triggers = triggers;
 
-        var impact = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 8, 1, 1);
+        var impact = SpellBuilder.Impacts.effectAdd(RegistryIds.effect(StatusEffects.POISON), 8, 1, 1);
         impact.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
         impact.visuals = SkillsCommon.poisonImpactParticles();
         impact.sound = new Sound(SpellEngineSounds.GENERIC_POISON_IMPACT.id());
@@ -406,7 +407,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_1_passive_2 = add(rogue_tier_1_passive_2());
     private static Skills.Entry rogue_tier_1_passive_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_1_passive_2");
+        var id = new Identifier(NAMESPACE, "rogue_tier_1_passive_2");
         var effect = SkillEffects.FRACTURE;
         var title = effect.title;
         var description = "Melee attacks have {trigger_chance_1} chance to wound the enemy, dealing {damage} damage and reducing its armor by " + TooltipTokens.effect(SkillEffects.FRACTURE.id, 0, null, TooltipTokens.Format.ABS) + ", for {effect_duration} sec.";
@@ -444,7 +445,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_2_passive_2 = add(rogue_tier_2_passive_2()); // Opportunist (upon roll, next melee attack crits)
     private static Skills.Entry rogue_tier_2_passive_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_2_passive_2");
+        var id = new Identifier(NAMESPACE, "rogue_tier_2_passive_2");
         var effect = SkillEffects.OPPORTUNIST;
         var title = effect.title;
         var description = "Upon rolling, you have {trigger_chance_1} chance for your next melee attack within 5 sec to be a guaranteed critical strike.";
@@ -479,7 +480,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_2_passive_1 = add(rogue_tier_2_passive_1());
     private static Skills.Entry rogue_tier_2_passive_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_2_passive_1");
+        var id = new Identifier(NAMESPACE, "rogue_tier_2_passive_1");
         var effect = SkillEffects.SIDE_STEP;
         var title = effect.title;
         var description = "Upon rolling, you gain a stack of Sidestep, increasing your Evasion Chance by " + TooltipTokens.effect(SkillEffects.SIDE_STEP.id) + ", stacking up to {stash_amplifier} times. Removed when taking damage.";
@@ -513,7 +514,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_3_passive_1 = add(rogue_tier_3_passive_1()); // Cheat Death
     private static Skills.Entry rogue_tier_3_passive_1() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_3_passive_1");
+        var id = new Identifier(NAMESPACE, "rogue_tier_3_passive_1");
         var effect = SkillEffects.CHEAT_DEATH;
         var title = effect.title;
         var description = "Protects you from an attack that would be fatal, and you become invulnerable for {effect_duration} sec.";
@@ -544,7 +545,7 @@ public class RogueSkills {
 
     public static final Skills.Entry rogue_tier_3_passive_2 = add(rogue_tier_3_passive_2()); // Preparation (reset all cooldowns on evade)
     private static Skills.Entry rogue_tier_3_passive_2() {
-        var id = Identifier.of(NAMESPACE, "rogue_tier_3_passive_2");
+        var id = new Identifier(NAMESPACE, "rogue_tier_3_passive_2");
         var title = "Preparation";
         var description = "Upon evading an attack, you have {trigger_chance} chance for all your cooldowns to reset.";
 

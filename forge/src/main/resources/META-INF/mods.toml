@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[4,)"
+loaderVersion = "[47,)"
 license = "All Rights Reserved"
 
 [[mods]]
@@ -13,39 +13,45 @@ Specialise your RPG class, by unlocking powerful skills.
 logoFile = "assets/skill_tree_rpgs/icon.png"
 
 [[dependencies.skill_tree_rpgs]]
-modId = "neoforge"
-type = "required"
-versionRange = "[${neoforge_version},)"
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.skill_tree_rpgs]]
 modId = "minecraft"
-type = "required"
-versionRange = "[${minecraft_compat_version},)"
+mandatory = true
+versionRange = "[1.20.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.skill_tree_rpgs]]
 modId = "spell_engine"
-type = "required"
-versionRange = "[${spell_engine_version},)"
+mandatory = true
+versionRange = "[1.10.5,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.skill_tree_rpgs]]
 modId = "spell_power"
-type = "required"
-versionRange = "[${spell_power_version},)"
+mandatory = true
+versionRange = "[1.6.0,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.skill_tree_rpgs]]
 modId = "puffish_skills"
-type = "required"
-versionRange = "[${pufferfish_skills_version},)"
+mandatory = true
+versionRange = "[0.16.7,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[mixins]]
-config = "skill_tree_rpgs.mixins.json"
+# RangedWeaponAPI has no 1.20.1 build yet; the two `ranged_weapon:*` attribute nodes fall back to
+# `minecraft:generic.attack_damage` when it is absent.
+[[dependencies.skill_tree_rpgs]]
+modId = "ranged_weapon_api"
+mandatory = false
+versionRange = "[2.0,)"
+ordering = "NONE"
+side = "BOTH"

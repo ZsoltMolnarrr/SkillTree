@@ -15,7 +15,7 @@
     " X "
   ],
   "result": {
-    "count": 1,
-    "id": "skill_tree_rpgs:orb_of_oblivion"
-  }
+    "item": "skill_tree_rpgs:orb_of_oblivion"
+  },
+  "show_notification": true
 }

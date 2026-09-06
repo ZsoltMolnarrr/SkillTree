@@ -21,11 +21,11 @@ public interface ConditionalAttributeHolder {
             var instance = entity.getAttributeInstance(conditional.attribute());
             if (instance == null) continue;
             boolean shouldApply = conditional.condition().equipment().test(entity);
-            boolean isApplied = instance.getModifier(conditional.modifier().id()) != null;
+            boolean isApplied = instance.getModifier(conditional.modifier().getId()) != null;
             if (shouldApply && !isApplied) {
                 instance.addTemporaryModifier(conditional.modifier());
             } else if (!shouldApply && isApplied) {
-                instance.removeModifier(conditional.modifier().id());
+                instance.removeModifier(conditional.modifier().getId());
             }
         }
     }

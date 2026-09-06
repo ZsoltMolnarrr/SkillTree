@@ -11,4 +11,4 @@ rootProject.name = 'skill_tree_rpgs'
 
 include 'common'
 include 'fabric'
-include 'neoforge'
+include 'forge'

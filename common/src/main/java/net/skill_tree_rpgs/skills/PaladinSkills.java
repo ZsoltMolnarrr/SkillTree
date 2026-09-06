@@ -44,7 +44,7 @@ public class PaladinSkills {
     private static Skills.Entry paladin_tier_2_spell_1_modifier_1() {
         var effect = SkillEffects.DIVINE_STRENGTH;
 
-        var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "paladin_tier_2_spell_1_modifier_1");
         var title = "Divine Strength";
         var description = "Flash Heal increases Attack Damage by " + TooltipTokens.effect(SkillEffects.DIVINE_STRENGTH.id) + " for {effect_duration} sec.";
 
@@ -72,7 +72,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_2_spell_1_modifier_2 = add(paladin_tier_2_spell_1_modifier_2());
     private static Skills.Entry paladin_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "paladin_tier_2_spell_1_modifier_2");
         var title = "Cleanse";
         var cleanseCount = 1;
         var description = "Flash Heal attempts to cure the target, by reducing the strength of a harmful effect.";
@@ -98,7 +98,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_3_spell_1_modifier_1 = add(paladin_tier_3_spell_1_modifier_1());
     private static Skills.Entry paladin_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_3_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "paladin_tier_3_spell_1_modifier_1");
         var title = "Pursuit of Justice";
         var description = "Divine Protection also increases your movement speed by " + TooltipTokens.effect(SkillEffects.PURSUIT_OF_JUSTICE.id) + ", for {effect_duration} sec.";
         var effect = SkillEffects.PURSUIT_OF_JUSTICE;
@@ -120,7 +120,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_3_spell_1_modifier_2 = add(paladin_tier_3_spell_1_modifier_2());
     private static Skills.Entry paladin_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_3_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "paladin_tier_3_spell_1_modifier_2");
         var title = "Blessed Protection";
         var description = "Divine Protection provides {effect_amplifier_add} extra effect stack.";
         var spell = SpellBuilder.createSpellModifier();
@@ -137,7 +137,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_3_spell_2_modifier_1 = add(paladin_tier_3_spell_2_modifier_1());
     private static Skills.Entry paladin_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_3_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "paladin_tier_3_spell_2_modifier_1");
         var title = "Empowered Judgement";
         var description = "Increases the damage of Judgement by {power_multiplier}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -154,7 +154,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_3_spell_2_modifier_2 = add(paladin_tier_3_spell_2_modifier_2());
     private static Skills.Entry paladin_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_3_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "paladin_tier_3_spell_2_modifier_2");
         var title = "Judgement of Command";
         var description = "Judgement taunts enemies hit, forcing them to attack you.";
         var spell = SpellBuilder.createSpellModifier();
@@ -176,7 +176,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_4_spell_1_modifier_1 = add(paladin_tier_4_spell_1_modifier_1());
     private static Skills.Entry paladin_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_4_spell_1_modifier_1");
+        var id = new Identifier(NAMESPACE, "paladin_tier_4_spell_1_modifier_1");
         var title = "Persistent Banner";
         var description = "Increases the duration of Battle Banner by {spawn_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -192,7 +192,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_4_spell_1_modifier_2 = add(paladin_tier_4_spell_1_modifier_2());
     private static Skills.Entry paladin_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_4_spell_1_modifier_2");
+        var id = new Identifier(NAMESPACE, "paladin_tier_4_spell_1_modifier_2");
         var title = "Protective Banner";
         var description = "Battle Banner also reduces damage taken by " + TooltipTokens.effect(SkillEffects.BANNER_PROTECTION.id, 0, null, TooltipTokens.Format.ABS) + ".";
         var effect = SkillEffects.BANNER_PROTECTION;
@@ -236,7 +236,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_2_spell_2_modifier_1 = add(paladin_tier_2_spell_2_modifier_1()); // Seal of Wrath
     private static Skills.Entry paladin_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "paladin_tier_2_spell_2_modifier_1");
         var title = "Seal of Wrath";
         var description = "Increases the damage of Blessed Strikes by {power_multiplier}.";
 
@@ -256,7 +256,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_2_spell_2_modifier_2 = add(paladin_tier_2_spell_2_modifier_2()); // Seal of Light
     private static Skills.Entry paladin_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_2_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "paladin_tier_2_spell_2_modifier_2");
         var title = "Seal of Light";
         var description = "Empowered strikes of Blessed Strikes also heal you for {heal}.";
 
@@ -287,7 +287,7 @@ public class PaladinSkills {
     }
     public static final Skills.Entry paladin_tier_4_spell_2_modifier_1 = add(paladin_tier_4_spell_2_modifier_1());
     private static Skills.Entry paladin_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_4_spell_2_modifier_1");
+        var id = new Identifier(NAMESPACE, "paladin_tier_4_spell_2_modifier_1");
         var title = "Condemn";
         var description = "Immolation drags struck enemies towards you.";
         var spell = SpellBuilder.createSpellModifier();
@@ -319,7 +319,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_4_spell_2_modifier_2 = add(paladin_tier_4_spell_2_modifier_2());
     private static Skills.Entry paladin_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_4_spell_2_modifier_2");
+        var id = new Identifier(NAMESPACE, "paladin_tier_4_spell_2_modifier_2");
         var title = "Consecration";
         var description = "Immolation consecrates the ground beneath you, dealing {damage} damage to enemies, for {cloud_duration} sec.";
 
@@ -369,7 +369,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_1_passive_1 = add(paladin_tier_1_passive_1()); // Redoubt
     private static Skills.Entry paladin_tier_1_passive_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_1_passive_1");
+        var id = new Identifier(NAMESPACE, "paladin_tier_1_passive_1");
         var title = "Redoubt";
         var description = "Blocking with shield grants " + TooltipTokens.effect(SkillEffects.REDOUBT.id) + " armor, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
 
@@ -401,7 +401,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_1_passive_2 = add(paladin_tier_1_passive_2()); // Vengeance
     private static Skills.Entry paladin_tier_1_passive_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_1_passive_2");
+        var id = new Identifier(NAMESPACE, "paladin_tier_1_passive_2");
         var effect = SkillEffects.VENGEANCE;
         var title = "Vengeance";
         var description = "Critical strikes grant " + effect.title
@@ -440,7 +440,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_2_passive_1 = add(paladin_tier_2_passive_1()); // Conviction
     private static Skills.Entry paladin_tier_2_passive_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_2_passive_1");
+        var id = new Identifier(NAMESPACE, "paladin_tier_2_passive_1");
         var title = "Conviction";
         var description = "Upon rolling, you have {trigger_chance} chance to reset the cooldown of Blessed Strikes and Flash Heal.";
 
@@ -474,7 +474,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_2_passive_2 = add(paladin_tier_2_passive_2()); // Blessing of Freedom
     private static Skills.Entry paladin_tier_2_passive_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_2_passive_2");
+        var id = new Identifier(NAMESPACE, "paladin_tier_2_passive_2");
         var title = "Blessing of Freedom";
         var description = "Rolling breaks you free, removing all movement impairing effects.";
 
@@ -506,7 +506,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_3_passive_1 = add(paladin_tier_3_passive_1()); // Ardent Defender (hp boost on low HP)
     private static Skills.Entry paladin_tier_3_passive_1() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_3_passive_1");
+        var id = new Identifier(NAMESPACE, "paladin_tier_3_passive_1");
         var effect = SkillEffects.ARDENT_DEFENDER;
         var title = "Ardent Defender";
         var healthThreshold = 0.3F;
@@ -558,7 +558,7 @@ public class PaladinSkills {
 
     public static final Skills.Entry paladin_tier_3_passive_2 = add(paladin_tier_3_passive_2()); // Divine Hammer
     private static Skills.Entry paladin_tier_3_passive_2() {
-        var id = Identifier.of(NAMESPACE, "paladin_tier_3_passive_2");
+        var id = new Identifier(NAMESPACE, "paladin_tier_3_passive_2");
         var title = "Divine Hammer";
         var description = "Melee attacks throw a hammer at the target, dealing {damage} damage, ricocheting {ricochet} to nearby enemies.";
 

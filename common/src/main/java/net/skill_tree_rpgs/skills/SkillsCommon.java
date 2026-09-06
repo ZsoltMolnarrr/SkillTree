@@ -76,7 +76,7 @@ public class SkillsCommon {
     public static Skills.Entry spellRoot(Skills.Category category, SpellSchool school,
                                          String path, String spellPattern, String spellName,
                                          String description, Consumer<Spell.Modifier> configure) {
-        var id = Identifier.of(Skills.NAMESPACE, path);
+        var id = new Identifier(Skills.NAMESPACE, path);
         var spell = SpellBuilder.createSpellModifier();
         spell.school = school;
         var modifier = new Spell.Modifier();

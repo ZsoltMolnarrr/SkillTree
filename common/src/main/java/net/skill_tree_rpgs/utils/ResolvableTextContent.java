@@ -1,8 +1,5 @@
 package net.skill_tree_rpgs.utils;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.text.StringVisitable;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -12,13 +9,20 @@ import net.skill_tree_rpgs.SkillTreeMod;
 
 import java.util.Optional;
 
+/// A skill description that is resolved on the client, at render time, from the node's live spell /
+/// attribute data (see {@link TranslationUtil}). Datagen writes it into the Skills definition JSON as
+/// `{"skill_definition_id": "<node id>"}`.
+///
+/// **1.20.1 delta:** there is no `TextCodecs` and no `TextContent.Type`/`MapCodec` registry — text is
+/// (de)serialised by the GSON-based `Text.Serializer`. So the type carries no codec of its own; the
+/// JSON key is read and written by `net.skill_tree_rpgs.mixin.TextSerializerMixin` instead.
 public record ResolvableTextContent(String id) implements TextContent {
 
-	public static final MapCodec<ResolvableTextContent> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-			Codec.STRING.fieldOf("skill_definition_id").forGetter(ResolvableTextContent::id)
-	).apply(instance, ResolvableTextContent::new));
+	/// The single JSON key that identifies this content in a serialised `Text`.
+	public static final String KEY = "skill_definition_id";
 
-	public static final TextContent.Type<ResolvableTextContent> TYPE = new TextContent.Type<>(CODEC, SkillTreeMod.NAMESPACE + ":resolvable");
+	/// Kept for parity with the 1.21 `TextContent.Type` id; not used by the 1.20.1 serializer.
+	public static final String TYPE_ID = SkillTreeMod.NAMESPACE + ":resolvable";
 
 	private Text getText() {
 		return Texts.join(TranslationUtil.resolve(id), Text.literal("\n"));
@@ -35,8 +39,7 @@ public record ResolvableTextContent(String id) implements TextContent {
 	}
 
 	@Override
-	public TextContent.Type<?> getType() {
-		return TYPE;
+	public String toString() {
+		return "resolvable{" + id + "}";
 	}
-
 }

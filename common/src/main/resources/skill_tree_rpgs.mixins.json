@@ -2,14 +2,13 @@
   "required": true,
   "minVersion": "0.8",
   "package": "net.skill_tree_rpgs.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "LivingEntityConditionalAttributes",
     "ServerPlayerEntityMixin",
-    "TextCodecsMixin"
+    "TextSerializerMixin"
   ],
-  "client": [
-  ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   }

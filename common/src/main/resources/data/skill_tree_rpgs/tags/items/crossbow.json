@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:crossbow",
+    { "id": "archers:rapid_crossbow", "required": false },
+    { "id": "archers:heavy_crossbow", "required": false },
+    { "id": "archers:composite_rapid_crossbow", "required": false },
+    { "id": "archers:composite_heavy_crossbow", "required": false },
+    { "id": "#c:crossbows", "required": false }
+  ]
+}

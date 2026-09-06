@@ -23,11 +23,10 @@ public class PhaseShiftStatusEffect extends CustomStatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         // Server-authoritative; effect application and damage checks resolve server-side.
         if (!entity.getWorld().isClient()) {
             LivingEntityImmunity.apply(entity, null, null, null, true, IMMUNITY_TICKS);
         }
-        return true; // keep the normal lifecycle
     }
 }

@@ -4,12 +4,14 @@ import net.skill_tree_rpgs.SkillTreeMod;
 import net.skill_tree_rpgs.attributes.ModifierCondition;
 import net.skill_tree_rpgs.attributes.ModifierConditions;
 import net.skill_tree_rpgs.node.ConditionalAttributeReward;
-import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
+import net.skill_tree_rpgs.utils.RegistryIds;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 import net.puffish.skillsmod.common.IconType;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.container.SpellContainer;
@@ -25,8 +27,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class NodeTypes {
-    public static final Identifier CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "class_skills");
-    public static final Identifier WEAPON_CATEGORY_ID = Identifier.of(SkillTreeMod.NAMESPACE, "weapon_skills");
+    public static final Identifier CATEGORY_ID = new Identifier(SkillTreeMod.NAMESPACE, "class_skills");
+    public static final Identifier WEAPON_CATEGORY_ID = new Identifier(SkillTreeMod.NAMESPACE, "weapon_skills");
     public record Icon(IconType type, String value, String modelId) {
         public static Icon texture(String texture) {
             return new Icon(IconType.TEXTURE, texture, null);
@@ -44,11 +46,41 @@ public class NodeTypes {
             return texture(spellId.getNamespace() + ":textures/spell/" + spellId.getPath() + ".png");
         }
     }
-    public record EntityAttributeReward(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier) {
+    /// The reward is keyed by attribute **id**, not by a resolved attribute: `ranged_weapon:*` only
+    /// exists when RangedWeaponAPI is installed (Fabric-only on this line), and SkillTree no longer
+    /// compiles against it. `resolve()` therefore looks the attribute up at use time, falling back to
+    /// `fallbackAttributeId` and finally returning null rather than throwing.
+    public record EntityAttributeReward(String attributeId, @Nullable String fallbackAttributeId,
+                                        EntityAttributeModifier modifier) {
+        private static final Identifier MODIFIER_ID = new Identifier(SkillTreeMod.NAMESPACE, "attribute_reward");
+
         public static EntityAttributeReward of(RegistryEntry<EntityAttribute> attribute, double value, EntityAttributeModifier.Operation operation) {
-            return new EntityAttributeReward(attribute, new EntityAttributeModifier(Identifier.of(SkillTreeMod.NAMESPACE + ":attribute_reward"), value, operation));
+            return of(RegistryIds.attribute(attribute), null, value, operation);
+        }
+        public static EntityAttributeReward of(EntityAttribute attribute, double value, EntityAttributeModifier.Operation operation) {
+            return of(RegistryIds.attribute(attribute), null, value, operation);
+        }
+        public static EntityAttributeReward of(String attributeId, @Nullable String fallbackAttributeId,
+                                               double value, EntityAttributeModifier.Operation operation) {
+            // 1.20.1 modifiers are UUID+name keyed; the UUID is derived from the id, like SpellPower's
+            // `ModifierDefinitions.uuid`, so the same node always produces the same modifier identity.
+            var modifier = new EntityAttributeModifier(
+                    java.util.UUID.nameUUIDFromBytes(MODIFIER_ID.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8)),
+                    MODIFIER_ID.toString(), value, operation);
+            return new EntityAttributeReward(attributeId, fallbackAttributeId, modifier);
+        }
+
+        /// The attribute this reward actually applies to, or null when neither id is registered.
+        public @Nullable EntityAttribute resolve() {
+            var attribute = Registries.ATTRIBUTE.get(new Identifier(attributeId));
+            if (attribute == null && fallbackAttributeId != null) {
+                attribute = Registries.ATTRIBUTE.get(new Identifier(fallbackAttributeId));
+            }
+            return attribute;
         }
     }
+
+
     public record Entry(String id, String title, String description, Icon icon,
                         List<SpellContainer> spellReward,
                         EntityAttributeReward attributeReward,
@@ -61,26 +93,33 @@ public class NodeTypes {
                                       RegistryEntry<EntityAttribute> attribute, double value, EntityAttributeModifier.Operation operation) {
             return attribute(id, title, description, icon, EntityAttributeReward.of(attribute, value, operation));
         }
+        public static Entry attribute(String id, String title, String description, Icon icon,
+                                      EntityAttribute attribute, double value, EntityAttributeModifier.Operation operation) {
+            return attribute(id, title, description, icon, EntityAttributeReward.of(attribute, value, operation));
+        }
+        /// Attribute reward keyed by id, for attributes that may be absent (`ranged_weapon:*`).
+        public static Entry attribute(String id, String title, String description, Icon icon,
+                                      String attributeId, @Nullable String fallbackAttributeId,
+                                      double value, EntityAttributeModifier.Operation operation) {
+            return attribute(id, title, description, icon,
+                    EntityAttributeReward.of(attributeId, fallbackAttributeId, value, operation));
+        }
         public static Entry attribute(String id, String title, String description, Icon icon, EntityAttributeReward attributeReward) {
             return new Entry(id, title, description, icon, null, attributeReward, null, null);
+        }
+        public static Entry conditionalAttribute(String id, String title, String description, Icon icon,
+                                                 EntityAttribute attribute, double value,
+                                                 EntityAttributeModifier.Operation operation,
+                                                 ModifierCondition condition) {
+            return conditionalAttribute(id, title, description, icon,
+                    RegistryIds.attribute(attribute), null, value, operation, condition);
         }
         public static Entry conditionalAttribute(String id, String title, String description, Icon icon,
                                                  RegistryEntry<EntityAttribute> attribute, double value,
                                                  EntityAttributeModifier.Operation operation,
                                                  ModifierCondition condition) {
             return conditionalAttribute(id, title, description, icon,
-                    attribute.getKey().orElseThrow().getValue().toString(), null, value, operation, condition);
-        }
-        public static Entry conditionalAttribute(String id, String title, String description, Icon icon,
-                                                 RegistryEntry<EntityAttribute> attribute,
-                                                 RegistryEntry<EntityAttribute> fallbackAttribute,
-                                                 double value,
-                                                 EntityAttributeModifier.Operation operation,
-                                                 ModifierCondition condition) {
-            return conditionalAttribute(id, title, description, icon,
-                    attribute.getKey().orElseThrow().getValue().toString(),
-                    fallbackAttribute.getKey().orElseThrow().getValue().toString(),
-                    value, operation, condition);
+                    RegistryIds.attribute(attribute), null, value, operation, condition);
         }
         public static Entry conditionalAttribute(String id, String title, String description, Icon icon,
                                                  String attribute, String fallbackAttribute,
@@ -94,9 +133,9 @@ public class NodeTypes {
                 double value, EntityAttributeModifier.Operation operation,
                 ModifierCondition condition) {
             var operationStr = switch (operation) {
-                case ADD_VALUE -> "addition";
-                case ADD_MULTIPLIED_BASE -> "multiply_base";
-                case ADD_MULTIPLIED_TOTAL -> "multiply_total";
+                case ADDITION -> "addition";
+                case MULTIPLY_BASE -> "multiply_base";
+                case MULTIPLY_TOTAL -> "multiply_total";
             };
             return new ConditionalAttributeReward.DataStructure(
                     attribute, fallbackAttribute, value, operationStr,
@@ -133,6 +172,13 @@ public class NodeTypes {
 
     public static final float BOOST_MULTIPLIER = 0.01f;
 
+    public static final String CRIT_CHANCE_ID = "critical_strike:chance";
+    public static final String CRIT_DAMAGE_ID = "critical_strike:damage";
+    public static final String ATTACK_DAMAGE_ID = RegistryIds.attribute(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+    /// RangedWeaponAPI attributes, referenced by id only (no compile dependency — see gradle.properties).
+    public static final String RANGED_WEAPON_DAMAGE_ID = "ranged_weapon:damage";
+    public static final String RANGED_WEAPON_HASTE_ID = "ranged_weapon:haste";
+
     // ===== CLASS ATTUNEMENT ROOTS / BOOSTS (attribute rewards) =====
 
     public static final Entry ARCANE_ROOT = add(
@@ -142,7 +188,7 @@ public class NodeTypes {
                     Icon.itemWithModel("spell_engine:spell_book", "wizards:item/spell_book/arcane"),
                     SpellSchools.ARCANE.attributeEntry,
                     0.01,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE
             ).require(WIZARDS)
     );
     public static final Entry ARCANE_BOOST = add(
@@ -160,7 +206,7 @@ public class NodeTypes {
                     Icon.itemWithModel("spell_engine:spell_book", "wizards:item/spell_book/fire"),
                     SpellSchools.FIRE.attributeEntry,
                     0.01,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE
             ).require(WIZARDS)
     );
     public static final Entry FIRE_BOOST = add(
@@ -178,7 +224,7 @@ public class NodeTypes {
                     Icon.itemWithModel("spell_engine:spell_book", "wizards:item/spell_book/frost"),
                     SpellSchools.FROST.attributeEntry,
                     0.01,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE
             ).require(WIZARDS)
     );
     public static final Entry FROST_BOOST = add(
@@ -196,7 +242,7 @@ public class NodeTypes {
                     Icon.itemWithModel("spell_engine:spell_book", "paladins:item/spell_book/priest"),
                     SpellSchools.HEALING.attributeEntry,
                     0.01,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE
             ).require(PALADINS)
     );
     public static final Entry PRIEST_BOOST = add(
@@ -214,7 +260,7 @@ public class NodeTypes {
                     Icon.itemWithModel("spell_engine:spell_book", "paladins:item/spell_book/paladin"),
                     SpellSchools.HEALING.attributeEntry,
                     0.2,
-                    EntityAttributeModifier.Operation.ADD_VALUE
+                    EntityAttributeModifier.Operation.ADDITION
             ).require(PALADINS)
     );
     public static final Entry PALADIN_BOOST = add(
@@ -230,9 +276,11 @@ public class NodeTypes {
                     "Path of the Archer",
                     null,
                     Icon.itemWithModel("spell_engine:spell_book", "archers:item/spell_book/archer"),
-                    EntityAttributes_RangedWeapon.DAMAGE.entry,
+                    // RangedWeaponAPI is not a compile dependency on this line; `ranged_weapon:damage`
+                    // only exists when RWA is installed (it ships with Archers on Fabric).
+                    RANGED_WEAPON_DAMAGE_ID, ATTACK_DAMAGE_ID,
                     0.01,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE
             ).require(ARCHERS)
     );
     public static final Entry ARCHER_BOOST = add(
@@ -250,7 +298,7 @@ public class NodeTypes {
                     Icon.itemWithModel("spell_engine:spell_book", "rogues:item/spell_book/rogue"),
                     EntityAttributes.GENERIC_ATTACK_SPEED,
                     0.01,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE
             ).require(ROGUES)
     );
     public static final Entry ROGUE_BOOST = add(
@@ -268,7 +316,7 @@ public class NodeTypes {
                     Icon.itemWithModel("spell_engine:spell_book", "rogues:item/spell_book/warrior"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     0.01,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE
             ).require(ROGUES)
     );
     public static final Entry WARRIOR_BOOST = add(
@@ -286,10 +334,6 @@ public class NodeTypes {
     public static final float WEAPON_ROOT_CRIT_DAMAGE = 0.08f;
     public static final float WEAPON_ROOT_HASTE = 0.05f;
 
-    public static final String CRIT_CHANCE_ID = "critical_strike:chance";
-    public static final String CRIT_DAMAGE_ID = "critical_strike:damage";
-    public static final String ATTACK_DAMAGE_ID = EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString();
-
     public static final Entry WEAPON_SWORD_ROOT = add(
             Entry.conditionalAttribute("weapon_sword_root",
                     "Sword Specialisation",
@@ -297,7 +341,7 @@ public class NodeTypes {
                     Icon.item("minecraft:iron_sword"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     WEAPON_ROOT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.SWORD
             )
     );
@@ -308,7 +352,7 @@ public class NodeTypes {
                     Icon.item("paladins:iron_claymore"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     WEAPON_ROOT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.CLAYMORE
             ).require(PALADINS)
     );
@@ -319,7 +363,7 @@ public class NodeTypes {
                     Icon.item("paladins:iron_mace"),
                     CRIT_DAMAGE_ID, ATTACK_DAMAGE_ID,
                     WEAPON_ROOT_CRIT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.MACE
             ).require(PALADINS)
     );
@@ -330,7 +374,7 @@ public class NodeTypes {
                     Icon.item("paladins:iron_great_hammer"),
                     CRIT_DAMAGE_ID, ATTACK_DAMAGE_ID,
                     WEAPON_ROOT_CRIT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.HAMMER
             ).require(PALADINS)
     );
@@ -341,7 +385,7 @@ public class NodeTypes {
                     Icon.item("rogues:iron_double_axe"),
                     CRIT_CHANCE_ID, ATTACK_DAMAGE_ID,
                     WEAPON_ROOT_CRIT_CHANCE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.DOUBLE_AXE
             ).require(ROGUES)
     );
@@ -352,7 +396,7 @@ public class NodeTypes {
                     Icon.item("archers:iron_spear"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     WEAPON_ROOT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.SPEAR
             ).require(ARCHERS)
     );
@@ -363,7 +407,7 @@ public class NodeTypes {
                     Icon.item("rogues:iron_dagger"),
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     WEAPON_ROOT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.DAGGER
             ).require(ROGUES)
     );
@@ -374,7 +418,7 @@ public class NodeTypes {
                     Icon.item("rogues:iron_sickle"),
                     CRIT_CHANCE_ID, ATTACK_DAMAGE_ID,
                     WEAPON_ROOT_CRIT_CHANCE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.SICKLE
             ).require(ROGUES)
     );
@@ -385,7 +429,7 @@ public class NodeTypes {
                     Icon.item("rogues:iron_glaive"),
                     CRIT_DAMAGE_ID, ATTACK_DAMAGE_ID,
                     WEAPON_ROOT_CRIT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.GLAIVE
             ).require(ROGUES)
     );
@@ -396,7 +440,7 @@ public class NodeTypes {
                     Icon.item("minecraft:iron_axe"),
                     CRIT_CHANCE_ID, ATTACK_DAMAGE_ID,
                     WEAPON_ROOT_CRIT_CHANCE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.AXE
             )
     );
@@ -405,10 +449,10 @@ public class NodeTypes {
                     "Bow Specialisation",
                     null,
                     Icon.item("minecraft:bow"),
-                    "ranged_weapon:damage",
-                    "minecraft:generic.attack_damage",
+                    RANGED_WEAPON_DAMAGE_ID,
+                    ATTACK_DAMAGE_ID,
                     WEAPON_ROOT_DAMAGE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.BOW
             )
     );
@@ -417,10 +461,10 @@ public class NodeTypes {
                     "Crossbow Specialisation",
                     null,
                     Icon.item("minecraft:crossbow"),
-                    "ranged_weapon:haste",
+                    RANGED_WEAPON_HASTE_ID,
                     ATTACK_DAMAGE_ID,
                     WEAPON_ROOT_HASTE,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE,
+                    EntityAttributeModifier.Operation.MULTIPLY_BASE,
                     ModifierConditions.CROSSBOW
             )
     );
@@ -429,8 +473,8 @@ public class NodeTypes {
             Entry.spell("fireball",
                     "Fireball",
                     "Unlock Fireball",
-                    Icon.spell(Identifier.of("wizards", "fireball")),
-                    List.of(SpellContainers.forModifier(Identifier.of("wizards:fireball")))
+                    Icon.spell(new Identifier("wizards", "fireball")),
+                    List.of(SpellContainers.forModifier(new Identifier("wizards:fireball")))
             ).require(WIZARDS)
     );
 
@@ -446,30 +490,30 @@ public class NodeTypes {
     /// Nodes that grant additional containers beyond their own spell.
     private static final Map<String, List<Identifier>> EXTRA_CONTAINERS = Map.of(
             "rogue_tier_2_spell_1_modifier_1",
-            List.of(Identifier.of(SkillTreeMod.NAMESPACE, "rogue_tier_2_spell_1_modifier_1_bonus"))
+            List.of(new Identifier(SkillTreeMod.NAMESPACE, "rogue_tier_2_spell_1_modifier_1_bonus"))
     );
 
     /// Nodes whose icon should point somewhere other than the mechanical default
     /// (MODIFIER → the modified spell, otherwise → the spell's own texture).
     private static final Map<String, Icon> ICON_OVERRIDES = Map.ofEntries(
             // Passives whose node icon points at the associated class spell:
-            Map.entry("arcane_tier_2_spell_2_modifier_1",  Icon.spell(Identifier.of("wizards", "arcane_explosion"))),
-            Map.entry("arcane_tier_2_spell_2_modifier_2",  Icon.spell(Identifier.of("wizards", "arcane_explosion"))),
-            Map.entry("fire_tier_2_spell_1_modifier_1",    Icon.spell(Identifier.of("wizards", "fire_breath"))),
-            Map.entry("fire_tier_3_spell_1_modifier_2",    Icon.spell(Identifier.of("wizards", "fire_meteor"))),
-            Map.entry("fire_tier_2_spell_2_modifier_2",    Icon.spell(Identifier.of("wizards", "fire_slash"))),
-            Map.entry("frost_tier_2_spell_1_modifier_1",   Icon.spell(Identifier.of("wizards", "frost_nova"))),
-            Map.entry("archer_tier_4_spell_1_modifier_2",  Icon.spell(Identifier.of("archers", "rain_of_arrows"))),
-            Map.entry("archer_tier_4_spell_2_modifier_1",  Icon.spell(Identifier.of("archers", "magic_arrow"))),
-            Map.entry("priest_tier_4_spell_2_modifier_1",  Icon.spell(Identifier.of("paladins", "barrier"))),
-            Map.entry("paladin_tier_4_spell_2_modifier_2", Icon.spell(Identifier.of("paladins", "immolation"))),
-            Map.entry("rogue_tier_2_spell_1_modifier_1",   Icon.spell(Identifier.of("rogues", "shock_powder"))),
-            Map.entry("rogue_tier_2_spell_1_modifier_2",   Icon.spell(Identifier.of("rogues", "shock_powder"))),
-            Map.entry("warrior_tier_3_spell_1_root",       Icon.spell(Identifier.of("rogues", "charge"))),
-            Map.entry("warrior_tier_3_spell_1_modifier_2", Icon.spell(Identifier.of("rogues", "charge"))),
-            Map.entry("warrior_tier_4_spell_1_modifier_2", Icon.spell(Identifier.of("rogues", "mortal_strike"))),
-            Map.entry("warrior_tier_3_spell_2_modifier_1", Icon.spell(Identifier.of("rogues", "shout"))),
-            Map.entry("warrior_tier_4_spell_2_modifier_2", Icon.spell(Identifier.of("rogues", "last_stand"))),
+            Map.entry("arcane_tier_2_spell_2_modifier_1",  Icon.spell(new Identifier("wizards", "arcane_explosion"))),
+            Map.entry("arcane_tier_2_spell_2_modifier_2",  Icon.spell(new Identifier("wizards", "arcane_explosion"))),
+            Map.entry("fire_tier_2_spell_1_modifier_1",    Icon.spell(new Identifier("wizards", "fire_breath"))),
+            Map.entry("fire_tier_3_spell_1_modifier_2",    Icon.spell(new Identifier("wizards", "fire_meteor"))),
+            Map.entry("fire_tier_2_spell_2_modifier_2",    Icon.spell(new Identifier("wizards", "fire_slash"))),
+            Map.entry("frost_tier_2_spell_1_modifier_1",   Icon.spell(new Identifier("wizards", "frost_nova"))),
+            Map.entry("archer_tier_4_spell_1_modifier_2",  Icon.spell(new Identifier("archers", "rain_of_arrows"))),
+            Map.entry("archer_tier_4_spell_2_modifier_1",  Icon.spell(new Identifier("archers", "magic_arrow"))),
+            Map.entry("priest_tier_4_spell_2_modifier_1",  Icon.spell(new Identifier("paladins", "barrier"))),
+            Map.entry("paladin_tier_4_spell_2_modifier_2", Icon.spell(new Identifier("paladins", "immolation"))),
+            Map.entry("rogue_tier_2_spell_1_modifier_1",   Icon.spell(new Identifier("rogues", "shock_powder"))),
+            Map.entry("rogue_tier_2_spell_1_modifier_2",   Icon.spell(new Identifier("rogues", "shock_powder"))),
+            Map.entry("warrior_tier_3_spell_1_root",       Icon.spell(new Identifier("rogues", "charge"))),
+            Map.entry("warrior_tier_3_spell_1_modifier_2", Icon.spell(new Identifier("rogues", "charge"))),
+            Map.entry("warrior_tier_4_spell_1_modifier_2", Icon.spell(new Identifier("rogues", "mortal_strike"))),
+            Map.entry("warrior_tier_3_spell_2_modifier_1", Icon.spell(new Identifier("rogues", "shout"))),
+            Map.entry("warrior_tier_4_spell_2_modifier_2", Icon.spell(new Identifier("rogues", "last_stand"))),
             // Magic-staff specialisation roots: show the staff item, not the modified spell:
             Map.entry("weapon_arcane_root", Icon.item("wizards:staff_arcane")),
             Map.entry("weapon_fire_root",   Icon.item("wizards:staff_fire")),
@@ -533,7 +577,7 @@ public class NodeTypes {
         if (icon == null) {
             // MODIFIER spells show the spell they modify; passives/actives show their own texture.
             icon = skill.spell().type == Spell.Type.MODIFIER
-                    ? Icon.spell(Identifier.of(skill.spell().modifiers.getFirst().spell_pattern))
+                    ? Icon.spell(new Identifier(skill.spell().modifiers.get(0).spell_pattern))
                     : Icon.spell(skill.id());
         }
         var containers = new ArrayList<SpellContainer>();
@@ -543,7 +587,7 @@ public class NodeTypes {
         }
         var entry = Entry.spell(key, skill.title(), null, icon, containers);
         var mods = requiredMods(skill);
-        return mods.isEmpty() ? entry : entry.require(mods.getFirst());
+        return mods.isEmpty() ? entry : entry.require(mods.get(0));
     }
 
     /// One spell node per entry in {@link Skills#ENTRIES}, minus entries that are already an

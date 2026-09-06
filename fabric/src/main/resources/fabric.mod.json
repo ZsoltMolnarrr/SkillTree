@@ -4,7 +4,9 @@
   "version": "${version}",
   "name": "Skill Tree (RPG Series)",
   "description": "Specialise your RPG class, by unlocking powerful skills.",
-  "authors": [ "Daedelus" ],
+  "authors": [
+    "Daedelus"
+  ],
   "contact": {},
   "license": "All Rights Reserved",
   "icon": "assets/skill_tree_rpgs/icon.png",
@@ -24,10 +26,15 @@
     "skill_tree_rpgs.mixins.json"
   ],
   "depends": {
-    "minecraft": ">=${minecraft_compat_version}",
-    "fabricloader": ">=${fabric_loader_version}",
-    "spell_engine": ">=${spell_engine_version}",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabricloader": ">=0.14.0",
+    "fabric-api": "*",
+    "spell_engine": ">=1.10.5",
     "spell_power": "*",
     "puffish_skills": "*"
+  },
+  "recommends": {
+    "ranged_weapon_api": "*"
   }
 }

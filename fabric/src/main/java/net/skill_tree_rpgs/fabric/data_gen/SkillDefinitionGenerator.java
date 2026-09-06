@@ -6,13 +6,11 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.data.DataOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.DataWriter;
-import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.skill_tree_rpgs.skills.NodeTypes;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -48,15 +46,19 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
         public static Icon item(String item) {
             return new Icon("item", new IconItem(item, null));
         }
+        /// Skills' `BuiltinJson.parseItemStack` reads `{"item": ..., "nbt": "<SNBT>"}` on 1.20.1
+        /// (the 1.21 line used a `components` object). The SNBT is what SpellEngine's `SpellItemData`
+        /// facade writes for a custom item model: `{spell_engine:{item_model:"<id>"}}`.
         public static Icon itemWithModel(String item, String modelId) {
-            return new Icon("item", new IconItem(item, Map.of("spell_engine:item_model", modelId)));
+            return new Icon("item", new IconItem(item,
+                    "{spell_engine:{item_model:\"" + modelId + "\"}}"));
         }
         public static Icon effect(String effect) {
             return new Icon("effect", new IconEffect(effect));
         }
     }
     public record IconTexture(String texture) {}
-    public record IconItem(String item, Map<String, Object> components) {}
+    public record IconItem(String item, String nbt) {}
     public record IconEffect(String effect) {}
 
     public record Reward(
@@ -69,16 +71,21 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
             double value,
             String operation
     ) {
-        public static RewardAttribute from(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier) {
+        /// The reward is keyed by attribute **id**, so the emitted JSON always names the attribute the
+        /// node was authored against (`ranged_weapon:damage` for the archer root) even when that mod is
+        /// absent from the datagen runtime. Skills drops a definition whose `required_mods` are unmet
+        /// before it reports parse problems, so an unresolvable id is never logged in that case.
+        public static RewardAttribute from(NodeTypes.EntityAttributeReward reward) {
+            var modifier = reward.modifier();
             String operation;
-            switch (modifier.operation()) {
-                case ADD_VALUE -> operation = "addition";
-                case ADD_MULTIPLIED_BASE -> operation = "multiply_base";
-                case ADD_MULTIPLIED_TOTAL -> operation = "multiply_total";
-                default -> throw new IllegalArgumentException("Unknown operation: " + modifier.operation());
+            // 1.20.1 accessors: getOperation() / getValue() (1.21 used the record-style operation()/value()).
+            switch (modifier.getOperation()) {
+                case ADDITION -> operation = "addition";
+                case MULTIPLY_BASE -> operation = "multiply_base";
+                case MULTIPLY_TOTAL -> operation = "multiply_total";
+                default -> throw new IllegalArgumentException("Unknown operation: " + modifier.getOperation());
             }
-            var attributeId = attribute.getKey().get().getValue().toString();
-            return new RewardAttribute(attributeId, modifier.value(), operation);
+            return new RewardAttribute(reward.attributeId(), modifier.getValue(), operation);
         }
     }
 
@@ -90,7 +97,9 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
     public abstract void generate(Builder builder);
 
     private static final Gson gson = new GsonBuilder()
-            .registerTypeHierarchyAdapter(Text.class, new Text.Serializer(DynamicRegistryManager.EMPTY))
+            // 1.20.1's Text.Serializer is registry-free; ResolvableTextContent is handled by
+            // `net.skill_tree_rpgs.mixin.TextSerializerMixin`.
+            .registerTypeHierarchyAdapter(Text.class, new Text.Serializer())
             .setPrettyPrinting()
             .create();
 
@@ -117,6 +126,6 @@ public abstract class SkillDefinitionGenerator implements DataProvider {
     }
 
     private Path getFilePath(Identifier category) {
-        return this.dataOutput.getResolver(DataOutput.OutputType.DATA_PACK, "puffish_skills/categories/" + category.getPath()).resolveJson(Identifier.of(category.getNamespace(), "definitions"));
+        return this.dataOutput.getResolver(DataOutput.OutputType.DATA_PACK, "puffish_skills/categories/" + category.getPath()).resolveJson(new Identifier(category.getNamespace(), "definitions"));
     }
 }

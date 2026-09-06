@@ -47,16 +47,19 @@ repositories {
         }
     }
     maven {
+        url = 'https://maven.puffish.net'
+    }
+    // Cardinal Components 5.2.0 (`dev.onyxstudios.*`) — dev-runtime pin for Trinkets.
+    maven {
         name = "Ladysnake Libs"
         url = 'https://maven.ladysnake.org/releases'
     }
-    maven {
-        url = 'https://maven.puffish.net'
-    }
+    // Trinkets (`dev.emi:trinkets`), pulled transitively by SpellEngine / the class mods.
     maven {
         name = "TerraformersMC"
         url = "https://maven.terraformersmc.com/"
     }
+
     mavenLocal()
 }
 
@@ -66,37 +69,34 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    modImplementation("dev.kosmx.player-anim:player-animation-lib-${platform}:${project.player_anim_version}")
-    modImplementation("me.shedaniel.cloth:cloth-config-${platform}:${project.cloth_config_version}")
-    modImplementation("maven.modrinth:tiny-config:${project.tiny_config_version}-${platform}")
+    modImplementation("dev.kosmx.player-anim:player-animation-lib-${platform}:${rootProject.player_anim_version}")
+    modImplementation("me.shedaniel.cloth:cloth-config-${platform}:${rootProject.cloth_config_version}")
 
-    // Trinkets
-    // Trinkets: Modrinth Maven serves minimal POMs (no transitive deps) and
-    // TerraformersMC has been unreliable in CI. Use Modrinth on CI; use dev.emi
-    // locally so runClient gets Trinkets' full transitive graph.
-    if (System.getenv("CI")) {
-        modImplementation("maven.modrinth:trinkets:${project.trinkets_version}")
-        modImplementation("org.ladysnake.cardinal-components-api:cardinal-components-base:6.1.3")
-        modImplementation("org.ladysnake.cardinal-components-api:cardinal-components-entity:6.1.3")
-    } else {
-        modImplementation("dev.emi:trinkets:${project.trinkets_version}")
-    }
+    // Ecosystem libraries from mavenLocal (published by their 1.20.1-modern ports).
+    modImplementation("net.tiny_config:tiny_config-${platform}:${rootProject.tiny_config_version}")
+    modImplementation("net.spell_power:spell_power-${platform}:${rootProject.spell_power_version}")
+    modImplementation("net.spell_engine:spell_engine-${platform}:${rootProject.spell_engine_version}")
 
-    modImplementation("net.puffish:skillsmod:${project.pufferfish_skills_version}:${platform}")
+    modImplementation("net.puffish:skillsmod:${rootProject.pufferfish_skills_version}:${platform}")
 
-    modImplementation("maven.modrinth:ranged-weapon-api:${project.ranged_weapon_api_version}-${platform}")
-//    modImplementation("net.foundation:ranged_weapon_api-${platform}:${project.ranged_weapon_api_version}")
-    modImplementation("maven.modrinth:spell-power:${project.spell_power_version}-${platform}")
-//    modImplementation("net.spell_power:spell_power-${platform}:${project.spell_power_version}")
-    modImplementation("maven.modrinth:spell-engine:${project.spell_engine_version}-${platform}")
-//    modImplementation("net.spell_engine:spell_engine-${platform}:${project.spell_engine_version}")
+    // Trinkets 3.7.2 is inherited from SpellEngine's Fabric artifact; it nests Cardinal Components, but
+    // Loom does not load nested jars of classpath mods, so the dev runtime needs explicit CCA pins.
+    // `modLocalRuntime` keeps them out of the published POM (production gets them from Trinkets' nested jars).
+    modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${rootProject.cardinal_components_version}")
+    modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${rootProject.cardinal_components_version}")
+
+    // Class mods: dev runtime only, so the skill trees' spell/item references actually resolve in-game.
+    modLocalRuntime("net.rpg_series:wizards-${platform}:${rootProject.wizards_version}")
+    modLocalRuntime("net.rpg_series:paladins-${platform}:${rootProject.paladins_version}")
+    modLocalRuntime("net.rpg_series:rogues-${platform}:${rootProject.rogues_version}")
+    modLocalRuntime("net.rpg_series:archers-${platform}:${rootProject.archers_version}")
 }
 
 processResources {
     inputs.property 'version', project.version
 
     filesMatching("fabric.mod.json") {
-        expand(project.properties)
+        expand version: inputs.properties.version
     }
 }
 
@@ -138,7 +138,7 @@ publishMods {
         client = true                    // >=1 of client/server REQUIRED by CurseForge (Error 1021)
         server = true
         changelogType = "markdown"
-        requires("fabric-api", "puffish-skills", "spell-engine", "ranged-weapon-api", "critical-strike", )
+        requires("fabric-api", "puffish-skills", "spell-engine")
     }
 
     modrinth {
@@ -150,8 +150,6 @@ publishMods {
         requires { slug = "fabric-api" }
         requires { slug = "skills" }
         requires { slug = "spell-engine" }
-        requires { slug = "ranged-weapon-api" }
-        requires { slug = "critical-strike" }
     }
 
     // Each platform publishes its own GitHub release under a distinct, platform-suffixed

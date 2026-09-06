@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class SpellContainerReward implements Reward {
-    public static final Identifier ID = Identifier.of(SkillTreeMod.NAMESPACE, "spell");
+    public static final Identifier ID = new Identifier(SkillTreeMod.NAMESPACE, "spell");
     public static void register() {
         SkillsAPI.registerReward(ID, SpellContainerReward::parse);
     }

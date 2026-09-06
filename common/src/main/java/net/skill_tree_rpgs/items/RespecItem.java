@@ -12,17 +12,29 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.text.Text;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.ParticleHelper;
 import net.spell_engine.fx.SpellEngineParticles;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 
 public class RespecItem extends Item {
     public RespecItem(Settings settings) {
         super(settings);
+    }
+
+    /// 1.20.1 has no `minecraft:lore` data component, so the lore lines registered in
+    /// {@link SkillItems} are appended from the item itself.
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        SkillItems.appendLore(this, tooltip);
+        super.appendTooltip(stack, world, tooltip, context);
     }
 
     public SoundEvent getBreakSound() {
@@ -45,9 +57,9 @@ public class RespecItem extends Item {
             if (SkillHelper.respec(serverUser)) {
                 user.incrementStat(Stats.USED.getOrCreateStat(this));
                 var equipmentSlot = user.getActiveHand() == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
-                itemStack.damage(1, ((ServerPlayerEntity) user).getServerWorld(), serverUser, item -> {
-                    serverUser.sendEquipmentBreakStatus(item, equipmentSlot);
-                });
+                // 1.20.1: damage(int, T extends LivingEntity, Consumer<T>) — no ServerWorld argument,
+                // and `sendEquipmentBreakStatus` takes only the slot.
+                itemStack.damage(1, serverUser, holder -> holder.sendEquipmentBreakStatus(equipmentSlot));
                 ParticleHelper.sendBatches(user, RESET_PARTICLES);
                 return TypedActionResult.success(itemStack, true);
             }

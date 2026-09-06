@@ -1,6 +1,7 @@
 package net.skill_tree_rpgs.effect;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.spell_engine.api.effect.CustomStatusEffect;
 import net.spell_engine.api.entity.LivingEntityImmunity;
@@ -21,8 +22,8 @@ public class CheatDeathStatusEffect extends CustomStatusEffect {
     }
 
     @Override
-    public void onApplied(LivingEntity entity, int amplifier) {
-        super.onApplied(entity, amplifier);
+    public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+        super.onApplied(entity, attributes, amplifier);
         // Grant immunity SYNCHRONOUSLY the instant the effect is applied. This is what makes reactive
         // death-cheating work: the fatal-damage trigger applies this effect part-way through the
         // victim's `damage()` call, and SpellEngine's `isInvulnerableTo` re-check runs later in that
@@ -37,9 +38,8 @@ public class CheatDeathStatusEffect extends CustomStatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         grantImmunity(entity);
-        return true; // keep the normal lifecycle
     }
 
     private static void grantImmunity(LivingEntity entity) {

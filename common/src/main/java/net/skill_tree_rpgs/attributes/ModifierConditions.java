@@ -2,8 +2,10 @@ package net.skill_tree_rpgs.attributes;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.SkillTreeMod;
 import net.spell_engine.rpg_series.item.Equipment;
 import net.spell_engine.rpg_series.tags.RPGSeriesItemTags;
@@ -59,8 +61,15 @@ public class ModifierConditions {
     public static final ModifierCondition SHIELD         = weapon(Equipment.WeaponType.SHIELD, EquipmentSlot.OFFHAND, "While holding a Shield");
 
     // Vanilla meta types
-    public static final ModifierCondition BOW      = create(ItemTags.BOW_ENCHANTABLE,      EquipmentSlot.MAINHAND, "bow",      "While holding a Bow:");
-    public static final ModifierCondition CROSSBOW = create(ItemTags.CROSSBOW_ENCHANTABLE, EquipmentSlot.MAINHAND, "crossbow", "While holding a Crossbow:");
+    /// 1.20.1 has no `minecraft:*_enchantable` item tags (added in 1.21), so the bow/crossbow
+    /// specialisation roots key off SkillTree's own tags instead. They are hand-authored under
+    /// `data/skill_tree_rpgs/tags/items/` and seeded with the vanilla items plus the Archers ones
+    /// (all optional entries), so an absent mod never invalidates the tag file.
+    private static TagKey<Item> tag(String path) {
+        return TagKey.of(RegistryKeys.ITEM, new Identifier(SkillTreeMod.NAMESPACE, path));
+    }
+    public static final ModifierCondition BOW      = create(tag("bow"),      EquipmentSlot.MAINHAND, "bow",      "While holding a Bow:");
+    public static final ModifierCondition CROSSBOW = create(tag("crossbow"), EquipmentSlot.MAINHAND, "crossbow", "While holding a Crossbow:");
     public static final ModifierCondition AXE      = create(ItemTags.AXES,                 EquipmentSlot.MAINHAND, "axe",      "While holding an Axe:");
     public static final ModifierCondition SWORD    = create(ItemTags.SWORDS,               EquipmentSlot.MAINHAND, "sword",      "While holding a Sword:");
 }

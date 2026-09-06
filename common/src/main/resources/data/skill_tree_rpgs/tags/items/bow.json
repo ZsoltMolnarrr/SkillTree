@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bow",
+    { "id": "archers:short_bow", "required": false },
+    { "id": "archers:long_bow", "required": false },
+    { "id": "archers:composite_shortbow", "required": false },
+    { "id": "archers:composite_longbow", "required": false },
+    { "id": "#c:bows", "required": false }
+  ]
+}

@@ -13,7 +13,7 @@
             "modifiers": [
               {
                 "attribute_id": "ranged_weapon:damage",
-                "operation": "ADD_VALUE",
+                "operation": "ADDITION",
                 "base": 2.0,
                 "coefficient": 0.1
               }
