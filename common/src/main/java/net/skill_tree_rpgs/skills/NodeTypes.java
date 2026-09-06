@@ -47,8 +47,8 @@ public class NodeTypes {
         }
     }
     /// The reward is keyed by attribute **id**, not by a resolved attribute: `ranged_weapon:*` only
-    /// exists when RangedWeaponAPI is installed (Fabric-only on this line), and SkillTree no longer
-    /// compiles against it. `resolve()` therefore looks the attribute up at use time, falling back to
+    /// exists when RangedWeaponAPI is installed, and SkillTree does not compile against it.
+    /// `resolve()` therefore looks the attribute up at use time, falling back to
     /// `fallbackAttributeId` and finally returning null rather than throwing.
     public record EntityAttributeReward(String attributeId, @Nullable String fallbackAttributeId,
                                         EntityAttributeModifier modifier) {
