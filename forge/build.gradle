@@ -86,10 +86,12 @@ dependencies {
     localRuntime("io.github.llamalad7:mixinextras-forge:${rootProject.mixin_extras_version}")
 
     // Class mods: dev runtime only, so the skill trees' spell/item references actually resolve in-game.
-    // Archers has no Forge artifact on the 1.20.1 line (Fabric-only) — see skilltree-port-notes.md.
     modLocalRuntime("net.rpg_series:wizards-${platform}:${rootProject.wizards_version}")
     modLocalRuntime("net.rpg_series:paladins-${platform}:${rootProject.paladins_version}")
     modLocalRuntime("net.rpg_series:rogues-${platform}:${rootProject.rogues_version}")
+    // Archers 3.1.1.002 is the first Forge artifact on this line; it pulls
+    // `net.foundation:ranged_weapon_api-forge` transitively.
+    modLocalRuntime("net.rpg_series:archers-${platform}:${rootProject.archers_version}")
 }
 
 processResources {
