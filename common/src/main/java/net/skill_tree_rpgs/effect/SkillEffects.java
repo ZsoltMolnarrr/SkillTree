@@ -780,11 +780,39 @@ public class SkillEffects {
             )
     ));
 
-    public static void register(ConfigFile.Effects config) {
+    /// Marks every skill effect as client-synchronized. Creation only — nothing is registered here, so a
+    /// loader that registers the effects itself (Forge) calls this before its registration loop. Takes the
+    /// raw {@link Effects.Entry#effect}, so it does not depend on registration order. Idempotent.
+    public static void configureEffects() {
         for (var entry: entries) {
             Synchronized.configure(entry.effect, true);
         }
+    }
+
+    public static void register(ConfigFile.Effects config) {
+        configureEffects();
+        // Registers, then links every `Entry#entry` — the behaviours below read those.
         Effects.register(entries, config.effects);
+        installBehaviours();
+    }
+
+    private static boolean behavioursInstalled = false;
+
+    /// Everything that hangs off an already-registered skill effect: damage protections, instant-cast
+    /// primers, the item glow and the entity tint.
+    ///
+    /// **Must run after the effects are linked.** `Effects.Entry#entry` is null until
+    /// {@link Effects#linkEntries} has read it back out of the registry, and four of the calls below take
+    /// that entry. On Fabric {@link #register} orders this for you; on Forge it belongs at the end of the
+    /// `STATUS_EFFECT` window, after `Effects.linkEntries(entries)`.
+    ///
+    /// `SkillSounds` entries are read here too, but sounds are registry event 1 against status effects' 5,
+    /// so they are always already registered. Idempotent.
+    public static void installBehaviours() {
+        if (behavioursInstalled) {
+            return;
+        }
+        behavioursInstalled = true;
 
         Protection.register(CLOAK_OF_SHADOWS.entry, new Protection.Pop(
                 List.of(CLOAK_OF_SHADOWS_POP),

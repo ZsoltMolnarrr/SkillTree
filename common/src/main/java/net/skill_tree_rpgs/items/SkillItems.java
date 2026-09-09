@@ -11,6 +11,7 @@ import net.minecraft.util.Rarity;
 
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -72,7 +73,20 @@ public class SkillItems {
         tooltip.addAll(LORE.getOrDefault(item, List.of()));
     }
 
-    public static void register() {
+    private static Map<Identifier, Item> itemsToRegister = null;
+
+    /// Builds every skill item, keyed by the id it registers under, and fills in each entry's
+    /// {@link Entry#item()} and its lore. Creation only — nothing is written to the registry here, so a
+    /// loader that registers items itself (Forge, through the `RegisterEvent` helper) iterates this instead
+    /// of calling {@link #register()}. Built once; repeated calls return the same map.
+    ///
+    /// `Item`'s constructor takes an intrusive registry holder on 1.20.1, so this must be called from inside
+    /// the `RegisterEvent` sequence — the ITEM window is where both loaders reach it.
+    public static Map<Identifier, Item> itemsToRegister() {
+        if (itemsToRegister != null) {
+            return itemsToRegister;
+        }
+        var items = new LinkedHashMap<Identifier, Item>();
         for (Entry entry : ENTRIES) {
             List<Text> lore = entry.loreTranslation().stream()
                     .map(line -> {
@@ -83,8 +97,14 @@ public class SkillItems {
             Item item = entry.factory().apply(entry.settings());
             LORE.put(item, lore);
             entry.container.item = item;
-            Registry.register(Registries.ITEM, entry.id(), item);
+            items.put(entry.id(), item);
         }
+        itemsToRegister = items;
+        return itemsToRegister;
+    }
+
+    public static void register() {
+        itemsToRegister().forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
         // Creative-tab placement (vanilla Combat tab) is wired per-platform from each loader's entrypoint
         // (Fabric ItemGroupEvents / NeoForge BuildCreativeModeTabContentsEvent), iterating ENTRIES.
     }
