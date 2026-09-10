@@ -581,7 +581,7 @@ public class SkillEffects {
 
     public static Effects.Entry ENRAGE = add(new Effects.Entry(new Identifier(SkillTreeMod.NAMESPACE, "enrage"),
             "Enrage",
-            "Increased size and attack speed.",
+            "Increased attack speed.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff6600),
             new EffectConfig(
                     List.of(
@@ -695,10 +695,11 @@ public class SkillEffects {
             )
     ));
 
-    /** Last Stand (Juggernaut node): per-stack size growth mirroring the Last Stand stacks. */
+    /** Last Stand (Juggernaut node): per-stack damage reduction mirroring the Last Stand stacks.
+     *  On 1.20.1 the size growth half is dropped — see this class' javadoc. */
     public static Effects.Entry JUGGERNAUT = add(new Effects.Entry(new Identifier(SkillTreeMod.NAMESPACE, "juggernaut"),
             "Juggernaut",
-            "Increased size.",
+            "Reduced damage taken.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0xcc6600),
             new EffectConfig(
                     List.of(

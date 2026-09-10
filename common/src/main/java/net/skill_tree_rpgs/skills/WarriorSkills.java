@@ -572,7 +572,7 @@ public class WarriorSkills {
         var title = effect.title;
         // ENRAGE's first modifier is attack speed; name it explicitly (it also carries damage-taken;
         // the size modifier is gone on 1.20.1 — see SkillEffects' class javadoc).
-        var description = "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Size and Attack Speed by "
+        var description = "Taking damage has {trigger_chance_1} chance to apply Enrage effect, increasing your Attack Speed by "
                 + TooltipTokens.effect(SkillEffects.ENRAGE.id, 0,
                         new Identifier(RegistryIds.attribute(EntityAttributes.GENERIC_ATTACK_SPEED)))
                 + " but also the damage you take, stacking up to {effect_amplifier_cap} times, lasting {stash_duration} sec.";

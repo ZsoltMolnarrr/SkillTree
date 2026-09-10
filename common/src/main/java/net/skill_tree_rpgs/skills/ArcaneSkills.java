@@ -424,8 +424,9 @@ public class ArcaneSkills {
     private static Skills.Entry arcane_tier_3_spell_1_modifier_2() {
         var id = new Identifier(NAMESPACE, "arcane_tier_3_spell_1_modifier_2");
         var title = "Beam Propulsion";
-        // ARCANE_SPEED has two equal modifiers (movement + jump); name the first explicitly.
-        var description = "Arcane Beam hits increase your speed and jump strength by "
+        // ARCANE_SPEED carries only the movement-speed modifier on 1.20.1 (the equal jump-strength one
+        // is gone with `minecraft:generic.jump_strength` — see SkillEffects' class javadoc).
+        var description = "Arcane Beam hits increase your speed by "
                 + TooltipTokens.effect(SkillEffects.ARCANE_SPEED.id, 0,
                         new Identifier(RegistryIds.attribute(EntityAttributes.GENERIC_MOVEMENT_SPEED)))
                 + " for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
