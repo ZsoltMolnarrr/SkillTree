@@ -17,12 +17,14 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 import net.puffish.skillsmod.reward.builtin.AttributeReward;
 import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.skill_tree_rpgs.utils.ResolvableTextContent;
@@ -125,9 +127,12 @@ public class SkillTreeModDataGenerator implements DataGeneratorEntrypoint {
 
         /// 1.21.2+: recipe providers hand back a {@link RecipeGenerator}, which owns the builder
         /// helpers (`createShaped`, `hasItem`, `conditionsFromItem`) that used to be statics.
+        /// 26.3: the generator is fed two `BootstrapContext`s (recipes, advancements) instead of a `RecipeOutput`.
         @Override
-        protected net.minecraft.data.recipes.RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput exporter) {
-            return new net.minecraft.data.recipes.RecipeProvider(registries, exporter) {
+        protected net.minecraft.data.recipes.RecipeProvider createRecipeProvider(HolderLookup.Provider registries,
+                                                                                 BootstrapContext<Recipe<?>> recipeOutput,
+                                                                                 BootstrapContext<Advancement> advancementOutput) {
+            return new net.minecraft.data.recipes.RecipeProvider(recipeOutput, advancementOutput) {
                 @Override
                 public void buildRecipes() {
                     shaped(RecipeCategory.COMBAT, SkillItems.ORB_OF_OBLIVION.item())

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "skill_tree_rpgs:orb_of_oblivion"
+        "recipes": "skill_tree_rpgs:orb_of_oblivion"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
