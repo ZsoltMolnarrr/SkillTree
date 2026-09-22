@@ -25,7 +25,7 @@
   ],
   "depends": {
     "minecraft": ">=${minecraft_min_version}",
-    "fabricloader": ">=0.19.3",
+    "fabricloader": ">=0.19.5",
     "fabric-api": "*",
     "java": ">=25",
     "spell_engine": ">=${spell_engine_version}",
