@@ -1,3 +1,7 @@
+# 1.6.2+1.20.1
+
+- Fix random crash at launch on Forge (race with Pufferfish's Skills during mod construction)
+
 # 1.6.1+1.20.1
 
 > ### ⚠️ Read this before updating

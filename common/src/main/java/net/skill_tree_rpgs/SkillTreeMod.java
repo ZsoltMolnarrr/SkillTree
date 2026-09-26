@@ -20,9 +20,12 @@ public class SkillTreeMod {
 
     public static void init() {
         effectConfig.refresh();
+        effectConfig.save();
+    }
+
+    public static void registerRewards() {
         SpellContainerReward.register();
         ConditionalAttributeReward.register();
-        effectConfig.save();
     }
 
     public static void registerSounds() {

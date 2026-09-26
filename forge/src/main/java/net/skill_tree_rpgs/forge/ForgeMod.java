@@ -6,6 +6,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.RegisterEvent;
@@ -20,9 +21,11 @@ import net.spell_engine.fx.SpellEngineSounds;
 /// Forge 47 entrypoint (1.20.1 port of the NeoForge entrypoint).
 ///
 /// Forge locks every vanilla registry outside its own `RegisterEvent` window, so each block below sits
-/// inside the window of the registry it writes to. Pufferfish's Skills reward types are registered from
-/// `SkillTreeMod.init()` through the loader-neutral `SkillsAPI.registerReward`, which is not a Minecraft
-/// registry and therefore needs no window.
+/// inside the window of the registry it writes to. Pufferfish's Skills reward types go through the
+/// loader-neutral `SkillsAPI.registerReward`, which is not a Minecraft registry and needs no window, but it
+/// writes to an unsynchronized `HashMap` that Pufferfish's own constructor fills too. Forge 47 constructs
+/// mods in parallel and ignores `ordering` for that, so our rewards are deferred to common setup's
+/// main-thread work queue, which runs after every constructor has finished.
 @Mod(SkillTreeMod.NAMESPACE)
 public final class ForgeMod {
     // FMLJavaModLoadingContext.get() is flagged for removal by late 47.x builds, but the
@@ -36,6 +39,8 @@ public final class ForgeMod {
         // Explicit event classes: Forge 47's plain addListener(Consumer) infers the event type from the
         // lambda via TypeTools, which is fragile; the 4-arg overload takes it directly.
         modBus.addListener(EventPriority.NORMAL, false, RegisterEvent.class, ForgeMod::register);
+        modBus.addListener(EventPriority.NORMAL, false, FMLCommonSetupEvent.class,
+                event -> event.enqueueWork(SkillTreeMod::registerRewards));
         // Skill items into the vanilla Combat tab — Forge mod-bus event (replaces ItemGroupEvents).
         modBus.addListener(EventPriority.NORMAL, false, BuildCreativeModeTabContentsEvent.class,
                 ForgeMod::buildTabContents);

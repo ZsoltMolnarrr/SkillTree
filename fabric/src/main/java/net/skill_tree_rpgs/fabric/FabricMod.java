@@ -10,6 +10,7 @@ public final class FabricMod implements ModInitializer {
     @Override
     public void onInitialize() {
         SkillTreeMod.init();
+        SkillTreeMod.registerRewards();
         SkillTreeMod.registerSounds();
         SkillTreeMod.registerItems();
         SkillTreeMod.registerEffects();
