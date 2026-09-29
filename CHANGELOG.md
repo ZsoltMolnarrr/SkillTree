@@ -1,5 +1,6 @@
 # 1.6.2
 
+- Updated for Minecraft 26.3
 - Fix random crash at launch on NeoForge (race with Pufferfish's Skills during mod construction)
 - Fix outdated Simplified Chinese translations
 
